@@ -1,0 +1,73 @@
+[
+  {
+    "layer": "provider",
+    "source": "alchemy",
+    "category": "rate_limit",
+    "rootCauseKnown": true,
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The app exceeded its Compute Units per second allowance."
+    ],
+    "nextSteps": [
+      "Add exponential backoff, reduce polling/batching pressure, cache reads, or increase the Alchemy throughput tier."
+    ],
+    "references": [
+      {
+        "label": "Alchemy throughput documentation",
+        "url": "https://www.alchemy.com/docs/reference/throughput"
+      }
+    ],
+    "id": "alchemy-compute-units-exceeded",
+    "title": "Alchemy compute units exceeded",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Your app has exceeded its compute units per second capacity"
+      }
+    ],
+    "summary": "Alchemy rejected the request because the app exceeded its throughput capacity."
+  },
+  {
+    "layer": "provider",
+    "source": "alchemy",
+    "category": "rate_limit",
+    "rootCauseKnown": true,
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The client is sending too many requests for the account's configured throughput."
+    ],
+    "nextSteps": [
+      "Respect Retry-After when present and use exponential backoff with jitter."
+    ],
+    "references": [
+      {
+        "label": "Alchemy throughput documentation",
+        "url": "https://www.alchemy.com/docs/reference/throughput"
+      }
+    ],
+    "id": "alchemy-http-429-too-many-requests",
+    "title": "Alchemy HTTP 429 throughput limit",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": 429
+      },
+      {
+        "type": "substring",
+        "value": "Too Many Requests"
+      }
+    ],
+    "requires": [
+      {
+        "type": "substring",
+        "value": "Alchemy"
+      }
+    ],
+    "summary": "Alchemy returned HTTP/JSON-RPC 429 because request throughput is over limit."
+  }
+]

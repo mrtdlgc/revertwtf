@@ -1,0 +1,54 @@
+{
+  "name": "revertwtf",
+  "private": true,
+  "version": "0.1.0",
+  "description": "EVM, RPC, wallet, UserOperation, and x402 error explanations",
+  "license": "MIT",
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "build": "pnpm -r --filter=./packages/* build && pnpm --filter=./apps/web build",
+    "build:packages": "pnpm -r --filter=./packages/* build",
+    "catalog:build-data": "node scripts/build-catalog-data.mjs --generate --dist --check",
+    "catalog:build-sqlite": "node scripts/build-catalog-sqlite.mjs",
+    "catalog:duplicates": "node scripts/check-catalog-duplicates.mjs --fail-on=id,same-source-selector",
+    "catalog:update-blockscout": "node scripts/update-blockscout-chains.mjs",
+    "dev": "pnpm --filter=./apps/web dev",
+    "mcp": "pnpm --filter @revertwtf/mcp start",
+    "test": "pnpm -r --filter=./packages/* test",
+    "typecheck": "pnpm -r typecheck",
+    "validate:catalog": "tsx scripts/validate-catalog.ts",
+    "clean": "pnpm -r exec rm -rf dist .next .turbo node_modules"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "pnpm": {
+    "overrides": {
+      "postcss": "8.5.15"
+    }
+  },
+  "engines": {
+    "node": ">=20.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrtdlgc/revertwtf.git"
+  },
+  "homepage": "https://revert.wtf",
+  "bugs": {
+    "url": "https://github.com/mrtdlgc/revertwtf/issues"
+  },
+  "keywords": [
+    "evm",
+    "ethereum",
+    "revert",
+    "rpc",
+    "erc-4337",
+    "x402",
+    "mcp",
+    "errors"
+  ]
+}

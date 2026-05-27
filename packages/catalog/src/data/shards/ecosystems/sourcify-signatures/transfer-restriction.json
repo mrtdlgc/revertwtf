@@ -1,0 +1,607 @@
+[
+  {
+    "id": "sourcify-signatures-transfer-restriction-cp-token-transfer-not-allowed-93c57f10",
+    "title": "Transfer restricted: CpToken__TransferNotAllowed",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x93c57f10"
+      }
+    ],
+    "summary": "Sourcify-verified custom error CpToken__TransferNotAllowed means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x93c57f10 // CpToken__TransferNotAllowed()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-transfer-restriction-draft-token-non-transferable-6db48070",
+    "title": "Transfer restricted: DraftTokenNonTransferable",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6db48070"
+      }
+    ],
+    "summary": "Sourcify-verified custom error DraftTokenNonTransferable means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x6db48070 // DraftTokenNonTransferable()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-transfer-restriction-fractional-domain-transfer-restricted-address-169e6565",
+    "title": "Transfer restricted: FractionalDomain_TransferRestricted",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x169e6565"
+      }
+    ],
+    "summary": "Sourcify-verified custom error FractionalDomain_TransferRestricted means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: FractionalDomain on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x2dc3ad023c4071fa8a5ffc275bb65e19b63f2109"
+      },
+      {
+        "label": "Sourcify: FractionalDomain on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0xf40e6d0b1cf9487bc17b3429a4082208ce81ab23"
+      },
+      {
+        "label": "Sourcify: FractionalDomain on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x42f8d20971d990b99dab661b8dd458e80d639287"
+      },
+      {
+        "label": "Sourcify: FractionalDomain on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0xf9ce48f60fc47b746625cba032fdd88aea97ee02"
+      },
+      {
+        "label": "Sourcify: FractionalDomain on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x81e358020d38d56baea9eb81ccb5889b36680676"
+      }
+    ],
+    "examples": [
+      "0x169e6565 // FractionalDomain_TransferRestricted(address)",
+      "0x169e6565 // FractionalDomain_TransferRestricted(address) - seen in FractionalDomain on base",
+      "0x169e6565 // FractionalDomain_TransferRestricted(address) - seen in FractionalDomain on base",
+      "0x169e6565 // FractionalDomain_TransferRestricted(address) - seen in FractionalDomain on base"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-transfer-restriction-hl-lockup-active-uint256-uint256-a1a5cec3",
+    "title": "Transfer restricted: HLLockupActive",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa1a5cec3"
+      }
+    ],
+    "summary": "Sourcify-verified custom error HLLockupActive means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xa1a5cec3 // HLLockupActive(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-transfer-restriction-ny-profit-taking-vault-transfer-not-allowed-23011d70",
+    "title": "Transfer restricted: NYProfitTakingVault__TransferNotAllowed",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x23011d70"
+      }
+    ],
+    "summary": "Sourcify-verified custom error NYProfitTakingVault__TransferNotAllowed means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: NyPtvPolygonWmaticQiMaiFarmV3VaultToUsdc on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x03db92aff4974b645183505a8300c80e228890b7"
+      }
+    ],
+    "examples": [
+      "0x23011d70 // NYProfitTakingVault__TransferNotAllowed()",
+      "0x23011d70 // NYProfitTakingVault__TransferNotAllowed() - seen in NyPtvPolygonWmaticQiMaiFarmV3VaultToUsdc on polygon"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-transfer-restriction-sbt-non-transferable-1204b8e6",
+    "title": "Transfer restricted: SbtNonTransferable",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1204b8e6"
+      }
+    ],
+    "summary": "Sourcify-verified custom error SbtNonTransferable means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x1204b8e6 // SbtNonTransferable()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-transfer-restriction-t-certificate-non-transferable-f8b20479",
+    "title": "Transfer restricted: TCertificate__NonTransferable",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf8b20479"
+      }
+    ],
+    "summary": "Sourcify-verified custom error TCertificate__NonTransferable means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xf8b20479 // TCertificate__NonTransferable()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-transfer-restriction-tsbt-non-transferable-ae2a21ff",
+    "title": "Transfer restricted: TSBT__NonTransferable",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xae2a21ff"
+      }
+    ],
+    "summary": "Sourcify-verified custom error TSBT__NonTransferable means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xae2a21ff // TSBT__NonTransferable()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-transfer-restriction-v-mahout-transfer-not-allowed-88774a4d",
+    "title": "Transfer restricted: VMahout__TransferNotAllowed",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x88774a4d"
+      }
+    ],
+    "summary": "Sourcify-verified custom error VMahout__TransferNotAllowed means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: VMahout on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x2c47108b2e7c69958f1634a25bfb76eba28aca1e"
+      },
+      {
+        "label": "Sourcify: VMahout on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x154ddf3293f4c72369da5277b28bf145a058f65d"
+      },
+      {
+        "label": "Sourcify: VMahout on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x8eb4c3f261b74fc1398d4696bfc8f4e2a97b5fbc"
+      },
+      {
+        "label": "Sourcify: VMahout on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0xb02ef0c1567baf949f538a9b34de0dfdfd614c38"
+      }
+    ],
+    "examples": [
+      "0x88774a4d // VMahout__TransferNotAllowed()",
+      "0x88774a4d // VMahout__TransferNotAllowed() - seen in VMahout on polygon",
+      "0x88774a4d // VMahout__TransferNotAllowed() - seen in VMahout on polygon",
+      "0x88774a4d // VMahout__TransferNotAllowed() - seen in VMahout on polygon"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-transfer-restriction-vtoken-non-transferable-621111a8",
+    "title": "Transfer restricted: VTOKEN__NonTransferable",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x621111a8"
+      }
+    ],
+    "summary": "Sourcify-verified custom error VTOKEN__NonTransferable means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: VTOKEN on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0xb70d808d4a681f270735e7c3b9e4a39305c74424"
+      },
+      {
+        "label": "Sourcify: VTOKEN on optimism",
+        "url": "https://sourcify.dev/server/v2/contract/10/0x86e6b3a5ad774953ddb2ae3d5d5a3c82c231cb91"
+      },
+      {
+        "label": "Sourcify: VTOKEN on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x60c08737877a5262bdb1c1cac8fb90b5e5b11515"
+      }
+    ],
+    "examples": [
+      "0x621111a8 // VTOKEN__NonTransferable()",
+      "0x621111a8 // VTOKEN__NonTransferable() - seen in VTOKEN on base",
+      "0x621111a8 // VTOKEN__NonTransferable() - seen in VTOKEN on optimism",
+      "0x621111a8 // VTOKEN__NonTransferable() - seen in VTOKEN on base"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-transfer-restriction-wybs-transfer-not-allowed-3511ec9d",
+    "title": "Transfer restricted: WYBSTransferNotAllowed",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3511ec9d"
+      }
+    ],
+    "summary": "Sourcify-verified custom error WYBSTransferNotAllowed means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: YBSV1_1 on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x752d55d62a94658eac08eae42deda902b69b0e76"
+      }
+    ],
+    "examples": [
+      "0x3511ec9d // WYBSTransferNotAllowed()",
+      "0x3511ec9d // WYBSTransferNotAllowed() - seen in YBSV1_1 on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-transfer-restriction-x-stryke-token-transfer-not-allowed-b293d3ab",
+    "title": "Transfer restricted: XStrykeToken_TransferNotAllowed",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb293d3ab"
+      }
+    ],
+    "summary": "Sourcify-verified custom error XStrykeToken_TransferNotAllowed means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: XStrykeToken on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x4e266330f9573166647f1baff0088f4b8b447667"
+      }
+    ],
+    "examples": [
+      "0xb293d3ab // XStrykeToken_TransferNotAllowed()",
+      "0xb293d3ab // XStrykeToken_TransferNotAllowed() - seen in XStrykeToken on arbitrum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-transfer-restriction-yal-pass-kol-non-transferable-82a5d43d",
+    "title": "Transfer restricted: YalPassKOL__NonTransferable",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x82a5d43d"
+      }
+    ],
+    "summary": "Sourcify-verified custom error YalPassKOL__NonTransferable means token movement is blocked by lockup, soulbound, freeze, transfer-list, or compliance rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token or account is locked, frozen, soulbound, non-transferable, or blocked by transfer policy.",
+      "A vesting, cooldown, or lockup period has not expired.",
+      "Sender, receiver, or token id is not allowed by the token's compliance module."
+    ],
+    "nextSteps": [
+      "Check transfer restrictions, lock expiry, frozen status, and allowlist or blocklist state for both parties.",
+      "Wait for lockup expiry or use an authorized transfer path if the token supports one.",
+      "Do not treat this as a gas issue; the transfer inputs or account status must change."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x82a5d43d // YalPassKOL__NonTransferable()"
+    ]
+  }
+]

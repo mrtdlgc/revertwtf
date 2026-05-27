@@ -1,0 +1,457 @@
+[
+  {
+    "id": "velodrome-comment-weighting-too-high",
+    "title": "Velodrome contracts: CommentWeightingTooHigh",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4fa0e5e3"
+      }
+    ],
+    "summary": "Velodrome contracts custom error CommentWeightingTooHigh().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CommentWeightingTooHigh custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Velodrome contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/governance/IGovernorCommentable.sol"
+      }
+    ],
+    "examples": [
+      "0x4fa0e5e3 // CommentWeightingTooHigh()"
+    ]
+  },
+  {
+    "id": "velodrome-governor-already-cast-vote-uint256",
+    "title": "Velodrome contracts: GovernorAlreadyCastVote",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x38ab8c98"
+      }
+    ],
+    "summary": "Velodrome contracts custom error GovernorAlreadyCastVote(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the GovernorAlreadyCastVote custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Velodrome contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/governance/IGovernor.sol"
+      }
+    ],
+    "examples": [
+      "0x38ab8c98 // GovernorAlreadyCastVote(uint256)"
+    ]
+  },
+  {
+    "id": "velodrome-governor-exceed-remaining-weight-uint256-uint256-uint256",
+    "title": "Velodrome contracts: GovernorExceedRemainingWeight",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xaf4c48d6"
+      }
+    ],
+    "summary": "Velodrome contracts custom error GovernorExceedRemainingWeight(uint256,uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the GovernorExceedRemainingWeight custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Velodrome contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/governance/EpochGovernorCountingFractional.sol"
+      }
+    ],
+    "examples": [
+      "0xaf4c48d6 // GovernorExceedRemainingWeight(uint256,uint256,uint256)"
+    ]
+  },
+  {
+    "id": "velodrome-governor-insufficient-voting-power",
+    "title": "Velodrome contracts: Governor: insufficient voting power",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Governor: insufficient voting power['\"]?\\s*$"
+      }
+    ],
+    "summary": "Velodrome contracts revert reason string: Governor: insufficient voting power.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/governance/VetoGovernor.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Governor: insufficient voting power"
+    ]
+  },
+  {
+    "id": "velodrome-governor-insufficient-voting-power-uint256-uint256",
+    "title": "Velodrome contracts: GovernorInsufficientVotingPower",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa9548165"
+      }
+    ],
+    "summary": "Velodrome contracts custom error GovernorInsufficientVotingPower(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the GovernorInsufficientVotingPower custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Velodrome contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/governance/IGovernor.sol"
+      }
+    ],
+    "examples": [
+      "0xa9548165 // GovernorInsufficientVotingPower(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "velodrome-governor-invalid-target-or-value-or-calldata-address-uint256-bytes4",
+    "title": "Velodrome contracts: GovernorInvalidTargetOrValueOrCalldata",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0047540a"
+      }
+    ],
+    "summary": "Velodrome contracts custom error GovernorInvalidTargetOrValueOrCalldata(address,uint256,bytes4).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the GovernorInvalidTargetOrValueOrCalldata custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Velodrome contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/governance/IGovernor.sol"
+      }
+    ],
+    "examples": [
+      "0x0047540a // GovernorInvalidTargetOrValueOrCalldata(address,uint256,bytes4)"
+    ]
+  },
+  {
+    "id": "velodrome-governor-managed-nft-cannot-vote",
+    "title": "Velodrome contracts: Governor: managed nft cannot vote",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Governor: managed nft cannot vote['\"]?\\s*$"
+      }
+    ],
+    "summary": "Velodrome contracts revert reason string: Governor: managed nft cannot vote.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/governance/VetoGovernorVotes.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Governor: managed nft cannot vote"
+    ]
+  },
+  {
+    "id": "velodrome-governor-not-active-or-pending",
+    "title": "Velodrome contracts: Governor: not active or pending",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Governor: not active or pending['\"]?\\s*$"
+      }
+    ],
+    "summary": "Velodrome contracts revert reason string: Governor: not active or pending.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/governance/VetoGovernor.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Governor: not active or pending"
+    ]
+  },
+  {
+    "id": "velodrome-governor-only-proposer-address",
+    "title": "Velodrome contracts: GovernorOnlyProposer",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x233d98e3"
+      }
+    ],
+    "summary": "Velodrome contracts custom error GovernorOnlyProposer(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the GovernorOnlyProposer custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Velodrome contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/governance/IGovernor.sol"
+      }
+    ],
+    "examples": [
+      "0x233d98e3 // GovernorOnlyProposer(address)"
+    ]
+  },
+  {
+    "id": "velodrome-governor-relay-not-supported",
+    "title": "Velodrome contracts: GovernorRelayNotSupported",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe069eaa6"
+      }
+    ],
+    "summary": "Velodrome contracts custom error GovernorRelayNotSupported().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the GovernorRelayNotSupported custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Velodrome contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/EpochGovernor.sol"
+      }
+    ],
+    "examples": [
+      "0xe069eaa6 // GovernorRelayNotSupported()"
+    ]
+  },
+  {
+    "id": "velodrome-governor-zero-voting-power-address-uint256",
+    "title": "Velodrome contracts: GovernorZeroVotingPower",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdd534f11"
+      }
+    ],
+    "summary": "Velodrome contracts custom error GovernorZeroVotingPower(address,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the GovernorZeroVotingPower custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Velodrome contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/governance/IGovernor.sol"
+      }
+    ],
+    "examples": [
+      "0xdd534f11 // GovernorZeroVotingPower(address,uint256)"
+    ]
+  },
+  {
+    "id": "velodrome-invalid-proposal-window",
+    "title": "Velodrome contracts: InvalidProposalWindow",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf7f11acb"
+      }
+    ],
+    "summary": "Velodrome contracts custom error InvalidProposalWindow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidProposalWindow custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Velodrome contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/governance/IGovernorProposalWindow.sol"
+      }
+    ],
+    "examples": [
+      "0xf7f11acb // InvalidProposalWindow()"
+    ]
+  },
+  {
+    "id": "velodrome-not-pool-admin",
+    "title": "Velodrome contracts: NotPoolAdmin",
+    "layer": "protocol",
+    "source": "velodrome",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x058a2da8"
+      }
+    ],
+    "summary": "Velodrome contracts custom error NotPoolAdmin().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NotPoolAdmin custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Velodrome contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Velodrome contracts GitHub repository",
+        "url": "https://github.com/velodrome-finance/contracts/blob/main/contracts/interfaces/factories/IPoolFactory.sol"
+      }
+    ],
+    "examples": [
+      "0x058a2da8 // NotPoolAdmin()"
+    ]
+  }
+]

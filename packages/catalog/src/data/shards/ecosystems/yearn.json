@@ -1,0 +1,1332 @@
+[
+  {
+    "id": "yearn-approval-failed",
+    "title": "Yearn Vaults V3: approval failed",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?approval failed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: approval failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: approval failed"
+    ]
+  },
+  {
+    "id": "yearn-cannot-buy-zero",
+    "title": "Yearn Vaults V3: cannot buy zero",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?cannot buy zero['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: cannot buy zero.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: cannot buy zero"
+    ]
+  },
+  {
+    "id": "yearn-cannot-deposit-zero",
+    "title": "Yearn Vaults V3: cannot deposit zero",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?cannot deposit zero['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: cannot deposit zero.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: cannot deposit zero"
+    ]
+  },
+  {
+    "id": "yearn-cannot-mint-zero",
+    "title": "Yearn Vaults V3: cannot mint zero",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?cannot mint zero['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: cannot mint zero.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: cannot mint zero"
+    ]
+  },
+  {
+    "id": "yearn-exceed-deposit-limit",
+    "title": "Yearn Vaults V3: exceed deposit limit",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?exceed deposit limit['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: exceed deposit limit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: exceed deposit limit"
+    ]
+  },
+  {
+    "id": "yearn-exceed-withdraw-limit",
+    "title": "Yearn Vaults V3: exceed withdraw limit",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?exceed withdraw limit['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: exceed withdraw limit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: exceed withdraw limit"
+    ]
+  },
+  {
+    "id": "yearn-fee-too-high",
+    "title": "Yearn Vaults V3: fee too high",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?fee too high['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: fee too high.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: fee too high"
+    ]
+  },
+  {
+    "id": "yearn-inactive",
+    "title": "Yearn Vaults V3: !inactive",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?!inactive['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: !inactive.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: !inactive"
+    ]
+  },
+  {
+    "id": "yearn-inactive-strategy",
+    "title": "Yearn Vaults V3: inactive strategy",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?inactive strategy['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: inactive strategy.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: inactive strategy"
+    ]
+  },
+  {
+    "id": "yearn-initialized",
+    "title": "Yearn Vaults V3: initialized",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?initialized['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: initialized.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: initialized"
+    ]
+  },
+  {
+    "id": "yearn-insufficient-allowance",
+    "title": "Yearn Vaults V3: insufficient allowance",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?insufficient allowance['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: insufficient allowance.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: insufficient allowance"
+    ]
+  },
+  {
+    "id": "yearn-insufficient-assets-in-vault",
+    "title": "Yearn Vaults V3: insufficient assets in vault",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?insufficient assets in vault['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: insufficient assets in vault.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: insufficient assets in vault"
+    ]
+  },
+  {
+    "id": "yearn-insufficient-shares-to-redeem",
+    "title": "Yearn Vaults V3: insufficient shares to redeem",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?insufficient shares to redeem['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: insufficient shares to redeem.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: insufficient shares to redeem"
+    ]
+  },
+  {
+    "id": "yearn-invalid-asset",
+    "title": "Yearn Vaults V3: invalid asset",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?invalid asset['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: invalid asset.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: invalid asset"
+    ]
+  },
+  {
+    "id": "yearn-invalid-owner",
+    "title": "Yearn Vaults V3: invalid owner",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?invalid owner['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: invalid owner.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: invalid owner"
+    ]
+  },
+  {
+    "id": "yearn-max-loss",
+    "title": "Yearn Vaults V3: max loss",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?max loss['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: max loss.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: max loss"
+    ]
+  },
+  {
+    "id": "yearn-new-debt-equals-current-debt",
+    "title": "Yearn Vaults V3: new debt equals current debt",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?new debt equals current debt['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: new debt equals current debt.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: new debt equals current debt"
+    ]
+  },
+  {
+    "id": "yearn-no-assets-to-withdraw",
+    "title": "Yearn Vaults V3: no assets to withdraw",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?no assets to withdraw['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: no assets to withdraw.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: no assets to withdraw"
+    ]
+  },
+  {
+    "id": "yearn-no-recipient",
+    "title": "Yearn Vaults V3: no recipient",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?no recipient['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: no recipient.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: no recipient"
+    ]
+  },
+  {
+    "id": "yearn-no-shares-to-redeem",
+    "title": "Yearn Vaults V3: no shares to redeem",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?no shares to redeem['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: no shares to redeem.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: no shares to redeem"
+    ]
+  },
+  {
+    "id": "yearn-not-active",
+    "title": "Yearn Vaults V3: not active",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not active['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: not active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: not active"
+    ]
+  },
+  {
+    "id": "yearn-not-allowed",
+    "title": "Yearn Vaults V3: not allowed",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not allowed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: not allowed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: not allowed"
+    ]
+  },
+  {
+    "id": "yearn-not-governance",
+    "title": "Yearn Vaults V3: not governance",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not governance['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: not governance.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: not governance"
+    ]
+  },
+  {
+    "id": "yearn-not-pending-governance",
+    "title": "Yearn Vaults V3: not pending governance",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not pending governance['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: not pending governance.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: not pending governance"
+    ]
+  },
+  {
+    "id": "yearn-nothing-to-buy",
+    "title": "Yearn Vaults V3: nothing to buy",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?nothing to buy['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: nothing to buy.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: nothing to buy"
+    ]
+  },
+  {
+    "id": "yearn-nothing-to-buy-with",
+    "title": "Yearn Vaults V3: nothing to buy with",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?nothing to buy with['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: nothing to buy with.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: nothing to buy with"
+    ]
+  },
+  {
+    "id": "yearn-permit-expired",
+    "title": "Yearn Vaults V3: permit expired",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?permit expired['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: permit expired.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: permit expired"
+    ]
+  },
+  {
+    "id": "yearn-profit-unlock-time-too-long",
+    "title": "Yearn Vaults V3: profit unlock time too long",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?profit unlock time too long['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: profit unlock time too long.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: profit unlock time too long"
+    ]
+  },
+  {
+    "id": "yearn-shutdown",
+    "title": "Yearn Vaults V3: shutdown",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?shutdown['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: shutdown.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: shutdown"
+    ]
+  },
+  {
+    "id": "yearn-strategy-already-active",
+    "title": "Yearn Vaults V3: strategy already active",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?strategy already active['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: strategy already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: strategy already active"
+    ]
+  },
+  {
+    "id": "yearn-strategy-cannot-be-zero-address",
+    "title": "Yearn Vaults V3: strategy cannot be zero address",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?strategy cannot be zero address['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: strategy cannot be zero address.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: strategy cannot be zero address"
+    ]
+  },
+  {
+    "id": "yearn-strategy-has-debt",
+    "title": "Yearn Vaults V3: strategy has debt",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?strategy has debt['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: strategy has debt.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: strategy has debt"
+    ]
+  },
+  {
+    "id": "yearn-strategy-has-unrealised-losses",
+    "title": "Yearn Vaults V3: strategy has unrealised losses",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?strategy has unrealised losses['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: strategy has unrealised losses.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: strategy has unrealised losses"
+    ]
+  },
+  {
+    "id": "yearn-strategy-not-active",
+    "title": "Yearn Vaults V3: strategy not active",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?strategy not active['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: strategy not active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: strategy not active"
+    ]
+  },
+  {
+    "id": "yearn-too-much-loss",
+    "title": "Yearn Vaults V3: too much loss",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?too much loss['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: too much loss.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: too much loss"
+    ]
+  },
+  {
+    "id": "yearn-using-deposit-limit",
+    "title": "Yearn Vaults V3: using deposit limit",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?using deposit limit['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: using deposit limit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: using deposit limit"
+    ]
+  },
+  {
+    "id": "yearn-using-module",
+    "title": "Yearn Vaults V3: using module",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?using module['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: using module.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: using module"
+    ]
+  },
+  {
+    "id": "yearn-zero-address",
+    "title": "Yearn Vaults V3: ZERO ADDRESS",
+    "layer": "protocol",
+    "source": "yearn",
+    "category": "yield",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ZERO ADDRESS['\"]?\\s*$"
+      }
+    ],
+    "summary": "Yearn Vaults V3 revert reason string: ZERO ADDRESS.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Yearn Vaults V3 GitHub repository",
+        "url": "https://raw.githubusercontent.com/yearn/yearn-vaults-v3/master/contracts/VaultV3.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: ZERO ADDRESS"
+    ]
+  }
+]

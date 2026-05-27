@@ -1,0 +1,140 @@
+[
+  {
+    "id": "sourcify-signatures-vault-share-fw-insufficient-shares-out-uint256-uint256-0b18f04c",
+    "title": "Vault share calculation failed: FWInsufficientSharesOut",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0b18f04c"
+      }
+    ],
+    "summary": "Sourcify-verified custom error FWInsufficientSharesOut indicates vault share accounting, asset/share conversion, or share-amount constraints rejected the operation.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The asset amount converts to zero shares or more shares than the vault allows.",
+      "The caller does not own enough shares for the requested redemption or withdrawal.",
+      "The asset used in the transaction does not match the vault's accounting asset."
+    ],
+    "nextSteps": [
+      "Preview asset-to-share and share-to-asset conversion using the vault's current exchange rate.",
+      "Check share balance, allowance, and max redeem or withdraw values for the owner.",
+      "Use the vault's configured asset token and account for rounding."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x0b18f04c // FWInsufficientSharesOut(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-vault-share-i-vault-zero-shares-4e167e63",
+    "title": "Vault share calculation failed: IVault__ZeroShares",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4e167e63"
+      }
+    ],
+    "summary": "Sourcify-verified custom error IVault__ZeroShares indicates vault share accounting, asset/share conversion, or share-amount constraints rejected the operation.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The asset amount converts to zero shares or more shares than the vault allows.",
+      "The caller does not own enough shares for the requested redemption or withdrawal.",
+      "The asset used in the transaction does not match the vault's accounting asset."
+    ],
+    "nextSteps": [
+      "Preview asset-to-share and share-to-asset conversion using the vault's current exchange rate.",
+      "Check share balance, allowance, and max redeem or withdraw values for the owner.",
+      "Use the vault's configured asset token and account for rounding."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: STETHVault on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xbab166da690bfbd51c96f7698068d66049236e51"
+      },
+      {
+        "label": "Sourcify: STETHVault on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xbab1e772d70300422312dff12daddcb60864bd41"
+      },
+      {
+        "label": "Sourcify: STETHVault on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xbab1e97e9db257fb2ce11fb7044eacc838db8f11"
+      }
+    ],
+    "examples": [
+      "0x4e167e63 // IVault__ZeroShares()",
+      "0x4e167e63 // IVault__ZeroShares() - seen in STETHVault on ethereum",
+      "0x4e167e63 // IVault__ZeroShares() - seen in STETHVault on ethereum",
+      "0x4e167e63 // IVault__ZeroShares() - seen in STETHVault on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-vault-share-p-defai-zero-shares-719290f7",
+    "title": "Vault share calculation failed: PDefaiZeroShares",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x719290f7"
+      }
+    ],
+    "summary": "Sourcify-verified custom error PDefaiZeroShares indicates vault share accounting, asset/share conversion, or share-amount constraints rejected the operation.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The asset amount converts to zero shares or more shares than the vault allows.",
+      "The caller does not own enough shares for the requested redemption or withdrawal.",
+      "The asset used in the transaction does not match the vault's accounting asset."
+    ],
+    "nextSteps": [
+      "Preview asset-to-share and share-to-asset conversion using the vault's current exchange rate.",
+      "Check share balance, allowance, and max redeem or withdraw values for the owner.",
+      "Use the vault's configured asset token and account for rounding."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x719290f7 // PDefaiZeroShares()"
+    ]
+  }
+]

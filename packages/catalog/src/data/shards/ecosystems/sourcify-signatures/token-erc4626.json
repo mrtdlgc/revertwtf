@@ -1,0 +1,1631 @@
+[
+  {
+    "id": "sourcify-signatures-token-erc4626-academix-exceeds-max-mint-per-wallet-a2e06fef",
+    "title": "Vault asset or share limit failed: Academix__ExceedsMaxMintPerWallet",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa2e06fef"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Academix__ExceedsMaxMintPerWallet points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xa2e06fef // Academix__ExceedsMaxMintPerWallet()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-aera-asset-is-underlying-asset-of-erc4626-address-21d8a3aa",
+    "title": "Vault asset or share limit failed: Aera__AssetIsUnderlyingAssetOfERC4626",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x21d8a3aa"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Aera__AssetIsUnderlyingAssetOfERC4626 points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: AeraVaultAssetRegistry on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x988f1348ce87ff3949ce800b07e07d13b59d14eb"
+      },
+      {
+        "label": "Sourcify: AeraVaultAssetRegistry on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x026106ddb897ee4055d744b28487d27b0b2739d1"
+      },
+      {
+        "label": "Sourcify: AeraVaultAssetRegistry on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xbb52925eaeba70f50e936ac87cd78ee848059e62"
+      },
+      {
+        "label": "Sourcify: AeraVaultAssetRegistry on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x1318d65c761b7ef8c767d724d22c1d5608fb590a"
+      },
+      {
+        "label": "Sourcify: AeraVaultAssetRegistry on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x7a4438dc8a35e8aecb4ea5e839fc6cad8ee3a648"
+      }
+    ],
+    "examples": [
+      "0x21d8a3aa // Aera__AssetIsUnderlyingAssetOfERC4626(address)",
+      "0x21d8a3aa // Aera__AssetIsUnderlyingAssetOfERC4626(address) - seen in AeraVaultAssetRegistry on base",
+      "0x21d8a3aa // Aera__AssetIsUnderlyingAssetOfERC4626(address) - seen in AeraVaultAssetRegistry on ethereum",
+      "0x21d8a3aa // Aera__AssetIsUnderlyingAssetOfERC4626(address) - seen in AeraVaultAssetRegistry on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-ate-mint-quantity-exceeds-max-minted-per-wallet-d4f82f9c",
+    "title": "Vault asset or share limit failed: ATE__MintQuantityExceedsMaxMintedPerWallet",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd4f82f9c"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ATE__MintQuantityExceedsMaxMintedPerWallet points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xd4f82f9c // ATE__MintQuantityExceedsMaxMintedPerWallet()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-bc-above-max-deposit-328615d4",
+    "title": "Vault asset or share limit failed: BC_AboveMaxDeposit",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x328615d4"
+      }
+    ],
+    "summary": "Sourcify-verified custom error BC_AboveMaxDeposit points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x328615d4 // BC_AboveMaxDeposit()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-cca-amount-more-then-max-mint-amount-dc6c6231",
+    "title": "Vault asset or share limit failed: CCAAmountMoreThenMaxMintAmount",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdc6c6231"
+      }
+    ],
+    "summary": "Sourcify-verified custom error CCAAmountMoreThenMaxMintAmount points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: CyberCatsAlliance on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x4268f98aaa936819fb3c60b57504d41b43b31f95"
+      }
+    ],
+    "examples": [
+      "0xdc6c6231 // CCAAmountMoreThenMaxMintAmount()",
+      "0xdc6c6231 // CCAAmountMoreThenMaxMintAmount() - seen in CyberCatsAlliance on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-ddbnft-max-mint-amount-exceeded-34d6eaa1",
+    "title": "Vault asset or share limit failed: DDBNFT__MaxMintAmountExceeded",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x34d6eaa1"
+      }
+    ],
+    "summary": "Sourcify-verified custom error DDBNFT__MaxMintAmountExceeded points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x34d6eaa1 // DDBNFT__MaxMintAmountExceeded()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-emax-mint-09749fa7",
+    "title": "Vault asset or share limit failed: EMAXMint",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x09749fa7"
+      }
+    ],
+    "summary": "Sourcify-verified custom error EMAXMint points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x09749fa7 // EMAXMint()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-euler-erc4626-factory-e-token-nonexistent-9c8b0033",
+    "title": "Vault asset or share limit failed: EulerERC4626Factory__ETokenNonexistent",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9c8b0033"
+      }
+    ],
+    "summary": "Sourcify-verified custom error EulerERC4626Factory__ETokenNonexistent points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: EulerERC4626Factory on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x1e8020cfb10b6a6a9b5f06e3abae140f7de541e1"
+      }
+    ],
+    "examples": [
+      "0x9c8b0033 // EulerERC4626Factory__ETokenNonexistent()",
+      "0x9c8b0033 // EulerERC4626Factory__ETokenNonexistent() - seen in EulerERC4626Factory on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-exactly-erc4626-factory-market-nonexistent-cc5cef72",
+    "title": "Vault asset or share limit failed: ExactlyERC4626Factory__MarketNonexistent",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xcc5cef72"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ExactlyERC4626Factory__MarketNonexistent points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: ExactlyERC4626Factory on optimism",
+        "url": "https://sourcify.dev/server/v2/contract/10/0xc5a238dbb4df7d09910de78f2cc633161d06f483"
+      }
+    ],
+    "examples": [
+      "0xcc5cef72 // ExactlyERC4626Factory__MarketNonexistent()",
+      "0xcc5cef72 // ExactlyERC4626Factory__MarketNonexistent() - seen in ExactlyERC4626Factory on optimism"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-fiat24-crypto-deposit-usdc-amount-higher-max-deposit-amount-uint256-uint256-eb113fae",
+    "title": "Vault asset or share limit failed: Fiat24CryptoDeposit__UsdcAmountHigherMaxDepositAmount",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xeb113fae"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Fiat24CryptoDeposit__UsdcAmountHigherMaxDepositAmount points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Fiat24CryptoDeposit2 on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x1971e04f6538aa48c1080f976f159873fa0ebd89"
+      },
+      {
+        "label": "Sourcify: Fiat24CryptoDeposit on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xff23eb62c0622d63dc5ee345274e33f1591da8a3"
+      },
+      {
+        "label": "Sourcify: Fiat24CryptoDeposit2 on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x0fb8f4e4e01b4c8390ae8a351e63d9813c624cad"
+      },
+      {
+        "label": "Sourcify: Fiat24CryptoDeposit on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x22dd9ab242e0418c788a96412735dc93d0d5cce4"
+      },
+      {
+        "label": "Sourcify: Fiat24CryptoDeposit on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x5788a633f40f282644222e07364a9b4e5636a1de"
+      }
+    ],
+    "examples": [
+      "0xeb113fae // Fiat24CryptoDeposit__UsdcAmountHigherMaxDepositAmount(uint256,uint256)",
+      "0xeb113fae // Fiat24CryptoDeposit__UsdcAmountHigherMaxDepositAmount(uint256,uint256) - seen in Fiat24CryptoDeposit2 on arbitrum",
+      "0xeb113fae // Fiat24CryptoDeposit__UsdcAmountHigherMaxDepositAmount(uint256,uint256) - seen in Fiat24CryptoDeposit on arbitrum",
+      "0xeb113fae // Fiat24CryptoDeposit__UsdcAmountHigherMaxDepositAmount(uint256,uint256) - seen in Fiat24CryptoDeposit2 on base"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-fjord-max-mint-exceeded-dec0507f",
+    "title": "Vault asset or share limit failed: FJORD_MaxMintExceeded",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdec0507f"
+      }
+    ],
+    "summary": "Sourcify-verified custom error FJORD_MaxMintExceeded points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: HellHouse on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xcf56ff83c3abc248fb9d00b1243cb9e25645f8ed"
+      },
+      {
+        "label": "Sourcify: FjordDrop on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x2eb42d1851018008028e78c5d0fa3c43b7d03fd4"
+      },
+      {
+        "label": "Sourcify: FjordDrop on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xb775206e01fe2d60de85df9f18dd810998bff6d7"
+      }
+    ],
+    "examples": [
+      "0xdec0507f // FJORD_MaxMintExceeded()",
+      "0xdec0507f // FJORD_MaxMintExceeded() - seen in HellHouse on ethereum",
+      "0xdec0507f // FJORD_MaxMintExceeded() - seen in FjordDrop on ethereum",
+      "0xdec0507f // FJORD_MaxMintExceeded() - seen in FjordDrop on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-guaranteed-nf-ts-can-not-be-more-than-max-mint-amount-f1613b7a",
+    "title": "Vault asset or share limit failed: GuaranteedNFTsCanNotBeMoreThanMaxMintAmount",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf1613b7a"
+      }
+    ],
+    "summary": "Sourcify-verified custom error GuaranteedNFTsCanNotBeMoreThanMaxMintAmount points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xf1613b7a // GuaranteedNFTsCanNotBeMoreThanMaxMintAmount()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-i-uniswap-v3-tokenized-lp-more-than-max-deposit-8626ba23",
+    "title": "Vault asset or share limit failed: IUniswapV3TokenizedLp_MoreThanMaxDeposit",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8626ba23"
+      }
+    ],
+    "summary": "Sourcify-verified custom error IUniswapV3TokenizedLp_MoreThanMaxDeposit points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x8626ba23 // IUniswapV3TokenizedLp_MoreThanMaxDeposit()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-ionic-market-erc4626-compound-error-uint8-62e56fee",
+    "title": "Vault asset or share limit failed: IonicMarketERC4626__CompoundError",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x62e56fee"
+      }
+    ],
+    "summary": "Sourcify-verified custom error IonicMarketERC4626__CompoundError points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: IonicMarketERC4626 on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x986f1289b2e803b0bf7ac29b777bbacbdb3de872"
+      },
+      {
+        "label": "Sourcify: IonicMarketERC4626 on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x0014ce7973246b7a99ea95f0bd38156c19551880"
+      }
+    ],
+    "examples": [
+      "0x62e56fee // IonicMarketERC4626__CompoundError(uint8)",
+      "0x62e56fee // IonicMarketERC4626__CompoundError(uint8) - seen in IonicMarketERC4626 on base",
+      "0x62e56fee // IonicMarketERC4626__CompoundError(uint8) - seen in IonicMarketERC4626 on base"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-k-max-mints-per-transaction-f0f2ca28",
+    "title": "Vault asset or share limit failed: kMaxMintsPerTransaction",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf0f2ca28"
+      }
+    ],
+    "summary": "Sourcify-verified custom error kMaxMintsPerTransaction points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: TheLastSupper on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x7357dc2f2b6b51c8e2c7efc728002a499d503c17"
+      }
+    ],
+    "examples": [
+      "0xf0f2ca28 // kMaxMintsPerTransaction()",
+      "0xf0f2ca28 // kMaxMintsPerTransaction() - seen in TheLastSupper on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-l-max-mint-fee-bps-aea8146d",
+    "title": "Vault asset or share limit failed: lMaxMintFeeBps",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xaea8146d"
+      }
+    ],
+    "summary": "Sourcify-verified custom error lMaxMintFeeBps points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xaea8146d // lMaxMintFeeBps()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-nda-omax-mint-uint256-b6f9bd1f",
+    "title": "Vault asset or share limit failed: NDAOmaxMint",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb6f9bd1f"
+      }
+    ],
+    "summary": "Sourcify-verified custom error NDAOmaxMint points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: NDAOContract on avalanche",
+        "url": "https://sourcify.dev/server/v2/contract/43114/0x532e6b3df086154e97de823351a14f54b758ef55"
+      },
+      {
+        "label": "Sourcify: NDAOContract on bsc",
+        "url": "https://sourcify.dev/server/v2/contract/56/0x532e6b3df086154e97de823351a14f54b758ef55"
+      },
+      {
+        "label": "Sourcify: NDAOContract on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x532e6b3df086154e97de823351a14f54b758ef55"
+      }
+    ],
+    "examples": [
+      "0xb6f9bd1f // NDAOmaxMint(uint256)",
+      "0xb6f9bd1f // NDAOmaxMint(uint256) - seen in NDAOContract on avalanche",
+      "0xb6f9bd1f // NDAOmaxMint(uint256) - seen in NDAOContract on bsc",
+      "0xb6f9bd1f // NDAOmaxMint(uint256) - seen in NDAOContract on polygon"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-nebuloids-max-mint-exceeded-c052d006",
+    "title": "Vault asset or share limit failed: Nebuloids__MaxMintExceeded",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc052d006"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Nebuloids__MaxMintExceeded points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: NebuloidsNFT on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xdff321a4c9e02a67b2ed8399ded1024f84424445"
+      },
+      {
+        "label": "Sourcify: NebuloidsNFT on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x7d10f3aa87808c2660231483202c37e2f06637d8"
+      },
+      {
+        "label": "Sourcify: NebuloidsNFT on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xc077519505698c5b2b4e8171869a66402a5a3895"
+      }
+    ],
+    "examples": [
+      "0xc052d006 // Nebuloids__MaxMintExceeded()",
+      "0xc052d006 // Nebuloids__MaxMintExceeded() - seen in NebuloidsNFT on ethereum",
+      "0xc052d006 // Nebuloids__MaxMintExceeded() - seen in NebuloidsNFT on ethereum",
+      "0xc052d006 // Nebuloids__MaxMintExceeded() - seen in NebuloidsNFT on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-omax-deposits-uint256-cbc1ac28",
+    "title": "Vault asset or share limit failed: omaxDeposits",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xcbc1ac28"
+      }
+    ],
+    "summary": "Sourcify-verified custom error omaxDeposits points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xcbc1ac28 // omaxDeposits(uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-ootake-max-mint-amount-exceeded-25bad8d7",
+    "title": "Vault asset or share limit failed: Ootake__MaxMintAmountExceeded",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x25bad8d7"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Ootake__MaxMintAmountExceeded points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x25bad8d7 // Ootake__MaxMintAmountExceeded()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-pre-alha-max-mint-0f813f0d",
+    "title": "Vault asset or share limit failed: PreAlhaMaxMint",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0f813f0d"
+      }
+    ],
+    "summary": "Sourcify-verified custom error PreAlhaMaxMint points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: LoneWolfStudios on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x743833496a8bf29416681ed840e84db67510f4c3"
+      }
+    ],
+    "examples": [
+      "0x0f813f0d // PreAlhaMaxMint()",
+      "0x0f813f0d // PreAlhaMaxMint() - seen in LoneWolfStudios on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-qc-max-minting-capacity-updated-address-uint256-uint256-address-b20ef9b3",
+    "title": "Vault asset or share limit failed: QCMaxMintingCapacityUpdated",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb20ef9b3"
+      }
+    ],
+    "summary": "Sourcify-verified custom error QCMaxMintingCapacityUpdated points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xb20ef9b3 // QCMaxMintingCapacityUpdated(address,uint256,uint256,address)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-reached-max-deposit-tokens-896d816c",
+    "title": "Vault asset or share limit failed: ReachedMaxDepositTokens",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x896d816c"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ReachedMaxDepositTokens points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Pool on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x2144b696beba98f077531e96023a7df821bc4586"
+      },
+      {
+        "label": "Sourcify: Pool on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xd14de5e043120b6abebfdef3b2c1b4728035c238"
+      },
+      {
+        "label": "Sourcify: Pool on optimism",
+        "url": "https://sourcify.dev/server/v2/contract/10/0xbdf0380e921b4c0d73b9ef86a5b4c08869acc23d"
+      },
+      {
+        "label": "Sourcify: Pool on optimism",
+        "url": "https://sourcify.dev/server/v2/contract/10/0x0557b0a016166fa113cc090869c3d98bbfe911fa"
+      },
+      {
+        "label": "Sourcify: Pool on optimism",
+        "url": "https://sourcify.dev/server/v2/contract/10/0x407a10a43e2fd5a75dad87829c47feab9f104e5d"
+      }
+    ],
+    "examples": [
+      "0x896d816c // ReachedMaxDepositTokens()",
+      "0x896d816c // ReachedMaxDepositTokens() - seen in Pool on base",
+      "0x896d816c // ReachedMaxDepositTokens() - seen in Pool on ethereum",
+      "0x896d816c // ReachedMaxDepositTokens() - seen in Pool on optimism"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-reached-max-mint-80a9f0e3",
+    "title": "Vault asset or share limit failed: ReachedMaxMint",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x80a9f0e3"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ReachedMaxMint points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x80a9f0e3 // ReachedMaxMint()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-reached-max-mintable-at-current-stage-985d71d0",
+    "title": "Vault asset or share limit failed: ReachedMaxMintableAtCurrentStage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x985d71d0"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ReachedMaxMintableAtCurrentStage points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: MerkleTreeAllowlistFacetV2 on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xde51da333b9de32aceef04514e2e17e0676fc858"
+      },
+      {
+        "label": "Sourcify: MerkleTreeAllowlistFacet on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x9d2db6efb970d45342b8782b95658d0648e0e732"
+      },
+      {
+        "label": "Sourcify: CreditCardCheckoutFacet on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x1c6d5e691711fced73c2c1a45d4f02bba1ef5d64"
+      },
+      {
+        "label": "Sourcify: OnDemandMintFacet on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x7e35f51ae455c6d1b018ba565aea39a305a0cb7f"
+      },
+      {
+        "label": "Sourcify: OnDemandMintFacet on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x47d7452d475c088bf58a1ca911495e5740bb3d7d"
+      }
+    ],
+    "examples": [
+      "0x985d71d0 // ReachedMaxMintableAtCurrentStage()",
+      "0x985d71d0 // ReachedMaxMintableAtCurrentStage() - seen in MerkleTreeAllowlistFacetV2 on ethereum",
+      "0x985d71d0 // ReachedMaxMintableAtCurrentStage() - seen in MerkleTreeAllowlistFacet on ethereum",
+      "0x985d71d0 // ReachedMaxMintableAtCurrentStage() - seen in CreditCardCheckoutFacet on polygon"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-reached-max-minted-amount-5abfcb8c",
+    "title": "Vault asset or share limit failed: ReachedMaxMintedAmount",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5abfcb8c"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ReachedMaxMintedAmount points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: JokerNFTV2Minter on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x675967a3da531ffab7532287af8cbfd1a2b6248a"
+      },
+      {
+        "label": "Sourcify: JokerNFTV2Minter on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x0591c782bd695843e539055b8df1cf6a25df2c82"
+      }
+    ],
+    "examples": [
+      "0x5abfcb8c // ReachedMaxMintedAmount()",
+      "0x5abfcb8c // ReachedMaxMintedAmount() - seen in JokerNFTV2Minter on polygon",
+      "0x5abfcb8c // ReachedMaxMintedAmount() - seen in JokerNFTV2Minter on polygon"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-reached-max-minted-amount-per-al-0d8ff250",
+    "title": "Vault asset or share limit failed: ReachedMaxMintedAmountPerAL",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0d8ff250"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ReachedMaxMintedAmountPerAL points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: JokerNFTV2Minter on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x0591c782bd695843e539055b8df1cf6a25df2c82"
+      },
+      {
+        "label": "Sourcify: JokerNFTV2Minter on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x675967a3da531ffab7532287af8cbfd1a2b6248a"
+      }
+    ],
+    "examples": [
+      "0x0d8ff250 // ReachedMaxMintedAmountPerAL()",
+      "0x0d8ff250 // ReachedMaxMintedAmountPerAL() - seen in JokerNFTV2Minter on polygon",
+      "0x0d8ff250 // ReachedMaxMintedAmountPerAL() - seen in JokerNFTV2Minter on polygon"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-tsb-shared-max-mint-reached-address-uint256-34ec434f",
+    "title": "Vault asset or share limit failed: TSBShared__MaxMintReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x34ec434f"
+      }
+    ],
+    "summary": "Sourcify-verified custom error TSBShared__MaxMintReached points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x34ec434f // TSBShared__MaxMintReached(address,uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-unaboomer-max-mint-per-wallet-3c90e9b7",
+    "title": "Vault asset or share limit failed: unaboomerMaxMintPerWallet",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3c90e9b7"
+      }
+    ],
+    "summary": "Sourcify-verified custom error unaboomerMaxMintPerWallet points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Main on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xfb618d26cb208f1e46c7882f098d725f96976c0b"
+      }
+    ],
+    "examples": [
+      "0x3c90e9b7 // unaboomerMaxMintPerWallet()",
+      "0x3c90e9b7 // unaboomerMaxMintPerWallet() - seen in Main on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-vocation-max-mint-amount-string-1f65fe5f",
+    "title": "Vault asset or share limit failed: vocationMaxMintAmount",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1f65fe5f"
+      }
+    ],
+    "summary": "Sourcify-verified custom error vocationMaxMintAmount points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x1f65fe5f // vocationMaxMintAmount(string)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-yam-punks-max-mint-amount-exceeded-c4fcc020",
+    "title": "Vault asset or share limit failed: YamPunks__MaxMintAmountExceeded",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc4fcc020"
+      }
+    ],
+    "summary": "Sourcify-verified custom error YamPunks__MaxMintAmountExceeded points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: YamPunks on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x268d97aad2798a0299604620fa775ea8c3299d20"
+      }
+    ],
+    "examples": [
+      "0xc4fcc020 // YamPunks__MaxMintAmountExceeded()",
+      "0xc4fcc020 // YamPunks__MaxMintAmountExceeded() - seen in YamPunks on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-yang-max-mint-amount-b943e412",
+    "title": "Vault asset or share limit failed: YangMaxMintAmount",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb943e412"
+      }
+    ],
+    "summary": "Sourcify-verified custom error YangMaxMintAmount points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: ReviverArtEditionSale on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x559322743cea4cd9ec8caa0f26b2b8d6e4b46da5"
+      },
+      {
+        "label": "Sourcify: ReviverArtEditionSale on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x80284daf5d0218ad0ed113532955019233334fb0"
+      },
+      {
+        "label": "Sourcify: ReviverArtEditionSale on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xc89b026aaf0a00a869b0c9e998de0a7e871bdf16"
+      },
+      {
+        "label": "Sourcify: ReviverArtEditionSale on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x6cd40aade5e1852b5b5911362e4f5c158464ec22"
+      },
+      {
+        "label": "Sourcify: ReviverArtEditionSale on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xad28a10b772088e5c570353f5f6499eae8b87a66"
+      }
+    ],
+    "examples": [
+      "0xb943e412 // YangMaxMintAmount()",
+      "0xb943e412 // YangMaxMintAmount() - seen in ReviverArtEditionSale on ethereum",
+      "0xb943e412 // YangMaxMintAmount() - seen in ReviverArtEditionSale on ethereum",
+      "0xb943e412 // YangMaxMintAmount() - seen in ReviverArtEditionSale on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-zkg-exceeds-max-mint-5276ac43",
+    "title": "Vault asset or share limit failed: ZKG_ExceedsMaxMint",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5276ac43"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ZKG_ExceedsMaxMint points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: ZKGToken on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x5f4c07236a0d5623407c83d8a20f81a14313b3b9"
+      }
+    ],
+    "examples": [
+      "0x5276ac43 // ZKG_ExceedsMaxMint()",
+      "0x5276ac43 // ZKG_ExceedsMaxMint() - seen in ZKGToken on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-token-erc4626-zukuverse-overmaxmint-f0fb0108",
+    "title": "Vault asset or share limit failed: Zukuverse__OVERMAXMINT",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf0fb0108"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Zukuverse__OVERMAXMINT points to ERC-4626-style vault limits, share conversion, asset mismatch, or max deposit/withdraw constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested deposit, mint, withdraw, or redeem exceeds the vault's current maximum.",
+      "Asset-to-share conversion produced zero shares, too many shares, or a value outside rounding limits.",
+      "The asset, receiver, owner, or vault state does not match the requested vault operation."
+    ],
+    "nextSteps": [
+      "Call maxDeposit, maxMint, maxWithdraw, or maxRedeem for the account at the latest block.",
+      "Preview the vault conversion and account for rounding before submitting.",
+      "Check that the asset token and vault address match the intended market."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Zukuverse on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xb1f38f844b5d9a82bbb8824b742e098bc3c6ada9"
+      }
+    ],
+    "examples": [
+      "0xf0fb0108 // Zukuverse__OVERMAXMINT()",
+      "0xf0fb0108 // Zukuverse__OVERMAXMINT() - seen in Zukuverse on ethereum"
+    ]
+  }
+]

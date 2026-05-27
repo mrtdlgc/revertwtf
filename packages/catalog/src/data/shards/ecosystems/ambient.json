@@ -1,0 +1,1577 @@
+[
+  {
+    "id": "ambient-reason-admin-only-52f39a07",
+    "title": "Ambient / CrocSwap: Admin Only",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Admin Only['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Admin Only.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/periphery/CrocFaucet.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Admin Only"
+    ]
+  },
+  {
+    "id": "ambient-reason-cannot-overwrite-boot-path-181d6a70",
+    "title": "Ambient / CrocSwap: Cannot overwrite boot path",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot overwrite boot path['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Cannot overwrite boot path.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/callpaths/BootPath.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Cannot overwrite boot path"
+    ]
+  },
+  {
+    "id": "ambient-reason-does-not-own-deployer-abbfbafb",
+    "title": "Ambient / CrocSwap: Does not own deployer",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Does not own deployer['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Does not own deployer.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/periphery/CrocDeployer.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Does not own deployer"
+    ]
+  },
+  {
+    "id": "ambient-reason-does-not-receive-ether-outside-lock-2a733f57",
+    "title": "Ambient / CrocSwap: Does not receive Ether outside lock",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Does not receive Ether outside lock['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Does not receive Ether outside lock.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/periphery/CrocSwapRouter.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Does not receive Ether outside lock"
+    ]
+  },
+  {
+    "id": "ambient-reason-emergency-authority-663b9b23",
+    "title": "Ambient / CrocSwap: Emergency Authority",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Emergency Authority['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Emergency Authority.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/governance/CrocPolicy.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Emergency Authority"
+    ]
+  },
+  {
+    "id": "ambient-reason-emergency-safe-mode-a1321417",
+    "title": "Ambient / CrocSwap: Emergency Safe Mode",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Emergency Safe Mode['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Emergency Safe Mode.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/callpaths/SafeModePath.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Emergency Safe Mode"
+    ]
+  },
+  {
+    "id": "ambient-reason-ethereum-transfer-failed-2b526af1",
+    "title": "Ambient / CrocSwap: Ethereum transfer failed",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Ethereum transfer failed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Ethereum transfer failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/periphery/CrocFaucet.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Ethereum transfer failed"
+    ]
+  },
+  {
+    "id": "ambient-reason-illegal-policy-update-4f9fd48c",
+    "title": "Ambient / CrocSwap: Illegal policy update",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Illegal policy update['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Illegal policy update.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/governance/CrocPolicy.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Illegal policy update"
+    ]
+  },
+  {
+    "id": "ambient-reason-init-liq-1af777d7",
+    "title": "Ambient / CrocSwap: Init liq",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Init liq['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Init liq.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/mixins/PoolRegistry.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Init liq"
+    ]
+  },
+  {
+    "id": "ambient-reason-invalid-authority-3a234662",
+    "title": "Ambient / CrocSwap: Invalid Authority",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid Authority['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Invalid Authority.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/callpaths/ColdPath.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid Authority"
+    ]
+  },
+  {
+    "id": "ambient-reason-invalid-command-7ac533f5",
+    "title": "Ambient / CrocSwap: Invalid command",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid command['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Invalid command.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/callpaths/BootPath.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid command"
+    ]
+  },
+  {
+    "id": "ambient-reason-invalid-croc-swap-dex-d082fdd7",
+    "title": "Ambient / CrocSwap: Invalid CrocSwapDex",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid CrocSwapDex['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Invalid CrocSwapDex.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/lens/CrocQuery.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid CrocSwapDex"
+    ]
+  },
+  {
+    "id": "ambient-reason-invalid-router-approve-09ee94d8",
+    "title": "Ambient / CrocSwap: Invalid Router Approve",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid Router Approve['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Invalid Router Approve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/callpaths/ColdPath.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid Router Approve"
+    ]
+  },
+  {
+    "id": "ambient-reason-invalid-token-pair-451dcbbe",
+    "title": "Ambient / CrocSwap: Invalid Token Pair",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid Token Pair['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Invalid Token Pair.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/periphery/CrocLpErc20.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid Token Pair"
+    ]
+  },
+  {
+    "id": "ambient-reason-ips-d5c89851",
+    "title": "Ambient / CrocSwap: IPS",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?IPS['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: IPS.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/mixins/PoolRegistry.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: IPS"
+    ]
+  },
+  {
+    "id": "ambient-reason-non-ambient-lp-deposit-8266bc8c",
+    "title": "Ambient / CrocSwap: Non-Ambient LP Deposit",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Non-Ambient LP Deposit['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Non-Ambient LP Deposit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/periphery/CrocLpErc20.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Non-Ambient LP Deposit"
+    ]
+  },
+  {
+    "id": "ambient-reason-ops-authority-cb311fce",
+    "title": "Ambient / CrocSwap: Ops Authority",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Ops Authority['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Ops Authority.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/governance/CrocPolicy.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Ops Authority"
+    ]
+  },
+  {
+    "id": "ambient-reason-oracle-8a1681e6",
+    "title": "Ambient / CrocSwap: Oracle",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Oracle['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Oracle.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/mixins/PoolRegistry.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Oracle"
+    ]
+  },
+  {
+    "id": "ambient-reason-overflow-10e80591",
+    "title": "Ambient / CrocSwap: overflow",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?overflow['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: overflow.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/libraries/LiquidityMath.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: overflow"
+    ]
+  },
+  {
+    "id": "ambient-reason-policy-authority-b4842694",
+    "title": "Ambient / CrocSwap: Policy authority",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Policy authority['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Policy authority.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/governance/CrocPolicy.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Policy authority"
+    ]
+  },
+  {
+    "id": "ambient-reason-proxy-address-is-not-a-contract-467f8923",
+    "title": "Ambient / CrocSwap: Proxy address is not a contract",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Proxy address is not a contract['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Proxy address is not a contract.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/callpaths/BootPath.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Proxy address is not a contract"
+    ]
+  },
+  {
+    "id": "ambient-reason-proxy-does-not-accept-role-424dcdf1",
+    "title": "Ambient / CrocSwap: Proxy does not accept role",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Proxy does not accept role['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Proxy does not accept role.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/callpaths/BootPath.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Proxy does not accept role"
+    ]
+  },
+  {
+    "id": "ambient-reason-re-entrant-call-7420cf5c",
+    "title": "Ambient / CrocSwap: Re-entrant call",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Re-entrant call['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Re-entrant call.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/periphery/CrocSwapRouter.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Re-entrant call"
+    ]
+  },
+  {
+    "id": "ambient-reason-reentrant-c6c7c207",
+    "title": "Ambient / CrocSwap: Reentrant",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Reentrant['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Reentrant.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/periphery/CrocFaucet.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Reentrant"
+    ]
+  },
+  {
+    "id": "ambient-reason-router-does-not-support-surplus-collateral-97fc527f",
+    "title": "Ambient / CrocSwap: Router does not support surplus collateral",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Router does not support surplus collateral['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Router does not support surplus collateral.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/periphery/CrocSwapRouter.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Router does not support surplus collateral"
+    ]
+  },
+  {
+    "id": "ambient-reason-sudo-e198f0d5",
+    "title": "Ambient / CrocSwap: Sudo",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Sudo['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Sudo.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/callpaths/BootPath.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Sudo"
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-accept-admin-call-must-come-from-pending-admin-bd64cf45",
+    "title": "Ambient / CrocSwap: Timelock::acceptAdmin: Call must come from pendingAdmin.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::acceptAdmin: Call must come from pendingAdmin\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::acceptAdmin: Call must come from pendingAdmin..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::acceptAdmin: Call must come from pendingAdmin."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-cancel-transaction-call-must-come-from-admin-a63954a6",
+    "title": "Ambient / CrocSwap: Timelock::cancelTransaction: Call must come from admin.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::cancelTransaction: Call must come from admin\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::cancelTransaction: Call must come from admin..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::cancelTransaction: Call must come from admin."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-constructor-invalid-admin-address-d2eebeab",
+    "title": "Ambient / CrocSwap: Timelock::constructor Invalid admin address",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::constructor Invalid admin address['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::constructor Invalid admin address.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::constructor Invalid admin address"
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-constructor-delay-must-exceed-minimum-delay-48d46078",
+    "title": "Ambient / CrocSwap: Timelock::constructor: Delay must exceed minimum delay.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::constructor: Delay must exceed minimum delay\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::constructor: Delay must exceed minimum delay..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::constructor: Delay must exceed minimum delay."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-execute-transaction-call-must-come-from-admin-7b8d5fa1",
+    "title": "Ambient / CrocSwap: Timelock::executeTransaction: Call must come from admin.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::executeTransaction: Call must come from admin\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::executeTransaction: Call must come from admin..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::executeTransaction: Call must come from admin."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-execute-transaction-transaction-execution-reverted-a1a10403",
+    "title": "Ambient / CrocSwap: Timelock::executeTransaction: Transaction execution reverted.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::executeTransaction: Transaction execution reverted\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::executeTransaction: Transaction execution reverted..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::executeTransaction: Transaction execution reverted."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-execute-transaction-transaction-hasn-t-been-queued-f399c2b3",
+    "title": "Ambient / CrocSwap: Timelock::executeTransaction: Transaction hasn't been queued.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::executeTransaction: Transaction hasn't been queued\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::executeTransaction: Transaction hasn't been queued..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::executeTransaction: Transaction hasn't been queued."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-execute-transaction-transaction-hasn-t-surpassed-time-lock-9285e8e4",
+    "title": "Ambient / CrocSwap: Timelock::executeTransaction: Transaction hasn't surpassed time lock.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::executeTransaction: Transaction hasn't surpassed time lock\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::executeTransaction: Transaction hasn't surpassed time lock..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::executeTransaction: Transaction hasn't surpassed time lock."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-execute-transaction-transaction-is-stale-dfaa8ebc",
+    "title": "Ambient / CrocSwap: Timelock::executeTransaction: Transaction is stale.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::executeTransaction: Transaction is stale\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::executeTransaction: Transaction is stale..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::executeTransaction: Transaction is stale."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-queue-transaction-call-must-come-from-admin-c8b25ffb",
+    "title": "Ambient / CrocSwap: Timelock::queueTransaction: Call must come from admin.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::queueTransaction: Call must come from admin\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::queueTransaction: Call must come from admin..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::queueTransaction: Call must come from admin."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-queue-transaction-estimated-execution-block-must-satisfy-delay-b76a4089",
+    "title": "Ambient / CrocSwap: Timelock::queueTransaction: Estimated execution block must satisfy delay.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::queueTransaction: Estimated execution block must satisfy delay\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::queueTransaction: Estimated execution block must satisfy delay..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::queueTransaction: Estimated execution block must satisfy delay."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-set-delay-call-must-come-from-timelock-5f3ab8e8",
+    "title": "Ambient / CrocSwap: Timelock::setDelay: Call must come from Timelock.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::setDelay: Call must come from Timelock\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::setDelay: Call must come from Timelock..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::setDelay: Call must come from Timelock."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-set-delay-delay-must-exceed-minimum-delay-6a37d7dd",
+    "title": "Ambient / CrocSwap: Timelock::setDelay: Delay must exceed minimum delay.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::setDelay: Delay must exceed minimum delay\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::setDelay: Delay must exceed minimum delay..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::setDelay: Delay must exceed minimum delay."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-set-delay-delay-must-not-exceed-maximum-delay-e3990f4f",
+    "title": "Ambient / CrocSwap: Timelock::setDelay: Delay must not exceed maximum delay.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::setDelay: Delay must not exceed maximum delay\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::setDelay: Delay must not exceed maximum delay..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::setDelay: Delay must not exceed maximum delay."
+    ]
+  },
+  {
+    "id": "ambient-reason-timelock-set-pending-admin-call-must-come-from-timelock-2f9d1de2",
+    "title": "Ambient / CrocSwap: Timelock::setPendingAdmin: Call must come from Timelock.",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::setPendingAdmin: Call must come from Timelock\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Timelock::setPendingAdmin: Call must come from Timelock..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/vendor/compound/Timelock.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Timelock::setPendingAdmin: Call must come from Timelock."
+    ]
+  },
+  {
+    "id": "ambient-reason-treasury-authority-aa463e62",
+    "title": "Ambient / CrocSwap: Treasury Authority",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Treasury Authority['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Treasury Authority.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/governance/CrocPolicy.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Treasury Authority"
+    ]
+  },
+  {
+    "id": "ambient-reason-treasury-invalid-8926635a",
+    "title": "Ambient / CrocSwap: Treasury invalid",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Treasury invalid['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Treasury invalid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/callpaths/ColdPath.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Treasury invalid"
+    ]
+  },
+  {
+    "id": "ambient-reason-treasury-start-177da9c0",
+    "title": "Ambient / CrocSwap: Treasury start",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Treasury start['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Treasury start.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/callpaths/ColdPath.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Treasury start"
+    ]
+  },
+  {
+    "id": "ambient-reason-wrong-pool-eb855287",
+    "title": "Ambient / CrocSwap: Wrong pool",
+    "layer": "protocol",
+    "source": "ambient",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Wrong pool['\"]?\\s*$"
+      }
+    ],
+    "summary": "Ambient / CrocSwap revert reason string: Wrong pool.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Ambient / CrocSwap source",
+        "url": "https://github.com/CrocSwap/CrocSwap-protocol/blob/main/contracts/periphery/CrocLpErc20.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Wrong pool"
+    ]
+  }
+]

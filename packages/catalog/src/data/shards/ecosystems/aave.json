@@ -1,0 +1,3152 @@
+[
+  {
+    "id": "aave-v3-acl-admin-cannot-be-zero",
+    "title": "Aave V3 75: ACL_ADMIN_CANNOT_BE_ZERO",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?75['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 75: ACL admin cannot be set to the zero address.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "ACL admin cannot be set to the zero address",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 75"
+    ]
+  },
+  {
+    "id": "aave-v3-addresses-provider-already-added",
+    "title": "Aave V3 86: ADDRESSES_PROVIDER_ALREADY_ADDED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?86['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 86: Reserve has already been added to reserve list.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Reserve has already been added to reserve list",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 86"
+    ]
+  },
+  {
+    "id": "aave-v3-addresses-provider-not-registered",
+    "title": "Aave V3 7: ADDRESSES_PROVIDER_NOT_REGISTERED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?7['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 7: Pool addresses provider is not registered.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool addresses provider is not registered",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 7"
+    ]
+  },
+  {
+    "id": "aave-v3-amount-bigger-than-max-loan-size-stable",
+    "title": "Aave V3 38: AMOUNT_BIGGER_THAN_MAX_LOAN_SIZE_STABLE",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?38['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 38: The requested amount is greater than the max loan size in stable rate mode.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The requested amount is greater than the max loan size in stable rate mode",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 38"
+    ]
+  },
+  {
+    "id": "aave-v3-asset-not-borrowable-in-isolation",
+    "title": "Aave V3 60: ASSET_NOT_BORROWABLE_IN_ISOLATION",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?60['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 60: Asset is not borrowable in isolation mode.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Asset is not borrowable in isolation mode",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 60"
+    ]
+  },
+  {
+    "id": "aave-v3-asset-not-listed",
+    "title": "Aave V3 82: ASSET_NOT_LISTED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?82['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 82: Asset is not listed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Asset is not listed",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 82"
+    ]
+  },
+  {
+    "id": "aave-v3-borrow-cap-exceeded",
+    "title": "Aave V3 50: BORROW_CAP_EXCEEDED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?50['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 50: Borrow cap is exceeded.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Borrow cap is exceeded",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 50"
+    ]
+  },
+  {
+    "id": "aave-v3-borrowing-not-enabled",
+    "title": "Aave V3 30: BORROWING_NOT_ENABLED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?30['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 30: Borrowing is not enabled.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Borrowing is not enabled",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 30"
+    ]
+  },
+  {
+    "id": "aave-v3-bridge-protocol-fee-invalid",
+    "title": "Aave V3 22: BRIDGE_PROTOCOL_FEE_INVALID",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?22['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 22: Invalid bridge protocol fee.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid bridge protocol fee",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 22"
+    ]
+  },
+  {
+    "id": "aave-v3-caller-must-be-pool",
+    "title": "Aave V3 23: CALLER_MUST_BE_POOL",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?23['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 23: The caller of this function must be a pool.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The caller of this function must be a pool",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 23"
+    ]
+  },
+  {
+    "id": "aave-v3-caller-not-asset-listing-or-pool-admin",
+    "title": "Aave V3 5: CALLER_NOT_ASSET_LISTING_OR_POOL_ADMIN",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?5['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 5: The caller of the function is not an asset listing or pool admin.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The caller of the function is not an asset listing or pool admin",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 5"
+    ]
+  },
+  {
+    "id": "aave-v3-caller-not-atoken",
+    "title": "Aave V3 11: CALLER_NOT_ATOKEN",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?11['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 11: The caller of the function is not an AToken.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The caller of the function is not an AToken",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 11"
+    ]
+  },
+  {
+    "id": "aave-v3-caller-not-bridge",
+    "title": "Aave V3 6: CALLER_NOT_BRIDGE",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?6['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 6: The caller of the function is not a bridge.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The caller of the function is not a bridge",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 6"
+    ]
+  },
+  {
+    "id": "aave-v3-caller-not-emergency-admin",
+    "title": "Aave V3 2: CALLER_NOT_EMERGENCY_ADMIN",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?2['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 2: The caller of the function is not an emergency admin.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The caller of the function is not an emergency admin",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 2"
+    ]
+  },
+  {
+    "id": "aave-v3-caller-not-pool-admin",
+    "title": "Aave V3 1: CALLER_NOT_POOL_ADMIN",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?1['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 1: The caller of the function is not a pool admin.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The caller of the function is not a pool admin",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 1"
+    ]
+  },
+  {
+    "id": "aave-v3-caller-not-pool-configurator",
+    "title": "Aave V3 10: CALLER_NOT_POOL_CONFIGURATOR",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?10['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 10: The caller of the function is not the pool configurator.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The caller of the function is not the pool configurator",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 10"
+    ]
+  },
+  {
+    "id": "aave-v3-caller-not-pool-or-emergency-admin",
+    "title": "Aave V3 3: CALLER_NOT_POOL_OR_EMERGENCY_ADMIN",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?3['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 3: The caller of the function is not a pool or emergency admin.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The caller of the function is not a pool or emergency admin",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 3"
+    ]
+  },
+  {
+    "id": "aave-v3-caller-not-risk-or-pool-admin",
+    "title": "Aave V3 4: CALLER_NOT_RISK_OR_POOL_ADMIN",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?4['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 4: The caller of the function is not a risk or pool admin.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The caller of the function is not a risk or pool admin",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 4"
+    ]
+  },
+  {
+    "id": "aave-v3-collateral-balance-is-zero",
+    "title": "Aave V3 34: COLLATERAL_BALANCE_IS_ZERO",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?34['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 34: The collateral balance is 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The collateral balance is 0",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 34"
+    ]
+  },
+  {
+    "id": "aave-v3-collateral-cannot-be-liquidated",
+    "title": "Aave V3 46: COLLATERAL_CANNOT_BE_LIQUIDATED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?46['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 46: The collateral chosen cannot be liquidated.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The collateral chosen cannot be liquidated",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 46"
+    ]
+  },
+  {
+    "id": "aave-v3-collateral-cannot-cover-new-borrow",
+    "title": "Aave V3 36: COLLATERAL_CANNOT_COVER_NEW_BORROW",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?36['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 36: There is not enough collateral to cover a new borrow.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "There is not enough collateral to cover a new borrow",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 36"
+    ]
+  },
+  {
+    "id": "aave-v3-collateral-same-as-borrowing-currency",
+    "title": "Aave V3 37: COLLATERAL_SAME_AS_BORROWING_CURRENCY",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?37['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 37: Collateral is (mostly) the same currency that is being borrowed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Collateral is (mostly) the same currency that is being borrowed",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 37"
+    ]
+  },
+  {
+    "id": "aave-v3-debt-ceiling-exceeded",
+    "title": "Aave V3 53: DEBT_CEILING_EXCEEDED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?53['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 53: Debt ceiling is exceeded.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Debt ceiling is exceeded",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 53"
+    ]
+  },
+  {
+    "id": "aave-v3-debt-ceiling-not-zero",
+    "title": "Aave V3 81: DEBT_CEILING_NOT_ZERO",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?81['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 81: Debt ceiling is not zero.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Debt ceiling is not zero",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 81"
+    ]
+  },
+  {
+    "id": "aave-v3-emode-category-reserved",
+    "title": "Aave V3 16: EMODE_CATEGORY_RESERVED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?16['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 16: Zero eMode category is reserved for volatile heterogeneous assets.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Zero eMode category is reserved for volatile heterogeneous assets",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 16"
+    ]
+  },
+  {
+    "id": "aave-v3-flashloan-disabled",
+    "title": "Aave V3 91: FLASHLOAN_DISABLED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?91['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 91: FlashLoaning for this asset is disabled.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "FlashLoaning for this asset is disabled",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 91"
+    ]
+  },
+  {
+    "id": "aave-v3-flashloan-premium-invalid",
+    "title": "Aave V3 19: FLASHLOAN_PREMIUM_INVALID",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?19['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 19: Invalid flashloan premium.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid flashloan premium",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 19"
+    ]
+  },
+  {
+    "id": "aave-v3-health-factor-lower-than-liquidation-threshold",
+    "title": "Aave V3 35: HEALTH_FACTOR_LOWER_THAN_LIQUIDATION_THRESHOLD",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?35['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 35: Health factor is lesser than the liquidation threshold.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Health factor is lesser than the liquidation threshold",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 35"
+    ]
+  },
+  {
+    "id": "aave-v3-health-factor-not-below-threshold",
+    "title": "Aave V3 45: HEALTH_FACTOR_NOT_BELOW_THRESHOLD",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?45['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 45: Health factor is not below the threshold.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Health factor is not below the threshold",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 45"
+    ]
+  },
+  {
+    "id": "aave-v3-inconsistent-emode-category",
+    "title": "Aave V3 58: INCONSISTENT_EMODE_CATEGORY",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?58['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 58: Inconsistent eMode category.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Inconsistent eMode category",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 58"
+    ]
+  },
+  {
+    "id": "aave-v3-inconsistent-flashloan-params",
+    "title": "Aave V3 49: INCONSISTENT_FLASHLOAN_PARAMS",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?49['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 49: Inconsistent flashloan parameters.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Inconsistent flashloan parameters",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 49"
+    ]
+  },
+  {
+    "id": "aave-v3-inconsistent-params-length",
+    "title": "Aave V3 76: INCONSISTENT_PARAMS_LENGTH",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?76['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 76: Array parameters that should be equal length are not.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Array parameters that should be equal length are not",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 76"
+    ]
+  },
+  {
+    "id": "aave-v3-interest-rate-rebalance-conditions-not-met",
+    "title": "Aave V3 44: INTEREST_RATE_REBALANCE_CONDITIONS_NOT_MET",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?44['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 44: Interest rate rebalance conditions were not met.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Interest rate rebalance conditions were not met",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 44"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-addresses-provider",
+    "title": "Aave V3 12: INVALID_ADDRESSES_PROVIDER",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?12['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 12: The address of the pool addresses provider is invalid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The address of the pool addresses provider is invalid",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 12"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-addresses-provider-id",
+    "title": "Aave V3 8: INVALID_ADDRESSES_PROVIDER_ID",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?8['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 8: Invalid id for the pool addresses provider.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid id for the pool addresses provider",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 8"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-amount",
+    "title": "Aave V3 26: INVALID_AMOUNT",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?26['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 26: Amount must be greater than 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Amount must be greater than 0",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 26"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-borrow-cap",
+    "title": "Aave V3 68: INVALID_BORROW_CAP",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?68['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 68: Invalid borrow cap for the reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid borrow cap for the reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 68"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-burn-amount",
+    "title": "Aave V3 25: INVALID_BURN_AMOUNT",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?25['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 25: Invalid amount to burn.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid amount to burn",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 25"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-debt-ceiling",
+    "title": "Aave V3 73: INVALID_DEBT_CEILING",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?73['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 73: Invalid debt ceiling for the reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid debt ceiling for the reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 73"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-decimals",
+    "title": "Aave V3 66: INVALID_DECIMALS",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?66['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 66: Invalid decimals parameter of the underlying asset of the reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid decimals parameter of the underlying asset of the reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 66"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-emode-category",
+    "title": "Aave V3 71: INVALID_EMODE_CATEGORY",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?71['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 71: Invalid eMode category for the reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid eMode category for the reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 71"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-emode-category-assignment",
+    "title": "Aave V3 17: INVALID_EMODE_CATEGORY_ASSIGNMENT",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?17['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 17: Invalid eMode category assignment to asset.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid eMode category assignment to asset",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 17"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-emode-category-params",
+    "title": "Aave V3 21: INVALID_EMODE_CATEGORY_PARAMS",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?21['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 21: Invalid risk parameters for the eMode category.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid risk parameters for the eMode category",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 21"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-expiration",
+    "title": "Aave V3 78: INVALID_EXPIRATION",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?78['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 78: Invalid expiration.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid expiration",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 78"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-flashloan-executor-return",
+    "title": "Aave V3 13: INVALID_FLASHLOAN_EXECUTOR_RETURN",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?13['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 13: Invalid return value of the flashloan executor function.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid return value of the flashloan executor function",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 13"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-interest-rate-mode-selected",
+    "title": "Aave V3 33: INVALID_INTEREST_RATE_MODE_SELECTED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?33['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 33: Invalid interest rate mode selected.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid interest rate mode selected",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 33"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-liq-bonus",
+    "title": "Aave V3 65: INVALID_LIQ_BONUS",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?65['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 65: Invalid liquidity bonus parameter for the reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid liquidity bonus parameter for the reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 65"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-liq-threshold",
+    "title": "Aave V3 64: INVALID_LIQ_THRESHOLD",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?64['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 64: Invalid liquidity threshold parameter for the reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid liquidity threshold parameter for the reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 64"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-liquidation-protocol-fee",
+    "title": "Aave V3 70: INVALID_LIQUIDATION_PROTOCOL_FEE",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?70['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 70: Invalid liquidation protocol fee for the reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid liquidation protocol fee for the reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 70"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-ltv",
+    "title": "Aave V3 63: INVALID_LTV",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?63['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 63: Invalid ltv parameter for the reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid ltv parameter for the reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 63"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-mint-amount",
+    "title": "Aave V3 24: INVALID_MINT_AMOUNT",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?24['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 24: Invalid amount to mint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid amount to mint",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 24"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-optimal-stable-to-total-debt-ratio",
+    "title": "Aave V3 84: INVALID_OPTIMAL_STABLE_TO_TOTAL_DEBT_RATIO",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?84['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 84: Invalid optimal stable to total debt ratio.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid optimal stable to total debt ratio",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 84"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-optimal-usage-ratio",
+    "title": "Aave V3 83: INVALID_OPTIMAL_USAGE_RATIO",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?83['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 83: Invalid optimal usage ratio.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid optimal usage ratio",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 83"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-reserve-factor",
+    "title": "Aave V3 67: INVALID_RESERVE_FACTOR",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?67['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 67: Invalid reserve factor parameter for the reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid reserve factor parameter for the reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 67"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-reserve-index",
+    "title": "Aave V3 74: INVALID_RESERVE_INDEX",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?74['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 74: Invalid reserve index.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid reserve index",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 74"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-reserve-params",
+    "title": "Aave V3 20: INVALID_RESERVE_PARAMS",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?20['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 20: Invalid risk parameters for the reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid risk parameters for the reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 20"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-signature",
+    "title": "Aave V3 79: INVALID_SIGNATURE",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?79['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 79: Invalid signature.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid signature",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 79"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-supply-cap",
+    "title": "Aave V3 69: INVALID_SUPPLY_CAP",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?69['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 69: Invalid supply cap for the reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid supply cap for the reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 69"
+    ]
+  },
+  {
+    "id": "aave-v3-invalid-unbacked-mint-cap",
+    "title": "Aave V3 72: INVALID_UNBACKED_MINT_CAP",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?72['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 72: Invalid unbacked mint cap for the reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Invalid unbacked mint cap for the reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 72"
+    ]
+  },
+  {
+    "id": "aave-v3-ltv-validation-failed",
+    "title": "Aave V3 57: LTV_VALIDATION_FAILED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?57['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 57: Ltv validation failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Ltv validation failed",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 57"
+    ]
+  },
+  {
+    "id": "aave-v3-no-debt-of-selected-type",
+    "title": "Aave V3 39: NO_DEBT_OF_SELECTED_TYPE",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?39['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 39: For repayment of a specific type of debt, the user needs to have debt that type.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "For repayment of a specific type of debt, the user needs to have debt that type",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 39"
+    ]
+  },
+  {
+    "id": "aave-v3-no-explicit-amount-to-repay-on-behalf",
+    "title": "Aave V3 40: NO_EXPLICIT_AMOUNT_TO_REPAY_ON_BEHALF",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?40['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 40: To repay on behalf of a user an explicit amount to repay is needed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "To repay on behalf of a user an explicit amount to repay is needed",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 40"
+    ]
+  },
+  {
+    "id": "aave-v3-no-more-reserves-allowed",
+    "title": "Aave V3 15: NO_MORE_RESERVES_ALLOWED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?15['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 15: Maximum amount of reserves in the pool reached.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Maximum amount of reserves in the pool reached",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 15"
+    ]
+  },
+  {
+    "id": "aave-v3-no-outstanding-stable-debt",
+    "title": "Aave V3 41: NO_OUTSTANDING_STABLE_DEBT",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?41['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 41: User does not have outstanding stable rate debt on this reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "User does not have outstanding stable rate debt on this reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 41"
+    ]
+  },
+  {
+    "id": "aave-v3-no-outstanding-variable-debt",
+    "title": "Aave V3 42: NO_OUTSTANDING_VARIABLE_DEBT",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?42['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 42: User does not have outstanding variable rate debt on this reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "User does not have outstanding variable rate debt on this reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 42"
+    ]
+  },
+  {
+    "id": "aave-v3-not-contract",
+    "title": "Aave V3 9: NOT_CONTRACT",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?9['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 9: Address is not a contract.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Address is not a contract",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 9"
+    ]
+  },
+  {
+    "id": "aave-v3-not-enough-available-user-balance",
+    "title": "Aave V3 32: NOT_ENOUGH_AVAILABLE_USER_BALANCE",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?32['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 32: User cannot withdraw more than the available balance.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "User cannot withdraw more than the available balance",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 32"
+    ]
+  },
+  {
+    "id": "aave-v3-operation-not-supported",
+    "title": "Aave V3 80: OPERATION_NOT_SUPPORTED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?80['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 80: Operation not supported.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Operation not supported",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 80"
+    ]
+  },
+  {
+    "id": "aave-v3-pool-addresses-do-not-match",
+    "title": "Aave V3 87: POOL_ADDRESSES_DO_NOT_MATCH",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?87['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 87: The token implementation pool address and the pool address provided by the initializing pool do not match.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The token implementation pool address and the pool address provided by the initializing pool do not match",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 87"
+    ]
+  },
+  {
+    "id": "aave-v3-price-oracle-sentinel-check-failed",
+    "title": "Aave V3 59: PRICE_ORACLE_SENTINEL_CHECK_FAILED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?59['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 59: Price oracle sentinel validation failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Price oracle sentinel validation failed",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 59"
+    ]
+  },
+  {
+    "id": "aave-v3-reserve-already-added",
+    "title": "Aave V3 14: RESERVE_ALREADY_ADDED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?14['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 14: Reserve has already been added to reserve list.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Reserve has already been added to reserve list",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 14"
+    ]
+  },
+  {
+    "id": "aave-v3-reserve-already-initialized",
+    "title": "Aave V3 61: RESERVE_ALREADY_INITIALIZED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?61['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 61: Reserve has already been initialized.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Reserve has already been initialized",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 61"
+    ]
+  },
+  {
+    "id": "aave-v3-reserve-debt-not-zero",
+    "title": "Aave V3 90: RESERVE_DEBT_NOT_ZERO",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?90['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 90: the total debt of the reserve needs to be 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "the total debt of the reserve needs to be 0",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 90"
+    ]
+  },
+  {
+    "id": "aave-v3-reserve-frozen",
+    "title": "Aave V3 28: RESERVE_FROZEN",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?28['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 28: Action cannot be performed because the reserve is frozen.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Action cannot be performed because the reserve is frozen",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 28"
+    ]
+  },
+  {
+    "id": "aave-v3-reserve-inactive",
+    "title": "Aave V3 27: RESERVE_INACTIVE",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?27['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 27: Action requires an active reserve.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Action requires an active reserve",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 27"
+    ]
+  },
+  {
+    "id": "aave-v3-reserve-liquidity-not-zero",
+    "title": "Aave V3 18: RESERVE_LIQUIDITY_NOT_ZERO",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?18['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 18: The liquidity of the reserve needs to be 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The liquidity of the reserve needs to be 0",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 18"
+    ]
+  },
+  {
+    "id": "aave-v3-reserve-paused",
+    "title": "Aave V3 29: RESERVE_PAUSED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?29['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 29: Action cannot be performed because the reserve is paused.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Action cannot be performed because the reserve is paused",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 29"
+    ]
+  },
+  {
+    "id": "aave-v3-siloed-borrowing-violation",
+    "title": "Aave V3 89: SILOED_BORROWING_VIOLATION",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?89['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 89: User is trying to borrow multiple assets including a siloed one.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "User is trying to borrow multiple assets including a siloed one",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 89"
+    ]
+  },
+  {
+    "id": "aave-v3-specified-currency-not-borrowed-by-user",
+    "title": "Aave V3 47: SPECIFIED_CURRENCY_NOT_BORROWED_BY_USER",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?47['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 47: User did not borrow the specified currency.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "User did not borrow the specified currency",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 47"
+    ]
+  },
+  {
+    "id": "aave-v3-stable-borrowing-enabled",
+    "title": "Aave V3 88: STABLE_BORROWING_ENABLED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?88['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 88: Stable borrowing is enabled.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Stable borrowing is enabled",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 88"
+    ]
+  },
+  {
+    "id": "aave-v3-stable-borrowing-not-enabled",
+    "title": "Aave V3 31: STABLE_BORROWING_NOT_ENABLED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?31['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 31: Stable borrowing is not enabled.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Stable borrowing is not enabled",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 31"
+    ]
+  },
+  {
+    "id": "aave-v3-stable-debt-not-zero",
+    "title": "Aave V3 55: STABLE_DEBT_NOT_ZERO",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?55['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 55: Stable debt supply is not zero.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Stable debt supply is not zero",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 55"
+    ]
+  },
+  {
+    "id": "aave-v3-supply-cap-exceeded",
+    "title": "Aave V3 51: SUPPLY_CAP_EXCEEDED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?51['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 51: Supply cap is exceeded.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Supply cap is exceeded",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 51"
+    ]
+  },
+  {
+    "id": "aave-v3-unbacked-mint-cap-exceeded",
+    "title": "Aave V3 52: UNBACKED_MINT_CAP_EXCEEDED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?52['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 52: Unbacked mint cap is exceeded.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Unbacked mint cap is exceeded",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 52"
+    ]
+  },
+  {
+    "id": "aave-v3-underlying-balance-zero",
+    "title": "Aave V3 43: UNDERLYING_BALANCE_ZERO",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?43['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 43: The underlying balance needs to be greater than 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The underlying balance needs to be greater than 0",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 43"
+    ]
+  },
+  {
+    "id": "aave-v3-underlying-cannot-be-rescued",
+    "title": "Aave V3 85: UNDERLYING_CANNOT_BE_RESCUED",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?85['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 85: The underlying asset cannot be rescued.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The underlying asset cannot be rescued",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 85"
+    ]
+  },
+  {
+    "id": "aave-v3-underlying-claimable-rights-not-zero",
+    "title": "Aave V3 54: UNDERLYING_CLAIMABLE_RIGHTS_NOT_ZERO",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?54['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 54: Claimable rights over underlying not zero (aToken supply or accruedToTreasury).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Claimable rights over underlying not zero (aToken supply or accruedToTreasury)",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 54"
+    ]
+  },
+  {
+    "id": "aave-v3-user-in-isolation-mode-or-ltv-zero",
+    "title": "Aave V3 62: USER_IN_ISOLATION_MODE_OR_LTV_ZERO",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?62['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 62: User is in isolation mode or ltv is zero.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "User is in isolation mode or ltv is zero",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 62"
+    ]
+  },
+  {
+    "id": "aave-v3-variable-debt-supply-not-zero",
+    "title": "Aave V3 56: VARIABLE_DEBT_SUPPLY_NOT_ZERO",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?56['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 56: Variable debt supply is not zero.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Variable debt supply is not zero",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 56"
+    ]
+  },
+  {
+    "id": "aave-v3-zero-address-not-valid",
+    "title": "Aave V3 77: ZERO_ADDRESS_NOT_VALID",
+    "layer": "protocol",
+    "source": "aave",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|execution reverted(?::| with reason string)?:?\\s*|revert(?:ed)?\\s*:?\\s*)['\"]?77['\"]?$"
+      }
+    ],
+    "summary": "Aave V3 compact revert code 77: Zero address not valid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Zero address not valid",
+      "Aave V3 emits compact numeric reason strings; the code must be mapped through its Errors.sol table."
+    ],
+    "nextSteps": [
+      "Map the numeric reason to Aave's Errors.sol and inspect the Pool/Configurator validation branch.",
+      "Check reserve status, caps, collateral health factor, role permissions, and supplied amounts before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "@aave/core-v3 npm package",
+        "url": "https://www.npmjs.com/package/@aave/core-v3"
+      }
+    ],
+    "examples": [
+      "execution reverted: 77"
+    ]
+  }
+]

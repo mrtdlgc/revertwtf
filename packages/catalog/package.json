@@ -1,0 +1,1685 @@
+{
+  "name": "@revertwtf/catalog",
+  "version": "0.1.0",
+  "description": "Curated catalog of EVM, RPC, wallet, account abstraction, and protocol errors",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "browser": "./dist/browser.js",
+      "import": "./dist/index.js"
+    },
+    "./panic": {
+      "types": "./dist/panic.d.ts",
+      "import": "./dist/panic.js"
+    },
+    "./load": {
+      "types": "./dist/load.d.ts",
+      "import": "./dist/load.js"
+    },
+    "./sources": {
+      "types": "./dist/sources.d.ts",
+      "import": "./dist/sources.js"
+    },
+    "./data": {
+      "types": "./dist/data.d.ts",
+      "import": "./dist/data.js"
+    },
+    "./blockscout-chains": {
+      "import": "./dist/data/blockscout-chains.json",
+      "default": "./dist/data/blockscout-chains.json"
+    },
+    "./data-full": {
+      "types": "./dist/data-full.d.ts",
+      "import": "./dist/data/errors.json",
+      "default": "./dist/data/errors.json"
+    },
+    "./shards": {
+      "types": "./dist/shards.d.ts",
+      "import": "./dist/shards.js"
+    },
+    "./data/shards/0x": {
+      "import": "./dist/data/shards/ecosystems/0x.json",
+      "default": "./dist/data/shards/ecosystems/0x.json"
+    },
+    "./data/shards/1inch": {
+      "import": "./dist/data/shards/ecosystems/1inch.json",
+      "default": "./dist/data/shards/ecosystems/1inch.json"
+    },
+    "./data/shards/aave": {
+      "import": "./dist/data/shards/ecosystems/aave.json",
+      "default": "./dist/data/shards/ecosystems/aave.json"
+    },
+    "./data/shards/abstract": {
+      "import": "./dist/data/shards/ecosystems/abstract.json",
+      "default": "./dist/data/shards/ecosystems/abstract.json"
+    },
+    "./data/shards/account-abstraction": {
+      "import": "./dist/data/shards/core/account-abstraction.json",
+      "default": "./dist/data/shards/core/account-abstraction.json"
+    },
+    "./data/shards/across": {
+      "import": "./dist/data/shards/ecosystems/across.json",
+      "default": "./dist/data/shards/ecosystems/across.json"
+    },
+    "./data/shards/aerodrome": {
+      "import": "./dist/data/shards/ecosystems/aerodrome.json",
+      "default": "./dist/data/shards/ecosystems/aerodrome.json"
+    },
+    "./data/shards/alchemix-v2": {
+      "import": "./dist/data/shards/ecosystems/alchemix-v2.json",
+      "default": "./dist/data/shards/ecosystems/alchemix-v2.json"
+    },
+    "./data/shards/alchemy": {
+      "import": "./dist/data/shards/core/alchemy.json",
+      "default": "./dist/data/shards/core/alchemy.json"
+    },
+    "./data/shards/alchemy-modular-account": {
+      "import": "./dist/data/shards/ecosystems/alchemy-modular-account.json",
+      "default": "./dist/data/shards/ecosystems/alchemy-modular-account.json"
+    },
+    "./data/shards/algebra": {
+      "import": "./dist/data/shards/ecosystems/algebra.json",
+      "default": "./dist/data/shards/ecosystems/algebra.json"
+    },
+    "./data/shards/ambient": {
+      "import": "./dist/data/shards/ecosystems/ambient.json",
+      "default": "./dist/data/shards/ecosystems/ambient.json"
+    },
+    "./data/shards/anvil": {
+      "import": "./dist/data/shards/core/anvil.json",
+      "default": "./dist/data/shards/core/anvil.json"
+    },
+    "./data/shards/api3": {
+      "import": "./dist/data/shards/ecosystems/api3.json",
+      "default": "./dist/data/shards/ecosystems/api3.json"
+    },
+    "./data/shards/arbitrum": {
+      "import": "./dist/data/shards/ecosystems/arbitrum.json",
+      "default": "./dist/data/shards/ecosystems/arbitrum.json"
+    },
+    "./data/shards/avalanche-teleporter": {
+      "import": "./dist/data/shards/ecosystems/avalanche-teleporter.json",
+      "default": "./dist/data/shards/ecosystems/avalanche-teleporter.json"
+    },
+    "./data/shards/axelar": {
+      "import": "./dist/data/shards/ecosystems/axelar.json",
+      "default": "./dist/data/shards/ecosystems/axelar.json"
+    },
+    "./data/shards/balancer": {
+      "import": "./dist/data/shards/ecosystems/balancer.json",
+      "default": "./dist/data/shards/ecosystems/balancer.json"
+    },
+    "./data/shards/balancer-v3": {
+      "import": "./dist/data/shards/ecosystems/balancer-v3.json",
+      "default": "./dist/data/shards/ecosystems/balancer-v3.json"
+    },
+    "./data/shards/base": {
+      "import": "./dist/data/shards/ecosystems/base.json",
+      "default": "./dist/data/shards/ecosystems/base.json"
+    },
+    "./data/shards/berachain": {
+      "import": "./dist/data/shards/ecosystems/berachain.json",
+      "default": "./dist/data/shards/ecosystems/berachain.json"
+    },
+    "./data/shards/biconomy": {
+      "import": "./dist/data/shards/ecosystems/biconomy.json",
+      "default": "./dist/data/shards/ecosystems/biconomy.json"
+    },
+    "./data/shards/biconomy-nexus": {
+      "import": "./dist/data/shards/ecosystems/biconomy-nexus.json",
+      "default": "./dist/data/shards/ecosystems/biconomy-nexus.json"
+    },
+    "./data/shards/blockscout": {
+      "import": "./dist/data/shards/ecosystems/blockscout.json",
+      "default": "./dist/data/shards/ecosystems/blockscout.json"
+    },
+    "./data/shards/bunni-v2": {
+      "import": "./dist/data/shards/ecosystems/bunni-v2.json",
+      "default": "./dist/data/shards/ecosystems/bunni-v2.json"
+    },
+    "./data/shards/centrifuge-rwa": {
+      "import": "./dist/data/shards/ecosystems/centrifuge-rwa.json",
+      "default": "./dist/data/shards/ecosystems/centrifuge-rwa.json"
+    },
+    "./data/shards/chainflip": {
+      "import": "./dist/data/shards/ecosystems/chainflip.json",
+      "default": "./dist/data/shards/ecosystems/chainflip.json"
+    },
+    "./data/shards/chainlink": {
+      "import": "./dist/data/shards/ecosystems/chainlink.json",
+      "default": "./dist/data/shards/ecosystems/chainlink.json"
+    },
+    "./data/shards/circle-cctp": {
+      "import": "./dist/data/shards/ecosystems/circle-cctp.json",
+      "default": "./dist/data/shards/ecosystems/circle-cctp.json"
+    },
+    "./data/shards/circles": {
+      "import": "./dist/data/shards/ecosystems/circles.json",
+      "default": "./dist/data/shards/ecosystems/circles.json"
+    },
+    "./data/shards/coinbase": {
+      "import": "./dist/data/shards/ecosystems/coinbase.json",
+      "default": "./dist/data/shards/ecosystems/coinbase.json"
+    },
+    "./data/shards/coinbase-smart-wallet": {
+      "import": "./dist/data/shards/ecosystems/coinbase-smart-wallet.json",
+      "default": "./dist/data/shards/ecosystems/coinbase-smart-wallet.json"
+    },
+    "./data/shards/compound": {
+      "import": "./dist/data/shards/ecosystems/compound.json",
+      "default": "./dist/data/shards/ecosystems/compound.json"
+    },
+    "./data/shards/connext": {
+      "import": "./dist/data/shards/ecosystems/connext.json",
+      "default": "./dist/data/shards/ecosystems/connext.json"
+    },
+    "./data/shards/core/account-abstraction": {
+      "import": "./dist/data/shards/core/account-abstraction.json",
+      "default": "./dist/data/shards/core/account-abstraction.json"
+    },
+    "./data/shards/core/alchemy": {
+      "import": "./dist/data/shards/core/alchemy.json",
+      "default": "./dist/data/shards/core/alchemy.json"
+    },
+    "./data/shards/core/anvil": {
+      "import": "./dist/data/shards/core/anvil.json",
+      "default": "./dist/data/shards/core/anvil.json"
+    },
+    "./data/shards/core/eip-1193": {
+      "import": "./dist/data/shards/core/eip-1193.json",
+      "default": "./dist/data/shards/core/eip-1193.json"
+    },
+    "./data/shards/core/eip-1474": {
+      "import": "./dist/data/shards/core/eip-1474.json",
+      "default": "./dist/data/shards/core/eip-1474.json"
+    },
+    "./data/shards/core/eip-6093": {
+      "import": "./dist/data/shards/core/eip-6093.json",
+      "default": "./dist/data/shards/core/eip-6093.json"
+    },
+    "./data/shards/core/erc-4337": {
+      "import": "./dist/data/shards/core/erc-4337.json",
+      "default": "./dist/data/shards/core/erc-4337.json"
+    },
+    "./data/shards/core/erc-4337-entrypoint": {
+      "import": "./dist/data/shards/core/erc-4337-entrypoint.json",
+      "default": "./dist/data/shards/core/erc-4337-entrypoint.json"
+    },
+    "./data/shards/core/ethereum-protocol": {
+      "import": "./dist/data/shards/core/ethereum-protocol.json",
+      "default": "./dist/data/shards/core/ethereum-protocol.json"
+    },
+    "./data/shards/core/ethers": {
+      "import": "./dist/data/shards/core/ethers.json",
+      "default": "./dist/data/shards/core/ethers.json"
+    },
+    "./data/shards/core/generic": {
+      "import": "./dist/data/shards/core/generic.json",
+      "default": "./dist/data/shards/core/generic.json"
+    },
+    "./data/shards/core/hardhat": {
+      "import": "./dist/data/shards/core/hardhat.json",
+      "default": "./dist/data/shards/core/hardhat.json"
+    },
+    "./data/shards/core/node": {
+      "import": "./dist/data/shards/core/node.json",
+      "default": "./dist/data/shards/core/node.json"
+    },
+    "./data/shards/core/openzeppelin": {
+      "import": "./dist/data/shards/core/openzeppelin.json",
+      "default": "./dist/data/shards/core/openzeppelin.json"
+    },
+    "./data/shards/core/prb-math": {
+      "import": "./dist/data/shards/core/prb-math.json",
+      "default": "./dist/data/shards/core/prb-math.json"
+    },
+    "./data/shards/core/protocol": {
+      "import": "./dist/data/shards/core/protocol.json",
+      "default": "./dist/data/shards/core/protocol.json"
+    },
+    "./data/shards/core/rpc-provider": {
+      "import": "./dist/data/shards/core/rpc-provider.json",
+      "default": "./dist/data/shards/core/rpc-provider.json"
+    },
+    "./data/shards/core/simulation": {
+      "import": "./dist/data/shards/core/simulation.json",
+      "default": "./dist/data/shards/core/simulation.json"
+    },
+    "./data/shards/core/solady": {
+      "import": "./dist/data/shards/core/solady.json",
+      "default": "./dist/data/shards/core/solady.json"
+    },
+    "./data/shards/core/solidity": {
+      "import": "./dist/data/shards/core/solidity.json",
+      "default": "./dist/data/shards/core/solidity.json"
+    },
+    "./data/shards/core/solmate": {
+      "import": "./dist/data/shards/core/solmate.json",
+      "default": "./dist/data/shards/core/solmate.json"
+    },
+    "./data/shards/core/tenderly": {
+      "import": "./dist/data/shards/core/tenderly.json",
+      "default": "./dist/data/shards/core/tenderly.json"
+    },
+    "./data/shards/core/viem": {
+      "import": "./dist/data/shards/core/viem.json",
+      "default": "./dist/data/shards/core/viem.json"
+    },
+    "./data/shards/core/wallet": {
+      "import": "./dist/data/shards/core/wallet.json",
+      "default": "./dist/data/shards/core/wallet.json"
+    },
+    "./data/shards/core/x402": {
+      "import": "./dist/data/shards/core/x402.json",
+      "default": "./dist/data/shards/core/x402.json"
+    },
+    "./data/shards/cow-protocol": {
+      "import": "./dist/data/shards/ecosystems/cow-protocol.json",
+      "default": "./dist/data/shards/ecosystems/cow-protocol.json"
+    },
+    "./data/shards/cowprotocol": {
+      "import": "./dist/data/shards/ecosystems/cowprotocol.json",
+      "default": "./dist/data/shards/ecosystems/cowprotocol.json"
+    },
+    "./data/shards/crossmint": {
+      "import": "./dist/data/shards/ecosystems/crossmint.json",
+      "default": "./dist/data/shards/ecosystems/crossmint.json"
+    },
+    "./data/shards/curve": {
+      "import": "./dist/data/shards/ecosystems/curve.json",
+      "default": "./dist/data/shards/ecosystems/curve.json"
+    },
+    "./data/shards/debridge": {
+      "import": "./dist/data/shards/ecosystems/debridge.json",
+      "default": "./dist/data/shards/ecosystems/debridge.json"
+    },
+    "./data/shards/ecosystems/0x": {
+      "import": "./dist/data/shards/ecosystems/0x.json",
+      "default": "./dist/data/shards/ecosystems/0x.json"
+    },
+    "./data/shards/ecosystems/1inch": {
+      "import": "./dist/data/shards/ecosystems/1inch.json",
+      "default": "./dist/data/shards/ecosystems/1inch.json"
+    },
+    "./data/shards/ecosystems/aave": {
+      "import": "./dist/data/shards/ecosystems/aave.json",
+      "default": "./dist/data/shards/ecosystems/aave.json"
+    },
+    "./data/shards/ecosystems/abstract": {
+      "import": "./dist/data/shards/ecosystems/abstract.json",
+      "default": "./dist/data/shards/ecosystems/abstract.json"
+    },
+    "./data/shards/ecosystems/across": {
+      "import": "./dist/data/shards/ecosystems/across.json",
+      "default": "./dist/data/shards/ecosystems/across.json"
+    },
+    "./data/shards/ecosystems/aerodrome": {
+      "import": "./dist/data/shards/ecosystems/aerodrome.json",
+      "default": "./dist/data/shards/ecosystems/aerodrome.json"
+    },
+    "./data/shards/ecosystems/alchemix-v2": {
+      "import": "./dist/data/shards/ecosystems/alchemix-v2.json",
+      "default": "./dist/data/shards/ecosystems/alchemix-v2.json"
+    },
+    "./data/shards/ecosystems/alchemy-modular-account": {
+      "import": "./dist/data/shards/ecosystems/alchemy-modular-account.json",
+      "default": "./dist/data/shards/ecosystems/alchemy-modular-account.json"
+    },
+    "./data/shards/ecosystems/algebra": {
+      "import": "./dist/data/shards/ecosystems/algebra.json",
+      "default": "./dist/data/shards/ecosystems/algebra.json"
+    },
+    "./data/shards/ecosystems/ambient": {
+      "import": "./dist/data/shards/ecosystems/ambient.json",
+      "default": "./dist/data/shards/ecosystems/ambient.json"
+    },
+    "./data/shards/ecosystems/api3": {
+      "import": "./dist/data/shards/ecosystems/api3.json",
+      "default": "./dist/data/shards/ecosystems/api3.json"
+    },
+    "./data/shards/ecosystems/arbitrum": {
+      "import": "./dist/data/shards/ecosystems/arbitrum.json",
+      "default": "./dist/data/shards/ecosystems/arbitrum.json"
+    },
+    "./data/shards/ecosystems/avalanche-teleporter": {
+      "import": "./dist/data/shards/ecosystems/avalanche-teleporter.json",
+      "default": "./dist/data/shards/ecosystems/avalanche-teleporter.json"
+    },
+    "./data/shards/ecosystems/axelar": {
+      "import": "./dist/data/shards/ecosystems/axelar.json",
+      "default": "./dist/data/shards/ecosystems/axelar.json"
+    },
+    "./data/shards/ecosystems/balancer": {
+      "import": "./dist/data/shards/ecosystems/balancer.json",
+      "default": "./dist/data/shards/ecosystems/balancer.json"
+    },
+    "./data/shards/ecosystems/balancer-v3": {
+      "import": "./dist/data/shards/ecosystems/balancer-v3.json",
+      "default": "./dist/data/shards/ecosystems/balancer-v3.json"
+    },
+    "./data/shards/ecosystems/base": {
+      "import": "./dist/data/shards/ecosystems/base.json",
+      "default": "./dist/data/shards/ecosystems/base.json"
+    },
+    "./data/shards/ecosystems/berachain": {
+      "import": "./dist/data/shards/ecosystems/berachain.json",
+      "default": "./dist/data/shards/ecosystems/berachain.json"
+    },
+    "./data/shards/ecosystems/biconomy": {
+      "import": "./dist/data/shards/ecosystems/biconomy.json",
+      "default": "./dist/data/shards/ecosystems/biconomy.json"
+    },
+    "./data/shards/ecosystems/biconomy-nexus": {
+      "import": "./dist/data/shards/ecosystems/biconomy-nexus.json",
+      "default": "./dist/data/shards/ecosystems/biconomy-nexus.json"
+    },
+    "./data/shards/ecosystems/blockscout": {
+      "import": "./dist/data/shards/ecosystems/blockscout.json",
+      "default": "./dist/data/shards/ecosystems/blockscout.json"
+    },
+    "./data/shards/ecosystems/bunni-v2": {
+      "import": "./dist/data/shards/ecosystems/bunni-v2.json",
+      "default": "./dist/data/shards/ecosystems/bunni-v2.json"
+    },
+    "./data/shards/ecosystems/centrifuge-rwa": {
+      "import": "./dist/data/shards/ecosystems/centrifuge-rwa.json",
+      "default": "./dist/data/shards/ecosystems/centrifuge-rwa.json"
+    },
+    "./data/shards/ecosystems/chainflip": {
+      "import": "./dist/data/shards/ecosystems/chainflip.json",
+      "default": "./dist/data/shards/ecosystems/chainflip.json"
+    },
+    "./data/shards/ecosystems/chainlink": {
+      "import": "./dist/data/shards/ecosystems/chainlink.json",
+      "default": "./dist/data/shards/ecosystems/chainlink.json"
+    },
+    "./data/shards/ecosystems/circle-cctp": {
+      "import": "./dist/data/shards/ecosystems/circle-cctp.json",
+      "default": "./dist/data/shards/ecosystems/circle-cctp.json"
+    },
+    "./data/shards/ecosystems/circles": {
+      "import": "./dist/data/shards/ecosystems/circles.json",
+      "default": "./dist/data/shards/ecosystems/circles.json"
+    },
+    "./data/shards/ecosystems/coinbase": {
+      "import": "./dist/data/shards/ecosystems/coinbase.json",
+      "default": "./dist/data/shards/ecosystems/coinbase.json"
+    },
+    "./data/shards/ecosystems/coinbase-smart-wallet": {
+      "import": "./dist/data/shards/ecosystems/coinbase-smart-wallet.json",
+      "default": "./dist/data/shards/ecosystems/coinbase-smart-wallet.json"
+    },
+    "./data/shards/ecosystems/compound": {
+      "import": "./dist/data/shards/ecosystems/compound.json",
+      "default": "./dist/data/shards/ecosystems/compound.json"
+    },
+    "./data/shards/ecosystems/connext": {
+      "import": "./dist/data/shards/ecosystems/connext.json",
+      "default": "./dist/data/shards/ecosystems/connext.json"
+    },
+    "./data/shards/ecosystems/cow-protocol": {
+      "import": "./dist/data/shards/ecosystems/cow-protocol.json",
+      "default": "./dist/data/shards/ecosystems/cow-protocol.json"
+    },
+    "./data/shards/ecosystems/cowprotocol": {
+      "import": "./dist/data/shards/ecosystems/cowprotocol.json",
+      "default": "./dist/data/shards/ecosystems/cowprotocol.json"
+    },
+    "./data/shards/ecosystems/crossmint": {
+      "import": "./dist/data/shards/ecosystems/crossmint.json",
+      "default": "./dist/data/shards/ecosystems/crossmint.json"
+    },
+    "./data/shards/ecosystems/curve": {
+      "import": "./dist/data/shards/ecosystems/curve.json",
+      "default": "./dist/data/shards/ecosystems/curve.json"
+    },
+    "./data/shards/ecosystems/debridge": {
+      "import": "./dist/data/shards/ecosystems/debridge.json",
+      "default": "./dist/data/shards/ecosystems/debridge.json"
+    },
+    "./data/shards/ecosystems/eigenlayer": {
+      "import": "./dist/data/shards/ecosystems/eigenlayer.json",
+      "default": "./dist/data/shards/ecosystems/eigenlayer.json"
+    },
+    "./data/shards/ecosystems/ens": {
+      "import": "./dist/data/shards/ecosystems/ens.json",
+      "default": "./dist/data/shards/ecosystems/ens.json"
+    },
+    "./data/shards/ecosystems/enzyme": {
+      "import": "./dist/data/shards/ecosystems/enzyme.json",
+      "default": "./dist/data/shards/ecosystems/enzyme.json"
+    },
+    "./data/shards/ecosystems/ethena": {
+      "import": "./dist/data/shards/ecosystems/ethena.json",
+      "default": "./dist/data/shards/ecosystems/ethena.json"
+    },
+    "./data/shards/ecosystems/ethereum-vault-connector": {
+      "import": "./dist/data/shards/ecosystems/ethereum-vault-connector.json",
+      "default": "./dist/data/shards/ecosystems/ethereum-vault-connector.json"
+    },
+    "./data/shards/ecosystems/etherfi": {
+      "import": "./dist/data/shards/ecosystems/etherfi.json",
+      "default": "./dist/data/shards/ecosystems/etherfi.json"
+    },
+    "./data/shards/ecosystems/euler": {
+      "import": "./dist/data/shards/ecosystems/euler.json",
+      "default": "./dist/data/shards/ecosystems/euler.json"
+    },
+    "./data/shards/ecosystems/euler-evk": {
+      "import": "./dist/data/shards/ecosystems/euler-evk.json",
+      "default": "./dist/data/shards/ecosystems/euler-evk.json"
+    },
+    "./data/shards/ecosystems/everclear": {
+      "import": "./dist/data/shards/ecosystems/everclear.json",
+      "default": "./dist/data/shards/ecosystems/everclear.json"
+    },
+    "./data/shards/ecosystems/fluid": {
+      "import": "./dist/data/shards/ecosystems/fluid.json",
+      "default": "./dist/data/shards/ecosystems/fluid.json"
+    },
+    "./data/shards/ecosystems/frax": {
+      "import": "./dist/data/shards/ecosystems/frax.json",
+      "default": "./dist/data/shards/ecosystems/frax.json"
+    },
+    "./data/shards/ecosystems/fraxtal": {
+      "import": "./dist/data/shards/ecosystems/fraxtal.json",
+      "default": "./dist/data/shards/ecosystems/fraxtal.json"
+    },
+    "./data/shards/ecosystems/gearbox": {
+      "import": "./dist/data/shards/ecosystems/gearbox.json",
+      "default": "./dist/data/shards/ecosystems/gearbox.json"
+    },
+    "./data/shards/ecosystems/gmx": {
+      "import": "./dist/data/shards/ecosystems/gmx.json",
+      "default": "./dist/data/shards/ecosystems/gmx.json"
+    },
+    "./data/shards/ecosystems/gnosis-conditional-tokens": {
+      "import": "./dist/data/shards/ecosystems/gnosis-conditional-tokens.json",
+      "default": "./dist/data/shards/ecosystems/gnosis-conditional-tokens.json"
+    },
+    "./data/shards/ecosystems/gnosis-ido": {
+      "import": "./dist/data/shards/ecosystems/gnosis-ido.json",
+      "default": "./dist/data/shards/ecosystems/gnosis-ido.json"
+    },
+    "./data/shards/ecosystems/gnosis-tokenbridge": {
+      "import": "./dist/data/shards/ecosystems/gnosis-tokenbridge.json",
+      "default": "./dist/data/shards/ecosystems/gnosis-tokenbridge.json"
+    },
+    "./data/shards/ecosystems/goldfinch": {
+      "import": "./dist/data/shards/ecosystems/goldfinch.json",
+      "default": "./dist/data/shards/ecosystems/goldfinch.json"
+    },
+    "./data/shards/ecosystems/hashi": {
+      "import": "./dist/data/shards/ecosystems/hashi.json",
+      "default": "./dist/data/shards/ecosystems/hashi.json"
+    },
+    "./data/shards/ecosystems/hop": {
+      "import": "./dist/data/shards/ecosystems/hop.json",
+      "default": "./dist/data/shards/ecosystems/hop.json"
+    },
+    "./data/shards/ecosystems/hyperlane": {
+      "import": "./dist/data/shards/ecosystems/hyperlane.json",
+      "default": "./dist/data/shards/ecosystems/hyperlane.json"
+    },
+    "./data/shards/ecosystems/immutable": {
+      "import": "./dist/data/shards/ecosystems/immutable.json",
+      "default": "./dist/data/shards/ecosystems/immutable.json"
+    },
+    "./data/shards/ecosystems/karak": {
+      "import": "./dist/data/shards/ecosystems/karak.json",
+      "default": "./dist/data/shards/ecosystems/karak.json"
+    },
+    "./data/shards/ecosystems/kelp": {
+      "import": "./dist/data/shards/ecosystems/kelp.json",
+      "default": "./dist/data/shards/ecosystems/kelp.json"
+    },
+    "./data/shards/ecosystems/layerzero": {
+      "import": "./dist/data/shards/ecosystems/layerzero.json",
+      "default": "./dist/data/shards/ecosystems/layerzero.json"
+    },
+    "./data/shards/ecosystems/lens-protocol": {
+      "import": "./dist/data/shards/ecosystems/lens-protocol.json",
+      "default": "./dist/data/shards/ecosystems/lens-protocol.json"
+    },
+    "./data/shards/ecosystems/lido": {
+      "import": "./dist/data/shards/ecosystems/lido.json",
+      "default": "./dist/data/shards/ecosystems/lido.json"
+    },
+    "./data/shards/ecosystems/lifi": {
+      "import": "./dist/data/shards/ecosystems/lifi.json",
+      "default": "./dist/data/shards/ecosystems/lifi.json"
+    },
+    "./data/shards/ecosystems/linea": {
+      "import": "./dist/data/shards/ecosystems/linea.json",
+      "default": "./dist/data/shards/ecosystems/linea.json"
+    },
+    "./data/shards/ecosystems/liquity-bold": {
+      "import": "./dist/data/shards/ecosystems/liquity-bold.json",
+      "default": "./dist/data/shards/ecosystems/liquity-bold.json"
+    },
+    "./data/shards/ecosystems/looksrare-v2": {
+      "import": "./dist/data/shards/ecosystems/looksrare-v2.json",
+      "default": "./dist/data/shards/ecosystems/looksrare-v2.json"
+    },
+    "./data/shards/ecosystems/makerdao": {
+      "import": "./dist/data/shards/ecosystems/makerdao.json",
+      "default": "./dist/data/shards/ecosystems/makerdao.json"
+    },
+    "./data/shards/ecosystems/manifold": {
+      "import": "./dist/data/shards/ecosystems/manifold.json",
+      "default": "./dist/data/shards/ecosystems/manifold.json"
+    },
+    "./data/shards/ecosystems/mantle-lsp": {
+      "import": "./dist/data/shards/ecosystems/mantle-lsp.json",
+      "default": "./dist/data/shards/ecosystems/mantle-lsp.json"
+    },
+    "./data/shards/ecosystems/maple": {
+      "import": "./dist/data/shards/ecosystems/maple.json",
+      "default": "./dist/data/shards/ecosystems/maple.json"
+    },
+    "./data/shards/ecosystems/mellow": {
+      "import": "./dist/data/shards/ecosystems/mellow.json",
+      "default": "./dist/data/shards/ecosystems/mellow.json"
+    },
+    "./data/shards/ecosystems/metamorpho": {
+      "import": "./dist/data/shards/ecosystems/metamorpho.json",
+      "default": "./dist/data/shards/ecosystems/metamorpho.json"
+    },
+    "./data/shards/ecosystems/morph": {
+      "import": "./dist/data/shards/ecosystems/morph.json",
+      "default": "./dist/data/shards/ecosystems/morph.json"
+    },
+    "./data/shards/ecosystems/morpho": {
+      "import": "./dist/data/shards/ecosystems/morpho.json",
+      "default": "./dist/data/shards/ecosystems/morpho.json"
+    },
+    "./data/shards/ecosystems/morpho-blue": {
+      "import": "./dist/data/shards/ecosystems/morpho-blue.json",
+      "default": "./dist/data/shards/ecosystems/morpho-blue.json"
+    },
+    "./data/shards/ecosystems/morpho-bundlers": {
+      "import": "./dist/data/shards/ecosystems/morpho-bundlers.json",
+      "default": "./dist/data/shards/ecosystems/morpho-bundlers.json"
+    },
+    "./data/shards/ecosystems/notional": {
+      "import": "./dist/data/shards/ecosystems/notional.json",
+      "default": "./dist/data/shards/ecosystems/notional.json"
+    },
+    "./data/shards/ecosystems/omni": {
+      "import": "./dist/data/shards/ecosystems/omni.json",
+      "default": "./dist/data/shards/ecosystems/omni.json"
+    },
+    "./data/shards/ecosystems/ondo": {
+      "import": "./dist/data/shards/ecosystems/ondo.json",
+      "default": "./dist/data/shards/ecosystems/ondo.json"
+    },
+    "./data/shards/ecosystems/ondo-v1": {
+      "import": "./dist/data/shards/ecosystems/ondo-v1.json",
+      "default": "./dist/data/shards/ecosystems/ondo-v1.json"
+    },
+    "./data/shards/ecosystems/optimism": {
+      "import": "./dist/data/shards/ecosystems/optimism.json",
+      "default": "./dist/data/shards/ecosystems/optimism.json"
+    },
+    "./data/shards/ecosystems/origin-dollar": {
+      "import": "./dist/data/shards/ecosystems/origin-dollar.json",
+      "default": "./dist/data/shards/ecosystems/origin-dollar.json"
+    },
+    "./data/shards/ecosystems/pancakeswap": {
+      "import": "./dist/data/shards/ecosystems/pancakeswap.json",
+      "default": "./dist/data/shards/ecosystems/pancakeswap.json"
+    },
+    "./data/shards/ecosystems/pendle": {
+      "import": "./dist/data/shards/ecosystems/pendle.json",
+      "default": "./dist/data/shards/ecosystems/pendle.json"
+    },
+    "./data/shards/ecosystems/plume": {
+      "import": "./dist/data/shards/ecosystems/plume.json",
+      "default": "./dist/data/shards/ecosystems/plume.json"
+    },
+    "./data/shards/ecosystems/polygon": {
+      "import": "./dist/data/shards/ecosystems/polygon.json",
+      "default": "./dist/data/shards/ecosystems/polygon.json"
+    },
+    "./data/shards/ecosystems/polygon-zkevm": {
+      "import": "./dist/data/shards/ecosystems/polygon-zkevm.json",
+      "default": "./dist/data/shards/ecosystems/polygon-zkevm.json"
+    },
+    "./data/shards/ecosystems/puffer": {
+      "import": "./dist/data/shards/ecosystems/puffer.json",
+      "default": "./dist/data/shards/ecosystems/puffer.json"
+    },
+    "./data/shards/ecosystems/pyth": {
+      "import": "./dist/data/shards/ecosystems/pyth.json",
+      "default": "./dist/data/shards/ecosystems/pyth.json"
+    },
+    "./data/shards/ecosystems/redstone": {
+      "import": "./dist/data/shards/ecosystems/redstone.json",
+      "default": "./dist/data/shards/ecosystems/redstone.json"
+    },
+    "./data/shards/ecosystems/renzo": {
+      "import": "./dist/data/shards/ecosystems/renzo.json",
+      "default": "./dist/data/shards/ecosystems/renzo.json"
+    },
+    "./data/shards/ecosystems/reserve": {
+      "import": "./dist/data/shards/ecosystems/reserve.json",
+      "default": "./dist/data/shards/ecosystems/reserve.json"
+    },
+    "./data/shards/ecosystems/reservoir": {
+      "import": "./dist/data/shards/ecosystems/reservoir.json",
+      "default": "./dist/data/shards/ecosystems/reservoir.json"
+    },
+    "./data/shards/ecosystems/rhinestone": {
+      "import": "./dist/data/shards/ecosystems/rhinestone.json",
+      "default": "./dist/data/shards/ecosystems/rhinestone.json"
+    },
+    "./data/shards/ecosystems/rocketpool": {
+      "import": "./dist/data/shards/ecosystems/rocketpool.json",
+      "default": "./dist/data/shards/ecosystems/rocketpool.json"
+    },
+    "./data/shards/ecosystems/ronin": {
+      "import": "./dist/data/shards/ecosystems/ronin.json",
+      "default": "./dist/data/shards/ecosystems/ronin.json"
+    },
+    "./data/shards/ecosystems/sablier": {
+      "import": "./dist/data/shards/ecosystems/sablier.json",
+      "default": "./dist/data/shards/ecosystems/sablier.json"
+    },
+    "./data/shards/ecosystems/safe": {
+      "import": "./dist/data/shards/ecosystems/safe.json",
+      "default": "./dist/data/shards/ecosystems/safe.json"
+    },
+    "./data/shards/ecosystems/safe-modules": {
+      "import": "./dist/data/shards/ecosystems/safe-modules.json",
+      "default": "./dist/data/shards/ecosystems/safe-modules.json"
+    },
+    "./data/shards/ecosystems/safe7579": {
+      "import": "./dist/data/shards/ecosystems/safe7579.json",
+      "default": "./dist/data/shards/ecosystems/safe7579.json"
+    },
+    "./data/shards/ecosystems/scroll": {
+      "import": "./dist/data/shards/ecosystems/scroll.json",
+      "default": "./dist/data/shards/ecosystems/scroll.json"
+    },
+    "./data/shards/ecosystems/seaport": {
+      "import": "./dist/data/shards/ecosystems/seaport.json",
+      "default": "./dist/data/shards/ecosystems/seaport.json"
+    },
+    "./data/shards/ecosystems/silo-v2": {
+      "import": "./dist/data/shards/ecosystems/silo-v2.json",
+      "default": "./dist/data/shards/ecosystems/silo-v2.json"
+    },
+    "./data/shards/ecosystems/sky": {
+      "import": "./dist/data/shards/ecosystems/sky.json",
+      "default": "./dist/data/shards/ecosystems/sky.json"
+    },
+    "./data/shards/ecosystems/socket": {
+      "import": "./dist/data/shards/ecosystems/socket.json",
+      "default": "./dist/data/shards/ecosystems/socket.json"
+    },
+    "./data/shards/ecosystems/sound-protocol": {
+      "import": "./dist/data/shards/ecosystems/sound-protocol.json",
+      "default": "./dist/data/shards/ecosystems/sound-protocol.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/access-control": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/access-control.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/access-control.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/allowance-approval": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/allowance-approval.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/allowance-approval.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/arg-validation": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/arg-validation.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/arg-validation.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/auction-order": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/auction-order.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/auction-order.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/balance-funds": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/balance-funds.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/balance-funds.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/bridge-cross-chain": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/bridge-cross-chain.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/bridge-cross-chain.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/chain-domain-mismatch": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/chain-domain-mismatch.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/chain-domain-mismatch.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/deadline-expiry": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/deadline-expiry.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/deadline-expiry.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/domain-resolver": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/domain-resolver.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/domain-resolver.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/epoch-snapshot": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/epoch-snapshot.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/epoch-snapshot.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/fees-royalty": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/fees-royalty.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/fees-royalty.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/gas": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/gas.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/gas.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/governance-voting": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/governance-voting.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/governance-voting.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/lending-collateral": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/lending-collateral.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/lending-collateral.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/liquidation": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/liquidation.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/liquidation.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/math": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/math.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/math.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/merkle-proof": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/merkle-proof.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/merkle-proof.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/module-hook-plugin": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/module-hook-plugin.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/module-hook-plugin.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/nonce-replay": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/nonce-replay.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/nonce-replay.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/oracle-feed": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/oracle-feed.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/oracle-feed.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/pause-emergency": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/pause-emergency.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/pause-emergency.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/proxy-init": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/proxy-init.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/proxy-init.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/rate-limit-cap": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/rate-limit-cap.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/rate-limit-cap.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/reentrancy": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/reentrancy.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/reentrancy.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/refund-claim": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/refund-claim.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/refund-claim.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/session-permissions": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/session-permissions.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/session-permissions.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/signature-712": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/signature-712.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/signature-712.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/slippage-price": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/slippage-price.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/slippage-price.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/staking-rewards": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/staking-rewards.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/staking-rewards.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/state-machine": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/state-machine.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/state-machine.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/swap-pool": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/swap-pool.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/swap-pool.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/token-erc4626": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/token-erc4626.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/token-erc4626.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/transfer-restriction": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/transfer-restriction.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/transfer-restriction.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/unclassified": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/unclassified.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/unclassified.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/vault-share": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/vault-share.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/vault-share.json"
+    },
+    "./data/shards/ecosystems/sourcify-signatures/whitelist-allowlist": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/whitelist-allowlist.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/whitelist-allowlist.json"
+    },
+    "./data/shards/ecosystems/spark": {
+      "import": "./dist/data/shards/ecosystems/spark.json",
+      "default": "./dist/data/shards/ecosystems/spark.json"
+    },
+    "./data/shards/ecosystems/stakewise-v3": {
+      "import": "./dist/data/shards/ecosystems/stakewise-v3.json",
+      "default": "./dist/data/shards/ecosystems/stakewise-v3.json"
+    },
+    "./data/shards/ecosystems/stargate": {
+      "import": "./dist/data/shards/ecosystems/stargate.json",
+      "default": "./dist/data/shards/ecosystems/stargate.json"
+    },
+    "./data/shards/ecosystems/story-protocol": {
+      "import": "./dist/data/shards/ecosystems/story-protocol.json",
+      "default": "./dist/data/shards/ecosystems/story-protocol.json"
+    },
+    "./data/shards/ecosystems/sudoswap": {
+      "import": "./dist/data/shards/ecosystems/sudoswap.json",
+      "default": "./dist/data/shards/ecosystems/sudoswap.json"
+    },
+    "./data/shards/ecosystems/superfluid": {
+      "import": "./dist/data/shards/ecosystems/superfluid.json",
+      "default": "./dist/data/shards/ecosystems/superfluid.json"
+    },
+    "./data/shards/ecosystems/superform": {
+      "import": "./dist/data/shards/ecosystems/superform.json",
+      "default": "./dist/data/shards/ecosystems/superform.json"
+    },
+    "./data/shards/ecosystems/swell": {
+      "import": "./dist/data/shards/ecosystems/swell.json",
+      "default": "./dist/data/shards/ecosystems/swell.json"
+    },
+    "./data/shards/ecosystems/symbiotic": {
+      "import": "./dist/data/shards/ecosystems/symbiotic.json",
+      "default": "./dist/data/shards/ecosystems/symbiotic.json"
+    },
+    "./data/shards/ecosystems/synapse": {
+      "import": "./dist/data/shards/ecosystems/synapse.json",
+      "default": "./dist/data/shards/ecosystems/synapse.json"
+    },
+    "./data/shards/ecosystems/synthetix": {
+      "import": "./dist/data/shards/ecosystems/synthetix.json",
+      "default": "./dist/data/shards/ecosystems/synthetix.json"
+    },
+    "./data/shards/ecosystems/taiko": {
+      "import": "./dist/data/shards/ecosystems/taiko.json",
+      "default": "./dist/data/shards/ecosystems/taiko.json"
+    },
+    "./data/shards/ecosystems/tellor": {
+      "import": "./dist/data/shards/ecosystems/tellor.json",
+      "default": "./dist/data/shards/ecosystems/tellor.json"
+    },
+    "./data/shards/ecosystems/term-finance": {
+      "import": "./dist/data/shards/ecosystems/term-finance.json",
+      "default": "./dist/data/shards/ecosystems/term-finance.json"
+    },
+    "./data/shards/ecosystems/thirdweb": {
+      "import": "./dist/data/shards/ecosystems/thirdweb.json",
+      "default": "./dist/data/shards/ecosystems/thirdweb.json"
+    },
+    "./data/shards/ecosystems/traderjoe": {
+      "import": "./dist/data/shards/ecosystems/traderjoe.json",
+      "default": "./dist/data/shards/ecosystems/traderjoe.json"
+    },
+    "./data/shards/ecosystems/truefi": {
+      "import": "./dist/data/shards/ecosystems/truefi.json",
+      "default": "./dist/data/shards/ecosystems/truefi.json"
+    },
+    "./data/shards/ecosystems/uma": {
+      "import": "./dist/data/shards/ecosystems/uma.json",
+      "default": "./dist/data/shards/ecosystems/uma.json"
+    },
+    "./data/shards/ecosystems/uniswap": {
+      "import": "./dist/data/shards/ecosystems/uniswap.json",
+      "default": "./dist/data/shards/ecosystems/uniswap.json"
+    },
+    "./data/shards/ecosystems/uniswap-permit2": {
+      "import": "./dist/data/shards/ecosystems/uniswap-permit2.json",
+      "default": "./dist/data/shards/ecosystems/uniswap-permit2.json"
+    },
+    "./data/shards/ecosystems/uniswap-v4-core": {
+      "import": "./dist/data/shards/ecosystems/uniswap-v4-core.json",
+      "default": "./dist/data/shards/ecosystems/uniswap-v4-core.json"
+    },
+    "./data/shards/ecosystems/uniswap-v4-periphery": {
+      "import": "./dist/data/shards/ecosystems/uniswap-v4-periphery.json",
+      "default": "./dist/data/shards/ecosystems/uniswap-v4-periphery.json"
+    },
+    "./data/shards/ecosystems/uniswapx": {
+      "import": "./dist/data/shards/ecosystems/uniswapx.json",
+      "default": "./dist/data/shards/ecosystems/uniswapx.json"
+    },
+    "./data/shards/ecosystems/velodrome": {
+      "import": "./dist/data/shards/ecosystems/velodrome.json",
+      "default": "./dist/data/shards/ecosystems/velodrome.json"
+    },
+    "./data/shards/ecosystems/world-chain": {
+      "import": "./dist/data/shards/ecosystems/world-chain.json",
+      "default": "./dist/data/shards/ecosystems/world-chain.json"
+    },
+    "./data/shards/ecosystems/wormhole": {
+      "import": "./dist/data/shards/ecosystems/wormhole.json",
+      "default": "./dist/data/shards/ecosystems/wormhole.json"
+    },
+    "./data/shards/ecosystems/yearn": {
+      "import": "./dist/data/shards/ecosystems/yearn.json",
+      "default": "./dist/data/shards/ecosystems/yearn.json"
+    },
+    "./data/shards/ecosystems/yearn-v3": {
+      "import": "./dist/data/shards/ecosystems/yearn-v3.json",
+      "default": "./dist/data/shards/ecosystems/yearn-v3.json"
+    },
+    "./data/shards/ecosystems/zerodev": {
+      "import": "./dist/data/shards/ecosystems/zerodev.json",
+      "default": "./dist/data/shards/ecosystems/zerodev.json"
+    },
+    "./data/shards/ecosystems/zksync": {
+      "import": "./dist/data/shards/ecosystems/zksync.json",
+      "default": "./dist/data/shards/ecosystems/zksync.json"
+    },
+    "./data/shards/ecosystems/zodiac": {
+      "import": "./dist/data/shards/ecosystems/zodiac.json",
+      "default": "./dist/data/shards/ecosystems/zodiac.json"
+    },
+    "./data/shards/ecosystems/zora": {
+      "import": "./dist/data/shards/ecosystems/zora.json",
+      "default": "./dist/data/shards/ecosystems/zora.json"
+    },
+    "./data/shards/eigenlayer": {
+      "import": "./dist/data/shards/ecosystems/eigenlayer.json",
+      "default": "./dist/data/shards/ecosystems/eigenlayer.json"
+    },
+    "./data/shards/eip-1193": {
+      "import": "./dist/data/shards/core/eip-1193.json",
+      "default": "./dist/data/shards/core/eip-1193.json"
+    },
+    "./data/shards/eip-1474": {
+      "import": "./dist/data/shards/core/eip-1474.json",
+      "default": "./dist/data/shards/core/eip-1474.json"
+    },
+    "./data/shards/eip-6093": {
+      "import": "./dist/data/shards/core/eip-6093.json",
+      "default": "./dist/data/shards/core/eip-6093.json"
+    },
+    "./data/shards/ens": {
+      "import": "./dist/data/shards/ecosystems/ens.json",
+      "default": "./dist/data/shards/ecosystems/ens.json"
+    },
+    "./data/shards/enzyme": {
+      "import": "./dist/data/shards/ecosystems/enzyme.json",
+      "default": "./dist/data/shards/ecosystems/enzyme.json"
+    },
+    "./data/shards/erc-4337": {
+      "import": "./dist/data/shards/core/erc-4337.json",
+      "default": "./dist/data/shards/core/erc-4337.json"
+    },
+    "./data/shards/erc-4337-entrypoint": {
+      "import": "./dist/data/shards/core/erc-4337-entrypoint.json",
+      "default": "./dist/data/shards/core/erc-4337-entrypoint.json"
+    },
+    "./data/shards/ethena": {
+      "import": "./dist/data/shards/ecosystems/ethena.json",
+      "default": "./dist/data/shards/ecosystems/ethena.json"
+    },
+    "./data/shards/ethereum-protocol": {
+      "import": "./dist/data/shards/core/ethereum-protocol.json",
+      "default": "./dist/data/shards/core/ethereum-protocol.json"
+    },
+    "./data/shards/ethereum-vault-connector": {
+      "import": "./dist/data/shards/ecosystems/ethereum-vault-connector.json",
+      "default": "./dist/data/shards/ecosystems/ethereum-vault-connector.json"
+    },
+    "./data/shards/etherfi": {
+      "import": "./dist/data/shards/ecosystems/etherfi.json",
+      "default": "./dist/data/shards/ecosystems/etherfi.json"
+    },
+    "./data/shards/ethers": {
+      "import": "./dist/data/shards/core/ethers.json",
+      "default": "./dist/data/shards/core/ethers.json"
+    },
+    "./data/shards/euler": {
+      "import": "./dist/data/shards/ecosystems/euler.json",
+      "default": "./dist/data/shards/ecosystems/euler.json"
+    },
+    "./data/shards/euler-evk": {
+      "import": "./dist/data/shards/ecosystems/euler-evk.json",
+      "default": "./dist/data/shards/ecosystems/euler-evk.json"
+    },
+    "./data/shards/everclear": {
+      "import": "./dist/data/shards/ecosystems/everclear.json",
+      "default": "./dist/data/shards/ecosystems/everclear.json"
+    },
+    "./data/shards/fluid": {
+      "import": "./dist/data/shards/ecosystems/fluid.json",
+      "default": "./dist/data/shards/ecosystems/fluid.json"
+    },
+    "./data/shards/frax": {
+      "import": "./dist/data/shards/ecosystems/frax.json",
+      "default": "./dist/data/shards/ecosystems/frax.json"
+    },
+    "./data/shards/fraxtal": {
+      "import": "./dist/data/shards/ecosystems/fraxtal.json",
+      "default": "./dist/data/shards/ecosystems/fraxtal.json"
+    },
+    "./data/shards/gearbox": {
+      "import": "./dist/data/shards/ecosystems/gearbox.json",
+      "default": "./dist/data/shards/ecosystems/gearbox.json"
+    },
+    "./data/shards/generic": {
+      "import": "./dist/data/shards/core/generic.json",
+      "default": "./dist/data/shards/core/generic.json"
+    },
+    "./data/shards/gmx": {
+      "import": "./dist/data/shards/ecosystems/gmx.json",
+      "default": "./dist/data/shards/ecosystems/gmx.json"
+    },
+    "./data/shards/gnosis-conditional-tokens": {
+      "import": "./dist/data/shards/ecosystems/gnosis-conditional-tokens.json",
+      "default": "./dist/data/shards/ecosystems/gnosis-conditional-tokens.json"
+    },
+    "./data/shards/gnosis-ido": {
+      "import": "./dist/data/shards/ecosystems/gnosis-ido.json",
+      "default": "./dist/data/shards/ecosystems/gnosis-ido.json"
+    },
+    "./data/shards/gnosis-tokenbridge": {
+      "import": "./dist/data/shards/ecosystems/gnosis-tokenbridge.json",
+      "default": "./dist/data/shards/ecosystems/gnosis-tokenbridge.json"
+    },
+    "./data/shards/goldfinch": {
+      "import": "./dist/data/shards/ecosystems/goldfinch.json",
+      "default": "./dist/data/shards/ecosystems/goldfinch.json"
+    },
+    "./data/shards/hardhat": {
+      "import": "./dist/data/shards/core/hardhat.json",
+      "default": "./dist/data/shards/core/hardhat.json"
+    },
+    "./data/shards/hashi": {
+      "import": "./dist/data/shards/ecosystems/hashi.json",
+      "default": "./dist/data/shards/ecosystems/hashi.json"
+    },
+    "./data/shards/hop": {
+      "import": "./dist/data/shards/ecosystems/hop.json",
+      "default": "./dist/data/shards/ecosystems/hop.json"
+    },
+    "./data/shards/hyperlane": {
+      "import": "./dist/data/shards/ecosystems/hyperlane.json",
+      "default": "./dist/data/shards/ecosystems/hyperlane.json"
+    },
+    "./data/shards/immutable": {
+      "import": "./dist/data/shards/ecosystems/immutable.json",
+      "default": "./dist/data/shards/ecosystems/immutable.json"
+    },
+    "./data/shards/karak": {
+      "import": "./dist/data/shards/ecosystems/karak.json",
+      "default": "./dist/data/shards/ecosystems/karak.json"
+    },
+    "./data/shards/kelp": {
+      "import": "./dist/data/shards/ecosystems/kelp.json",
+      "default": "./dist/data/shards/ecosystems/kelp.json"
+    },
+    "./data/shards/layerzero": {
+      "import": "./dist/data/shards/ecosystems/layerzero.json",
+      "default": "./dist/data/shards/ecosystems/layerzero.json"
+    },
+    "./data/shards/lens-protocol": {
+      "import": "./dist/data/shards/ecosystems/lens-protocol.json",
+      "default": "./dist/data/shards/ecosystems/lens-protocol.json"
+    },
+    "./data/shards/lido": {
+      "import": "./dist/data/shards/ecosystems/lido.json",
+      "default": "./dist/data/shards/ecosystems/lido.json"
+    },
+    "./data/shards/lifi": {
+      "import": "./dist/data/shards/ecosystems/lifi.json",
+      "default": "./dist/data/shards/ecosystems/lifi.json"
+    },
+    "./data/shards/linea": {
+      "import": "./dist/data/shards/ecosystems/linea.json",
+      "default": "./dist/data/shards/ecosystems/linea.json"
+    },
+    "./data/shards/liquity-bold": {
+      "import": "./dist/data/shards/ecosystems/liquity-bold.json",
+      "default": "./dist/data/shards/ecosystems/liquity-bold.json"
+    },
+    "./data/shards/looksrare-v2": {
+      "import": "./dist/data/shards/ecosystems/looksrare-v2.json",
+      "default": "./dist/data/shards/ecosystems/looksrare-v2.json"
+    },
+    "./data/shards/makerdao": {
+      "import": "./dist/data/shards/ecosystems/makerdao.json",
+      "default": "./dist/data/shards/ecosystems/makerdao.json"
+    },
+    "./data/shards/manifold": {
+      "import": "./dist/data/shards/ecosystems/manifold.json",
+      "default": "./dist/data/shards/ecosystems/manifold.json"
+    },
+    "./data/shards/mantle-lsp": {
+      "import": "./dist/data/shards/ecosystems/mantle-lsp.json",
+      "default": "./dist/data/shards/ecosystems/mantle-lsp.json"
+    },
+    "./data/shards/maple": {
+      "import": "./dist/data/shards/ecosystems/maple.json",
+      "default": "./dist/data/shards/ecosystems/maple.json"
+    },
+    "./data/shards/mellow": {
+      "import": "./dist/data/shards/ecosystems/mellow.json",
+      "default": "./dist/data/shards/ecosystems/mellow.json"
+    },
+    "./data/shards/metamorpho": {
+      "import": "./dist/data/shards/ecosystems/metamorpho.json",
+      "default": "./dist/data/shards/ecosystems/metamorpho.json"
+    },
+    "./data/shards/morph": {
+      "import": "./dist/data/shards/ecosystems/morph.json",
+      "default": "./dist/data/shards/ecosystems/morph.json"
+    },
+    "./data/shards/morpho": {
+      "import": "./dist/data/shards/ecosystems/morpho.json",
+      "default": "./dist/data/shards/ecosystems/morpho.json"
+    },
+    "./data/shards/morpho-blue": {
+      "import": "./dist/data/shards/ecosystems/morpho-blue.json",
+      "default": "./dist/data/shards/ecosystems/morpho-blue.json"
+    },
+    "./data/shards/morpho-bundlers": {
+      "import": "./dist/data/shards/ecosystems/morpho-bundlers.json",
+      "default": "./dist/data/shards/ecosystems/morpho-bundlers.json"
+    },
+    "./data/shards/node": {
+      "import": "./dist/data/shards/core/node.json",
+      "default": "./dist/data/shards/core/node.json"
+    },
+    "./data/shards/notional": {
+      "import": "./dist/data/shards/ecosystems/notional.json",
+      "default": "./dist/data/shards/ecosystems/notional.json"
+    },
+    "./data/shards/omni": {
+      "import": "./dist/data/shards/ecosystems/omni.json",
+      "default": "./dist/data/shards/ecosystems/omni.json"
+    },
+    "./data/shards/ondo": {
+      "import": "./dist/data/shards/ecosystems/ondo.json",
+      "default": "./dist/data/shards/ecosystems/ondo.json"
+    },
+    "./data/shards/ondo-v1": {
+      "import": "./dist/data/shards/ecosystems/ondo-v1.json",
+      "default": "./dist/data/shards/ecosystems/ondo-v1.json"
+    },
+    "./data/shards/openzeppelin": {
+      "import": "./dist/data/shards/core/openzeppelin.json",
+      "default": "./dist/data/shards/core/openzeppelin.json"
+    },
+    "./data/shards/optimism": {
+      "import": "./dist/data/shards/ecosystems/optimism.json",
+      "default": "./dist/data/shards/ecosystems/optimism.json"
+    },
+    "./data/shards/origin-dollar": {
+      "import": "./dist/data/shards/ecosystems/origin-dollar.json",
+      "default": "./dist/data/shards/ecosystems/origin-dollar.json"
+    },
+    "./data/shards/pancakeswap": {
+      "import": "./dist/data/shards/ecosystems/pancakeswap.json",
+      "default": "./dist/data/shards/ecosystems/pancakeswap.json"
+    },
+    "./data/shards/pendle": {
+      "import": "./dist/data/shards/ecosystems/pendle.json",
+      "default": "./dist/data/shards/ecosystems/pendle.json"
+    },
+    "./data/shards/plume": {
+      "import": "./dist/data/shards/ecosystems/plume.json",
+      "default": "./dist/data/shards/ecosystems/plume.json"
+    },
+    "./data/shards/polygon": {
+      "import": "./dist/data/shards/ecosystems/polygon.json",
+      "default": "./dist/data/shards/ecosystems/polygon.json"
+    },
+    "./data/shards/polygon-zkevm": {
+      "import": "./dist/data/shards/ecosystems/polygon-zkevm.json",
+      "default": "./dist/data/shards/ecosystems/polygon-zkevm.json"
+    },
+    "./data/shards/prb-math": {
+      "import": "./dist/data/shards/core/prb-math.json",
+      "default": "./dist/data/shards/core/prb-math.json"
+    },
+    "./data/shards/protocol": {
+      "import": "./dist/data/shards/core/protocol.json",
+      "default": "./dist/data/shards/core/protocol.json"
+    },
+    "./data/shards/puffer": {
+      "import": "./dist/data/shards/ecosystems/puffer.json",
+      "default": "./dist/data/shards/ecosystems/puffer.json"
+    },
+    "./data/shards/pyth": {
+      "import": "./dist/data/shards/ecosystems/pyth.json",
+      "default": "./dist/data/shards/ecosystems/pyth.json"
+    },
+    "./data/shards/redstone": {
+      "import": "./dist/data/shards/ecosystems/redstone.json",
+      "default": "./dist/data/shards/ecosystems/redstone.json"
+    },
+    "./data/shards/renzo": {
+      "import": "./dist/data/shards/ecosystems/renzo.json",
+      "default": "./dist/data/shards/ecosystems/renzo.json"
+    },
+    "./data/shards/reserve": {
+      "import": "./dist/data/shards/ecosystems/reserve.json",
+      "default": "./dist/data/shards/ecosystems/reserve.json"
+    },
+    "./data/shards/reservoir": {
+      "import": "./dist/data/shards/ecosystems/reservoir.json",
+      "default": "./dist/data/shards/ecosystems/reservoir.json"
+    },
+    "./data/shards/rhinestone": {
+      "import": "./dist/data/shards/ecosystems/rhinestone.json",
+      "default": "./dist/data/shards/ecosystems/rhinestone.json"
+    },
+    "./data/shards/rocketpool": {
+      "import": "./dist/data/shards/ecosystems/rocketpool.json",
+      "default": "./dist/data/shards/ecosystems/rocketpool.json"
+    },
+    "./data/shards/ronin": {
+      "import": "./dist/data/shards/ecosystems/ronin.json",
+      "default": "./dist/data/shards/ecosystems/ronin.json"
+    },
+    "./data/shards/rpc-provider": {
+      "import": "./dist/data/shards/core/rpc-provider.json",
+      "default": "./dist/data/shards/core/rpc-provider.json"
+    },
+    "./data/shards/sablier": {
+      "import": "./dist/data/shards/ecosystems/sablier.json",
+      "default": "./dist/data/shards/ecosystems/sablier.json"
+    },
+    "./data/shards/safe": {
+      "import": "./dist/data/shards/ecosystems/safe.json",
+      "default": "./dist/data/shards/ecosystems/safe.json"
+    },
+    "./data/shards/safe-modules": {
+      "import": "./dist/data/shards/ecosystems/safe-modules.json",
+      "default": "./dist/data/shards/ecosystems/safe-modules.json"
+    },
+    "./data/shards/safe7579": {
+      "import": "./dist/data/shards/ecosystems/safe7579.json",
+      "default": "./dist/data/shards/ecosystems/safe7579.json"
+    },
+    "./data/shards/scroll": {
+      "import": "./dist/data/shards/ecosystems/scroll.json",
+      "default": "./dist/data/shards/ecosystems/scroll.json"
+    },
+    "./data/shards/seaport": {
+      "import": "./dist/data/shards/ecosystems/seaport.json",
+      "default": "./dist/data/shards/ecosystems/seaport.json"
+    },
+    "./data/shards/silo-v2": {
+      "import": "./dist/data/shards/ecosystems/silo-v2.json",
+      "default": "./dist/data/shards/ecosystems/silo-v2.json"
+    },
+    "./data/shards/simulation": {
+      "import": "./dist/data/shards/core/simulation.json",
+      "default": "./dist/data/shards/core/simulation.json"
+    },
+    "./data/shards/sky": {
+      "import": "./dist/data/shards/ecosystems/sky.json",
+      "default": "./dist/data/shards/ecosystems/sky.json"
+    },
+    "./data/shards/socket": {
+      "import": "./dist/data/shards/ecosystems/socket.json",
+      "default": "./dist/data/shards/ecosystems/socket.json"
+    },
+    "./data/shards/solady": {
+      "import": "./dist/data/shards/core/solady.json",
+      "default": "./dist/data/shards/core/solady.json"
+    },
+    "./data/shards/solidity": {
+      "import": "./dist/data/shards/core/solidity.json",
+      "default": "./dist/data/shards/core/solidity.json"
+    },
+    "./data/shards/solmate": {
+      "import": "./dist/data/shards/core/solmate.json",
+      "default": "./dist/data/shards/core/solmate.json"
+    },
+    "./data/shards/sound-protocol": {
+      "import": "./dist/data/shards/ecosystems/sound-protocol.json",
+      "default": "./dist/data/shards/ecosystems/sound-protocol.json"
+    },
+    "./data/shards/sourcify-signatures/access-control": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/access-control.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/access-control.json"
+    },
+    "./data/shards/sourcify-signatures/allowance-approval": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/allowance-approval.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/allowance-approval.json"
+    },
+    "./data/shards/sourcify-signatures/arg-validation": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/arg-validation.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/arg-validation.json"
+    },
+    "./data/shards/sourcify-signatures/auction-order": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/auction-order.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/auction-order.json"
+    },
+    "./data/shards/sourcify-signatures/balance-funds": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/balance-funds.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/balance-funds.json"
+    },
+    "./data/shards/sourcify-signatures/bridge-cross-chain": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/bridge-cross-chain.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/bridge-cross-chain.json"
+    },
+    "./data/shards/sourcify-signatures/chain-domain-mismatch": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/chain-domain-mismatch.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/chain-domain-mismatch.json"
+    },
+    "./data/shards/sourcify-signatures/deadline-expiry": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/deadline-expiry.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/deadline-expiry.json"
+    },
+    "./data/shards/sourcify-signatures/domain-resolver": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/domain-resolver.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/domain-resolver.json"
+    },
+    "./data/shards/sourcify-signatures/epoch-snapshot": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/epoch-snapshot.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/epoch-snapshot.json"
+    },
+    "./data/shards/sourcify-signatures/fees-royalty": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/fees-royalty.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/fees-royalty.json"
+    },
+    "./data/shards/sourcify-signatures/gas": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/gas.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/gas.json"
+    },
+    "./data/shards/sourcify-signatures/governance-voting": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/governance-voting.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/governance-voting.json"
+    },
+    "./data/shards/sourcify-signatures/lending-collateral": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/lending-collateral.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/lending-collateral.json"
+    },
+    "./data/shards/sourcify-signatures/liquidation": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/liquidation.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/liquidation.json"
+    },
+    "./data/shards/sourcify-signatures/math": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/math.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/math.json"
+    },
+    "./data/shards/sourcify-signatures/merkle-proof": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/merkle-proof.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/merkle-proof.json"
+    },
+    "./data/shards/sourcify-signatures/module-hook-plugin": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/module-hook-plugin.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/module-hook-plugin.json"
+    },
+    "./data/shards/sourcify-signatures/nonce-replay": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/nonce-replay.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/nonce-replay.json"
+    },
+    "./data/shards/sourcify-signatures/oracle-feed": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/oracle-feed.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/oracle-feed.json"
+    },
+    "./data/shards/sourcify-signatures/pause-emergency": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/pause-emergency.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/pause-emergency.json"
+    },
+    "./data/shards/sourcify-signatures/proxy-init": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/proxy-init.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/proxy-init.json"
+    },
+    "./data/shards/sourcify-signatures/rate-limit-cap": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/rate-limit-cap.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/rate-limit-cap.json"
+    },
+    "./data/shards/sourcify-signatures/reentrancy": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/reentrancy.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/reentrancy.json"
+    },
+    "./data/shards/sourcify-signatures/refund-claim": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/refund-claim.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/refund-claim.json"
+    },
+    "./data/shards/sourcify-signatures/session-permissions": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/session-permissions.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/session-permissions.json"
+    },
+    "./data/shards/sourcify-signatures/signature-712": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/signature-712.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/signature-712.json"
+    },
+    "./data/shards/sourcify-signatures/slippage-price": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/slippage-price.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/slippage-price.json"
+    },
+    "./data/shards/sourcify-signatures/staking-rewards": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/staking-rewards.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/staking-rewards.json"
+    },
+    "./data/shards/sourcify-signatures/state-machine": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/state-machine.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/state-machine.json"
+    },
+    "./data/shards/sourcify-signatures/swap-pool": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/swap-pool.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/swap-pool.json"
+    },
+    "./data/shards/sourcify-signatures/token-erc4626": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/token-erc4626.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/token-erc4626.json"
+    },
+    "./data/shards/sourcify-signatures/transfer-restriction": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/transfer-restriction.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/transfer-restriction.json"
+    },
+    "./data/shards/sourcify-signatures/unclassified": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/unclassified.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/unclassified.json"
+    },
+    "./data/shards/sourcify-signatures/vault-share": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/vault-share.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/vault-share.json"
+    },
+    "./data/shards/sourcify-signatures/whitelist-allowlist": {
+      "import": "./dist/data/shards/ecosystems/sourcify-signatures/whitelist-allowlist.json",
+      "default": "./dist/data/shards/ecosystems/sourcify-signatures/whitelist-allowlist.json"
+    },
+    "./data/shards/spark": {
+      "import": "./dist/data/shards/ecosystems/spark.json",
+      "default": "./dist/data/shards/ecosystems/spark.json"
+    },
+    "./data/shards/stakewise-v3": {
+      "import": "./dist/data/shards/ecosystems/stakewise-v3.json",
+      "default": "./dist/data/shards/ecosystems/stakewise-v3.json"
+    },
+    "./data/shards/stargate": {
+      "import": "./dist/data/shards/ecosystems/stargate.json",
+      "default": "./dist/data/shards/ecosystems/stargate.json"
+    },
+    "./data/shards/story-protocol": {
+      "import": "./dist/data/shards/ecosystems/story-protocol.json",
+      "default": "./dist/data/shards/ecosystems/story-protocol.json"
+    },
+    "./data/shards/sudoswap": {
+      "import": "./dist/data/shards/ecosystems/sudoswap.json",
+      "default": "./dist/data/shards/ecosystems/sudoswap.json"
+    },
+    "./data/shards/superfluid": {
+      "import": "./dist/data/shards/ecosystems/superfluid.json",
+      "default": "./dist/data/shards/ecosystems/superfluid.json"
+    },
+    "./data/shards/superform": {
+      "import": "./dist/data/shards/ecosystems/superform.json",
+      "default": "./dist/data/shards/ecosystems/superform.json"
+    },
+    "./data/shards/swell": {
+      "import": "./dist/data/shards/ecosystems/swell.json",
+      "default": "./dist/data/shards/ecosystems/swell.json"
+    },
+    "./data/shards/symbiotic": {
+      "import": "./dist/data/shards/ecosystems/symbiotic.json",
+      "default": "./dist/data/shards/ecosystems/symbiotic.json"
+    },
+    "./data/shards/synapse": {
+      "import": "./dist/data/shards/ecosystems/synapse.json",
+      "default": "./dist/data/shards/ecosystems/synapse.json"
+    },
+    "./data/shards/synthetix": {
+      "import": "./dist/data/shards/ecosystems/synthetix.json",
+      "default": "./dist/data/shards/ecosystems/synthetix.json"
+    },
+    "./data/shards/taiko": {
+      "import": "./dist/data/shards/ecosystems/taiko.json",
+      "default": "./dist/data/shards/ecosystems/taiko.json"
+    },
+    "./data/shards/tellor": {
+      "import": "./dist/data/shards/ecosystems/tellor.json",
+      "default": "./dist/data/shards/ecosystems/tellor.json"
+    },
+    "./data/shards/tenderly": {
+      "import": "./dist/data/shards/core/tenderly.json",
+      "default": "./dist/data/shards/core/tenderly.json"
+    },
+    "./data/shards/term-finance": {
+      "import": "./dist/data/shards/ecosystems/term-finance.json",
+      "default": "./dist/data/shards/ecosystems/term-finance.json"
+    },
+    "./data/shards/thirdweb": {
+      "import": "./dist/data/shards/ecosystems/thirdweb.json",
+      "default": "./dist/data/shards/ecosystems/thirdweb.json"
+    },
+    "./data/shards/traderjoe": {
+      "import": "./dist/data/shards/ecosystems/traderjoe.json",
+      "default": "./dist/data/shards/ecosystems/traderjoe.json"
+    },
+    "./data/shards/truefi": {
+      "import": "./dist/data/shards/ecosystems/truefi.json",
+      "default": "./dist/data/shards/ecosystems/truefi.json"
+    },
+    "./data/shards/uma": {
+      "import": "./dist/data/shards/ecosystems/uma.json",
+      "default": "./dist/data/shards/ecosystems/uma.json"
+    },
+    "./data/shards/uniswap": {
+      "import": "./dist/data/shards/ecosystems/uniswap.json",
+      "default": "./dist/data/shards/ecosystems/uniswap.json"
+    },
+    "./data/shards/uniswap-permit2": {
+      "import": "./dist/data/shards/ecosystems/uniswap-permit2.json",
+      "default": "./dist/data/shards/ecosystems/uniswap-permit2.json"
+    },
+    "./data/shards/uniswap-v4-core": {
+      "import": "./dist/data/shards/ecosystems/uniswap-v4-core.json",
+      "default": "./dist/data/shards/ecosystems/uniswap-v4-core.json"
+    },
+    "./data/shards/uniswap-v4-periphery": {
+      "import": "./dist/data/shards/ecosystems/uniswap-v4-periphery.json",
+      "default": "./dist/data/shards/ecosystems/uniswap-v4-periphery.json"
+    },
+    "./data/shards/uniswapx": {
+      "import": "./dist/data/shards/ecosystems/uniswapx.json",
+      "default": "./dist/data/shards/ecosystems/uniswapx.json"
+    },
+    "./data/shards/velodrome": {
+      "import": "./dist/data/shards/ecosystems/velodrome.json",
+      "default": "./dist/data/shards/ecosystems/velodrome.json"
+    },
+    "./data/shards/viem": {
+      "import": "./dist/data/shards/core/viem.json",
+      "default": "./dist/data/shards/core/viem.json"
+    },
+    "./data/shards/wallet": {
+      "import": "./dist/data/shards/core/wallet.json",
+      "default": "./dist/data/shards/core/wallet.json"
+    },
+    "./data/shards/world-chain": {
+      "import": "./dist/data/shards/ecosystems/world-chain.json",
+      "default": "./dist/data/shards/ecosystems/world-chain.json"
+    },
+    "./data/shards/wormhole": {
+      "import": "./dist/data/shards/ecosystems/wormhole.json",
+      "default": "./dist/data/shards/ecosystems/wormhole.json"
+    },
+    "./data/shards/x402": {
+      "import": "./dist/data/shards/core/x402.json",
+      "default": "./dist/data/shards/core/x402.json"
+    },
+    "./data/shards/yearn": {
+      "import": "./dist/data/shards/ecosystems/yearn.json",
+      "default": "./dist/data/shards/ecosystems/yearn.json"
+    },
+    "./data/shards/yearn-v3": {
+      "import": "./dist/data/shards/ecosystems/yearn-v3.json",
+      "default": "./dist/data/shards/ecosystems/yearn-v3.json"
+    },
+    "./data/shards/zerodev": {
+      "import": "./dist/data/shards/ecosystems/zerodev.json",
+      "default": "./dist/data/shards/ecosystems/zerodev.json"
+    },
+    "./data/shards/zksync": {
+      "import": "./dist/data/shards/ecosystems/zksync.json",
+      "default": "./dist/data/shards/ecosystems/zksync.json"
+    },
+    "./data/shards/zodiac": {
+      "import": "./dist/data/shards/ecosystems/zodiac.json",
+      "default": "./dist/data/shards/ecosystems/zodiac.json"
+    },
+    "./data/shards/zora": {
+      "import": "./dist/data/shards/ecosystems/zora.json",
+      "default": "./dist/data/shards/ecosystems/zora.json"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "node ../../scripts/build-catalog-data.mjs --generate --check && tsc -p tsconfig.json && node ../../scripts/build-catalog-data.mjs --dist --check",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@revertwtf/core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "keywords": [
+    "evm",
+    "ethereum",
+    "catalog",
+    "solidity",
+    "rpc",
+    "erc-4337",
+    "x402"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrtdlgc/revertwtf.git",
+    "directory": "packages/catalog"
+  },
+  "homepage": "https://revert.wtf",
+  "bugs": {
+    "url": "https://github.com/mrtdlgc/revertwtf/issues"
+  }
+}

@@ -1,0 +1,176 @@
+[
+  {
+    "id": "eip1193-4001-user-rejected",
+    "title": "EIP-1193 4001: User rejected the request",
+    "layer": "wallet",
+    "category": "user_action",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": 4001
+      },
+      {
+        "type": "substring",
+        "value": "User rejected"
+      }
+    ],
+    "summary": "The user clicked Reject in their wallet. This is not a bug.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "User intentionally rejected.",
+      "Wallet UI confused them about what was being signed."
+    ],
+    "nextSteps": [
+      "Show a friendly retry UI.",
+      "Improve transaction preview / human-readable signing message."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "EIP-1193",
+        "url": "https://eips.ethereum.org/EIPS/eip-1193"
+      }
+    ],
+    "source": "eip-1193"
+  },
+  {
+    "id": "eip1193-4100-unauthorized",
+    "title": "EIP-1193 4100: Unauthorized",
+    "layer": "wallet",
+    "category": "permissions",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": 4100
+      }
+    ],
+    "summary": "The requested method/account has not been authorized by the wallet.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "dApp never called eth_requestAccounts.",
+      "User revoked site permissions.",
+      "Account locked."
+    ],
+    "nextSteps": [
+      "Call eth_requestAccounts before sensitive methods.",
+      "Detect lock state and prompt user to unlock."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "source": "eip-1193"
+  },
+  {
+    "id": "eip1193-4200-unsupported-method",
+    "title": "EIP-1193 4200: Unsupported method",
+    "layer": "wallet",
+    "category": "permissions",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": 4200
+      }
+    ],
+    "summary": "The wallet does not implement this method (often wallet_* extensions or chain management).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Wallet doesn't support wallet_switchEthereumChain.",
+      "Old wallet version.",
+      "Hardware wallet limitation."
+    ],
+    "nextSteps": [
+      "Feature-detect with try/catch and fall back.",
+      "Ask user to upgrade wallet."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "source": "eip-1193"
+  },
+  {
+    "id": "eip1193-4900-disconnected",
+    "title": "EIP-1193 4900: Disconnected",
+    "layer": "wallet",
+    "category": "connectivity",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": 4900
+      }
+    ],
+    "summary": "Wallet is not connected to any chain.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Wallet just opened.",
+      "Network outage.",
+      "Provider was destroyed."
+    ],
+    "nextSteps": [
+      "Re-initialize the provider.",
+      "Prompt the user to connect."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "source": "eip-1193"
+  },
+  {
+    "id": "eip1193-4901-chain-disconnected",
+    "title": "EIP-1193 4901: Chain disconnected",
+    "layer": "wallet",
+    "category": "connectivity",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": 4901
+      }
+    ],
+    "summary": "Wallet is connected but cannot reach the currently selected chain's RPC.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Provider RPC down.",
+      "Custom RPC URL is wrong.",
+      "Network firewall."
+    ],
+    "nextSteps": [
+      "Switch RPC URL in the wallet settings.",
+      "Try a different chain to verify connectivity."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "source": "eip-1193"
+  },
+  {
+    "id": "eip1193-4902-unrecognized-chain",
+    "title": "EIP-1193 4902: Unrecognized chain",
+    "layer": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": 4902
+      }
+    ],
+    "summary": "The wallet does not know about the chain you asked it to switch to.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Chain not pre-configured in the wallet."
+    ],
+    "nextSteps": [
+      "Catch 4902 and call wallet_addEthereumChain with full chain metadata, then retry wallet_switchEthereumChain."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "source": "eip-1193"
+  }
+]

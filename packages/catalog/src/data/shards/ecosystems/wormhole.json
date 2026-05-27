@@ -1,0 +1,2277 @@
+[
+  {
+    "id": "wormhole-already-processed",
+    "title": "Wormhole Solidity SDK: AlreadyProcessed",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x57eee766"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error AlreadyProcessed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AlreadyProcessed custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/ReplayProtection.sol"
+      }
+    ],
+    "examples": [
+      "0x57eee766 // AlreadyProcessed()"
+    ]
+  },
+  {
+    "id": "wormhole-already-set-up",
+    "title": "Wormhole Solidity SDK: already set up",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?already set up['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: already set up.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeOverride.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: already set up"
+    ]
+  },
+  {
+    "id": "wormhole-callee-has-no-code",
+    "title": "Wormhole Solidity SDK: Callee has no code",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Callee has no code['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Callee has no code.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/ExecutorTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Callee has no code"
+    ]
+  },
+  {
+    "id": "wormhole-cctp-override-already-set-up",
+    "title": "Wormhole Solidity SDK: CctpOverride: already set up",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?CctpOverride: already set up['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: CctpOverride: already set up.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/CctpOverride.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: CctpOverride: already set up"
+    ]
+  },
+  {
+    "id": "wormhole-cctp-vaa-mismatch-uint32-uint32-uint64",
+    "title": "Wormhole Solidity SDK: CctpVaaMismatch",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x11c53dda"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error CctpVaaMismatch(uint32,uint32,uint64).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CctpVaaMismatch custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/legacy/WormholeCctpTokenMessenger.sol"
+      }
+    ],
+    "examples": [
+      "0x11c53dda // CctpVaaMismatch(uint32,uint32,uint64)"
+    ]
+  },
+  {
+    "id": "wormhole-chain-already-has-a-fork",
+    "title": "Wormhole Solidity SDK: Chain already has a fork",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Chain already has a fork['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Chain already has a fork.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeForkTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Chain already has a fork"
+    ]
+  },
+  {
+    "id": "wormhole-chain-id-is-not-valid",
+    "title": "Wormhole Solidity SDK: ChainId is not valid",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ChainId is not valid['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: ChainId is not valid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeForkTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: ChainId is not valid"
+    ]
+  },
+  {
+    "id": "wormhole-chain-not-registered-with-fork-test",
+    "title": "Wormhole Solidity SDK: Chain not registered with ForkTest",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Chain not registered with ForkTest['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Chain not registered with ForkTest.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeForkTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Chain not registered with ForkTest"
+    ]
+  },
+  {
+    "id": "wormhole-core-bridge-is-not-valid",
+    "title": "Wormhole Solidity SDK: CoreBridge is not valid",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?CoreBridge is not valid['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: CoreBridge is not valid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeForkTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: CoreBridge is not valid"
+    ]
+  },
+  {
+    "id": "wormhole-delivery-not-found",
+    "title": "Wormhole Solidity SDK: Delivery not found",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Delivery not found['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Delivery not found.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeRelayerTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Delivery not found"
+    ]
+  },
+  {
+    "id": "wormhole-delivery-provider-does-not-support-message-key-type-uint8",
+    "title": "Wormhole Solidity SDK: DeliveryProviderDoesNotSupportMessageKeyType",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x82273f20"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error DeliveryProviderDoesNotSupportMessageKeyType(uint8).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DeliveryProviderDoesNotSupportMessageKeyType custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol"
+      }
+    ],
+    "examples": [
+      "0x82273f20 // DeliveryProviderDoesNotSupportMessageKeyType(uint8)"
+    ]
+  },
+  {
+    "id": "wormhole-destination-mismatch",
+    "title": "Wormhole Solidity SDK: DestinationMismatch",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4430ada4"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error DestinationMismatch().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DestinationMismatch custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/Executor/Integration.sol"
+      }
+    ],
+    "examples": [
+      "0x4430ada4 // DestinationMismatch()"
+    ]
+  },
+  {
+    "id": "wormhole-expected-exactly-one-delivery",
+    "title": "Wormhole Solidity SDK: Expected exactly one delivery",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Expected exactly one delivery['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Expected exactly one delivery.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeRelayerTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Expected exactly one delivery"
+    ]
+  },
+  {
+    "id": "wormhole-expected-exactly-one-request-for-execution",
+    "title": "Wormhole Solidity SDK: Expected exactly one request for execution",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Expected exactly one request for execution['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Expected exactly one request for execution.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/ExecutorTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Expected exactly one request for execution"
+    ]
+  },
+  {
+    "id": "wormhole-expected-no-redeliveries",
+    "title": "Wormhole Solidity SDK: Expected no redeliveries",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Expected no redeliveries['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Expected no redeliveries.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeRelayerTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Expected no redeliveries"
+    ]
+  },
+  {
+    "id": "wormhole-failed-to-find-cctp-message",
+    "title": "Wormhole Solidity SDK: Failed to find CCTP Message",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Failed to find CCTP Message['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Failed to find CCTP Message.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/ExecutorTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Failed to find CCTP Message"
+    ]
+  },
+  {
+    "id": "wormhole-failed-to-find-published-wormhole-message",
+    "title": "Wormhole Solidity SDK: Failed to find published Wormhole message",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Failed to find published Wormhole message['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Failed to find published Wormhole message.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/ExecutorTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Failed to find published Wormhole message"
+    ]
+  },
+  {
+    "id": "wormhole-failed-to-find-vaa",
+    "title": "Wormhole Solidity SDK: Failed to find VAA",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Failed to find VAA['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Failed to find VAA.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeRelayerTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Failed to find VAA"
+    ]
+  },
+  {
+    "id": "wormhole-failed-to-update-default-provider",
+    "title": "Wormhole Solidity SDK: Failed to update default provider",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Failed to update default provider['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Failed to update default provider.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeRelayerTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Failed to update default provider"
+    ]
+  },
+  {
+    "id": "wormhole-idempotent-upgrade",
+    "title": "Wormhole Solidity SDK: IdempotentUpgrade",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x71d44f30"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error IdempotentUpgrade().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the IdempotentUpgrade custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/proxy/ProxyBase.sol"
+      }
+    ],
+    "examples": [
+      "0x71d44f30 // IdempotentUpgrade()"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-arguments-uint256-uint256",
+    "title": "Wormhole Solidity SDK: InvalidArguments",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0745e401"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidArguments(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidArguments custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/Percentage.sol"
+      }
+    ],
+    "examples": [
+      "0x0745e401 // InvalidArguments(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-bool-val-uint8",
+    "title": "Wormhole Solidity SDK: InvalidBoolVal",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf7a37b07"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidBoolVal(uint8).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidBoolVal custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/BytesParsing.sol"
+      }
+    ],
+    "examples": [
+      "0xf7a37b07 // InvalidBoolVal(uint8)"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-cctp-message-body-version",
+    "title": "Wormhole Solidity SDK: InvalidCctpMessageBodyVersion",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x12bc29fa"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidCctpMessageBodyVersion().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidCctpMessageBodyVersion custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/CctpMessages.sol"
+      }
+    ],
+    "examples": [
+      "0x12bc29fa // InvalidCctpMessageBodyVersion()"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-cctp-message-header-version",
+    "title": "Wormhole Solidity SDK: InvalidCctpMessageHeaderVersion",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8dab9869"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidCctpMessageHeaderVersion().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidCctpMessageHeaderVersion custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/CctpMessages.sol"
+      }
+    ],
+    "examples": [
+      "0x8dab9869 // InvalidCctpMessageHeaderVersion()"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-contract-address",
+    "title": "Wormhole Solidity SDK: InvalidContractAddress",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa710429d"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidContractAddress().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidContractAddress custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol"
+      }
+    ],
+    "examples": [
+      "0xa710429d // InvalidContractAddress()"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-data",
+    "title": "Wormhole Solidity SDK: InvalidData",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5cb045db"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidData().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidData custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/proxy/ProxyBase.sol"
+      }
+    ],
+    "examples": [
+      "0x5cb045db // InvalidData()"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-delivery",
+    "title": "Wormhole Solidity SDK: InvalidDelivery",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xaafdf434"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidDelivery().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidDelivery custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayer/Receiver.sol"
+      }
+    ],
+    "examples": [
+      "0xaafdf434 // InvalidDelivery()"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-function-signature",
+    "title": "Wormhole Solidity SDK: InvalidFunctionSignature",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8076dd8a"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidFunctionSignature().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidFunctionSignature custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol"
+      }
+    ],
+    "examples": [
+      "0x8076dd8a // InvalidFunctionSignature()"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-instruction-type",
+    "title": "Wormhole Solidity SDK: Invalid instruction type",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid instruction type['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Invalid instruction type.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/ExecutorTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid instruction type"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-payload-id-uint8",
+    "title": "Wormhole Solidity SDK: InvalidPayloadId",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb974a311"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidPayloadId(uint8).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidPayloadId custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/legacy/WormholeCctpMessages.sol"
+      }
+    ],
+    "examples": [
+      "0xb974a311 // InvalidPayloadId(uint8)"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-peer",
+    "title": "Wormhole Solidity SDK: InvalidPeer",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5bb2ebcc"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidPeer().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidPeer custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/Executor/Integration.sol"
+      }
+    ],
+    "examples": [
+      "0x5bb2ebcc // InvalidPeer()"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-peer-2",
+    "title": "Wormhole Solidity SDK: Invalid peer",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid peer['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Invalid peer.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeRelayer/DeliveryProviderStub.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid peer"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-percentage-uint16",
+    "title": "Wormhole Solidity SDK: InvalidPercentage",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x051c98b4"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidPercentage(uint16).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidPercentage custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/Percentage.sol"
+      }
+    ],
+    "examples": [
+      "0x051c98b4 // InvalidPercentage(uint16)"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-response-version",
+    "title": "Wormhole Solidity SDK: InvalidResponseVersion",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1d9617a0"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidResponseVersion().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidResponseVersion custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol"
+      }
+    ],
+    "examples": [
+      "0x1d9617a0 // InvalidResponseVersion()"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-signature-length-uint256",
+    "title": "Wormhole Solidity SDK: InvalidSignatureLength",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2c33b568"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidSignatureLength(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidSignatureLength custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/PermitParsing.sol"
+      }
+    ],
+    "examples": [
+      "0x2c33b568 // InvalidSignatureLength(uint256)"
+    ]
+  },
+  {
+    "id": "wormhole-invalid-vaa",
+    "title": "Wormhole Solidity SDK: InvalidVaa",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x15c79f68"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error InvalidVaa().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidVaa custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/legacy/WormholeCctpTokenMessenger.sol"
+      }
+    ],
+    "examples": [
+      "0x15c79f68 // InvalidVaa()"
+    ]
+  },
+  {
+    "id": "wormhole-message-keys-length-does-not-match-messages-length-uint256-uint256",
+    "title": "Wormhole Solidity SDK: MessageKeysLengthDoesNotMatchMessagesLength",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x65c1f7cd"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error MessageKeysLengthDoesNotMatchMessagesLength(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MessageKeysLengthDoesNotMatchMessagesLength custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol"
+      }
+    ],
+    "examples": [
+      "0x65c1f7cd // MessageKeysLengthDoesNotMatchMessagesLength(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "wormhole-no-guardian-private-keys-provided",
+    "title": "Wormhole Solidity SDK: no guardian private keys provided",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?no guardian private keys provided['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: no guardian private keys provided.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeOverride.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: no guardian private keys provided"
+    ]
+  },
+  {
+    "id": "wormhole-number-of-responses-mismatch",
+    "title": "Wormhole Solidity SDK: NumberOfResponsesMismatch",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x84ae4a30"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error NumberOfResponsesMismatch().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NumberOfResponsesMismatch custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol"
+      }
+    ],
+    "examples": [
+      "0x84ae4a30 // NumberOfResponsesMismatch()"
+    ]
+  },
+  {
+    "id": "wormhole-only-vaa-v1-and-cctp-v1-requests-are-supported-by-executor-test",
+    "title": "Wormhole Solidity SDK: only VAA_V1 and CCTP_V1 requests are supported by ExecutorTest",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?only VAA_V1 and CCTP_V1 requests are supported by ExecutorTest['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: only VAA_V1 and CCTP_V1 requests are supported by ExecutorTest.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/ExecutorTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: only VAA_V1 and CCTP_V1 requests are supported by ExecutorTest"
+    ]
+  },
+  {
+    "id": "wormhole-out-of-bounds-uint256-uint256",
+    "title": "Wormhole Solidity SDK: OutOfBounds",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf5c4e22c"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error OutOfBounds(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the OutOfBounds custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/BytesParsing.sol"
+      }
+    ],
+    "examples": [
+      "0xf5c4e22c // OutOfBounds(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "wormhole-payload-too-large-uint256",
+    "title": "Wormhole Solidity SDK: PayloadTooLarge",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x545f4b56"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error PayloadTooLarge(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PayloadTooLarge custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/legacy/WormholeCctpMessages.sol"
+      }
+    ],
+    "examples": [
+      "0x545f4b56 // PayloadTooLarge(uint256)"
+    ]
+  },
+  {
+    "id": "wormhole-payment-failure-address",
+    "title": "Wormhole Solidity SDK: PaymentFailure",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x36dfac9c"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error PaymentFailure(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PaymentFailure custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/utils/Transfer.sol"
+      }
+    ],
+    "examples": [
+      "0x36dfac9c // PaymentFailure(address)"
+    ]
+  },
+  {
+    "id": "wormhole-proxy-construction-failed-bytes",
+    "title": "Wormhole Solidity SDK: ProxyConstructionFailed",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x77ff6734"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error ProxyConstructionFailed(bytes).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ProxyConstructionFailed custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/proxy/Proxy.sol"
+      }
+    ],
+    "examples": [
+      "0x77ff6734 // ProxyConstructionFailed(bytes)"
+    ]
+  },
+  {
+    "id": "wormhole-request-type-mismatch",
+    "title": "Wormhole Solidity SDK: RequestTypeMismatch",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x02164961"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error RequestTypeMismatch().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RequestTypeMismatch custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol"
+      }
+    ],
+    "examples": [
+      "0x02164961 // RequestTypeMismatch()"
+    ]
+  },
+  {
+    "id": "wormhole-solana-seed-too-long",
+    "title": "Wormhole Solidity SDK: SolanaSeedTooLong",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbf7528c2"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error SolanaSeedTooLong().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SolanaSeedTooLong custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/QueryRequestBuilder.sol"
+      }
+    ],
+    "examples": [
+      "0xbf7528c2 // SolanaSeedTooLong()"
+    ]
+  },
+  {
+    "id": "wormhole-solana-too-many-pdas",
+    "title": "Wormhole Solidity SDK: SolanaTooManyPDAs",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x44b68ce7"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error SolanaTooManyPDAs().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SolanaTooManyPDAs custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/QueryRequestBuilder.sol"
+      }
+    ],
+    "examples": [
+      "0x44b68ce7 // SolanaTooManyPDAs()"
+    ]
+  },
+  {
+    "id": "wormhole-solana-too-many-seeds",
+    "title": "Wormhole Solidity SDK: SolanaTooManySeeds",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2fca1670"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error SolanaTooManySeeds().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SolanaTooManySeeds custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/QueryRequestBuilder.sol"
+      }
+    ],
+    "examples": [
+      "0x2fca1670 // SolanaTooManySeeds()"
+    ]
+  },
+  {
+    "id": "wormhole-stale-block-num",
+    "title": "Wormhole Solidity SDK: StaleBlockNum",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb10b0aec"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error StaleBlockNum().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the StaleBlockNum custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol"
+      }
+    ],
+    "examples": [
+      "0xb10b0aec // StaleBlockNum()"
+    ]
+  },
+  {
+    "id": "wormhole-stale-block-time",
+    "title": "Wormhole Solidity SDK: StaleBlockTime",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3a04ceca"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error StaleBlockTime().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the StaleBlockTime custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol"
+      }
+    ],
+    "examples": [
+      "0x3a04ceca // StaleBlockTime()"
+    ]
+  },
+  {
+    "id": "wormhole-too-many-guardians-core-bridge-enforces-upper-bound-of-255",
+    "title": "Wormhole Solidity SDK: too many guardians, core bridge enforces upper bound of 255",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?too many guardians, core bridge enforces upper bound of 255['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: too many guardians, core bridge enforces upper bound of 255.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeOverride.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: too many guardians, core bridge enforces upper bound of 255"
+    ]
+  },
+  {
+    "id": "wormhole-too-many-message-keys-uint256",
+    "title": "Wormhole Solidity SDK: TooManyMessageKeys",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x12d6a5c7"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error TooManyMessageKeys(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TooManyMessageKeys custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol"
+      }
+    ],
+    "examples": [
+      "0x12d6a5c7 // TooManyMessageKeys(uint256)"
+    ]
+  },
+  {
+    "id": "wormhole-type-id-mismatch-uint256-uint256",
+    "title": "Wormhole Solidity SDK: TypeIdMismatch",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0ca274fc"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error TypeIdMismatch(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TypeIdMismatch custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/CustomConsistency.sol"
+      }
+    ],
+    "examples": [
+      "0x0ca274fc // TypeIdMismatch(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "wormhole-unexpected-emitter-bytes32-bytes32",
+    "title": "Wormhole Solidity SDK: UnexpectedEmitter",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb385c62f"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error UnexpectedEmitter(bytes32,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnexpectedEmitter custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/legacy/WormholeCctpTokenMessenger.sol"
+      }
+    ],
+    "examples": [
+      "0xb385c62f // UnexpectedEmitter(bytes32,bytes32)"
+    ]
+  },
+  {
+    "id": "wormhole-unexpected-id-uint8-uint8",
+    "title": "Wormhole Solidity SDK: UnexpectedId",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x21d370a7"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error UnexpectedId(uint8,uint8).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnexpectedId custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeRelayer/Structs.sol"
+      }
+    ],
+    "examples": [
+      "0x21d370a7 // UnexpectedId(uint8,uint8)"
+    ]
+  },
+  {
+    "id": "wormhole-unexpected-number-of-results",
+    "title": "Wormhole Solidity SDK: UnexpectedNumberOfResults",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5e7bd6ec"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error UnexpectedNumberOfResults().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnexpectedNumberOfResults custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol"
+      }
+    ],
+    "examples": [
+      "0x5e7bd6ec // UnexpectedNumberOfResults()"
+    ]
+  },
+  {
+    "id": "wormhole-unexpected-version-uint8",
+    "title": "Wormhole Solidity SDK: UnexpectedVersion",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6bed78d6"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error UnexpectedVersion(uint8).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnexpectedVersion custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/VaaLib.sol"
+      }
+    ],
+    "examples": [
+      "0x6bed78d6 // UnexpectedVersion(uint8)"
+    ]
+  },
+  {
+    "id": "wormhole-unknown-message-key-type",
+    "title": "Wormhole Solidity SDK: Unknown message key type",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Unknown message key type['\"]?\\s*$"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK revert reason string: Unknown message key type.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/WormholeRelayerTest.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Unknown message key type"
+    ]
+  },
+  {
+    "id": "wormhole-unsupported-chain-id-uint16",
+    "title": "Wormhole Solidity SDK: UnsupportedChainId",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x63fb54a7"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error UnsupportedChainId(uint16).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnsupportedChainId custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/ChainConsts.sol"
+      }
+    ],
+    "examples": [
+      "0x63fb54a7 // UnsupportedChainId(uint16)"
+    ]
+  },
+  {
+    "id": "wormhole-unsupported-evm-chain-id-uint256",
+    "title": "Wormhole Solidity SDK: UnsupportedEvmChainId",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe889a121"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error UnsupportedEvmChainId(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnsupportedEvmChainId custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/ChainConsts.sol"
+      }
+    ],
+    "examples": [
+      "0xe889a121 // UnsupportedEvmChainId(uint256)"
+    ]
+  },
+  {
+    "id": "wormhole-unsupported-query-type-uint8",
+    "title": "Wormhole Solidity SDK: UnsupportedQueryType",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x51ee5853"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error UnsupportedQueryType(uint8).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnsupportedQueryType custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol"
+      }
+    ],
+    "examples": [
+      "0x51ee5853 // UnsupportedQueryType(uint8)"
+    ]
+  },
+  {
+    "id": "wormhole-upgrade-failed-bytes",
+    "title": "Wormhole Solidity SDK: UpgradeFailed",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0dc0c93f"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error UpgradeFailed(bytes).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UpgradeFailed custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/proxy/ProxyBase.sol"
+      }
+    ],
+    "examples": [
+      "0x0dc0c93f // UpgradeFailed(bytes)"
+    ]
+  },
+  {
+    "id": "wormhole-version-mismatch",
+    "title": "Wormhole Solidity SDK: VersionMismatch",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x714f5513"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error VersionMismatch().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the VersionMismatch custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol"
+      }
+    ],
+    "examples": [
+      "0x714f5513 // VersionMismatch()"
+    ]
+  },
+  {
+    "id": "wormhole-wrong-query-type-uint8-uint8",
+    "title": "Wormhole Solidity SDK: WrongQueryType",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x96b8e05b"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error WrongQueryType(uint8,uint8).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the WrongQueryType custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol"
+      }
+    ],
+    "examples": [
+      "0x96b8e05b // WrongQueryType(uint8,uint8)"
+    ]
+  },
+  {
+    "id": "wormhole-zero-queries",
+    "title": "Wormhole Solidity SDK: ZeroQueries",
+    "layer": "protocol",
+    "source": "wormhole",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbb6b170d"
+      }
+    ],
+    "summary": "Wormhole Solidity SDK custom error ZeroQueries().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZeroQueries custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Wormhole Solidity SDK GitHub repository",
+        "url": "https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol"
+      }
+    ],
+    "examples": [
+      "0xbb6b170d // ZeroQueries()"
+    ]
+  }
+]

@@ -1,0 +1,2540 @@
+[
+  {
+    "id": "ethereum-protocol-authorization-chain-id-mismatch",
+    "title": "Ethereum protocol: EIP-7702 authorization chain ID mismatch",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "auth_list",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)EIP-7702 authorization chain ID mismatch(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "An EIP-7702 authorization tuple targets a different chain ID.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The authorization was signed for a different chain.",
+      "The authorization will be ignored or rejected by state transition handling."
+    ],
+    "nextSteps": [
+      "Re-sign the authorization for the target chain ID.",
+      "Verify wallet chain context before sending."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "EIP-7702 authorization chain ID mismatch"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-authorization-destination-has-code",
+    "title": "Ethereum protocol: EIP-7702 authorization destination has code",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "auth_list",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)EIP-7702 authorization destination is a contract(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "An EIP-7702 authorization points to a destination that already has contract code.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The authorization destination violates EIP-7702 state transition checks.",
+      "The delegate/destination address shape is wrong for this authorization."
+    ],
+    "nextSteps": [
+      "Choose a valid destination address for the authorization.",
+      "Inspect code at the destination address before signing."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "EIP-7702 authorization destination is a contract"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-authorization-invalid-signature",
+    "title": "Ethereum protocol: EIP-7702 authorization invalid signature",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "auth_list",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)EIP-7702 authorization has invalid signature(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "An EIP-7702 authorization signature is invalid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The authorization tuple cannot be recovered or does not match the authority.",
+      "Wrong chain ID, nonce, delegate address, or signer can cause this."
+    ],
+    "nextSteps": [
+      "Re-sign the authorization tuple with the correct authority and fields.",
+      "Verify signer domain/chain and serialized tuple."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "EIP-7702 authorization has invalid signature"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-authorization-nonce-mismatch",
+    "title": "Ethereum protocol: EIP-7702 authorization nonce mismatch",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "auth_list",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)EIP-7702 authorization nonce does not match current account nonce(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "An EIP-7702 authorization nonce does not match current account state.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The account nonce changed after signing or the signer used a stale nonce.",
+      "The authorization will not apply to current state."
+    ],
+    "nextSteps": [
+      "Refresh the authority account nonce and re-sign.",
+      "Submit pending nonce transactions first if needed."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "EIP-7702 authorization nonce does not match current account nonce"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-authorization-nonce-overflow",
+    "title": "Ethereum protocol: EIP-7702 authorization nonce overflow",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "auth_list",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)EIP-7702 authorization nonce > 64 bit(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "An EIP-7702 authorization nonce exceeds the allowed 64-bit range.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The authorization nonce is outside the accepted range.",
+      "This is a signer/serialization bug."
+    ],
+    "nextSteps": [
+      "Regenerate the authorization with the current account nonce.",
+      "Check nonce serialization and BigInt bounds."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "EIP-7702 authorization nonce > 64 bit"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-blob-create-transaction",
+    "title": "Ethereum protocol: Blob transaction cannot create contract",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "blob",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)blob transaction of type create(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "A blob transaction attempted contract creation without an explicit recipient.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Blob transactions are not valid contract-creation transactions.",
+      "The transaction has no explicit to field."
+    ],
+    "nextSteps": [
+      "Use a non-blob transaction for contract deployment.",
+      "Set an explicit recipient for blob-carrying transactions."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "blob transaction of type create"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-blob-fee-cap-too-low",
+    "title": "Ethereum protocol: Blob fee cap below blob base fee",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "blob",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)max fee per blob gas less than block blob gas fee(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)blob fee cap too low(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The blob transaction maxFeePerBlobGas is below the current blob base fee.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The transaction cannot pay the blob gas price required by the block.",
+      "Blob fee markets are separate from execution gas fees."
+    ],
+    "nextSteps": [
+      "Refresh blob fee data and raise maxFeePerBlobGas.",
+      "Do not solve this by only changing maxFeePerGas."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "max fee per blob gas less than block blob gas fee",
+      "blob fee cap too low"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-blob-kzg-verification-error",
+    "title": "Ethereum protocol: KZG verification error",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "blob",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)kzg verification error(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)kzg proof verification failed(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "Blob KZG commitment/proof verification failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The blob sidecar proof does not verify against the commitment.",
+      "The blob payload, commitment, proof, or versioned hash may not match."
+    ],
+    "nextSteps": [
+      "Regenerate blob commitments/proofs from the exact blob payload.",
+      "Verify sidecar and raw transaction assembly."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "kzg verification error",
+      "kzg proof verification failed"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-blob-missing-hashes",
+    "title": "Ethereum protocol: Blob transaction missing blob hashes",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "blob",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)blob transaction missing blob hashes(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "A blob transaction did not include required versioned blob hashes.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Type-3 blob transactions must commit to blob hashes.",
+      "The raw transaction or sidecar assembly is incomplete."
+    ],
+    "nextSteps": [
+      "Include versioned blob hashes and matching sidecar data.",
+      "Verify blob transaction serialization."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "blob transaction missing blob hashes"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-blob-too-many",
+    "title": "Ethereum protocol: Blob transaction has too many blobs",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "blob",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)blob transaction has too many blobs(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)too many blobs(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "A blob transaction exceeds the maximum blobs allowed by the active fork.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The transaction includes more blobs than the protocol permits.",
+      "This is a hard validity check."
+    ],
+    "nextSteps": [
+      "Reduce the number of blobs or split the data across transactions.",
+      "Check the target chain's active blob limits."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "blob transaction has too many blobs",
+      "too many blobs"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-blob-txpool-limit-exceeded",
+    "title": "Ethereum protocol: Transaction blob limit exceeded",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "blob",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)transaction blob limit exceeded(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction would exceed the blobpool's blob limit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The node will not accept this blob transaction under its current blobpool limits.",
+      "This can be a txpool policy limit even when the transaction format is otherwise valid."
+    ],
+    "nextSteps": [
+      "Reduce blobs per transaction or retry when blobpool capacity frees up.",
+      "Consider sending through a node with appropriate blobpool capacity."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "transaction blob limit exceeded"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-block-already-known",
+    "title": "Ethereum protocol: Block already known",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "block_validation",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)block already known(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The node already has the block being imported.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The block hash is already present locally.",
+      "This usually appears during block import or peer propagation, not dapp transaction execution."
+    ],
+    "nextSteps": [
+      "No action is needed unless block import is unexpectedly looping.",
+      "Check peer/import pipeline logs if repeated."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "block already known"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-block-genesis-not-found",
+    "title": "Ethereum protocol: Genesis not found in chain",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "block_validation",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)genesis not found in chain(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The node cannot find a genesis block for the chain database.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The chain database/configuration is incomplete or points to the wrong data directory.",
+      "This is node setup, not a transaction failure."
+    ],
+    "nextSteps": [
+      "Verify chain config and datadir.",
+      "Reinitialize or resync the node with the correct genesis."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "genesis not found in chain"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-block-rlp-size-exceeds-maximum",
+    "title": "Ethereum protocol: Block RLP size exceeds maximum",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "block_validation",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)block rlp-encoded size exceeds maximum(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "A block's RLP-encoded size exceeds the active protocol/client maximum.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The block is too large under active block-size validation rules.",
+      "A compliant node will reject it during import."
+    ],
+    "nextSteps": [
+      "Treat the block as invalid for that chain/fork.",
+      "Check client/fork configuration if peers disagree."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "block rlp-encoded size exceeds maximum"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-code-store-out-of-gas",
+    "title": "Ethereum protocol: Contract code storage out of gas",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)contract creation code storage out of gas(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "Contract creation ran out of gas while storing runtime bytecode.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The initcode completed but there was not enough gas left to pay the code-deposit cost.",
+      "Large runtime bytecode or a low deployment gas limit commonly triggers this."
+    ],
+    "nextSteps": [
+      "Increase the deployment gas limit and verify runtime bytecode size.",
+      "If bytecode is near the maximum code-size limit, reduce contract size instead of only adding gas."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "yes",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "contract creation code storage out of gas"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-contract-address-collision",
+    "title": "Ethereum protocol: Contract address collision",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)contract address collision(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "A contract creation attempted to deploy where code or nonce already exists.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "CREATE or CREATE2 resolved to an address that is already occupied.",
+      "Repeated deployments with the same deployer/salt/initcode commonly trigger this."
+    ],
+    "nextSteps": [
+      "Use a new salt/deployer or avoid redeploying to an occupied address.",
+      "Check whether the target address already has code or nonce."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "contract address collision"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-execution-reverted",
+    "title": "Ethereum protocol: Execution reverted",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "revert",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)execution reverted(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)evm: execution reverted(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The EVM executed REVERT and returned control with revert data if available.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Contract logic deliberately reverted.",
+      "The revert data may contain Error(string), Panic(uint256), or a custom error selector that should be decoded next."
+    ],
+    "nextSteps": [
+      "Decode the revert data and inspect the failing internal trace frame.",
+      "Changing gas only helps if the revert reason itself says gas was the precondition."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "execution reverted",
+      "evm: execution reverted"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-gas-uint64-overflow",
+    "title": "Ethereum protocol: Gas uint64 overflow",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)gas uint64 overflow(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "Gas accounting overflowed the uint64 range used by the execution engine.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A supplied or computed gas value exceeded the protocol/client accounting range.",
+      "This is an invalid transaction or malformed call input, not a contract revert."
+    ],
+    "nextSteps": [
+      "Reduce the supplied gas value to a realistic block-bounded amount.",
+      "Check transaction construction for numeric overflow or decimal/hex mistakes."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "gas uint64 overflow"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-insufficient-balance-for-transfer",
+    "title": "Ethereum protocol: Insufficient balance for transfer",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)insufficient balance for transfer(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The sender/account did not have enough balance for the value transfer in the current EVM call.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A CALL, CREATE, or top-level transaction attempted to transfer more native ETH than the account balance allowed.",
+      "This is distinct from ERC-20 balance failures, which are contract-level reverts."
+    ],
+    "nextSteps": [
+      "Check the native ETH balance of the sending account at the simulated block.",
+      "Reduce value or fund the account before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "insufficient balance for transfer"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-invalid-ef-code-prefix",
+    "title": "Ethereum protocol: Invalid code prefix 0xef",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)invalid code: must not begin with 0xef(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "Runtime bytecode begins with the reserved EOF prefix 0xef before EOF rules allow it.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract code starts with a byte prefix reserved by the protocol.",
+      "A deployment artifact or custom bytecode generator emitted invalid runtime code."
+    ],
+    "nextSteps": [
+      "Regenerate the bytecode with a supported compiler/target fork.",
+      "Inspect runtime bytecode, not just initcode."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "invalid code: must not begin with 0xef"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-invalid-jump-destination",
+    "title": "Ethereum protocol: Invalid jump destination",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)invalid jump destination(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "Execution attempted to jump to a byte offset that is not a valid JUMPDEST.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The bytecode executed an invalid dynamic jump.",
+      "This can indicate corrupted calldata, wrong bytecode, compiler bug, or intentionally invalid low-level code."
+    ],
+    "nextSteps": [
+      "Inspect the trace opcode location and bytecode source map.",
+      "Verify you are calling the expected contract and function selector."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "invalid jump destination"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-invalid-opcode",
+    "title": "Ethereum protocol: Invalid opcode",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)invalid opcode(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "Execution reached an opcode byte that is invalid for the active fork.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The bytecode executed an undefined or disabled opcode.",
+      "Wrong bytecode, wrong chain/fork assumptions, corrupted jump targets, or deliberate INVALID can all surface this."
+    ],
+    "nextSteps": [
+      "Inspect the failing program counter and opcode.",
+      "Verify contract bytecode and compiler target for the chain/fork being simulated."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "invalid opcode"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-max-call-depth-exceeded",
+    "title": "Ethereum protocol: Max call depth exceeded",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)max call depth exceeded(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "EVM call depth exceeded the protocol limit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call stack reached the EVM maximum depth.",
+      "Deep recursive calls or proxy/callback loops can trigger this exceptional halt."
+    ],
+    "nextSteps": [
+      "Inspect the internal call trace for recursion or callback loops.",
+      "Change call structure; more gas will not increase the call-depth limit."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "max call depth exceeded"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-max-code-size-exceeded",
+    "title": "Ethereum protocol: Max code size exceeded",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)max code size exceeded(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "Contract creation produced runtime bytecode above the protocol code-size limit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The deployed runtime bytecode is larger than the active maximum code size.",
+      "Adding gas cannot bypass the code-size rule."
+    ],
+    "nextSteps": [
+      "Reduce runtime bytecode size, split modules, or use libraries/proxies intentionally.",
+      "Check compiler settings and metadata size."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "max code size exceeded"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-max-initcode-size-exceeded",
+    "title": "Ethereum protocol: Max initcode size exceeded",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)max initcode size exceeded(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)initcode size exceeded(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "Contract creation initcode exceeded the protocol initcode-size limit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The creation bytecode is too large for the active fork rules.",
+      "This is usually a deployment artifact issue, not a fee issue."
+    ],
+    "nextSteps": [
+      "Reduce constructor/initcode size or move initialization out of deployment.",
+      "Check EIP-3860-era initcode limits for the target chain."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "max initcode size exceeded",
+      "initcode size exceeded"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-nonce-uint64-overflow",
+    "title": "Ethereum protocol: Nonce uint64 overflow",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "validation",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)nonce uint64 overflow(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "EVM account nonce overflowed its allowed integer range.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A create/transaction path would increment an account nonce beyond the protocol/client limit.",
+      "This is a hard validity problem, not a transient mempool issue."
+    ],
+    "nextSteps": [
+      "Use a different account/address path.",
+      "Do not retry unchanged; the nonce range cannot be raised with gas."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "nonce uint64 overflow"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-out-of-gas",
+    "title": "Ethereum protocol: Out of gas",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)out of gas(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "Execution consumed all gas supplied to the current call frame.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call frame did not have enough gas to complete execution.",
+      "This can be caused by an underestimated gas limit, expensive calldata/storage work, or a loop/path that is more expensive than expected."
+    ],
+    "nextSteps": [
+      "Estimate gas against the same state and calldata.",
+      "If the call is otherwise valid, raise the transaction gas limit; do not confuse this with raising maxFeePerGas."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "yes",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "out of gas"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-return-data-out-of-bounds",
+    "title": "Ethereum protocol: Return data out of bounds",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)return data out of bounds(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "Bytecode attempted to copy return data outside the available returndata buffer.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "RETURNDATACOPY used an offset/length beyond the last call's returndata size.",
+      "This is usually a low-level assembly or proxy decoding bug."
+    ],
+    "nextSteps": [
+      "Inspect the failing opcode and previous call return length.",
+      "Fix the low-level return-data copy bounds."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "return data out of bounds"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-stack-overflow",
+    "title": "Ethereum protocol: Stack overflow",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)stack overflow(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)stack limit reached(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "Execution attempted to exceed the EVM stack limit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The EVM stack exceeded its maximum size.",
+      "This usually comes from invalid bytecode or pathological assembly/control flow."
+    ],
+    "nextSteps": [
+      "Inspect the trace around the failing opcode.",
+      "Fix bytecode/control flow; more transaction gas will not increase stack depth."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "stack overflow",
+      "stack limit reached"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-stack-underflow",
+    "title": "Ethereum protocol: Stack underflow",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)stack underflow(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "An opcode required more stack items than were available.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The bytecode executed an opcode without enough stack operands.",
+      "This usually indicates invalid bytecode, a bad jump target, or low-level assembly/compiler output gone wrong."
+    ],
+    "nextSteps": [
+      "Inspect the opcode trace at the failing program counter.",
+      "Verify bytecode/source-map alignment and dynamic jump paths."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "stack underflow"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-evm-write-protection",
+    "title": "Ethereum protocol: Write protection in static context",
+    "layer": "evm",
+    "source": "ethereum-protocol",
+    "category": "execution",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)write protection(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "A STATICCALL context attempted to modify state.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A view/static call path tried to execute SSTORE, LOG, CREATE, SELFDESTRUCT, or another state-changing operation.",
+      "This commonly happens when a supposedly read-only function reaches mutating code through an internal call."
+    ],
+    "nextSteps": [
+      "Check whether the call was made through eth_call/static context.",
+      "Move state changes out of the static path or send a real transaction."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum EVM execution errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/vm/errors.go"
+      }
+    ],
+    "examples": [
+      "write protection"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-rpc-block-hash-not-found",
+    "title": "Ethereum RPC block hash not found",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "json_rpc",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)block not found(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)header not found(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The requested block hash/number is not available to the node.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The block identifier does not exist in the node's current canonical or retained state.",
+      "EIP-1474 recommends Resource not found for missing block identifiers."
+    ],
+    "nextSteps": [
+      "Check the block hash/number and chain.",
+      "Use an archive node if the request depends on historical state."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "EIP-1474 Ethereum JSON-RPC",
+        "url": "https://eips.ethereum.org/EIPS/eip-1474"
+      }
+    ],
+    "examples": [
+      "block not found",
+      "header not found"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-rpc-block-not-canonical",
+    "title": "Ethereum RPC block is not canonical",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "json_rpc",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)block is not canonical(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)not in canonical chain(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "A blockHash request with canonicality requirements resolved to a non-canonical block.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The block exists but is not in the canonical chain according to the node.",
+      "EIP-1474 recommends distinguishing this from block-not-found."
+    ],
+    "nextSteps": [
+      "Retry with the canonical block hash/number.",
+      "If querying reorged data, use a node/archive source that preserves it."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "EIP-1474 Ethereum JSON-RPC",
+        "url": "https://eips.ethereum.org/EIPS/eip-1474"
+      }
+    ],
+    "examples": [
+      "block is not canonical",
+      "not in canonical chain"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-rpc-quantity-empty",
+    "title": "Ethereum RPC quantity is empty",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "json_rpc",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)empty hex string(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)invalid argument 0: empty hex string(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "EIP-1474 quantities must not be the empty hex string.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A JSON-RPC quantity was sent as 0x or empty instead of a canonical hex quantity.",
+      "Zero must be encoded as 0x0."
+    ],
+    "nextSteps": [
+      "Encode zero as 0x0 and other quantities with no leading zeroes.",
+      "Validate RPC parameter serialization before sending."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "EIP-1474 Ethereum JSON-RPC",
+        "url": "https://eips.ethereum.org/EIPS/eip-1474"
+      }
+    ],
+    "examples": [
+      "empty hex string",
+      "invalid argument 0: empty hex string"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-rpc-quantity-leading-zero",
+    "title": "Ethereum RPC quantity has leading zeroes",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "json_rpc",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)hex number with leading zero digits(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)leading zero(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "EIP-1474 quantities must use the fewest possible hex digits.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A numeric RPC parameter was encoded with leading zeroes.",
+      "Examples like 0x00 or 0x0400 are invalid quantities."
+    ],
+    "nextSteps": [
+      "Normalize quantities to minimal 0x-prefixed hex.",
+      "Do not left-pad numeric quantity fields."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "EIP-1474 Ethereum JSON-RPC",
+        "url": "https://eips.ethereum.org/EIPS/eip-1474"
+      }
+    ],
+    "examples": [
+      "hex number with leading zero digits",
+      "leading zero"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-rpc-quantity-missing-0x",
+    "title": "Ethereum RPC quantity missing 0x prefix",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "json_rpc",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)hex string without 0x prefix(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)missing 0x prefix(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "EIP-1474 quantities and data values must be 0x-prefixed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A JSON-RPC parameter omitted the required 0x prefix.",
+      "Clients reject non-canonical Ethereum hex values."
+    ],
+    "nextSteps": [
+      "Prefix hex quantities/data with 0x.",
+      "Use a JSON-RPC serializer that distinguishes quantity and data encodings."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "EIP-1474 Ethereum JSON-RPC",
+        "url": "https://eips.ethereum.org/EIPS/eip-1474"
+      }
+    ],
+    "examples": [
+      "hex string without 0x prefix",
+      "missing 0x prefix"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-set-code-create",
+    "title": "Ethereum protocol: EIP-7702 cannot create contract",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "auth_list",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)EIP-7702 transaction cannot be used to create contract(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "An EIP-7702 set-code transaction attempted contract creation.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Set-code transactions cannot use the contract-creation path.",
+      "The transaction has no normal recipient where one is required."
+    ],
+    "nextSteps": [
+      "Use a contract-creation transaction for deployment.",
+      "Use EIP-7702 set-code only with the supported recipient/authorization shape."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "EIP-7702 transaction cannot be used to create contract"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-set-code-empty-auth-list",
+    "title": "Ethereum protocol: EIP-7702 empty auth list",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "auth_list",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)EIP-7702 transaction with empty auth list(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "An EIP-7702 set-code transaction has no authorization tuples.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Set-code transactions require at least one authorization.",
+      "The transaction is invalid before execution."
+    ],
+    "nextSteps": [
+      "Attach a valid authorization list or use a different transaction type.",
+      "Verify wallet/signer support for EIP-7702."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "EIP-7702 transaction with empty auth list"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-fee-cap-too-high",
+    "title": "Ethereum protocol: Max fee exceeds uint256",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)max fee per gas higher than 2\\^256-1(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The max fee cap exceeds the maximum uint256 value.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The maxFeePerGas field is numerically impossible.",
+      "This is a transaction-construction bug."
+    ],
+    "nextSteps": [
+      "Fix fee cap serialization and units.",
+      "Use a sane maxFeePerGas value."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "max fee per gas higher than 2^256-1"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-fee-cap-too-low",
+    "title": "Ethereum protocol: Max fee below base fee",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)max fee per gas less than block base fee(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)fee cap less than base fee(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction max fee cap is below the block base fee.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The transaction cannot pay the current base fee.",
+      "The fee cap may have been stale by the time it reached the node."
+    ],
+    "nextSteps": [
+      "Refresh fee data and set maxFeePerGas above current base fee plus intended tip.",
+      "Retrying can help only after changing fee caps or when base fee drops."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "max fee per gas less than block base fee",
+      "fee cap less than base fee"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-gas-limit-overflow",
+    "title": "Ethereum protocol: Gas limit overflow",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)gas limit overflow(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "Transaction gas accounting overflowed the allowed gas-limit range.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The gas limit or remaining gas pool exceeded uint64 accounting bounds.",
+      "This usually means malformed transaction construction."
+    ],
+    "nextSteps": [
+      "Use a realistic gas limit below the block gas limit.",
+      "Check decimal/hex unit conversion in the transaction builder."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "gas limit overflow"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-gas-limit-reached",
+    "title": "Ethereum protocol: Gas limit reached",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)gas limit reached(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction needs more gas than remains available in the block gas pool.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The transaction gas limit cannot fit in the current block gas allowance.",
+      "This can appear during block processing or local inclusion checks."
+    ],
+    "nextSteps": [
+      "Lower the transaction gas limit if possible or wait for a block with enough available gas.",
+      "If the transaction genuinely needs more than the block limit, it cannot be included as-is."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "gas limit reached"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-gas-limit-too-high",
+    "title": "Ethereum protocol: Transaction gas limit too high",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)transaction gas limit too high(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction gas limit exceeds the protocol/client maximum for a single transaction.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The supplied transaction gas limit is above the active per-transaction cap.",
+      "This is a validity check, not an execution revert."
+    ],
+    "nextSteps": [
+      "Reduce the gas limit below the active chain cap.",
+      "If execution needs more than the cap, split the operation."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "transaction gas limit too high"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-insufficient-floor-data-gas",
+    "title": "Ethereum protocol: Insufficient gas for floor data gas cost",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)insufficient gas for floor data gas cost(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction gas limit is below the calldata floor cost required by active fork rules.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Protocol calldata floor pricing requires more gas than supplied.",
+      "Execution did not start."
+    ],
+    "nextSteps": [
+      "Raise gas limit to cover floor data gas.",
+      "Check calldata size and active fork rules."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "yes",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "insufficient gas for floor data gas cost"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-insufficient-funds-for-gas-price-value",
+    "title": "Ethereum protocol: Insufficient funds for gas * price + value",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)insufficient funds for gas \\* price \\+ value(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)insufficient funds for gas(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The sender cannot cover maximum gas cost plus transferred value.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Native balance is below value plus the transaction's maximum fee exposure.",
+      "For EIP-1559 transactions, maxFeePerGas and gas limit determine the up-front affordability check."
+    ],
+    "nextSteps": [
+      "Fund the sender, lower value, lower gas limit, or lower fee caps where safe.",
+      "Remember this is native ETH balance, not ERC-20 balance."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "insufficient funds for gas * price + value",
+      "insufficient funds for gas"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-insufficient-funds-for-transfer",
+    "title": "Ethereum protocol: Insufficient funds for transfer",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)insufficient funds for transfer(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The sender lacks enough native ETH for the transaction value transfer.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The transaction value exceeds the sender's available native balance before execution costs.",
+      "This is a top-level transaction precheck."
+    ],
+    "nextSteps": [
+      "Fund the sender or lower the transaction value.",
+      "Also account for gas fees separately."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "insufficient funds for transfer"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-insufficient-witness-funds",
+    "title": "Ethereum protocol: Insufficient funds for witness access costs",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)insufficient funds to cover witness access costs for transaction(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The sender cannot cover protocol witness access or modification costs.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The transaction passed basic value checks but cannot cover witness-related execution costs.",
+      "This is a protocol cost-accounting failure, not a contract revert."
+    ],
+    "nextSteps": [
+      "Fund the sender with additional native ETH.",
+      "Review the target fork's witness/access-cost rules."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "insufficient funds to cover witness access costs for transaction"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-intrinsic-gas-too-low",
+    "title": "Ethereum protocol: Intrinsic gas too low",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)intrinsic gas too low(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The supplied gas limit is below the transaction's intrinsic gas cost.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Base transaction cost, calldata bytes, access list, blob/auth data, or creation overhead exceed the gas limit.",
+      "Execution did not start."
+    ],
+    "nextSteps": [
+      "Let the client estimate gas, or compute intrinsic gas for calldata/access/blob/auth fields.",
+      "Raise the gas limit above intrinsic cost."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "yes",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "intrinsic gas too low"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-invalid-vrs",
+    "title": "Ethereum protocol: Invalid transaction v, r, s values",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "validation",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)invalid transaction v, r, s values(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction signature fields are invalid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The transaction signature is malformed or not valid under Ethereum signature rules.",
+      "Bad chain ID/signing mode or corrupted raw transaction bytes can trigger this."
+    ],
+    "nextSteps": [
+      "Re-sign the transaction with the correct chain ID and transaction type.",
+      "Verify raw transaction serialization."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "invalid transaction v, r, s values"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-nonce-max",
+    "title": "Ethereum protocol: Nonce has max value",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "validation",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)nonce has max value(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The sender nonce is already at the maximum representable value.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The account nonce cannot be incremented further under protocol/client limits.",
+      "The transaction is invalid for that sender."
+    ],
+    "nextSteps": [
+      "Use a different sender account.",
+      "Do not retry unchanged; gas and fees cannot fix nonce exhaustion."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "nonce has max value"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-nonce-too-high",
+    "title": "Ethereum protocol: Nonce too high",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)nonce too high(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction nonce is above the next nonce expected by current state.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "One or more earlier nonce transactions are missing or pending.",
+      "Nodes may hold or reject the transaction depending on txpool policy."
+    ],
+    "nextSteps": [
+      "Submit or confirm the missing lower nonce transactions first.",
+      "Check pending pool state for the sender."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "nonce too high"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-nonce-too-low",
+    "title": "Ethereum protocol: Nonce too low",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)nonce too low(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction nonce is below the sender account nonce in state.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The account has already used this nonce on-chain or in the node's pending view.",
+      "The transaction is stale unless it is replacing a pending transaction with the same nonce and acceptable fees."
+    ],
+    "nextSteps": [
+      "Refresh the account nonce from the target chain.",
+      "Submit the next nonce, or intentionally replace the pending transaction with a sufficient fee bump."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "nonce too low"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-sender-not-eoa",
+    "title": "Ethereum protocol: Sender not an EOA",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "validation",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)sender not an eoa(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction sender is a contract account where an EOA sender is required.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Protocol rules reject transactions whose sender account has code.",
+      "This commonly indicates a wrong from address or account-abstraction flow sent as a normal transaction."
+    ],
+    "nextSteps": [
+      "Use an EOA as the transaction sender.",
+      "For smart accounts, send through the correct account-abstraction or contract entry point."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "sender not an eoa"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-tip-above-fee-cap",
+    "title": "Ethereum protocol: Priority fee above max fee",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)max priority fee per gas higher than max fee per gas(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The priority fee cap is greater than the total max fee cap.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "EIP-1559 requires maxPriorityFeePerGas <= maxFeePerGas.",
+      "The transaction is invalid before execution."
+    ],
+    "nextSteps": [
+      "Set maxFeePerGas at least as high as maxPriorityFeePerGas.",
+      "Recalculate fee caps from the same unit system."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "max priority fee per gas higher than max fee per gas"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-tip-too-high",
+    "title": "Ethereum protocol: Priority fee exceeds uint256",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "fees",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)max priority fee per gas higher than 2\\^256-1(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The priority fee cap exceeds the maximum uint256 value.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The priority fee field is numerically impossible.",
+      "This is a transaction-construction bug."
+    ],
+    "nextSteps": [
+      "Fix fee cap serialization and units.",
+      "Use a sane maxPriorityFeePerGas value."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "max priority fee per gas higher than 2^256-1"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-type-not-supported",
+    "title": "Ethereum protocol: Transaction type not supported",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "validation",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)transaction type not supported(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)transaction type does not supported eip-155 protected signatures(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction type is not valid for the active network/fork or signature mode.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The node does not accept this typed transaction under current chain configuration.",
+      "This can happen when sending dynamic-fee/blob/set-code transactions to a chain or fork that has not enabled them."
+    ],
+    "nextSteps": [
+      "Use a transaction type supported by the target chain.",
+      "Verify chain ID, hardfork, and signer settings."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "transaction type not supported",
+      "transaction type does not supported eip-155 protected signatures"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-tx-uint256-overflow",
+    "title": "Ethereum protocol: Transaction uint256 overflow",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "validation",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)bigint overflow, too large for uint256(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "A transaction numeric field is too large for uint256.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A value, gas, fee, nonce, chain ID, or other numeric input exceeded uint256 bounds.",
+      "This is usually a transaction builder/unit conversion bug."
+    ],
+    "nextSteps": [
+      "Clamp numeric fields to valid uint256 values.",
+      "Check decimal string, hex quantity, and BigInt conversions."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum core transaction errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/error.go"
+      }
+    ],
+    "examples": [
+      "bigint overflow, too large for uint256"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-txpool-account-limit-exceeded",
+    "title": "Ethereum protocol: Account limit exceeded",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)account limit exceeded(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The sender has too many transactions in the node's txpool.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The pool enforces a per-account queued/pending transaction limit.",
+      "Additional transactions from that sender are rejected until earlier ones clear."
+    ],
+    "nextSteps": [
+      "Wait for pending transactions to confirm/drop or use fewer queued nonces.",
+      "Avoid bulk-sending many transactions from one account."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "account limit exceeded"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-txpool-address-already-reserved",
+    "title": "Ethereum protocol: Address already reserved",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)address already reserved(?:\\b|:|$).*",
+        "flags": "i"
+      },
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)already reserved(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The sender already has a transaction reserved in another txpool subpool.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A blob and non-blob transaction from the same sender can conflict across subpools.",
+      "The node avoids mixing incompatible pending transaction classes for the account."
+    ],
+    "nextSteps": [
+      "Wait for or replace the existing reserved transaction.",
+      "Submit transactions for the sender in a consistent blob/non-blob sequence."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "address already reserved",
+      "already reserved"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-txpool-already-known",
+    "title": "Ethereum protocol: Already known",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)already known(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction is already known by the node's transaction pool.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The same transaction hash is already pending or queued.",
+      "Rebroadcasting identical raw bytes is redundant."
+    ],
+    "nextSteps": [
+      "Check whether the transaction hash is already pending.",
+      "Only resend if using a different node or if propagation failed."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "already known"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-txpool-exceeds-block-gas-limit",
+    "title": "Ethereum protocol: Exceeds block gas limit",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)exceeds block gas limit(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction gas limit exceeds the current block gas limit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "No block can include the transaction with that gas limit under current rules.",
+      "Execution has not started."
+    ],
+    "nextSteps": [
+      "Reduce the gas limit below the block limit.",
+      "If the operation genuinely needs more gas than the block allows, split it."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "exceeds block gas limit"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-txpool-gas-price-below-minimum",
+    "title": "Ethereum protocol: Transaction gas price below minimum",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)transaction gas price below minimum(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction is below the txpool's configured minimum gas price.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The node refuses to admit transactions under its minimum gas price threshold.",
+      "This is a local policy error, not a consensus execution failure."
+    ],
+    "nextSteps": [
+      "Raise fee caps/gas price or use a node with a lower minimum.",
+      "Do not change calldata or gas limit unless those are also wrong."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "transaction gas price below minimum"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-txpool-inflight-delegated-limit",
+    "title": "Ethereum protocol: In-flight delegated transaction limit reached",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)in-flight transaction limit reached for delegated accounts(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The node reached its in-flight transaction limit for delegated accounts.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "EIP-7702 delegated-account txpool policy limits are exhausted.",
+      "This is a mempool admission limit, not a contract revert."
+    ],
+    "nextSteps": [
+      "Wait for in-flight delegated transactions to clear.",
+      "Throttle submissions for delegated accounts."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "in-flight transaction limit reached for delegated accounts"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-txpool-invalid-sender",
+    "title": "Ethereum protocol: Invalid sender",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)invalid sender(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction sender cannot be recovered or is not valid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The signature, chain ID, or transaction encoding does not recover a valid sender.",
+      "This is a transaction construction/signing failure."
+    ],
+    "nextSteps": [
+      "Re-sign with the correct chain ID and transaction type.",
+      "Verify raw transaction serialization before broadcasting."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "invalid sender"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-txpool-negative-value",
+    "title": "Ethereum protocol: Negative transaction value",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)negative value(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction value field is negative or decoded as negative.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Ethereum transaction values must be non-negative unsigned integers.",
+      "This is a serialization or transaction-construction bug."
+    ],
+    "nextSteps": [
+      "Fix value serialization and units.",
+      "Use unsigned integer transaction value fields only."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "negative value"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-txpool-oversized-data",
+    "title": "Ethereum protocol: Oversized transaction data",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)oversized data(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction calldata exceeds a node txpool anti-DoS size policy.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The input data is too large for the node's transaction pool policy.",
+      "This may be policy-level rather than consensus-level, but execution has not started."
+    ],
+    "nextSteps": [
+      "Reduce calldata size or split the operation.",
+      "Try a node with compatible txpool limits only if the transaction is otherwise valid."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "oversized data"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-txpool-replacement-underpriced",
+    "title": "Ethereum protocol: Replacement transaction underpriced",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)replacement transaction underpriced(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "A same-nonce replacement did not increase fees enough.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The node already has a pending transaction from this sender with the same nonce.",
+      "The replacement must satisfy the pool's configured price-bump rule."
+    ],
+    "nextSteps": [
+      "Increase maxFeePerGas and maxPriorityFeePerGas enough to meet replacement rules.",
+      "Or wait for/drop the existing pending transaction before resubmitting."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "replacement transaction underpriced"
+    ]
+  },
+  {
+    "id": "ethereum-protocol-txpool-underpriced",
+    "title": "Ethereum protocol: Transaction underpriced",
+    "layer": "rpc",
+    "source": "ethereum-protocol",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*\\b)transaction underpriced(?:\\b|:|$).*",
+        "flags": "i"
+      }
+    ],
+    "summary": "The transaction fee is below the node's minimum txpool acceptance price.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The node considers the gas price or fee cap too low for mempool admission.",
+      "This is txpool policy; execution has not started."
+    ],
+    "nextSteps": [
+      "Refresh fee data and raise the relevant fee cap/tip.",
+      "Retrying unchanged is unlikely to help on the same node."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "go-ethereum txpool errors",
+        "url": "https://github.com/ethereum/go-ethereum/blob/master/core/txpool/errors.go"
+      }
+    ],
+    "examples": [
+      "transaction underpriced"
+    ]
+  }
+]

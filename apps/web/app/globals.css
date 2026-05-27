@@ -1,0 +1,466 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "VT323";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("VT323");
+}
+
+:root {
+  color-scheme: dark;
+  --hair: rgba(242, 234, 210, 0.16);
+  --hair-strong: rgba(242, 234, 210, 0.26);
+  --ink-hair: rgba(11, 13, 20, 0.16);
+  --spectral-shadow: 10px 10px 0 rgba(11, 13, 20, 0.95);
+  --acid-shadow: 8px 8px 0 rgba(215, 255, 47, 0.9);
+}
+
+html,
+body {
+  min-height: 100%;
+  background: theme(colors.ink);
+  color: theme(colors.paper);
+  font-family: theme(fontFamily.mono);
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image:
+    linear-gradient(90deg, rgba(215, 255, 47, 0.04) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(40, 224, 191, 0.035) 1px, transparent 1px);
+  background-size: 42px 42px, 42px 42px;
+  background-attachment: fixed;
+}
+
+::selection {
+  background: theme(colors.acid);
+  color: theme(colors.ink);
+}
+
+button,
+input,
+textarea,
+select {
+  letter-spacing: 0;
+}
+
+code,
+pre {
+  font-family: theme(fontFamily.mono);
+}
+
+button,
+a,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.site-shell {
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(11, 13, 20, 0.98) 0, rgba(11, 13, 20, 0.9) 24rem, rgba(242, 234, 210, 0.98) 24.1rem),
+    repeating-linear-gradient(90deg, transparent 0 82px, rgba(215, 255, 47, 0.05) 82px 83px);
+}
+
+.lab-page {
+  color: theme(colors.ink);
+}
+
+.topology-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.topology-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 23px, rgba(242, 234, 210, 0.08) 23px 24px),
+    linear-gradient(0deg, transparent 0 23px, rgba(242, 234, 210, 0.08) 23px 24px);
+  background-size: 24px 24px, 24px 24px;
+  mix-blend-mode: screen;
+}
+
+.lab-header {
+  border: 2px solid theme(colors.ink);
+  background:
+    linear-gradient(90deg, theme(colors.acid) 0 8px, transparent 8px),
+    theme(colors.chalk);
+  background-size: 100% 100%, 100% 100%;
+  box-shadow: 8px 8px 0 theme(colors.ink);
+}
+
+.brutal-card,
+.brutal-card-flat,
+.brutal-panel,
+.terminal-panel {
+  position: relative;
+  border: 2px solid theme(colors.ink);
+  border-radius: 0;
+  isolation: isolate;
+}
+
+.brutal-card {
+  box-shadow: var(--spectral-shadow);
+}
+
+.brutal-card:not([class*="bg-"]) {
+  background: theme(colors.chalk);
+}
+
+.brutal-card::after,
+.brutal-panel::after,
+.terminal-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    linear-gradient(135deg, theme(colors.acid) 0 7px, transparent 7px) top left,
+    linear-gradient(315deg, theme(colors.blood) 0 7px, transparent 7px) bottom right;
+  background-size: 28px 28px;
+  background-repeat: no-repeat;
+}
+
+.brutal-card-flat:not([class*="bg-"]) {
+  background: theme(colors.chalk);
+}
+
+.brutal-panel {
+  background: theme(colors.paper);
+  box-shadow: 12px 12px 0 theme(colors.ink);
+}
+
+.terminal-panel {
+  background:
+    linear-gradient(90deg, rgba(215, 255, 47, 0.13) 0 1px, transparent 1px),
+    linear-gradient(0deg, rgba(40, 224, 191, 0.08) 0 1px, transparent 1px),
+    theme(colors.smoke);
+  background-size: 18px 18px, 18px 18px, 100% 100%;
+  color: theme(colors.paper);
+  box-shadow: 8px 8px 0 theme(colors.acid);
+}
+
+.terminal-panel input,
+.terminal-panel textarea {
+  color: theme(colors.paper);
+}
+
+.brutal-divider {
+  border-top: 2px dashed theme(colors.ink);
+}
+
+.brutal-link {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-decoration-color: theme(colors.blood);
+}
+
+.brutal-link:hover {
+  background: theme(colors.ink);
+  color: theme(colors.acid);
+}
+
+.brutal-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  border: 1px solid currentColor;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  box-shadow: inset 0 -2px 0 rgba(11, 13, 20, 0.14);
+}
+
+.brutal-tag:not([class*="bg-"]) {
+  background: theme(colors.bone);
+}
+
+.brutal-tag:not([class*="text-"]) {
+  color: theme(colors.ink);
+}
+
+.brutal-button,
+.brutal-button-ghost {
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 2px solid theme(colors.ink);
+  border-radius: 0;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: normal;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+.brutal-button {
+  padding: 12px 18px;
+  font-size: 12px;
+  box-shadow: 5px 5px 0 theme(colors.blood);
+}
+
+.brutal-button:not([class*="bg-"]) {
+  background: theme(colors.ink);
+}
+
+.brutal-button:not([class*="text-"]) {
+  color: theme(colors.acid);
+}
+
+.brutal-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 theme(colors.blood);
+}
+
+.brutal-button-ghost {
+  padding: 8px 12px;
+  font-size: 11px;
+}
+
+.brutal-button-ghost:not([class*="bg-"]) {
+  background: theme(colors.chalk);
+}
+
+.brutal-button-ghost:not([class*="text-"]) {
+  color: theme(colors.ink);
+}
+
+.brutal-button-ghost:hover {
+  background: theme(colors.ink);
+  color: theme(colors.acid);
+  transform: translateY(-1px);
+}
+
+.brutal-button-ghost[aria-disabled="true"]:hover {
+  transform: none;
+}
+
+.brutal-button-ghost[aria-disabled="true"] {
+  pointer-events: none;
+}
+
+.brutal-input,
+.terminal-input {
+  width: 100%;
+  border-radius: 0;
+  font-family: theme(fontFamily.mono);
+  outline: none;
+}
+
+.brutal-input {
+  background: theme(colors.chalk);
+  border: 2px solid theme(colors.ink);
+  color: theme(colors.ink);
+  font-size: 14px;
+  padding: 14px 16px;
+}
+
+.brutal-input:focus {
+  box-shadow: 5px 5px 0 theme(colors.cyan);
+}
+
+.terminal-input {
+  background:
+    linear-gradient(90deg, rgba(215, 255, 47, 0.04) 1px, transparent 1px),
+    #07090f;
+  background-size: 9px 100%, 100% 100%;
+  border: 1px solid rgba(215, 255, 47, 0.56);
+  color: theme(colors.paper);
+  caret-color: theme(colors.acid);
+}
+
+.terminal-input:focus {
+  box-shadow: 0 0 0 2px theme(colors.acid), 7px 7px 0 rgba(40, 224, 191, 0.48);
+}
+
+.danger-tape {
+  background:
+    repeating-linear-gradient(90deg, theme(colors.ink) 0 13px, theme(colors.acid) 13px 26px);
+  border-top: 2px solid theme(colors.ink);
+  border-bottom: 2px solid theme(colors.ink);
+}
+
+.signal-strip {
+  background:
+    linear-gradient(90deg, theme(colors.acid) 0 14%, theme(colors.ink) 14% 17%, theme(colors.cyan) 17% 34%, theme(colors.violet) 34% 47%, theme(colors.blood) 47% 66%, theme(colors.ink) 66% 69%, theme(colors.amber) 69% 100%);
+}
+
+.scan-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0 3px,
+    rgba(255, 255, 255, 0.035) 3px 4px
+  );
+}
+
+.ink-noise {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(90deg, rgba(215, 255, 47, 0.055) 0 1px, transparent 1px 23px);
+}
+
+.kbd {
+  display: inline-block;
+  border: 1px solid theme(colors.ink);
+  background: theme(colors.chalk);
+  padding: 0 6px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.specimen-frame {
+  position: relative;
+  border: 2px solid theme(colors.paper);
+  background:
+    linear-gradient(90deg, rgba(215, 255, 47, 0.14), transparent 32%),
+    linear-gradient(180deg, rgba(40, 224, 191, 0.13), transparent 45%),
+    theme(colors.smoke);
+  color: theme(colors.paper);
+  box-shadow: 12px 12px 0 rgba(215, 255, 47, 0.75);
+}
+
+.specimen-frame::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed rgba(242, 234, 210, 0.34);
+  pointer-events: none;
+}
+
+.metric-value {
+  font-size: 2.15rem;
+  line-height: 0.86;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.footer-metric-value {
+  font-size: 1.65rem;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .metric-value {
+    font-size: 2.35rem;
+  }
+
+  .footer-metric-value {
+    font-size: 1.875rem;
+  }
+}
+
+.byte-lattice {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+@media (min-width: 640px) {
+  .byte-lattice {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
+.byte-cell {
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid rgba(242, 234, 210, 0.22);
+  background: rgba(242, 234, 210, 0.05);
+  color: rgba(242, 234, 210, 0.74);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.byte-cell.hot {
+  background: theme(colors.acid);
+  color: theme(colors.ink);
+  border-color: theme(colors.acid);
+  box-shadow: 0 0 0 1px theme(colors.ink) inset;
+}
+
+.byte-cell.warn {
+  background: theme(colors.blood);
+  color: theme(colors.paper);
+  border-color: theme(colors.blood);
+}
+
+.byte-cell.cool {
+  background: theme(colors.cyan);
+  color: theme(colors.ink);
+  border-color: theme(colors.cyan);
+}
+
+.intake-gutter {
+  background:
+    repeating-linear-gradient(180deg, rgba(215, 255, 47, 0.17) 0 1px, transparent 1px 28px),
+    rgba(11, 13, 20, 0.72);
+}
+
+.evidence-rail {
+  background:
+    repeating-linear-gradient(180deg, theme(colors.ink) 0 12px, theme(colors.paper) 12px 13px, theme(colors.ink) 13px 24px);
+}
+
+.slab-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.slab-link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 5px;
+  background: theme(colors.acid);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 140ms ease;
+}
+
+.slab-link:hover::after {
+  transform: scaleX(1);
+}
+
+.paper-texture {
+  background-image:
+    linear-gradient(90deg, rgba(11, 13, 20, 0.045) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(11, 13, 20, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}

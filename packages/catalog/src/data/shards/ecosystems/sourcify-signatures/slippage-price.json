@@ -1,0 +1,3286 @@
+[
+  {
+    "id": "sourcify-signatures-slippage-price-aou-switch-limit-reached-7864438d",
+    "title": "Price or slippage bound failed: AouSwitchLimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7864438d"
+      }
+    ],
+    "summary": "Sourcify-verified custom error AouSwitchLimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x7864438d // AouSwitchLimitReached()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-ascendant-auction-invalid-slippage-0530c252",
+    "title": "Price or slippage bound failed: AscendantAuction__InvalidSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0530c252"
+      }
+    ],
+    "summary": "Sourcify-verified custom error AscendantAuction__InvalidSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: AscendantAuction on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x592daeb53eb1cef8aa96305588310e997ec58c0c"
+      }
+    ],
+    "examples": [
+      "0x0530c252 // AscendantAuction__InvalidSlippage()",
+      "0x0530c252 // AscendantAuction__InvalidSlippage() - seen in AscendantAuction on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-ascendant-buy-and-burn-only-slippage-admin-2371b9a2",
+    "title": "Price or slippage bound failed: AscendantBuyAndBurn__OnlySlippageAdmin",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2371b9a2"
+      }
+    ],
+    "summary": "Sourcify-verified custom error AscendantBuyAndBurn__OnlySlippageAdmin means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: AscendantBuyAndBurn on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x27d21c4fa62f063b5f005c5bd87cffea62e348d1"
+      }
+    ],
+    "examples": [
+      "0x2371b9a2 // AscendantBuyAndBurn__OnlySlippageAdmin()",
+      "0x2371b9a2 // AscendantBuyAndBurn__OnlySlippageAdmin() - seen in AscendantBuyAndBurn on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-ba-bad-price-fb7505dd",
+    "title": "Price or slippage bound failed: BA_BadPrice",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xfb7505dd"
+      }
+    ],
+    "summary": "Sourcify-verified custom error BA_BadPrice means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: HashnoteBatchAuction on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xb347bf4fd7f96635795b21dd725fb2b36d45be39"
+      }
+    ],
+    "examples": [
+      "0xfb7505dd // BA_BadPrice()",
+      "0xfb7505dd // BA_BadPrice() - seen in HashnoteBatchAuction on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-cv-cask-limit-reached-d0a8f9f0",
+    "title": "Price or slippage bound failed: CV_CaskLimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd0a8f9f0"
+      }
+    ],
+    "summary": "Sourcify-verified custom error CV_CaskLimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xd0a8f9f0 // CV_CaskLimitReached()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-e2e-slippage-bps-801797e5",
+    "title": "Price or slippage bound failed: e2eSlippageBps",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x801797e5"
+      }
+    ],
+    "summary": "Sourcify-verified custom error e2eSlippageBps means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Executor on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xd31109510ec2db6e7ef7eb3be9be4e2fcf924b81"
+      }
+    ],
+    "examples": [
+      "0x801797e5 // e2eSlippageBps()",
+      "0x801797e5 // e2eSlippageBps() - seen in Executor on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-elder-limit-reached-702dd080",
+    "title": "Price or slippage bound failed: ElderLimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x702dd080"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ElderLimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x702dd080 // ElderLimitReached()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-fba-season1-sale-token-limit-reached-uint16-uint32-b75e66da",
+    "title": "Price or slippage bound failed: FbaSeason1Sale__TokenLimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb75e66da"
+      }
+    ],
+    "summary": "Sourcify-verified custom error FbaSeason1Sale__TokenLimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: FbaSeason1Sale on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xde56ecbe1de76d39ec77bb35882c70978b9e8f66"
+      }
+    ],
+    "examples": [
+      "0xb75e66da // FbaSeason1Sale__TokenLimitReached(uint16,uint32)",
+      "0xb75e66da // FbaSeason1Sale__TokenLimitReached(uint16,uint32) - seen in FbaSeason1Sale on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-fiat24-crypto-deposit-slippage-exceeded-uint256-uint256-5099d57f",
+    "title": "Price or slippage bound failed: Fiat24CryptoDeposit__SlippageExceeded",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5099d57f"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Fiat24CryptoDeposit__SlippageExceeded means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Fiat24CryptoDeposit2 on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x74ecce221ee0332119df6765a5cee89f5fdf2914"
+      },
+      {
+        "label": "Sourcify: Fiat24CryptoDeposit2 on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x0fb8f4e4e01b4c8390ae8a351e63d9813c624cad"
+      }
+    ],
+    "examples": [
+      "0x5099d57f // Fiat24CryptoDeposit__SlippageExceeded(uint256,uint256)",
+      "0x5099d57f // Fiat24CryptoDeposit__SlippageExceeded(uint256,uint256) - seen in Fiat24CryptoDeposit2 on base",
+      "0x5099d57f // Fiat24CryptoDeposit__SlippageExceeded(uint256,uint256) - seen in Fiat24CryptoDeposit2 on base"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-fiat24-pool-slippage-e5edd57b",
+    "title": "Price or slippage bound failed: fiat24PoolSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe5edd57b"
+      }
+    ],
+    "summary": "Sourcify-verified custom error fiat24PoolSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Fiat24StargateReceiver on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xeaf83172d7037d37f7813b08e8b747e562341e3d"
+      },
+      {
+        "label": "Sourcify: Fiat24StargateReceiver on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x7db8ef8e7210002a2328083cb33100d1ea69ffe6"
+      },
+      {
+        "label": "Sourcify: Fiat24StargateReceiver on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x5542a3e5dab9b74716f6cae4741ca91f688a0414"
+      },
+      {
+        "label": "Sourcify: Fiat24StargateReceiver on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x1c21b6f21d4413186a00da1134b4fe602e0145bf"
+      },
+      {
+        "label": "Sourcify: Fiat24StargateReceiver on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x0595d6094fb4af3d0ecd1e55e4c2dbba3265e5f9"
+      }
+    ],
+    "examples": [
+      "0xe5edd57b // fiat24PoolSlippage()",
+      "0xe5edd57b // fiat24PoolSlippage() - seen in Fiat24StargateReceiver on arbitrum",
+      "0xe5edd57b // fiat24PoolSlippage() - seen in Fiat24StargateReceiver on arbitrum",
+      "0xe5edd57b // fiat24PoolSlippage() - seen in Fiat24StargateReceiver on arbitrum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-fsd-high-slippage-b54c3af5",
+    "title": "Price or slippage bound failed: FSD_HighSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb54c3af5"
+      }
+    ],
+    "summary": "Sourcify-verified custom error FSD_HighSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xb54c3af5 // FSD_HighSlippage()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-hmt-staking-limit-reached-81b3e764",
+    "title": "Price or slippage bound failed: HMTStakingLimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x81b3e764"
+      }
+    ],
+    "summary": "Sourcify-verified custom error HMTStakingLimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x81b3e764 // HMTStakingLimitReached()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-hv-hatch-limit-reached-024e7819",
+    "title": "Price or slippage bound failed: HV_HatchLimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x024e7819"
+      }
+    ],
+    "summary": "Sourcify-verified custom error HV_HatchLimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x024e7819 // HV_HatchLimitReached()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-i-limit-trade-handler-price-slippage-a0c03dac",
+    "title": "Price or slippage bound failed: ILimitTradeHandler_PriceSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa0c03dac"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ILimitTradeHandler_PriceSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: LimitTradeHandler on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x506850645c1d25eafe1cbcb6e564f3ae030891e1"
+      },
+      {
+        "label": "Sourcify: LimitTradeHandler on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x57536d049372b813245b15d3e84168a035633e22"
+      },
+      {
+        "label": "Sourcify: LimitTradeHandler on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x50ac4fbcca5e3d44c7324ce083c567fe5c948af9"
+      },
+      {
+        "label": "Sourcify: LimitTradeHandler on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x5cf5d458190379232528ae88426e09ab0fb46ad7"
+      }
+    ],
+    "examples": [
+      "0xa0c03dac // ILimitTradeHandler_PriceSlippage()",
+      "0xa0c03dac // ILimitTradeHandler_PriceSlippage() - seen in LimitTradeHandler on arbitrum",
+      "0xa0c03dac // ILimitTradeHandler_PriceSlippage() - seen in LimitTradeHandler on arbitrum",
+      "0xa0c03dac // ILimitTradeHandler_PriceSlippage() - seen in LimitTradeHandler on base"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-ibatslippage-2e1f7dfc",
+    "title": "Price or slippage bound failed: ibatslippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2e1f7dfc"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ibatslippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: BATSPresale_Phase1 on bsc",
+        "url": "https://sourcify.dev/server/v2/contract/56/0xa3c090b1cac3fcd1d0231224d8567012c922ca95"
+      },
+      {
+        "label": "Sourcify: BATSPresale_Phase2 on bsc",
+        "url": "https://sourcify.dev/server/v2/contract/56/0x3cb81b366aca29099a2cc25207f8b63c3855c1c6"
+      },
+      {
+        "label": "Sourcify: BATSPresale on bsc",
+        "url": "https://sourcify.dev/server/v2/contract/56/0x7cdd53e8f07e66decd1431c6962d2bd2199cc681"
+      },
+      {
+        "label": "Sourcify: BATSPresale_Phase1_ETH on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x6bc6ccfc3f5fc32acaefc018299220104b021fbf"
+      },
+      {
+        "label": "Sourcify: BATSPresale_Phase2 on bsc",
+        "url": "https://sourcify.dev/server/v2/contract/56/0xde58ace232c5d5b5a26e8b419623c65ba4681ff2"
+      }
+    ],
+    "examples": [
+      "0x2e1f7dfc // ibatslippage()",
+      "0x2e1f7dfc // ibatslippage() - seen in BATSPresale_Phase1 on bsc",
+      "0x2e1f7dfc // ibatslippage() - seen in BATSPresale_Phase2 on bsc",
+      "0x2e1f7dfc // ibatslippage() - seen in BATSPresale on bsc"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-jb-buyback-hook-invalid-twap-slippage-tolerance-uint256-uint256-uint256-8b9cb553",
+    "title": "Price or slippage bound failed: JBBuybackHook_InvalidTwapSlippageTolerance",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8b9cb553"
+      }
+    ],
+    "summary": "Sourcify-verified custom error JBBuybackHook_InvalidTwapSlippageTolerance means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: JBBuybackHook on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x47d1b88af8ee0ed0a772a7c98430894141b9ac8b"
+      },
+      {
+        "label": "Sourcify: JBBuybackHook on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x7dcf35dad9b30ffcb7f35f51279252b884921927"
+      },
+      {
+        "label": "Sourcify: JBBuybackHook on optimism",
+        "url": "https://sourcify.dev/server/v2/contract/10/0x09d97e2b8b2f143335c2344947a79d1a3a4c2946"
+      },
+      {
+        "label": "Sourcify: JBBuybackHook on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xb9dce56d7f64b8c456157ded0c76241d0c23f578"
+      }
+    ],
+    "examples": [
+      "0x8b9cb553 // JBBuybackHook_InvalidTwapSlippageTolerance(uint256,uint256,uint256)",
+      "0x8b9cb553 // JBBuybackHook_InvalidTwapSlippageTolerance(uint256,uint256,uint256) - seen in JBBuybackHook on base",
+      "0x8b9cb553 // JBBuybackHook_InvalidTwapSlippageTolerance(uint256,uint256,uint256) - seen in JBBuybackHook on ethereum",
+      "0x8b9cb553 // JBBuybackHook_InvalidTwapSlippageTolerance(uint256,uint256,uint256) - seen in JBBuybackHook on optimism"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-jb-buyback-hook-specified-slippage-exceeded-uint256-uint256-e2d708a9",
+    "title": "Price or slippage bound failed: JBBuybackHook_SpecifiedSlippageExceeded",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe2d708a9"
+      }
+    ],
+    "summary": "Sourcify-verified custom error JBBuybackHook_SpecifiedSlippageExceeded means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: JBBuybackHook on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xb9dce56d7f64b8c456157ded0c76241d0c23f578"
+      },
+      {
+        "label": "Sourcify: JBBuybackHook on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xd342490ec41d5982c23951253a74a1c940fe0f9b"
+      },
+      {
+        "label": "Sourcify: JBBuybackHook on optimism",
+        "url": "https://sourcify.dev/server/v2/contract/10/0x318f8aa6a95cb83419985c0d797c762f5a7824f3"
+      },
+      {
+        "label": "Sourcify: JBBuybackHook on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0xb6133a222315f8e9d25e7c77bac5ddeb3451d088"
+      },
+      {
+        "label": "Sourcify: JBBuybackHook on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x4ac3e20edd1d398def0dfb44d3adb9fc244f0320"
+      }
+    ],
+    "examples": [
+      "0xe2d708a9 // JBBuybackHook_SpecifiedSlippageExceeded(uint256,uint256)",
+      "0xe2d708a9 // JBBuybackHook_SpecifiedSlippageExceeded(uint256,uint256) - seen in JBBuybackHook on arbitrum",
+      "0xe2d708a9 // JBBuybackHook_SpecifiedSlippageExceeded(uint256,uint256) - seen in JBBuybackHook on ethereum",
+      "0xe2d708a9 // JBBuybackHook_SpecifiedSlippageExceeded(uint256,uint256) - seen in JBBuybackHook on optimism"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-jr-vault-slippage-exceeded-uint256-uint256-f341b523",
+    "title": "Price or slippage bound failed: JRVault__SlippageExceeded",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf341b523"
+      }
+    ],
+    "summary": "Sourcify-verified custom error JRVault__SlippageExceeded means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xf341b523 // JRVault__SlippageExceeded(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-kbv3-invalid-slippage-8bc2cfc2",
+    "title": "Price or slippage bound failed: KBV3_InvalidSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8bc2cfc2"
+      }
+    ],
+    "summary": "Sourcify-verified custom error KBV3_InvalidSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x8bc2cfc2 // KBV3_InvalidSlippage()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-kbv3-slippage-updated-uint256-30a58b15",
+    "title": "Price or slippage bound failed: KBV3_SlippageUpdated",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x30a58b15"
+      }
+    ],
+    "summary": "Sourcify-verified custom error KBV3_SlippageUpdated means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x30a58b15 // KBV3_SlippageUpdated(uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-kubics-mint-a-limit-reached-047ed50f",
+    "title": "Price or slippage bound failed: Kubics__MintALimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x047ed50f"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Kubics__MintALimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: DragonKeeper on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xf808cc0645f2092e0b08bd4bb4e8ad1bab8babc0"
+      }
+    ],
+    "examples": [
+      "0x047ed50f // Kubics__MintALimitReached()",
+      "0x047ed50f // Kubics__MintALimitReached() - seen in DragonKeeper on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-kyber-min-out-not-met-62e70739",
+    "title": "Price or slippage bound failed: KyberMinOutNotMet",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x62e70739"
+      }
+    ],
+    "summary": "Sourcify-verified custom error KyberMinOutNotMet means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x62e70739 // KyberMinOutNotMet()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-lge-slippage-65e78ea4",
+    "title": "Price or slippage bound failed: LGE__Slippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x65e78ea4"
+      }
+    ],
+    "summary": "Sourcify-verified custom error LGE__Slippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x65e78ea4 // LGE__Slippage()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-nb-players-per-teams-limit-reached-error-64a72756",
+    "title": "Price or slippage bound failed: NbPlayersPerTeamsLimitReachedError",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x64a72756"
+      }
+    ],
+    "summary": "Sourcify-verified custom error NbPlayersPerTeamsLimitReachedError means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x64a72756 // NbPlayersPerTeamsLimitReachedError()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-nb-teams-limit-reached-error-d6ccbff1",
+    "title": "Price or slippage bound failed: NbTeamsLimitReachedError",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd6ccbff1"
+      }
+    ],
+    "summary": "Sourcify-verified custom error NbTeamsLimitReachedError means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xd6ccbff1 // NbTeamsLimitReachedError()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-nudge-limit-reached-e6bdbb5c",
+    "title": "Price or slippage bound failed: NudgeLimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe6bdbb5c"
+      }
+    ],
+    "summary": "Sourcify-verified custom error NudgeLimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xe6bdbb5c // NudgeLimitReached()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-o-a51-slippage-too-high-76dd013b",
+    "title": "Price or slippage bound failed: oA51__SlippageTooHigh",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x76dd013b"
+      }
+    ],
+    "summary": "Sourcify-verified custom error oA51__SlippageTooHigh means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: oA51 on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xd8f3e2001152b3614c532260abf5522c4e762d8b"
+      }
+    ],
+    "examples": [
+      "0x76dd013b // oA51__SlippageTooHigh()",
+      "0x76dd013b // oA51__SlippageTooHigh() - seen in oA51 on arbitrum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-o-bmx-slippage-86c87f50",
+    "title": "Price or slippage bound failed: oBMXSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x86c87f50"
+      }
+    ],
+    "summary": "Sourcify-verified custom error oBMXSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: StrategyBLTStaker on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x4d0421beaed41b57c5e5094a771bfc231cb39832"
+      }
+    ],
+    "examples": [
+      "0x86c87f50 // oBMXSlippage()",
+      "0x86c87f50 // oBMXSlippage() - seen in StrategyBLTStaker on base"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-o-eth-holding-deposit-slippages-failed-5640448e",
+    "title": "Price or slippage bound failed: OEthHoldingDepositSlippagesFailed",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5640448e"
+      }
+    ],
+    "summary": "Sourcify-verified custom error OEthHoldingDepositSlippagesFailed means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: OEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xed99b3b172d48127717134212e95c32d95b8962c"
+      },
+      {
+        "label": "Sourcify: OEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x4349909e23b4cddd4d8573d75d21b5e6fbfb36a8"
+      },
+      {
+        "label": "Sourcify: OEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x120da9fa3f56d2179facab9ce9b3d00df4be1575"
+      }
+    ],
+    "examples": [
+      "0x5640448e // OEthHoldingDepositSlippagesFailed()",
+      "0x5640448e // OEthHoldingDepositSlippagesFailed() - seen in OEthHoldingStrategy on ethereum",
+      "0x5640448e // OEthHoldingDepositSlippagesFailed() - seen in OEthHoldingStrategy on ethereum",
+      "0x5640448e // OEthHoldingDepositSlippagesFailed() - seen in OEthHoldingStrategy on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-o-eth-holding-redeem-slippages-failed-3f6f71a5",
+    "title": "Price or slippage bound failed: OEthHoldingRedeemSlippagesFailed",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3f6f71a5"
+      }
+    ],
+    "summary": "Sourcify-verified custom error OEthHoldingRedeemSlippagesFailed means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: OEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x120da9fa3f56d2179facab9ce9b3d00df4be1575"
+      },
+      {
+        "label": "Sourcify: OEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x4349909e23b4cddd4d8573d75d21b5e6fbfb36a8"
+      },
+      {
+        "label": "Sourcify: OEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xed99b3b172d48127717134212e95c32d95b8962c"
+      }
+    ],
+    "examples": [
+      "0x3f6f71a5 // OEthHoldingRedeemSlippagesFailed()",
+      "0x3f6f71a5 // OEthHoldingRedeemSlippagesFailed() - seen in OEthHoldingStrategy on ethereum",
+      "0x3f6f71a5 // OEthHoldingRedeemSlippagesFailed() - seen in OEthHoldingStrategy on ethereum",
+      "0x3f6f71a5 // OEthHoldingRedeemSlippagesFailed() - seen in OEthHoldingStrategy on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-oi-limit-reached-128fd4e7",
+    "title": "Price or slippage bound failed: OILimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x128fd4e7"
+      }
+    ],
+    "summary": "Sourcify-verified custom error OILimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x128fd4e7 // OILimitReached()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-os-invalid-slippage-numerator-e9e56a77",
+    "title": "Price or slippage bound failed: OS_INVALID_SLIPPAGE_NUMERATOR",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe9e56a77"
+      }
+    ],
+    "summary": "Sourcify-verified custom error OS_INVALID_SLIPPAGE_NUMERATOR means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: OracleSwapUpgradeable on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xef6eb8adddf6b22eb4d9e6648d31ba3daf5ff23c"
+      },
+      {
+        "label": "Sourcify: OracleSwapUpgradeable on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0xcdbc1832713ff38a75a1464df6a5de4ba2c788f3"
+      },
+      {
+        "label": "Sourcify: OracleSwapUpgradeable on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x9342be663cba371774e4a25c508f0f0bc99d23bb"
+      },
+      {
+        "label": "Sourcify: OracleSwapUpgradeable on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x8c42778f10dd92afa02033ff6bedbf6f12d5e545"
+      },
+      {
+        "label": "Sourcify: OracleSwapUpgradeable on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xe96fa47eee9d51ec3a09905f3647d4c3b9813d21"
+      }
+    ],
+    "examples": [
+      "0xe9e56a77 // OS_INVALID_SLIPPAGE_NUMERATOR()",
+      "0xe9e56a77 // OS_INVALID_SLIPPAGE_NUMERATOR() - seen in OracleSwapUpgradeable on arbitrum",
+      "0xe9e56a77 // OS_INVALID_SLIPPAGE_NUMERATOR() - seen in OracleSwapUpgradeable on base",
+      "0xe9e56a77 // OS_INVALID_SLIPPAGE_NUMERATOR() - seen in OracleSwapUpgradeable on base"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-pmint-slippage-min-bps-70235ab3",
+    "title": "Price or slippage bound failed: PMINT_SLIPPAGE_MIN_BPS",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x70235ab3"
+      }
+    ],
+    "summary": "Sourcify-verified custom error PMINT_SLIPPAGE_MIN_BPS means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x70235ab3 // PMINT_SLIPPAGE_MIN_BPS()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-ptr-price-too-low-17ef935b",
+    "title": "Price or slippage bound failed: PtrPriceTooLow",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x17ef935b"
+      }
+    ],
+    "summary": "Sourcify-verified custom error PtrPriceTooLow means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: PayToRead on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0xdee0daa8848496133a2e758e9eb558f8c9e5fd84"
+      }
+    ],
+    "examples": [
+      "0x17ef935b // PtrPriceTooLow()",
+      "0x17ef935b // PtrPriceTooLow() - seen in PayToRead on base"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-rabbits-per-wallet-limit-reached-db76ce30",
+    "title": "Price or slippage bound failed: RabbitsPerWalletLimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdb76ce30"
+      }
+    ],
+    "summary": "Sourcify-verified custom error RabbitsPerWalletLimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Rabbit on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xf5c123c9977ccd63cb57defe0b189ff092ae56f1"
+      },
+      {
+        "label": "Sourcify: KarrotChefV2 on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x9bf49fb13c91f45351c02ef5dff5562544c61de7"
+      },
+      {
+        "label": "Sourcify: KarrotChefV3 on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x08f2bf3a0c9f674765dfe44a46b3cc9264b80944"
+      },
+      {
+        "label": "Sourcify: KarrotChefV2 on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xc700be010daaa85274d095936444bfd7e3b48944"
+      },
+      {
+        "label": "Sourcify: Rabbit on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x27b076a94c2caee64cf8404c9e79eeb174f6826a"
+      }
+    ],
+    "examples": [
+      "0xdb76ce30 // RabbitsPerWalletLimitReached()",
+      "0xdb76ce30 // RabbitsPerWalletLimitReached() - seen in Rabbit on arbitrum",
+      "0xdb76ce30 // RabbitsPerWalletLimitReached() - seen in KarrotChefV2 on arbitrum",
+      "0xdb76ce30 // RabbitsPerWalletLimitReached() - seen in KarrotChefV3 on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-reached-slippage-tolerance-8cacdaf6",
+    "title": "Price or slippage bound failed: ReachedSlippageTolerance",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8cacdaf6"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ReachedSlippageTolerance means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: GlpStrategy on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xb827d2e60d2de49096634e7cf481caf0b8498c27"
+      },
+      {
+        "label": "Sourcify: JonesGlpLeverageStrategy on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x14583570395c6d6accc4485af0edd1c39e18bebe"
+      },
+      {
+        "label": "Sourcify: JonesGlpLeverageStrategy on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x8e53d1b71bf7c6487cff5156257a687c8704cd31"
+      },
+      {
+        "label": "Sourcify: JonesGlpLeverageStrategy on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x15df56a82c194fefec9337c37a41964b69b584d5"
+      }
+    ],
+    "examples": [
+      "0x8cacdaf6 // ReachedSlippageTolerance()",
+      "0x8cacdaf6 // ReachedSlippageTolerance() - seen in GlpStrategy on arbitrum",
+      "0x8cacdaf6 // ReachedSlippageTolerance() - seen in JonesGlpLeverageStrategy on arbitrum",
+      "0x8cacdaf6 // ReachedSlippageTolerance() - seen in JonesGlpLeverageStrategy on arbitrum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-rl-insufficient-output-amount-34abfee7",
+    "title": "Price or slippage bound failed: RL_InsufficientOutputAmount",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x34abfee7"
+      }
+    ],
+    "summary": "Sourcify-verified custom error RL_InsufficientOutputAmount means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Quoter on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x272b79fcb7bcf681a6a2f5005ed59a6e675fe84c"
+      },
+      {
+        "label": "Sourcify: ReservoirRouter on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x84baf4228d31595370bdcd02ad2d9467ba1cadaf"
+      },
+      {
+        "label": "Sourcify: ReservoirRouter on avalanche",
+        "url": "https://sourcify.dev/server/v2/contract/43114/0xe80b7cdc7b0ac8a6f6abd16096dce8e1510ab20d"
+      },
+      {
+        "label": "Sourcify: Quoter on avalanche",
+        "url": "https://sourcify.dev/server/v2/contract/43114/0xe3cfbf58fcba0782ac3e01686811f5f1fdf95307"
+      }
+    ],
+    "examples": [
+      "0x34abfee7 // RL_InsufficientOutputAmount()",
+      "0x34abfee7 // RL_InsufficientOutputAmount() - seen in Quoter on arbitrum",
+      "0x34abfee7 // RL_InsufficientOutputAmount() - seen in ReservoirRouter on arbitrum",
+      "0x34abfee7 // RL_InsufficientOutputAmount() - seen in ReservoirRouter on avalanche"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-rr-insufficient-output-amount-dfcc89a9",
+    "title": "Price or slippage bound failed: RR_InsufficientOutputAmount",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdfcc89a9"
+      }
+    ],
+    "summary": "Sourcify-verified custom error RR_InsufficientOutputAmount means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: ReservoirRouter on avalanche",
+        "url": "https://sourcify.dev/server/v2/contract/43114/0xe80b7cdc7b0ac8a6f6abd16096dce8e1510ab20d"
+      },
+      {
+        "label": "Sourcify: ReservoirRouter on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x84baf4228d31595370bdcd02ad2d9467ba1cadaf"
+      }
+    ],
+    "examples": [
+      "0xdfcc89a9 // RR_InsufficientOutputAmount()",
+      "0xdfcc89a9 // RR_InsufficientOutputAmount() - seen in ReservoirRouter on avalanche",
+      "0xdfcc89a9 // RR_InsufficientOutputAmount() - seen in ReservoirRouter on arbitrum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-rv2-slot-limit-reached-dd368f91",
+    "title": "Price or slippage bound failed: RV2_SlotLimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdd368f91"
+      }
+    ],
+    "summary": "Sourcify-verified custom error RV2_SlotLimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xdd368f91 // RV2_SlotLimitReached()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-sablier-bob-target-price-too-low-uint128-uint128-d44a31e2",
+    "title": "Price or slippage bound failed: SablierBob_TargetPriceTooLow",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd44a31e2"
+      }
+    ],
+    "summary": "Sourcify-verified custom error SablierBob_TargetPriceTooLow means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xd44a31e2 // SablierBob_TargetPriceTooLow(uint128,uint128)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-sealable-withdrawal-blockers-limit-reached-c8ec1916",
+    "title": "Price or slippage bound failed: SealableWithdrawalBlockersLimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc8ec1916"
+      }
+    ],
+    "summary": "Sourcify-verified custom error SealableWithdrawalBlockersLimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: DualGovernance on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xcdf49b058d606ad34c5789fd8c3bf8b3e54ba2db"
+      }
+    ],
+    "examples": [
+      "0xc8ec1916 // SealableWithdrawalBlockersLimitReached()",
+      "0xc8ec1916 // SealableWithdrawalBlockersLimitReached() - seen in DualGovernance on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-sfrx-eth-holding-deposit-slippages-failed-89c25030",
+    "title": "Price or slippage bound failed: SfrxEthHoldingDepositSlippagesFailed",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x89c25030"
+      }
+    ],
+    "summary": "Sourcify-verified custom error SfrxEthHoldingDepositSlippagesFailed means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: SfrxEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xacb8e69668c5005bc14e83d2f4aac15e7186d797"
+      },
+      {
+        "label": "Sourcify: SfrxEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x4c983e45a5402f2af1123dcbf58a2d9346985a4b"
+      },
+      {
+        "label": "Sourcify: SfrxEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xefd8ce62ca1cd5c309ee1421496e8657036e9373"
+      },
+      {
+        "label": "Sourcify: SfrxEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x8133015d79dab576c3c7ca644e374d823948f029"
+      }
+    ],
+    "examples": [
+      "0x89c25030 // SfrxEthHoldingDepositSlippagesFailed()",
+      "0x89c25030 // SfrxEthHoldingDepositSlippagesFailed() - seen in SfrxEthHoldingStrategy on ethereum",
+      "0x89c25030 // SfrxEthHoldingDepositSlippagesFailed() - seen in SfrxEthHoldingStrategy on ethereum",
+      "0x89c25030 // SfrxEthHoldingDepositSlippagesFailed() - seen in SfrxEthHoldingStrategy on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-sfrx-eth-holding-redeem-slippages-failed-dfd8a34a",
+    "title": "Price or slippage bound failed: SfrxEthHoldingRedeemSlippagesFailed",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdfd8a34a"
+      }
+    ],
+    "summary": "Sourcify-verified custom error SfrxEthHoldingRedeemSlippagesFailed means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: SfrxEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x4c983e45a5402f2af1123dcbf58a2d9346985a4b"
+      },
+      {
+        "label": "Sourcify: SfrxEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x8133015d79dab576c3c7ca644e374d823948f029"
+      },
+      {
+        "label": "Sourcify: SfrxEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xefd8ce62ca1cd5c309ee1421496e8657036e9373"
+      },
+      {
+        "label": "Sourcify: SfrxEthHoldingStrategy on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xacb8e69668c5005bc14e83d2f4aac15e7186d797"
+      }
+    ],
+    "examples": [
+      "0xdfd8a34a // SfrxEthHoldingRedeemSlippagesFailed()",
+      "0xdfd8a34a // SfrxEthHoldingRedeemSlippagesFailed() - seen in SfrxEthHoldingStrategy on ethereum",
+      "0xdfd8a34a // SfrxEthHoldingRedeemSlippagesFailed() - seen in SfrxEthHoldingStrategy on ethereum",
+      "0xdfd8a34a // SfrxEthHoldingRedeemSlippagesFailed() - seen in SfrxEthHoldingStrategy on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-skew-slippage-exceeded-0d8af416",
+    "title": "Price or slippage bound failed: SkewSlippageExceeded",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0d8af416"
+      }
+    ],
+    "summary": "Sourcify-verified custom error SkewSlippageExceeded means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: SpeedMarketsAMM on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x0caeac5dc4afaaa8993e16c2eafe3c0b176c7c79"
+      },
+      {
+        "label": "Sourcify: SpeedMarketsAMM on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x109c5c4ee6bc8a1286f6010908ab69432710a30a"
+      },
+      {
+        "label": "Sourcify: SpeedMarketsAMM on optimism",
+        "url": "https://sourcify.dev/server/v2/contract/10/0xaff935c7172e9716bed9d8db0111d37d7a70985a"
+      }
+    ],
+    "examples": [
+      "0x0d8af416 // SkewSlippageExceeded()",
+      "0x0d8af416 // SkewSlippageExceeded() - seen in SpeedMarketsAMM on base",
+      "0x0d8af416 // SkewSlippageExceeded() - seen in SpeedMarketsAMM on base",
+      "0x0d8af416 // SkewSlippageExceeded() - seen in SpeedMarketsAMM on optimism"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-sqrt-price-limit-not-supported-uint160-9a3feb3b",
+    "title": "Price or slippage bound failed: SqrtPriceLimitNotSupported",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9a3feb3b"
+      }
+    ],
+    "summary": "Sourcify-verified custom error SqrtPriceLimitNotSupported means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x9a3feb3b // SqrtPriceLimitNotSupported(uint160)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-tvl-limit-reached-e19adf87",
+    "title": "Price or slippage bound failed: TvlLimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe19adf87"
+      }
+    ],
+    "summary": "Sourcify-verified custom error TvlLimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xe19adf87 // TvlLimitReached()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-tycho-router-negative-slippage-uint256-uint256-fd56708c",
+    "title": "Price or slippage bound failed: TychoRouter__NegativeSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xfd56708c"
+      }
+    ],
+    "summary": "Sourcify-verified custom error TychoRouter__NegativeSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: FlashV3Router on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x01c8bb2b2a9ae054cc8c98dfe3b6fe9c6671579c"
+      },
+      {
+        "label": "Sourcify: TychoRouter on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xfd0b31d2e955fa55e3fa641fe90e08b677188d35"
+      },
+      {
+        "label": "Sourcify: FlashV3Router on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0xdd6ac8461bfa533ace78388e2f955314b5ed5e9d"
+      },
+      {
+        "label": "Sourcify: TychoRouter on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xaba2fc41e2db95e77c6799d0f580034395ff2b9e"
+      }
+    ],
+    "examples": [
+      "0xfd56708c // TychoRouter__NegativeSlippage(uint256,uint256)",
+      "0xfd56708c // TychoRouter__NegativeSlippage(uint256,uint256) - seen in FlashV3Router on base",
+      "0xfd56708c // TychoRouter__NegativeSlippage(uint256,uint256) - seen in TychoRouter on ethereum",
+      "0xfd56708c // TychoRouter__NegativeSlippage(uint256,uint256) - seen in FlashV3Router on base"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-u-tokenslippage-address-address-8e52ced3",
+    "title": "Price or slippage bound failed: uTokenslippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8e52ced3"
+      }
+    ],
+    "summary": "Sourcify-verified custom error uTokenslippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: AFiManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x5ebad784813bddfe8f2374103e7b9d9c955959d7"
+      },
+      {
+        "label": "Sourcify: AFiManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xfab125812cfbc585661e5abef81ba7b83607390c"
+      }
+    ],
+    "examples": [
+      "0x8e52ced3 // uTokenslippage(address,address)",
+      "0x8e52ced3 // uTokenslippage(address,address) - seen in AFiManager on ethereum",
+      "0x8e52ced3 // uTokenslippage(address,address) - seen in AFiManager on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-umbrella-stake-slippage-hit-uint256-uint256-e30c3cac",
+    "title": "Price or slippage bound failed: UmbrellaStakeSlippageHit",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe30c3cac"
+      }
+    ],
+    "summary": "Sourcify-verified custom error UmbrellaStakeSlippageHit means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: UmbrellaStake on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x3ce0791050c7ca507f90914ddf9c357ec2973bbc"
+      }
+    ],
+    "examples": [
+      "0xe30c3cac // UmbrellaStakeSlippageHit(uint256,uint256)",
+      "0xe30c3cac // UmbrellaStakeSlippageHit(uint256,uint256) - seen in UmbrellaStake on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-umbrella-unstake-slippage-hit-uint256-uint256-4760b860",
+    "title": "Price or slippage bound failed: UmbrellaUnstakeSlippageHit",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4760b860"
+      }
+    ],
+    "summary": "Sourcify-verified custom error UmbrellaUnstakeSlippageHit means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: UmbrellaUnstake on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xc27634a1d6c5ed151ebd963ef35487000c28dc0b"
+      }
+    ],
+    "examples": [
+      "0x4760b860 // UmbrellaUnstakeSlippageHit(uint256,uint256)",
+      "0x4760b860 // UmbrellaUnstakeSlippageHit(uint256,uint256) - seen in UmbrellaUnstake on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-usage-limit-reached-uint256-aa5b3141",
+    "title": "Price or slippage bound failed: UsageLimitReached",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xaa5b3141"
+      }
+    ],
+    "summary": "Sourcify-verified custom error UsageLimitReached means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xaa5b3141 // UsageLimitReached(uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-v2-buy-slippage-8951de52",
+    "title": "Price or slippage bound failed: V2BuySlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8951de52"
+      }
+    ],
+    "summary": "Sourcify-verified custom error V2BuySlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x8951de52 // V2BuySlippage()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-vibe-insufficient-output-amount-16596fa0",
+    "title": "Price or slippage bound failed: VibeInsufficientOutputAmount",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x16596fa0"
+      }
+    ],
+    "summary": "Sourcify-verified custom error VibeInsufficientOutputAmount means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x16596fa0 // VibeInsufficientOutputAmount()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-wmatic-slippage-factor-73d89904",
+    "title": "Price or slippage bound failed: wmaticSlippageFactor",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x73d89904"
+      }
+    ],
+    "summary": "Sourcify-verified custom error wmaticSlippageFactor means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: StrategySinglePolysky on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x65f37f55b1b4bf209d8f202d578fd1b1f3b25ffd"
+      },
+      {
+        "label": "Sourcify: StrategySinglePolysky on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x3a853f4f1c0640b7825d2c7e3b33a46c57ffdce0"
+      },
+      {
+        "label": "Sourcify: StrategySinglePolycat on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0xf3d6e305580dc83fb3fa68657a943fab61fd2503"
+      },
+      {
+        "label": "Sourcify: StrategyApeswap on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0xa5cd156b7fb4171b0ae685458dbc7ad2a174c427"
+      },
+      {
+        "label": "Sourcify: StrategySinglePolycat on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x07254a9b4d645a15bdfc58a47afedb673df3ae84"
+      }
+    ],
+    "examples": [
+      "0x73d89904 // wmaticSlippageFactor()",
+      "0x73d89904 // wmaticSlippageFactor() - seen in StrategySinglePolysky on polygon",
+      "0x73d89904 // wmaticSlippageFactor() - seen in StrategySinglePolysky on polygon",
+      "0x73d89904 // wmaticSlippageFactor() - seen in StrategySinglePolycat on polygon"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-x-fun-factory-slippage-or-payment-error-string-string-10bbf557",
+    "title": "Price or slippage bound failed: XFunFactory__SlippageOrPaymentError",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x10bbf557"
+      }
+    ],
+    "summary": "Sourcify-verified custom error XFunFactory__SlippageOrPaymentError means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: XFunFactory on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x8e99f08688d36a8224e73829333b09abd44ae81e"
+      },
+      {
+        "label": "Sourcify: XFunFactory on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x763c09ee18becdc5ea96f7cd16390956707e8817"
+      }
+    ],
+    "examples": [
+      "0x10bbf557 // XFunFactory__SlippageOrPaymentError(string,string)",
+      "0x10bbf557 // XFunFactory__SlippageOrPaymentError(string,string) - seen in XFunFactory on base",
+      "0x10bbf557 // XFunFactory__SlippageOrPaymentError(string,string) - seen in XFunFactory on base"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-x-slippage-fee-uint256-aa4bef8d",
+    "title": "Price or slippage bound failed: xSlippageFee",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xaa4bef8d"
+      }
+    ],
+    "summary": "Sourcify-verified custom error xSlippageFee means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: FeeManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xe6d9bd6796bdaf9b391fac2a2d34bae9c1c3c1c4"
+      },
+      {
+        "label": "Sourcify: FeeManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x4a5e967100ca28566cb2a39216992c6db57e95a4"
+      },
+      {
+        "label": "Sourcify: FeeManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x3c69835bc56cf4f356cdede634415f847daa4753"
+      }
+    ],
+    "examples": [
+      "0xaa4bef8d // xSlippageFee(uint256)",
+      "0xaa4bef8d // xSlippageFee(uint256) - seen in FeeManager on ethereum",
+      "0xaa4bef8d // xSlippageFee(uint256) - seen in FeeManager on ethereum",
+      "0xaa4bef8d // xSlippageFee(uint256) - seen in FeeManager on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-x-slippage-uint256-ccde501e",
+    "title": "Price or slippage bound failed: xSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xccde501e"
+      }
+    ],
+    "summary": "Sourcify-verified custom error xSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: FeeManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x4a5e967100ca28566cb2a39216992c6db57e95a4"
+      },
+      {
+        "label": "Sourcify: FeeManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xe6d9bd6796bdaf9b391fac2a2d34bae9c1c3c1c4"
+      },
+      {
+        "label": "Sourcify: FeeManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x3c69835bc56cf4f356cdede634415f847daa4753"
+      }
+    ],
+    "examples": [
+      "0xccde501e // xSlippage(uint256)",
+      "0xccde501e // xSlippage(uint256) - seen in FeeManager on ethereum",
+      "0xccde501e // xSlippage(uint256) - seen in FeeManager on ethereum",
+      "0xccde501e // xSlippage(uint256) - seen in FeeManager on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-x28-to-bon-fire-slippage-69087c99",
+    "title": "Price or slippage bound failed: x28ToBonFireSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x69087c99"
+      }
+    ],
+    "summary": "Sourcify-verified custom error x28ToBonFireSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: BonFireBuyAndBurn on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x680675b60c854dd634c06c14ec75b814cafa48dd"
+      },
+      {
+        "label": "Sourcify: BonFireLpAdder on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x01d38bba5a40228fd953d1d5b3ec840ff44fc795"
+      },
+      {
+        "label": "Sourcify: BonFireLpAdder on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xe0254cb3fa0cee74f19242d52f78c9e4196c9435"
+      },
+      {
+        "label": "Sourcify: BonFireBuyAndBurn on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xe871feb86093809f1c9555a83b292419bb23f699"
+      },
+      {
+        "label": "Sourcify: BonFireBuyAndBurn on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x731c45cc79e3ba804c5ef48891f04d6ed1d55f3a"
+      }
+    ],
+    "examples": [
+      "0x69087c99 // x28ToBonFireSlippage()",
+      "0x69087c99 // x28ToBonFireSlippage() - seen in BonFireBuyAndBurn on ethereum",
+      "0x69087c99 // x28ToBonFireSlippage() - seen in BonFireLpAdder on ethereum",
+      "0x69087c99 // x28ToBonFireSlippage() - seen in BonFireLpAdder on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-xane-insufficient-output-amount-9a643bbf",
+    "title": "Price or slippage bound failed: Xane_InsufficientOutputAmount",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9a643bbf"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Xane_InsufficientOutputAmount means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x9a643bbf // Xane_InsufficientOutputAmount()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-xcel-exceeds-swap-slippage-tolerance-fcc77c9f",
+    "title": "Price or slippage bound failed: XCEL__ExceedsSwapSlippageTolerance",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xfcc77c9f"
+      }
+    ],
+    "summary": "Sourcify-verified custom error XCEL__ExceedsSwapSlippageTolerance means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xfcc77c9f // XCEL__ExceedsSwapSlippageTolerance()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-y-slippage-fee-uint256-4c405020",
+    "title": "Price or slippage bound failed: ySlippageFee",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4c405020"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ySlippageFee means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: FeeManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xe6d9bd6796bdaf9b391fac2a2d34bae9c1c3c1c4"
+      },
+      {
+        "label": "Sourcify: FeeManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x3c69835bc56cf4f356cdede634415f847daa4753"
+      },
+      {
+        "label": "Sourcify: FeeManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x4a5e967100ca28566cb2a39216992c6db57e95a4"
+      }
+    ],
+    "examples": [
+      "0x4c405020 // ySlippageFee(uint256)",
+      "0x4c405020 // ySlippageFee(uint256) - seen in FeeManager on ethereum",
+      "0x4c405020 // ySlippageFee(uint256) - seen in FeeManager on ethereum",
+      "0x4c405020 // ySlippageFee(uint256) - seen in FeeManager on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-y-slippage-uint256-29ba6238",
+    "title": "Price or slippage bound failed: ySlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x29ba6238"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ySlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: FeeManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x4a5e967100ca28566cb2a39216992c6db57e95a4"
+      },
+      {
+        "label": "Sourcify: FeeManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xe6d9bd6796bdaf9b391fac2a2d34bae9c1c3c1c4"
+      },
+      {
+        "label": "Sourcify: FeeManager on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x3c69835bc56cf4f356cdede634415f847daa4753"
+      }
+    ],
+    "examples": [
+      "0x29ba6238 // ySlippage(uint256)",
+      "0x29ba6238 // ySlippage(uint256) - seen in FeeManager on ethereum",
+      "0x29ba6238 // ySlippage(uint256) - seen in FeeManager on ethereum",
+      "0x29ba6238 // ySlippage(uint256) - seen in FeeManager on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-y-token-slippage-10b0e7e8",
+    "title": "Price or slippage bound failed: yTokenSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x10b0e7e8"
+      }
+    ],
+    "summary": "Sourcify-verified custom error yTokenSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Pool on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x06a10d4f88e160fde0503c6e17356eb4525b05a0"
+      },
+      {
+        "label": "Sourcify: Pool on polygon",
+        "url": "https://sourcify.dev/server/v2/contract/137/0x1cff2e1d923555ff2fce07dc075b4d035da16a42"
+      },
+      {
+        "label": "Sourcify: Pool on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x89aaf58d92e2aa8151915abc96f24d082039eb89"
+      },
+      {
+        "label": "Sourcify: Pool on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x4b9253b45f90b1a6766312cc0a3560c065496a35"
+      },
+      {
+        "label": "Sourcify: Pool on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x19a35f57d80c60c854608c9d2a59b21d788de202"
+      }
+    ],
+    "examples": [
+      "0x10b0e7e8 // yTokenSlippage()",
+      "0x10b0e7e8 // yTokenSlippage() - seen in Pool on ethereum",
+      "0x10b0e7e8 // yTokenSlippage() - seen in Pool on polygon",
+      "0x10b0e7e8 // yTokenSlippage() - seen in Pool on arbitrum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-y-token-slippage-set-uint256-d86c2dfa",
+    "title": "Price or slippage bound failed: YTokenSlippageSet",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd86c2dfa"
+      }
+    ],
+    "summary": "Sourcify-verified custom error YTokenSlippageSet means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xd86c2dfa // YTokenSlippageSet(uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-yv-boost-add-lp-slippage-102cc23a",
+    "title": "Price or slippage bound failed: yvBOOSTAddLpSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x102cc23a"
+      }
+    ],
+    "summary": "Sourcify-verified custom error yvBOOSTAddLpSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: StratYvBOOSTPickle on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xbb924bc59bb33ce68e1fd1a6c99e26aa05d695c2"
+      }
+    ],
+    "examples": [
+      "0x102cc23a // yvBOOSTAddLpSlippage()",
+      "0x102cc23a // yvBOOSTAddLpSlippage() - seen in StratYvBOOSTPickle on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-yv-boost-remove-lp-slippage-1abfe539",
+    "title": "Price or slippage bound failed: yvBOOSTRemoveLpSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1abfe539"
+      }
+    ],
+    "summary": "Sourcify-verified custom error yvBOOSTRemoveLpSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: StratYvBOOSTPickle on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xbb924bc59bb33ce68e1fd1a6c99e26aa05d695c2"
+      }
+    ],
+    "examples": [
+      "0x1abfe539 // yvBOOSTRemoveLpSlippage()",
+      "0x1abfe539 // yvBOOSTRemoveLpSlippage() - seen in StratYvBOOSTPickle on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-slippage-price-yv-boost-swap-slippage-ba9571fe",
+    "title": "Price or slippage bound failed: yvBOOSTSwapSlippage",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xba9571fe"
+      }
+    ],
+    "summary": "Sourcify-verified custom error yvBOOSTSwapSlippage means execution would violate a price, minimum-output, maximum-input, or slippage constraint.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Pool price moved after quote creation, so the output is below minOut or input is above maxIn.",
+      "The trade route, tick limit, sqrt price limit, or price-impact guard rejects the requested swap.",
+      "Token decimals, fee-on-transfer behavior, or stale quote data made the client compute the wrong bound."
+    ],
+    "nextSteps": [
+      "Refresh the quote and compare expected input/output against the transaction's minOut, maxIn, or price limit.",
+      "Widen slippage only if the user accepts the worse execution price.",
+      "Check token decimals, transfer fees, pool liquidity, and route ordering before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: StratYvBOOSTPickle on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xbb924bc59bb33ce68e1fd1a6c99e26aa05d695c2"
+      }
+    ],
+    "examples": [
+      "0xba9571fe // yvBOOSTSwapSlippage()",
+      "0xba9571fe // yvBOOSTSwapSlippage() - seen in StratYvBOOSTPickle on ethereum"
+    ]
+  }
+]

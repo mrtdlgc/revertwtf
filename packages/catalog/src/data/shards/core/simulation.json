@@ -1,0 +1,131 @@
+[
+  {
+    "layer": "provider",
+    "source": "simulation",
+    "category": "simulation",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "One operation inside the batch violated a precondition even if earlier calls succeeded."
+    ],
+    "nextSteps": [
+      "Use trace frame paths or per-call simulation results to identify the exact failing batch item."
+    ],
+    "references": [
+      {
+        "label": "Alchemy Debug with Tenderly",
+        "url": "https://www.alchemy.com/docs/wallets/transactions/debug-transactions/debug-with-tenderly"
+      }
+    ],
+    "id": "simulation-batch-inner-call-failed",
+    "title": "Batched transaction inner call failed",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:batched transaction|batch|multicall).*(?:call|step|operation).*(?:revert|fail)",
+        "flags": "i"
+      }
+    ],
+    "summary": "A batched or multicall transaction failed because one inner call reverted."
+  },
+  {
+    "layer": "provider",
+    "source": "simulation",
+    "category": "simulation",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The transaction was rejected by a wallet, bundler, relayer, paymaster, or simulation service before submission."
+    ],
+    "nextSteps": [
+      "Inspect the preflight response, UserOperation validation data, paymaster response, and any nested revert bytes."
+    ],
+    "references": [
+      {
+        "label": "Alchemy Debug with Tenderly",
+        "url": "https://www.alchemy.com/docs/wallets/transactions/debug-transactions/debug-with-tenderly"
+      }
+    ],
+    "id": "simulation-failed-before-chain",
+    "title": "Transaction failed before reaching chain",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "failed before reaching the network"
+      },
+      {
+        "type": "substring",
+        "value": "rejected before reaching the network"
+      }
+    ],
+    "summary": "The transaction or UserOperation failed during client, bundler, or simulation preflight before an on-chain hash existed."
+  },
+  {
+    "layer": "provider",
+    "source": "simulation",
+    "category": "simulation",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The contract reverted with a custom error selector that requires ABI or selector lookup to interpret."
+    ],
+    "nextSteps": [
+      "Decode the selector with the contract ABI or built-in selector catalog, then inspect the custom error arguments."
+    ],
+    "references": [
+      {
+        "label": "Alchemy Debug with Tenderly",
+        "url": "https://www.alchemy.com/docs/wallets/transactions/debug-transactions/debug-with-tenderly"
+      }
+    ],
+    "id": "simulation-opaque-revert-data",
+    "title": "Opaque revert data needs decoding",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "opaque revert data|revert data \\(e\\.g\\.|0x[0-9a-fA-F]{8}\\)",
+        "flags": "i"
+      }
+    ],
+    "summary": "The error includes a selector or raw revert bytes but no human-readable reason."
+  },
+  {
+    "layer": "provider",
+    "source": "simulation",
+    "category": "simulation",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The failing contract used require(false), bare revert(), invalid opcode, or swallowed the lower-level revert data.",
+      "The top-level wrapper may have lost revert bytes from an inner call."
+    ],
+    "nextSteps": [
+      "Use a trace/simulation payload to identify the failing internal call.",
+      "Check the called function's preconditions; gas changes rarely fix a logic revert with empty data."
+    ],
+    "references": [
+      {
+        "label": "Tenderly debugger documentation",
+        "url": "https://docs.tenderly.co/debugger"
+      }
+    ],
+    "id": "simulation-reverted-no-data",
+    "title": "Simulation reverted with no data",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "execution reverted.*(?:no data|without (?:a )?reason|empty revert data|0x)",
+        "flags": "i"
+      }
+    ],
+    "summary": "The call reverted but did not return ABI-encoded revert data."
+  }
+]

@@ -1,0 +1,1017 @@
+[
+  {
+    "id": "manifold-caller-is-not-owner-or-approved",
+    "title": "Manifold Creator Core: Caller is not owner or approved",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Caller is not owner or approved['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Caller is not owner or approved.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/ERC1155Creator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Caller is not owner or approved"
+    ]
+  },
+  {
+    "id": "manifold-can-only-be-called-by-token-creator",
+    "title": "Manifold Creator Core: Can only be called by token creator",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Can only be called by token creator['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Can only be called by token creator.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/extensions/ERC1155/ERC1155CreatorExtensionBurnable.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Can only be called by token creator"
+    ]
+  },
+  {
+    "id": "manifold-cannot-blacklist-yourself",
+    "title": "Manifold Creator Core: Cannot blacklist yourself",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot blacklist yourself['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Cannot blacklist yourself.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Cannot blacklist yourself"
+    ]
+  },
+  {
+    "id": "manifold-creator-core-invalid-extension",
+    "title": "Manifold Creator Core: CreatorCore: Invalid extension",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?CreatorCore: Invalid extension['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: CreatorCore: Invalid extension.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/ERC721CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: CreatorCore: Invalid extension"
+    ]
+  },
+  {
+    "id": "manifold-creator-must-implement-ierc1155-creator-core",
+    "title": "Manifold Creator Core: creator must implement IERC1155CreatorCore",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?creator must implement IERC1155CreatorCore['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: creator must implement IERC1155CreatorCore.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/extensions/ERC1155/ERC1155CreatorExtensionApproveTransfer.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: creator must implement IERC1155CreatorCore"
+    ]
+  },
+  {
+    "id": "manifold-creator-must-implement-ierc721-creator-core",
+    "title": "Manifold Creator Core: creator must implement IERC721CreatorCore",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?creator must implement IERC721CreatorCore['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: creator must implement IERC721CreatorCore.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/extensions/ERC721/ERC721CreatorExtensionApproveTransfer.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: creator must implement IERC721CreatorCore"
+    ]
+  },
+  {
+    "id": "manifold-erc721-creator-index-out-of-bounds",
+    "title": "Manifold Creator Core: ERC721Creator: Index out of bounds",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Creator: Index out of bounds['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: ERC721Creator: Index out of bounds.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/ERC721CreatorCoreEnumerable.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: ERC721Creator: Index out of bounds"
+    ]
+  },
+  {
+    "id": "manifold-erc721-enumerable-global-index-out-of-bounds",
+    "title": "Manifold Creator Core: ERC721Enumerable: global index out of bounds",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Enumerable: global index out of bounds['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: ERC721Enumerable: global index out of bounds.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/token/ERC721/ERC721Enumerable.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: ERC721Enumerable: global index out of bounds"
+    ]
+  },
+  {
+    "id": "manifold-erc721-enumerable-owner-index-out-of-bounds",
+    "title": "Manifold Creator Core: ERC721Enumerable: owner index out of bounds",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Enumerable: owner index out of bounds['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: ERC721Enumerable: owner index out of bounds.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/token/ERC721/ERC721Enumerable.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: ERC721Enumerable: owner index out of bounds"
+    ]
+  },
+  {
+    "id": "manifold-extension-approval-failure",
+    "title": "Manifold Creator Core: Extension approval failure",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Extension approval failure['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Extension approval failure.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/ERC1155CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Extension approval failure"
+    ]
+  },
+  {
+    "id": "manifold-extension-blacklisted",
+    "title": "Manifold Creator Core: Extension blacklisted",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Extension blacklisted['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Extension blacklisted.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Extension blacklisted"
+    ]
+  },
+  {
+    "id": "manifold-invalid",
+    "title": "Manifold Creator Core: Invalid",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Invalid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid"
+    ]
+  },
+  {
+    "id": "manifold-invalid-address",
+    "title": "Manifold Creator Core: Invalid address",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid address['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Invalid address.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/ERC1155CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid address"
+    ]
+  },
+  {
+    "id": "manifold-invalid-extension",
+    "title": "Manifold Creator Core: Invalid extension",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid extension['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Invalid extension.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/ERC1155CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid extension"
+    ]
+  },
+  {
+    "id": "manifold-invalid-input",
+    "title": "Manifold Creator Core: Invalid input",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid input['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Invalid input.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid input"
+    ]
+  },
+  {
+    "id": "manifold-invalid-token",
+    "title": "Manifold Creator Core: Invalid token",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid token['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Invalid token.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid token"
+    ]
+  },
+  {
+    "id": "manifold-invalid-total-royalties",
+    "title": "Manifold Creator Core: Invalid total royalties",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid total royalties['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Invalid total royalties.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid total royalties"
+    ]
+  },
+  {
+    "id": "manifold-mismatched-token-originators",
+    "title": "Manifold Creator Core: Mismatched token originators",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Mismatched token originators['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Mismatched token originators.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/ERC1155CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Mismatched token originators"
+    ]
+  },
+  {
+    "id": "manifold-more-than-1-royalty-receiver",
+    "title": "Manifold Creator Core: More than 1 royalty receiver",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?More than 1 royalty receiver['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: More than 1 royalty receiver.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: More than 1 royalty receiver"
+    ]
+  },
+  {
+    "id": "manifold-must-be-registered-extension",
+    "title": "Manifold Creator Core: Must be registered extension",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Must be registered extension['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Must be registered extension.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Must be registered extension"
+    ]
+  },
+  {
+    "id": "manifold-must-implement-ierc1155-creator-core",
+    "title": "Manifold Creator Core: Must implement IERC1155CreatorCore",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Must implement IERC1155CreatorCore['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Must implement IERC1155CreatorCore.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/permissions/ERC1155/ERC1155CreatorMintPermissions.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Must implement IERC1155CreatorCore"
+    ]
+  },
+  {
+    "id": "manifold-must-implement-ierc721-creator-core",
+    "title": "Manifold Creator Core: Must implement IERC721CreatorCore",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Must implement IERC721CreatorCore['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Must implement IERC721CreatorCore.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/permissions/ERC721/ERC721CreatorMintPermissions.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Must implement IERC721CreatorCore"
+    ]
+  },
+  {
+    "id": "manifold-no-extension-for-token",
+    "title": "Manifold Creator Core: No extension for token",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?No extension for token['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: No extension for token.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/ERC1155Creator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: No extension for token"
+    ]
+  },
+  {
+    "id": "manifold-nonexistent-token",
+    "title": "Manifold Creator Core: Nonexistent token",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Nonexistent token['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Nonexistent token.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/ERC721Creator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Nonexistent token"
+    ]
+  },
+  {
+    "id": "manifold-requires-creator-to-implement-creator-core",
+    "title": "Manifold Creator Core: Requires creator to implement CreatorCore",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Requires creator to implement CreatorCore['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Requires creator to implement CreatorCore.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/extensions/CreatorExtensionBasic.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Requires creator to implement CreatorCore"
+    ]
+  },
+  {
+    "id": "manifold-requires-creator-to-implement-icreator-core",
+    "title": "Manifold Creator Core: Requires creator to implement ICreatorCore",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Requires creator to implement ICreatorCore['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Requires creator to implement ICreatorCore.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/extensions/CreatorExtensionBasic.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Requires creator to implement ICreatorCore"
+    ]
+  },
+  {
+    "id": "manifold-token-created-by-extension",
+    "title": "Manifold Creator Core: Token created by extension",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Token created by extension['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Token created by extension.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/ERC1155Creator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Token created by extension"
+    ]
+  },
+  {
+    "id": "manifold-token-not-created-by-this-extension",
+    "title": "Manifold Creator Core: Token not created by this extension",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Token not created by this extension['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Token not created by this extension.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/ERC1155Creator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Token not created by this extension"
+    ]
+  },
+  {
+    "id": "manifold-too-many-extensions",
+    "title": "Manifold Creator Core: Too many extensions",
+    "layer": "protocol",
+    "source": "manifold",
+    "category": "nft",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Too many extensions['\"]?\\s*$"
+      }
+    ],
+    "summary": "Manifold Creator Core revert reason string: Too many extensions.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Manifold Creator Core GitHub repository",
+        "url": "https://github.com/manifoldxyz/creator-core-solidity/blob/main/contracts/core/ERC721CreatorCore.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Too many extensions"
+    ]
+  }
+]

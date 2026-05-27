@@ -1,0 +1,43 @@
+[
+  {
+    "id": "sourcify-signatures-session-permissions-dm-authorization-revoked-address-a0055821",
+    "title": "Session permission rejected: DMAuthorizationRevoked",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa0055821"
+      }
+    ],
+    "summary": "Sourcify-verified custom error DMAuthorizationRevoked points to session-key, authorization, selector, policy, or spending-limit constraints.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A session key or delegated authorization is expired, revoked, or not valid for the target selector.",
+      "The requested spend, token, recipient, or call target exceeds the session policy.",
+      "The authorization payload was signed for a different account, chain, or validity window."
+    ],
+    "nextSteps": [
+      "Inspect session validity, allowed selectors, spend limits, target allowlists, and revocation state.",
+      "Reissue the session or authorization with the exact selector and target contract needed.",
+      "Route the transaction through the owner account if the delegated key cannot satisfy policy."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xa0055821 // DMAuthorizationRevoked(address)"
+    ]
+  }
+]

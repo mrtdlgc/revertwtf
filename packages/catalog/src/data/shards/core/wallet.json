@@ -1,0 +1,1480 @@
+[
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "wallet-already-processing-eth-request-accounts",
+    "title": "Already processing eth_requestAccounts",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "wallet_request",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Already processing eth_requestAccounts"
+      }
+    ],
+    "summary": "Wallet returned: Already processing eth_requestAccounts.",
+    "likelyCauses": [
+      "The user, wallet UI, or wallet request queue rejected the operation."
+    ],
+    "nextSteps": [
+      "Do not auto-retry; let the user intentionally retry after reviewing the prompt."
+    ]
+  },
+  {
+    "layer": "provider",
+    "source": "wallet",
+    "category": "wallet_request",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "Connection state and UI state are out of sync."
+    ],
+    "nextSteps": [
+      "Read the current connector/account state before dispatching another connect request."
+    ],
+    "id": "wallet-connector-already-connected",
+    "title": "Wallet connector already connected",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "ConnectorAlreadyConnectedError"
+      },
+      {
+        "type": "substring",
+        "value": "connector already connected"
+      }
+    ],
+    "summary": "The app tried to open a wallet connection that is already active."
+  },
+  {
+    "layer": "provider",
+    "source": "wallet",
+    "category": "wallet_request",
+    "rootCauseKnown": true,
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The user is disconnected, the session expired, or app state assumes a connector is still active."
+    ],
+    "nextSteps": [
+      "Require an active account before sending/signing and refresh connector state after page reloads."
+    ],
+    "id": "wallet-connector-not-connected",
+    "title": "Wallet connector not connected",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "ConnectorNotConnectedError"
+      },
+      {
+        "type": "substring",
+        "value": "connector not connected"
+      }
+    ],
+    "summary": "The app attempted a wallet action before the connector had an active account/session."
+  },
+  {
+    "id": "wallet-detail-already-processing-eth-request-accounts-please-wait",
+    "title": "Already processing eth_requestAccounts. Please wait.",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Already processing eth_requestAccounts. Please wait."
+      }
+    ],
+    "summary": "wallet error detail: Already processing eth_requestAccounts. Please wait..",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: Already processing eth_requestAccounts. Please wait..",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-chain-not-configured",
+    "title": "Chain not configured",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Chain not configured"
+      }
+    ],
+    "summary": "wallet error detail: Chain not configured.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Chain not configured.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check wallet/provider chain id and target chain config.",
+      "Switch or add the chain before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-chain-with-id-is-not-supported",
+    "title": "Chain with ID is not supported",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Chain with ID is not supported"
+      }
+    ],
+    "summary": "wallet error detail: Chain with ID is not supported.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Chain with ID is not supported.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check wallet/provider chain id and target chain config.",
+      "Switch or add the chain before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-connector-already-connected",
+    "title": "Connector already connected",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Connector already connected"
+      }
+    ],
+    "summary": "wallet error detail: Connector already connected.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: Connector already connected.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-connector-not-connected",
+    "title": "Connector not connected",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Connector not connected"
+      }
+    ],
+    "summary": "wallet error detail: Connector not connected.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: Connector not connected.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-connector-not-found",
+    "title": "Connector not found",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "state_or_resource",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Connector not found"
+      }
+    ],
+    "summary": "wallet error detail: Connector not found.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Connector not found.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Verify block/hash/resource exists on this chain.",
+      "Use an archive or healthier endpoint if historical state is required."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-invalid-block-explorer-url",
+    "title": "Invalid block explorer URL",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "state_or_resource",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Invalid block explorer URL"
+      }
+    ],
+    "summary": "wallet error detail: Invalid block explorer URL.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Invalid block explorer URL.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Verify block/hash/resource exists on this chain.",
+      "Use an archive or healthier endpoint if historical state is required."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-invalid-chain-id",
+    "title": "Invalid chainId",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Invalid chainId"
+      }
+    ],
+    "summary": "wallet error detail: Invalid chainId.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Invalid chainId.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check wallet/provider chain id and target chain config.",
+      "Switch or add the chain before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-invalid-parameters-were-provided-to-the-rpc-method",
+    "title": "Invalid parameters were provided to the RPC method",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Invalid parameters were provided to the RPC method"
+      }
+    ],
+    "summary": "wallet error detail: Invalid parameters were provided to the RPC method.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: Invalid parameters were provided to the RPC method.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-invalid-rpc-url",
+    "title": "Invalid RPC URL",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Invalid RPC URL"
+      }
+    ],
+    "summary": "wallet error detail: Invalid RPC URL.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: Invalid RPC URL.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-may-not-specify-default-meta-mask-chain",
+    "title": "May not specify default MetaMask chain",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "May not specify default MetaMask chain"
+      }
+    ],
+    "summary": "wallet error detail: May not specify default MetaMask chain.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: May not specify default MetaMask chain.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check wallet/provider chain id and target chain config.",
+      "Switch or add the chain before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-meta-mask-message-signature-user-denied-message-signature",
+    "title": "MetaMask Message Signature: User denied message signature",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "validation",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "MetaMask Message Signature: User denied message signature"
+      }
+    ],
+    "summary": "wallet error detail: MetaMask Message Signature: User denied message signature.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: MetaMask Message Signature: User denied message signature.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the raw request params and transaction envelope.",
+      "Re-encode the affected field with a standard library."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-meta-mask-tx-signature-user-denied-transaction-signature",
+    "title": "MetaMask Tx Signature: User denied transaction signature",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "validation",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "MetaMask Tx Signature: User denied transaction signature"
+      }
+    ],
+    "summary": "wallet error detail: MetaMask Tx Signature: User denied transaction signature.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: MetaMask Tx Signature: User denied transaction signature.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the raw request params and transaction envelope.",
+      "Re-encode the affected field with a standard library."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-native-currency-must-include-name-symbol-and-decimals",
+    "title": "Native currency must include name, symbol, and decimals",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Native currency must include name, symbol, and decimals"
+      }
+    ],
+    "summary": "wallet error detail: Native currency must include name, symbol, and decimals.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: Native currency must include name, symbol, and decimals.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-no-matching-key-session-topic-doesn-t-exist",
+    "title": "No matching key. session topic doesn't exist",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "No matching key. session topic doesn't exist"
+      }
+    ],
+    "summary": "wallet error detail: No matching key. session topic doesn't exist.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: No matching key. session topic doesn't exist.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-no-wallet-connected",
+    "title": "No wallet connected",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "No wallet connected"
+      }
+    ],
+    "summary": "wallet error detail: No wallet connected.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: No wallet connected.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-pairing-already-exists",
+    "title": "Pairing already exists",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Pairing already exists"
+      }
+    ],
+    "summary": "wallet error detail: Pairing already exists.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: Pairing already exists.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-provided-chain-id-must-be-a-valid-hexadecimal-string",
+    "title": "Provided chainId must be a valid hexadecimal string",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Provided chainId must be a valid hexadecimal string"
+      }
+    ],
+    "summary": "wallet error detail: Provided chainId must be a valid hexadecimal string.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Provided chainId must be a valid hexadecimal string.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check wallet/provider chain id and target chain config.",
+      "Switch or add the chain before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-request-of-type-wallet-switch-ethereum-chain-already-pending",
+    "title": "Request of type wallet_switchEthereumChain already pending",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Request of type wallet_switchEthereumChain already pending"
+      }
+    ],
+    "summary": "wallet error detail: Request of type wallet_switchEthereumChain already pending.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Request of type wallet_switchEthereumChain already pending.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Read the pending nonce and pending transactions for the sender.",
+      "Replace with the same nonce and a sufficient fee bump, or wait for/drop the old transaction."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-switch-chain-not-supported",
+    "title": "Switch chain not supported",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Switch chain not supported"
+      }
+    ],
+    "summary": "wallet error detail: Switch chain not supported.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Switch chain not supported.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check wallet/provider chain id and target chain config.",
+      "Switch or add the chain before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-the-method-is-not-supported-by-this-ethereum-provider",
+    "title": "The method is not supported by this Ethereum provider",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "The method is not supported by this Ethereum provider"
+      }
+    ],
+    "summary": "wallet error detail: The method is not supported by this Ethereum provider.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: The method is not supported by this Ethereum provider.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-the-provider-is-disconnected-from-all-chains",
+    "title": "The provider is disconnected from all chains",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "The provider is disconnected from all chains"
+      }
+    ],
+    "summary": "wallet error detail: The provider is disconnected from all chains.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: The provider is disconnected from all chains.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check wallet/provider chain id and target chain config.",
+      "Switch or add the chain before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-the-provider-is-disconnected-from-the-specified-chain",
+    "title": "The provider is disconnected from the specified chain",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "The provider is disconnected from the specified chain"
+      }
+    ],
+    "summary": "wallet error detail: The provider is disconnected from the specified chain.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: The provider is disconnected from the specified chain.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check wallet/provider chain id and target chain config.",
+      "Switch or add the chain before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-the-requested-account-and-or-method-has-not-been-authorized-by-the-user",
+    "title": "The requested account and/or method has not been authorized by the user",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "The requested account and/or method has not been authorized by the user"
+      }
+    ],
+    "summary": "wallet error detail: The requested account and/or method has not been authorized by the user.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: The requested account and/or method has not been authorized by the user.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-the-requested-chain-has-not-been-added-to-meta-mask",
+    "title": "The requested chain has not been added to MetaMask",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "The requested chain has not been added to MetaMask"
+      }
+    ],
+    "summary": "wallet error detail: The requested chain has not been added to MetaMask.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: The requested chain has not been added to MetaMask.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check wallet/provider chain id and target chain config.",
+      "Switch or add the chain before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-the-requested-method-and-or-account-has-not-been-authorized",
+    "title": "The requested method and/or account has not been authorized",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "The requested method and/or account has not been authorized"
+      }
+    ],
+    "summary": "wallet error detail: The requested method and/or account has not been authorized.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: The requested method and/or account has not been authorized.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-the-user-rejected-the-request",
+    "title": "The user rejected the request",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "The user rejected the request"
+      }
+    ],
+    "summary": "wallet error detail: The user rejected the request.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: The user rejected the request.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-unrecognized-chain-id",
+    "title": "Unrecognized chain ID",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Unrecognized chain ID"
+      }
+    ],
+    "summary": "wallet error detail: Unrecognized chain ID.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Unrecognized chain ID.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check wallet/provider chain id and target chain config.",
+      "Switch or add the chain before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-unrecognized-chain-id-try-adding-the-chain-using-wallet-add-ethereum-chain-first",
+    "title": "Unrecognized chain ID. Try adding the chain using wallet_addEthereumChain first.",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Unrecognized chain ID. Try adding the chain using wallet_addEthereumChain first."
+      }
+    ],
+    "summary": "wallet error detail: Unrecognized chain ID. Try adding the chain using wallet_addEthereumChain first..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Unrecognized chain ID. Try adding the chain using wallet_addEthereumChain first..",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check wallet/provider chain id and target chain config.",
+      "Switch or add the chain before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-unsupported-method-wallet-add-ethereum-chain",
+    "title": "Unsupported method: wallet_addEthereumChain",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "provider_permissions",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Unsupported method: wallet_addEthereumChain"
+      }
+    ],
+    "summary": "wallet error detail: Unsupported method: wallet_addEthereumChain.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Unsupported method: wallet_addEthereumChain.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check RPC credentials, plan, namespace permissions, and allowed methods.",
+      "Move restricted debug/trace calls to a node that supports them."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-unsupported-method-wallet-switch-ethereum-chain",
+    "title": "Unsupported method: wallet_switchEthereumChain",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "provider_permissions",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Unsupported method: wallet_switchEthereumChain"
+      }
+    ],
+    "summary": "wallet error detail: Unsupported method: wallet_switchEthereumChain.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Unsupported method: wallet_switchEthereumChain.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check RPC credentials, plan, namespace permissions, and allowed methods.",
+      "Move restricted debug/trace calls to a node that supports them."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-unsupported-method-wallet-watch-asset",
+    "title": "Unsupported method: wallet_watchAsset",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "provider_permissions",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Unsupported method: wallet_watchAsset"
+      }
+    ],
+    "summary": "wallet error detail: Unsupported method: wallet_watchAsset.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The error message contains: Unsupported method: wallet_watchAsset.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Check RPC credentials, plan, namespace permissions, and allowed methods.",
+      "Move restricted debug/trace calls to a node that supports them."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-user-denied-account-authorization",
+    "title": "User denied account authorization",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "User denied account authorization"
+      }
+    ],
+    "summary": "wallet error detail: User denied account authorization.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: User denied account authorization.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-user-rejected-request",
+    "title": "User rejected request",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "User rejected request"
+      }
+    ],
+    "summary": "wallet error detail: User rejected request.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: User rejected request.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-user-rejected-signing",
+    "title": "User rejected signing",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "User rejected signing"
+      }
+    ],
+    "summary": "wallet error detail: User rejected signing.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: User rejected signing.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-user-rejected-the-request",
+    "title": "User rejected the request.",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "User rejected the request."
+      }
+    ],
+    "summary": "wallet error detail: User rejected the request..",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: User rejected the request..",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-user-rejected-transaction",
+    "title": "User rejected transaction",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "User rejected transaction"
+      }
+    ],
+    "summary": "wallet error detail: User rejected transaction.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: User rejected transaction.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-wallet-connect-request-expired",
+    "title": "WalletConnect request expired",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "WalletConnect request expired"
+      }
+    ],
+    "summary": "wallet error detail: WalletConnect request expired.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: WalletConnect request expired.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "id": "wallet-detail-wallet-connect-session-disconnected",
+    "title": "WalletConnect session disconnected",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "rpc_32000_detail",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "WalletConnect session disconnected"
+      }
+    ],
+    "summary": "wallet error detail: WalletConnect session disconnected.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The error message contains: WalletConnect session disconnected.",
+      "The broad JSON-RPC code alone is not enough; this message is the useful discriminator."
+    ],
+    "nextSteps": [
+      "Inspect the exact JSON-RPC message and nested data field.",
+      "Compare the request against the method requirements before retrying."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "MetaMask provider API",
+        "url": "https://docs.metamask.io/metamask-connect/evm/reference/provider-api/"
+      }
+    ]
+  },
+  {
+    "layer": "provider",
+    "source": "wallet",
+    "category": "user_action",
+    "rootCauseKnown": true,
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The user dismissed the connection/signature flow, or the embedded wallet modal lost focus."
+    ],
+    "nextSteps": [
+      "Return the user to the initiating action and make retry explicit instead of auto-looping prompts."
+    ],
+    "references": [
+      {
+        "label": "EIP-1193 provider errors",
+        "url": "https://eips.ethereum.org/EIPS/eip-1193"
+      }
+    ],
+    "id": "wallet-modal-closed",
+    "title": "Wallet modal closed",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "User closed modal"
+      },
+      {
+        "type": "substring",
+        "value": "Modal closed by user"
+      },
+      {
+        "type": "substring",
+        "value": "User closed the modal"
+      }
+    ],
+    "summary": "The wallet or connector modal was closed before the request completed."
+  },
+  {
+    "layer": "provider",
+    "source": "wallet",
+    "category": "connectivity",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The user has no browser wallet installed, is in an unsupported browser, or the connector was initialized too early."
+    ],
+    "nextSteps": [
+      "Offer WalletConnect/embedded wallet fallback and initialize injected connectors after the page has loaded."
+    ],
+    "references": [
+      {
+        "label": "EIP-1193 provider errors",
+        "url": "https://eips.ethereum.org/EIPS/eip-1193"
+      }
+    ],
+    "id": "wallet-provider-not-found",
+    "title": "Wallet provider not found",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "No Ethereum provider was found"
+      },
+      {
+        "type": "substring",
+        "value": "No injected provider found"
+      },
+      {
+        "type": "substring",
+        "value": "ProviderNotFoundError"
+      }
+    ],
+    "summary": "The app expected an injected EIP-1193 wallet provider, but none was available."
+  },
+  {
+    "id": "wallet-unsupported-chain-id",
+    "title": "Unsupported chain id",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Unsupported chain id"
+      }
+    ],
+    "summary": "Wallet rejected the request because the chain id is unsupported.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The dapp requested a chain the wallet does not know or does not support.",
+      "The chain id is encoded in the wrong format."
+    ],
+    "nextSteps": [
+      "Check the target chain id and wallet support.",
+      "Use wallet_addEthereumChain before switching if the wallet supports it."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium"
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "wallet-user-denied-message-signature",
+    "title": "User denied message signature",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "user_action",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "User denied message signature"
+      }
+    ],
+    "summary": "Wallet returned: User denied message signature.",
+    "likelyCauses": [
+      "The user, wallet UI, or wallet request queue rejected the operation."
+    ],
+    "nextSteps": [
+      "Do not auto-retry; let the user intentionally retry after reviewing the prompt."
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "wallet-user-denied-transaction-signature",
+    "title": "User denied transaction signature",
+    "layer": "wallet",
+    "source": "wallet",
+    "category": "user_action",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "User denied transaction signature"
+      }
+    ],
+    "summary": "Wallet returned: User denied transaction signature.",
+    "likelyCauses": [
+      "The user, wallet UI, or wallet request queue rejected the operation."
+    ],
+    "nextSteps": [
+      "Do not auto-retry; let the user intentionally retry after reviewing the prompt."
+    ]
+  }
+]

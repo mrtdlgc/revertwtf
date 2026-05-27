@@ -1,0 +1,1962 @@
+[
+  {
+    "id": "chainflip-already-running",
+    "title": "Chainflip ETH contracts: AlreadyRunning",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe4455ead"
+      }
+    ],
+    "summary": "Chainflip ETH contracts custom error AlreadyRunning().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with AlreadyRunning, a Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition.",
+      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Chainflip ETH contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/interfaces/IMulticall.sol"
+      }
+    ],
+    "examples": [
+      "0xe4455ead // AlreadyRunning()"
+    ]
+  },
+  {
+    "id": "chainflip-call-failed-uint256-bytes",
+    "title": "Chainflip ETH contracts: CallFailed",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5c0dee5d"
+      }
+    ],
+    "summary": "Chainflip ETH contracts custom error CallFailed(uint256,bytes).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with CallFailed, a Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition.",
+      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Chainflip ETH contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/interfaces/IMulticall.sol"
+      }
+    ],
+    "examples": [
+      "0x5c0dee5d // CallFailed(uint256,bytes)"
+    ]
+  },
+  {
+    "id": "chainflip-transfer-failed",
+    "title": "Chainflip ETH contracts: TransferFailed",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x90b8ec18"
+      }
+    ],
+    "summary": "Chainflip ETH contracts custom error TransferFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with TransferFailed, a Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition.",
+      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Chainflip ETH contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/Multicall.sol"
+      }
+    ],
+    "examples": [
+      "0x90b8ec18 // TransferFailed()"
+    ]
+  },
+  {
+    "id": "chainflip-reason-addr-holder-not-the-governor-c109f496",
+    "title": "Chainflip ETH contracts: AddrHolder: not the governor",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AddrHolder: not the governor['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: AddrHolder: not the governor.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/AddressHolder.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: AddrHolder: not the governor"
+    ]
+  },
+  {
+    "id": "chainflip-reason-cf-receiver-caller-not-chainflip-sender-2b8f7c8e",
+    "title": "Chainflip ETH contracts: CFReceiver: caller not Chainflip sender",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?CFReceiver: caller not Chainflip sender['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: CFReceiver: caller not Chainflip sender.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/abstract/CFReceiver.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: CFReceiver: caller not Chainflip sender"
+    ]
+  },
+  {
+    "id": "chainflip-reason-cf-receiver-caller-not-owner-039d8267",
+    "title": "Chainflip ETH contracts: CFReceiver: caller not owner",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?CFReceiver: caller not owner['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: CFReceiver: caller not owner.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/abstract/CFReceiver.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: CFReceiver: caller not owner"
+    ]
+  },
+  {
+    "id": "chainflip-reason-flip-not-issuer-dd9ef33b",
+    "title": "Chainflip ETH contracts: FLIP: not issuer",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?FLIP: not issuer['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: FLIP: not issuer.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/FLIP.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: FLIP: not issuer"
+    ]
+  },
+  {
+    "id": "chainflip-reason-gateway-a-pending-redemption-exists-7cdeb883",
+    "title": "Chainflip ETH contracts: Gateway: a pending redemption exists",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Gateway: a pending redemption exists['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Gateway: a pending redemption exists.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/StateChainGateway.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Gateway: a pending redemption exists"
+    ]
+  },
+  {
+    "id": "chainflip-reason-gateway-early-or-already-execd-ef52c27f",
+    "title": "Chainflip ETH contracts: Gateway: early or already execd",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Gateway: early or already execd['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Gateway: early or already execd.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/StateChainGateway.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Gateway: early or already execd"
+    ]
+  },
+  {
+    "id": "chainflip-reason-gateway-expiry-time-too-soon-9444bbf7",
+    "title": "Chainflip ETH contracts: Gateway: expiry time too soon",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Gateway: expiry time too soon['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Gateway: expiry time too soon.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/StateChainGateway.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Gateway: expiry time too soon"
+    ]
+  },
+  {
+    "id": "chainflip-reason-gateway-flip-address-already-set-f657a30a",
+    "title": "Chainflip ETH contracts: Gateway: Flip address already set",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Gateway: Flip address already set['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Gateway: Flip address already set.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/StateChainGateway.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Gateway: Flip address already set"
+    ]
+  },
+  {
+    "id": "chainflip-reason-gateway-flip-not-set-e54935f8",
+    "title": "Chainflip ETH contracts: Gateway: Flip not set",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Gateway: Flip not set['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Gateway: Flip not set.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/StateChainGateway.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Gateway: Flip not set"
+    ]
+  },
+  {
+    "id": "chainflip-reason-gateway-not-enough-funds-335c00ce",
+    "title": "Chainflip ETH contracts: Gateway: not enough funds",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Gateway: not enough funds['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Gateway: not enough funds.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/StateChainGateway.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Gateway: not enough funds"
+    ]
+  },
+  {
+    "id": "chainflip-reason-gateway-not-executor-f7a9f446",
+    "title": "Chainflip ETH contracts: Gateway: not executor",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Gateway: not executor['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Gateway: not executor.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/StateChainGateway.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Gateway: not executor"
+    ]
+  },
+  {
+    "id": "chainflip-reason-gateway-old-flip-supply-update-21fd7fcc",
+    "title": "Chainflip ETH contracts: Gateway: old FLIP supply update",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Gateway: old FLIP supply update['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Gateway: old FLIP supply update.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/StateChainGateway.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Gateway: old FLIP supply update"
+    ]
+  },
+  {
+    "id": "chainflip-reason-gateway-wrong-flip-ref-0dac784f",
+    "title": "Chainflip ETH contracts: Gateway: wrong FLIP ref",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Gateway: wrong FLIP ref['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Gateway: wrong FLIP ref.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/StateChainGateway.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Gateway: wrong FLIP ref"
+    ]
+  },
+  {
+    "id": "chainflip-reason-governance-community-guard-disabled-8783796b",
+    "title": "Chainflip ETH contracts: Governance: community guard disabled",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Governance: community guard disabled['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Governance: community guard disabled.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/GovernanceCommunityGuarded.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Governance: community guard disabled"
+    ]
+  },
+  {
+    "id": "chainflip-reason-governance-community-guard-enabled-4c17fe76",
+    "title": "Chainflip ETH contracts: Governance: community guard enabled",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Governance: community guard enabled['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Governance: community guard enabled.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/GovernanceCommunityGuarded.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Governance: community guard enabled"
+    ]
+  },
+  {
+    "id": "chainflip-reason-governance-not-community-key-bb84e646",
+    "title": "Chainflip ETH contracts: Governance: not Community Key",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Governance: not Community Key['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Governance: not Community Key.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/GovernanceCommunityGuarded.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Governance: not Community Key"
+    ]
+  },
+  {
+    "id": "chainflip-reason-governance-not-governor-3d2b3551",
+    "title": "Chainflip ETH contracts: Governance: not governor",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Governance: not governor['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Governance: not governor.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/GovernanceCommunityGuarded.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Governance: not governor"
+    ]
+  },
+  {
+    "id": "chainflip-reason-governance-not-suspended-2ae75d9f",
+    "title": "Chainflip ETH contracts: Governance: not suspended",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Governance: not suspended['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Governance: not suspended.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/GovernanceCommunityGuarded.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Governance: not suspended"
+    ]
+  },
+  {
+    "id": "chainflip-reason-governance-suspended-cf30cfbe",
+    "title": "Chainflip ETH contracts: Governance: suspended",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Governance: suspended['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Governance: suspended.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/GovernanceCommunityGuarded.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Governance: suspended"
+    ]
+  },
+  {
+    "id": "chainflip-reason-key-manager-nonce-already-used-789c9070",
+    "title": "Chainflip ETH contracts: KeyManager: nonce already used",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?KeyManager: nonce already used['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: KeyManager: nonce already used.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/KeyManager.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: KeyManager: nonce already used"
+    ]
+  },
+  {
+    "id": "chainflip-reason-key-manager-not-community-key-aabbf652",
+    "title": "Chainflip ETH contracts: KeyManager: not Community Key",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?KeyManager: not Community Key['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: KeyManager: not Community Key.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/KeyManager.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: KeyManager: not Community Key"
+    ]
+  },
+  {
+    "id": "chainflip-reason-key-manager-not-enough-time-1e11db85",
+    "title": "Chainflip ETH contracts: KeyManager: not enough time",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?KeyManager: not enough time['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: KeyManager: not enough time.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/KeyManager.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: KeyManager: not enough time"
+    ]
+  },
+  {
+    "id": "chainflip-reason-key-manager-not-governor-0ebb1796",
+    "title": "Chainflip ETH contracts: KeyManager: not governor",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?KeyManager: not governor['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: KeyManager: not governor.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/KeyManager.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: KeyManager: not governor"
+    ]
+  },
+  {
+    "id": "chainflip-reason-key-manager-sig-invalid-a10f1a61",
+    "title": "Chainflip ETH contracts: KeyManager: Sig invalid",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?KeyManager: Sig invalid['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: KeyManager: Sig invalid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/KeyManager.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: KeyManager: Sig invalid"
+    ]
+  },
+  {
+    "id": "chainflip-reason-multicall-not-chainflip-vault-6817be61",
+    "title": "Chainflip ETH contracts: Multicall: not Chainflip Vault",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Multicall: not Chainflip Vault['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Multicall: not Chainflip Vault.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/Multicall.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Multicall: not Chainflip Vault"
+    ]
+  },
+  {
+    "id": "chainflip-reason-no-zero-inputs-allowed-b5287e97",
+    "title": "Chainflip ETH contracts: No zero inputs allowed",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?No zero inputs allowed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: No zero inputs allowed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/abstract/SchnorrSECP256K1.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: No zero inputs allowed"
+    ]
+  },
+  {
+    "id": "chainflip-reason-public-key-x-half-q-05f76833",
+    "title": "Chainflip ETH contracts: Public-key x >= HALF_Q",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Public-key x >= HALF_Q['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Public-key x >= HALF_Q.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/abstract/SchnorrSECP256K1.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Public-key x >= HALF_Q"
+    ]
+  },
+  {
+    "id": "chainflip-reason-schnorr-recovered-address-is-0-18ab146e",
+    "title": "Chainflip ETH contracts: Schnorr: recoveredAddress is 0",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Schnorr: recoveredAddress is 0['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Schnorr: recoveredAddress is 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/abstract/SchnorrSECP256K1.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Schnorr: recoveredAddress is 0"
+    ]
+  },
+  {
+    "id": "chainflip-reason-sc-utils-caller-not-cf-vault-6f2a4f5f",
+    "title": "Chainflip ETH contracts: ScUtils: caller not Cf Vault",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ScUtils: caller not Cf Vault['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: ScUtils: caller not Cf Vault.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/ScUtils.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: ScUtils: caller not Cf Vault"
+    ]
+  },
+  {
+    "id": "chainflip-reason-sc-utils-flip-not-set-de683f08",
+    "title": "Chainflip ETH contracts: ScUtils: FLIP not set",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ScUtils: FLIP not set['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: ScUtils: FLIP not set.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/ScUtils.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: ScUtils: FLIP not set"
+    ]
+  },
+  {
+    "id": "chainflip-reason-sc-utils-token-not-flip-3c875765",
+    "title": "Chainflip ETH contracts: ScUtils: token not FLIP",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ScUtils: token not FLIP['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: ScUtils: token not FLIP.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/ScUtils.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: ScUtils: token not FLIP"
+    ]
+  },
+  {
+    "id": "chainflip-reason-sc-utils-value-missmatch-81c30707",
+    "title": "Chainflip ETH contracts: ScUtils: value missmatch",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ScUtils: value missmatch['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: ScUtils: value missmatch.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/ScUtils.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: ScUtils: value missmatch"
+    ]
+  },
+  {
+    "id": "chainflip-reason-sc-utils-value-not-zero-66c12a59",
+    "title": "Chainflip ETH contracts: ScUtils: value not zero",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ScUtils: value not zero['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: ScUtils: value not zero.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/ScUtils.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: ScUtils: value not zero"
+    ]
+  },
+  {
+    "id": "chainflip-reason-shared-address-input-is-empty-5eef878e",
+    "title": "Chainflip ETH contracts: Shared: address input is empty",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Shared: address input is empty['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Shared: address input is empty.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/abstract/Shared.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Shared: address input is empty"
+    ]
+  },
+  {
+    "id": "chainflip-reason-shared-bytes32-input-is-empty-fa504926",
+    "title": "Chainflip ETH contracts: Shared: bytes32 input is empty",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Shared: bytes32 input is empty['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Shared: bytes32 input is empty.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/abstract/Shared.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Shared: bytes32 input is empty"
+    ]
+  },
+  {
+    "id": "chainflip-reason-shared-pub-key-x-is-empty-4db34f42",
+    "title": "Chainflip ETH contracts: Shared: pubKeyX is empty",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Shared: pubKeyX is empty['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Shared: pubKeyX is empty.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/abstract/Shared.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Shared: pubKeyX is empty"
+    ]
+  },
+  {
+    "id": "chainflip-reason-shared-uint-input-is-empty-cf0f8119",
+    "title": "Chainflip ETH contracts: Shared: uint input is empty",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Shared: uint input is empty['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Shared: uint input is empty.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/abstract/Shared.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Shared: uint input is empty"
+    ]
+  },
+  {
+    "id": "chainflip-reason-sig-must-be-reduced-modulo-q-f7b1f05f",
+    "title": "Chainflip ETH contracts: Sig must be reduced modulo Q",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Sig must be reduced modulo Q['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Sig must be reduced modulo Q.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/abstract/SchnorrSECP256K1.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Sig must be reduced modulo Q"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vault-insufficient-gas-2ec6c1c1",
+    "title": "Chainflip ETH contracts: Vault: insufficient gas",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vault: insufficient gas['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vault: insufficient gas.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/Vault.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vault: insufficient gas"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vault-not-enough-time-16e170da",
+    "title": "Chainflip ETH contracts: Vault: not enough time",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vault: not enough time['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vault: not enough time.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/Vault.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vault: not enough time"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vault-transfer-fallback-failed-f0224475",
+    "title": "Chainflip ETH contracts: Vault: transfer fallback failed",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vault: transfer fallback failed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vault: transfer fallback failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/Vault.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vault: transfer fallback failed"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vesting-beneficiary-not-transferrable-c2e3d37c",
+    "title": "Chainflip ETH contracts: Vesting: beneficiary not transferrable",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vesting: beneficiary not transferrable['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vesting: beneficiary not transferrable.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/TokenVestingStaking.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vesting: beneficiary not transferrable"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vesting-cliff-before-current-time-137d6ae4",
+    "title": "Chainflip ETH contracts: Vesting: cliff before current time",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vesting: cliff before current time['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vesting: cliff before current time.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/TokenVestingNoStaking.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vesting: cliff before current time"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vesting-cliff-after-end-b1103928",
+    "title": "Chainflip ETH contracts: Vesting: cliff_ after end_",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vesting: cliff_ after end_['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vesting: cliff_ after end_.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/TokenVestingNoStaking.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vesting: cliff_ after end_"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vesting-no-tokens-are-due-e716683a",
+    "title": "Chainflip ETH contracts: Vesting: no tokens are due",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vesting: no tokens are due['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vesting: no tokens are due.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/TokenVestingStaking.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vesting: no tokens are due"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vesting-not-started-59dd382b",
+    "title": "Chainflip ETH contracts: Vesting: not started",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vesting: not started['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vesting: not started.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/TokenVestingStaking.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vesting: not started"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vesting-not-the-beneficiary-eea62130",
+    "title": "Chainflip ETH contracts: Vesting: not the beneficiary",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vesting: not the beneficiary['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vesting: not the beneficiary.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/TokenVestingStaking.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vesting: not the beneficiary"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vesting-not-the-revoker-6bb847b9",
+    "title": "Chainflip ETH contracts: Vesting: not the revoker",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vesting: not the revoker['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vesting: not the revoker.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/TokenVestingStaking.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vesting: not the revoker"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vesting-start-before-current-time-ba9a195d",
+    "title": "Chainflip ETH contracts: Vesting: start before current time",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vesting: start before current time['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vesting: start before current time.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/TokenVestingStaking.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vesting: start before current time"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vesting-start-after-end-ee6f6abe",
+    "title": "Chainflip ETH contracts: Vesting: start_ after end_",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vesting: start_ after end_['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vesting: start_ after end_.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/TokenVestingStaking.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vesting: start_ after end_"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vesting-token-not-revoked-5c3c7a54",
+    "title": "Chainflip ETH contracts: Vesting: token not revoked",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vesting: token not revoked['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vesting: token not revoked.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/TokenVestingStaking.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vesting: token not revoked"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vesting-token-revoked-b068074a",
+    "title": "Chainflip ETH contracts: Vesting: token revoked",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vesting: token revoked['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vesting: token revoked.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/TokenVestingStaking.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vesting: token revoked"
+    ]
+  },
+  {
+    "id": "chainflip-reason-vesting-vesting-expired-84e7a177",
+    "title": "Chainflip ETH contracts: Vesting: vesting expired",
+    "layer": "protocol",
+    "source": "chainflip",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Vesting: vesting expired['\"]?\\s*$"
+      }
+    ],
+    "summary": "Chainflip ETH contracts revert reason string: Vesting: vesting expired.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A Chainflip vault, state chain gateway, key manager, token transfer, swap, or cross-chain message precondition failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check the Chainflip ETH contracts source precondition and retry only after changing transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Chainflip ETH contracts source",
+        "url": "https://github.com/chainflip-io/chainflip-eth-contracts/blob/master/contracts/utils/TokenVestingStaking.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Vesting: vesting expired"
+    ]
+  }
+]

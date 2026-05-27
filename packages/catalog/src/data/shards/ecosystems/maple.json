@@ -1,0 +1,212 @@
+[
+  {
+    "id": "maple-erc20-approve-failed",
+    "title": "Maple V2: erc20_approve failed",
+    "layer": "protocol",
+    "source": "maple",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?erc20_approve failed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Maple V2 revert reason string: erc20_approve failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Maple V2 GitHub repository",
+        "url": "https://github.com/maple-labs/maple-core-v2/blob/main/contracts/ProtocolActions.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: erc20_approve failed"
+    ]
+  },
+  {
+    "id": "maple-erc20-transfer-failed",
+    "title": "Maple V2: erc20_transfer failed",
+    "layer": "protocol",
+    "source": "maple",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?erc20_transfer failed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Maple V2 revert reason string: erc20_transfer failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Maple V2 GitHub repository",
+        "url": "https://github.com/maple-labs/maple-core-v2/blob/main/contracts/ProtocolActions.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: erc20_transfer failed"
+    ]
+  },
+  {
+    "id": "maple-invalid-action-type",
+    "title": "Maple V2: INVALID_ACTION_TYPE",
+    "layer": "protocol",
+    "source": "maple",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?INVALID_ACTION_TYPE['\"]?\\s*$"
+      }
+    ],
+    "summary": "Maple V2 revert reason string: INVALID_ACTION_TYPE.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Maple V2 GitHub repository",
+        "url": "https://github.com/maple-labs/maple-core-v2/blob/main/scenarios/Scenarios.t.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: INVALID_ACTION_TYPE"
+    ]
+  },
+  {
+    "id": "maple-not-supported-for-ft-loan",
+    "title": "Maple V2: NOT_SUPPORTED_FOR_FT_LOAN",
+    "layer": "protocol",
+    "source": "maple",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?NOT_SUPPORTED_FOR_FT_LOAN['\"]?\\s*$"
+      }
+    ],
+    "summary": "Maple V2 revert reason string: NOT_SUPPORTED_FOR_FT_LOAN.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Maple V2 GitHub repository",
+        "url": "https://github.com/maple-labs/maple-core-v2/blob/main/contracts/ProtocolActions.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: NOT_SUPPORTED_FOR_FT_LOAN"
+    ]
+  },
+  {
+    "id": "maple-not-supported-for-ot-loan",
+    "title": "Maple V2: NOT_SUPPORTED_FOR_OT_LOAN",
+    "layer": "protocol",
+    "source": "maple",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?NOT_SUPPORTED_FOR_OT_LOAN['\"]?\\s*$"
+      }
+    ],
+    "summary": "Maple V2 revert reason string: NOT_SUPPORTED_FOR_OT_LOAN.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Maple V2 GitHub repository",
+        "url": "https://github.com/maple-labs/maple-core-v2/blob/main/contracts/ProtocolActions.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: NOT_SUPPORTED_FOR_OT_LOAN"
+    ]
+  },
+  {
+    "id": "maple-unsupported",
+    "title": "Maple V2: UNSUPPORTED",
+    "layer": "protocol",
+    "source": "maple",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?UNSUPPORTED['\"]?\\s*$"
+      }
+    ],
+    "summary": "Maple V2 revert reason string: UNSUPPORTED.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Maple V2 GitHub repository",
+        "url": "https://github.com/maple-labs/maple-core-v2/blob/main/scenarios/Scenarios.t.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: UNSUPPORTED"
+    ]
+  }
+]

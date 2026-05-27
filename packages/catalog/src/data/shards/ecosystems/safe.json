@@ -1,0 +1,2137 @@
+[
+  {
+    "id": "safe-account-doesn-t-contain-code",
+    "title": "Safe smart account: Account doesn't contain code",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Account doesn't contain code['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Account doesn't contain code.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: Account doesn't contain code"
+    ]
+  },
+  {
+    "id": "safe-could-not-deploy-contract",
+    "title": "Safe smart account: Could not deploy contract",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Could not deploy contract['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Could not deploy contract.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: Could not deploy contract"
+    ]
+  },
+  {
+    "id": "safe-could-not-get-nonce",
+    "title": "Safe smart account: Could not get nonce",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Could not get nonce['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Could not get nonce.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account GitHub repository",
+        "url": "https://github.com/safe-fndn/safe-smart-account/blob/main/contracts/examples/guards/DebugTransactionGuard.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Could not get nonce"
+    ]
+  },
+  {
+    "id": "safe-create2-call-failed",
+    "title": "Safe smart account: Create2 call failed",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Create2 call failed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Create2 call failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: Create2 call failed"
+    ]
+  },
+  {
+    "id": "safe-fallback-handler-is-not-a-contract",
+    "title": "Safe smart account: fallbackHandler is not a contract",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?fallbackHandler is not a contract['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: fallbackHandler is not a contract.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: fallbackHandler is not a contract"
+    ]
+  },
+  {
+    "id": "safe-fallback-handler-is-not-deployed",
+    "title": "Safe smart account: fallback handler is not deployed",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?fallback handler is not deployed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: fallback handler is not deployed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: fallback handler is not deployed"
+    ]
+  },
+  {
+    "id": "safe-gs",
+    "title": "Safe smart account: GS***",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS\\*\\*\\*['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS***.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account GitHub repository",
+        "url": "https://github.com/safe-fndn/safe-smart-account/blob/main/contracts/common/ErrorMessage.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS***"
+    ]
+  },
+  {
+    "id": "safe-gs000",
+    "title": "Safe smart account: GS000",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS000['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS000.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS000"
+    ]
+  },
+  {
+    "id": "safe-gs001",
+    "title": "Safe smart account: GS001",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS001['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS001.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS001"
+    ]
+  },
+  {
+    "id": "safe-gs002",
+    "title": "Safe smart account: GS002",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS002['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS002.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS002"
+    ]
+  },
+  {
+    "id": "safe-gs010",
+    "title": "Safe smart account: GS010",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS010['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS010.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS010"
+    ]
+  },
+  {
+    "id": "safe-gs011",
+    "title": "Safe smart account: GS011",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS011['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS011.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS011"
+    ]
+  },
+  {
+    "id": "safe-gs012",
+    "title": "Safe smart account: GS012",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS012['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS012.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS012"
+    ]
+  },
+  {
+    "id": "safe-gs013",
+    "title": "Safe smart account: GS013",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS013['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS013.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS013"
+    ]
+  },
+  {
+    "id": "safe-gs020",
+    "title": "Safe smart account: GS020",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS020['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS020.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS020"
+    ]
+  },
+  {
+    "id": "safe-gs021",
+    "title": "Safe smart account: GS021",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS021['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS021.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS021"
+    ]
+  },
+  {
+    "id": "safe-gs022",
+    "title": "Safe smart account: GS022",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS022['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS022.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS022"
+    ]
+  },
+  {
+    "id": "safe-gs023",
+    "title": "Safe smart account: GS023",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS023['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS023.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS023"
+    ]
+  },
+  {
+    "id": "safe-gs024",
+    "title": "Safe smart account: GS024",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS024['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS024.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS024"
+    ]
+  },
+  {
+    "id": "safe-gs025",
+    "title": "Safe smart account: GS025",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS025['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS025.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS025"
+    ]
+  },
+  {
+    "id": "safe-gs026",
+    "title": "Safe smart account: GS026",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS026['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS026.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS026"
+    ]
+  },
+  {
+    "id": "safe-gs027",
+    "title": "Safe smart account: GS027",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS027['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS027.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS027"
+    ]
+  },
+  {
+    "id": "safe-gs030",
+    "title": "Safe smart account: GS030",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS030['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS030.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS030"
+    ]
+  },
+  {
+    "id": "safe-gs031",
+    "title": "Safe smart account: GS031",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS031['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS031.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS031"
+    ]
+  },
+  {
+    "id": "safe-gs100",
+    "title": "Safe smart account: GS100",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS100['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS100.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS100"
+    ]
+  },
+  {
+    "id": "safe-gs101",
+    "title": "Safe smart account: GS101",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS101['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS101.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS101"
+    ]
+  },
+  {
+    "id": "safe-gs102",
+    "title": "Safe smart account: GS102",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS102['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS102.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS102"
+    ]
+  },
+  {
+    "id": "safe-gs103",
+    "title": "Safe smart account: GS103",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS103['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS103.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS103"
+    ]
+  },
+  {
+    "id": "safe-gs104",
+    "title": "Safe smart account: GS104",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS104['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS104.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS104"
+    ]
+  },
+  {
+    "id": "safe-gs105",
+    "title": "Safe smart account: GS105",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS105['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS105.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS105"
+    ]
+  },
+  {
+    "id": "safe-gs106",
+    "title": "Safe smart account: GS106",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS106['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS106.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS106"
+    ]
+  },
+  {
+    "id": "safe-gs200",
+    "title": "Safe smart account: GS200",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS200['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS200.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS200"
+    ]
+  },
+  {
+    "id": "safe-gs201",
+    "title": "Safe smart account: GS201",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS201['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS201.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS201"
+    ]
+  },
+  {
+    "id": "safe-gs202",
+    "title": "Safe smart account: GS202",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS202['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS202.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS202"
+    ]
+  },
+  {
+    "id": "safe-gs203",
+    "title": "Safe smart account: GS203",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS203['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS203.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS203"
+    ]
+  },
+  {
+    "id": "safe-gs204",
+    "title": "Safe smart account: GS204",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS204['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS204.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS204"
+    ]
+  },
+  {
+    "id": "safe-gs205",
+    "title": "Safe smart account: GS205",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS205['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS205.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS205"
+    ]
+  },
+  {
+    "id": "safe-gs300",
+    "title": "Safe smart account: GS300",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS300['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS300.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS300"
+    ]
+  },
+  {
+    "id": "safe-gs400",
+    "title": "Safe smart account: GS400",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?GS400['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: GS400.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: GS400"
+    ]
+  },
+  {
+    "id": "safe-hash-not-approved",
+    "title": "Safe smart account: Hash not approved",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Hash not approved['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Hash not approved.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: Hash not approved"
+    ]
+  },
+  {
+    "id": "safe-interface-id-mismatch",
+    "title": "Safe smart account: interface id mismatch",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?interface id mismatch['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: interface id mismatch.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account GitHub repository",
+        "url": "https://github.com/safe-fndn/safe-smart-account/blob/main/contracts/handler/extensible/ERC165Handler.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: interface id mismatch"
+    ]
+  },
+  {
+    "id": "safe-invalid-calldata-length",
+    "title": "Safe smart account: Invalid calldata length",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid calldata length['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Invalid calldata length.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account GitHub repository",
+        "url": "https://github.com/safe-fndn/safe-smart-account/blob/main/contracts/handler/HandlerContext.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid calldata length"
+    ]
+  },
+  {
+    "id": "safe-invalid-interface-id",
+    "title": "Safe smart account: invalid interface id",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?invalid interface id['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: invalid interface id.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account GitHub repository",
+        "url": "https://github.com/safe-fndn/safe-smart-account/blob/main/contracts/handler/extensible/ERC165Handler.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: invalid interface id"
+    ]
+  },
+  {
+    "id": "safe-invalid-method-selector",
+    "title": "Safe smart account: invalid method selector",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?invalid method selector['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: invalid method selector.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account GitHub repository",
+        "url": "https://github.com/safe-fndn/safe-smart-account/blob/main/contracts/handler/extensible/FallbackHandler.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: invalid method selector"
+    ]
+  },
+  {
+    "id": "safe-invalid-singleton-address-provided",
+    "title": "Safe smart account: Invalid singleton address provided",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid singleton address provided['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Invalid singleton address provided.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid singleton address provided"
+    ]
+  },
+  {
+    "id": "safe-l2-singleton-must-match-current-version-singleton",
+    "title": "Safe smart account: L2 singleton must match current version singleton",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?L2 singleton must match current version singleton['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: L2 singleton must match current version singleton.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: L2 singleton must match current version singleton"
+    ]
+  },
+  {
+    "id": "safe-method-handler-not-set",
+    "title": "Safe smart account: method handler not set",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?method handler not set['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: method handler not set.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account GitHub repository",
+        "url": "https://github.com/safe-fndn/safe-smart-account/blob/main/contracts/handler/extensible/FallbackHandler.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: method handler not set"
+    ]
+  },
+  {
+    "id": "safe-migration-should-only-be-called-via-delegatecall",
+    "title": "Safe smart account: Migration should only be called via delegatecall",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Migration should only be called via delegatecall['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Migration should only be called via delegatecall.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: Migration should only be called via delegatecall"
+    ]
+  },
+  {
+    "id": "safe-msg-sender-is-not-allowed-to-exec",
+    "title": "Safe smart account: msg sender is not allowed to exec",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?msg sender is not allowed to exec['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: msg sender is not allowed to exec.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account GitHub repository",
+        "url": "https://github.com/safe-fndn/safe-smart-account/blob/main/contracts/examples/guards/OnlyOwnersGuard.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: msg sender is not allowed to exec"
+    ]
+  },
+  {
+    "id": "safe-multi-send-should-only-be-called-via-delegatecall",
+    "title": "Safe smart account: MultiSend should only be called via delegatecall",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?MultiSend should only be called via delegatecall['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: MultiSend should only be called via delegatecall.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: MultiSend should only be called via delegatecall"
+    ]
+  },
+  {
+    "id": "safe-not-a-fallback-call",
+    "title": "Safe smart account: not a fallback call",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not a fallback call['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: not a fallback call.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account GitHub repository",
+        "url": "https://github.com/safe-fndn/safe-smart-account/blob/main/contracts/handler/HandlerContext.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: not a fallback call"
+    ]
+  },
+  {
+    "id": "safe-only-safe-can-call-this-method",
+    "title": "Safe smart account: only safe can call this method",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?only safe can call this method['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: only safe can call this method.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account GitHub repository",
+        "url": "https://github.com/safe-fndn/safe-smart-account/blob/main/contracts/handler/extensible/ExtensibleBase.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: only safe can call this method"
+    ]
+  },
+  {
+    "id": "safe-reentrancy-detected",
+    "title": "Safe smart account: Reentrancy detected",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Reentrancy detected['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Reentrancy detected.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account GitHub repository",
+        "url": "https://github.com/safe-fndn/safe-smart-account/blob/main/contracts/examples/guards/ReentrancyTransactionGuard.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Reentrancy detected"
+    ]
+  },
+  {
+    "id": "safe-safe-is-already-using-the-singleton",
+    "title": "Safe smart account: Safe is already using the singleton",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Safe is already using the singleton['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Safe is already using the singleton.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: Safe is already using the singleton"
+    ]
+  },
+  {
+    "id": "safe-safe-must-have-not-executed-any-tx",
+    "title": "Safe smart account: Safe must have not executed any tx",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Safe must have not executed any tx['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Safe must have not executed any tx.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: Safe must have not executed any tx"
+    ]
+  },
+  {
+    "id": "safe-safe-singleton-is-not-deployed",
+    "title": "Safe smart account: Safe Singleton is not deployed",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Safe Singleton is not deployed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Safe Singleton is not deployed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: Safe Singleton is not deployed"
+    ]
+  },
+  {
+    "id": "safe-safe-singleton-l2-is-not-deployed",
+    "title": "Safe smart account: Safe Singleton (L2) is not deployed",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Safe Singleton \\(L2\\) is not deployed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Safe Singleton (L2) is not deployed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: Safe Singleton (L2) is not deployed"
+    ]
+  },
+  {
+    "id": "safe-safe-to-l2-setup-should-only-be-called-via-delegatecall",
+    "title": "Safe smart account: SafeToL2Setup should only be called via delegatecall",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?SafeToL2Setup should only be called via delegatecall['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: SafeToL2Setup should only be called via delegatecall.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: SafeToL2Setup should only be called via delegatecall"
+    ]
+  },
+  {
+    "id": "safe-simulate-tx-accessor-should-only-be-called-via-delegatecall",
+    "title": "Safe smart account: SimulateTxAccessor should only be called via delegatecall",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?SimulateTxAccessor should only be called via delegatecall['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: SimulateTxAccessor should only be called via delegatecall.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: SimulateTxAccessor should only be called via delegatecall"
+    ]
+  },
+  {
+    "id": "safe-singleton-contract-not-deployed",
+    "title": "Safe smart account: Singleton contract not deployed",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Singleton contract not deployed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: Singleton contract not deployed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account reference",
+        "url": "https://docs.safe.global/reference-smart-account/overview"
+      }
+    ],
+    "examples": [
+      "execution reverted: Singleton contract not deployed"
+    ]
+  },
+  {
+    "id": "safe-this-call-is-restricted",
+    "title": "Safe smart account: This call is restricted",
+    "layer": "protocol",
+    "source": "safe",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?This call is restricted['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe smart account revert reason string: This call is restricted.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe smart account GitHub repository",
+        "url": "https://github.com/safe-fndn/safe-smart-account/blob/main/contracts/examples/guards/DelegateCallTransactionGuard.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: This call is restricted"
+    ]
+  }
+]

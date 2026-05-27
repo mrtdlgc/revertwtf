@@ -1,0 +1,2907 @@
+[
+  {
+    "id": "zerodev-already-initialized",
+    "title": "ZeroDev Kernel: already initialized",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?already initialized['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: already initialized.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/Kernel.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: already initialized"
+    ]
+  },
+  {
+    "id": "zerodev-already-initialized-address",
+    "title": "ZeroDev Kernel: AlreadyInitialized",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x93360fbf"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error AlreadyInitialized(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AlreadyInitialized custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/interfaces/IERC7579Modules.sol"
+      }
+    ],
+    "examples": [
+      "0x93360fbf // AlreadyInitialized(address)"
+    ]
+  },
+  {
+    "id": "zerodev-already-voted",
+    "title": "ZeroDev Kernel: Already voted",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Already voted['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Already voted.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/validator/WeightedECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Already voted"
+    ]
+  },
+  {
+    "id": "zerodev-delegate-and-revert-bool-bytes",
+    "title": "ZeroDev Kernel: DelegateAndRevert",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x99410554"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error DelegateAndRevert(bool,bytes).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DelegateAndRevert custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/interfaces/IEntryPoint.sol"
+      }
+    ],
+    "examples": [
+      "0x99410554 // DelegateAndRevert(bool,bytes)"
+    ]
+  },
+  {
+    "id": "zerodev-deployment-failed",
+    "title": "ZeroDev Kernel: DeploymentFailed",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x30116425"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error DeploymentFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DeploymentFailed custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/factory/AdminLessERC1967Factory.sol"
+      }
+    ],
+    "examples": [
+      "0x30116425 // DeploymentFailed()"
+    ]
+  },
+  {
+    "id": "zerodev-ecdsavalidator-sender-is-not-owner",
+    "title": "ZeroDev Kernel: ECDSAValidator: sender is not owner",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ECDSAValidator: sender is not owner['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: ECDSAValidator: sender is not owner.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/validator/ECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: ECDSAValidator: sender is not owner"
+    ]
+  },
+  {
+    "id": "zerodev-empty-callers",
+    "title": "ZeroDev 7579 Plugins: EmptyCallers",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbf9346a7"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error EmptyCallers().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the EmptyCallers custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/policies/CallerPolicy.sol"
+      }
+    ],
+    "examples": [
+      "0xbf9346a7 // EmptyCallers()"
+    ]
+  },
+  {
+    "id": "zerodev-empty-guardians",
+    "title": "ZeroDev 7579 Plugins: EmptyGuardians",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xda10a1cd"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error EmptyGuardians().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the EmptyGuardians custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/WeightedECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0xda10a1cd // EmptyGuardians()"
+    ]
+  },
+  {
+    "id": "zerodev-enable-not-approved",
+    "title": "ZeroDev Kernel: EnableNotApproved",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc48cf8ee"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error EnableNotApproved().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the EnableNotApproved custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0xc48cf8ee // EnableNotApproved()"
+    ]
+  },
+  {
+    "id": "zerodev-entrypoint-not-deployed",
+    "title": "ZeroDev Kernel: entrypoint not deployed",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?entrypoint not deployed['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: entrypoint not deployed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/sdk/TestBase/erc4337Util.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: entrypoint not deployed"
+    ]
+  },
+  {
+    "id": "zerodev-execution-failed",
+    "title": "ZeroDev Kernel: ExecutionFailed",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xacfdb444"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error ExecutionFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ExecutionFailed custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/utils/ExecLib.sol"
+      }
+    ],
+    "examples": [
+      "0xacfdb444 // ExecutionFailed()"
+    ]
+  },
+  {
+    "id": "zerodev-execution-reverted",
+    "title": "ZeroDev Kernel: ExecutionReverted",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf21e646b"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error ExecutionReverted().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ExecutionReverted custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/Kernel.sol"
+      }
+    ],
+    "examples": [
+      "0xf21e646b // ExecutionReverted()"
+    ]
+  },
+  {
+    "id": "zerodev-failed-op-uint256-string",
+    "title": "ZeroDev Kernel: FailedOp",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x220266b6"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error FailedOp(uint256,string).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FailedOp custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/interfaces/IEntryPoint.sol"
+      }
+    ],
+    "examples": [
+      "0x220266b6 // FailedOp(uint256,string)"
+    ]
+  },
+  {
+    "id": "zerodev-failed-op-with-revert-uint256-string-bytes",
+    "title": "ZeroDev Kernel: FailedOpWithRevert",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x65c8fd4d"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error FailedOpWithRevert(uint256,string,bytes).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FailedOpWithRevert custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/interfaces/IEntryPoint.sol"
+      }
+    ],
+    "examples": [
+      "0x65c8fd4d // FailedOpWithRevert(uint256,string,bytes)"
+    ]
+  },
+  {
+    "id": "zerodev-guardian-already-enabled",
+    "title": "ZeroDev Kernel: Guardian already enabled",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Guardian already enabled['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Guardian already enabled.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/validator/WeightedECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Guardian already enabled"
+    ]
+  },
+  {
+    "id": "zerodev-guardian-already-enabled-2",
+    "title": "ZeroDev 7579 Plugins: GuardianAlreadyEnabled",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2043cfe5"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error GuardianAlreadyEnabled().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the GuardianAlreadyEnabled custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/WeightedECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0x2043cfe5 // GuardianAlreadyEnabled()"
+    ]
+  },
+  {
+    "id": "zerodev-guardian-cannot-be-0",
+    "title": "ZeroDev Kernel: Guardian cannot be 0",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Guardian cannot be 0['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Guardian cannot be 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/validator/WeightedECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Guardian cannot be 0"
+    ]
+  },
+  {
+    "id": "zerodev-guardian-cannot-be-self",
+    "title": "ZeroDev Kernel: Guardian cannot be self",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Guardian cannot be self['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Guardian cannot be self.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/validator/WeightedECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Guardian cannot be self"
+    ]
+  },
+  {
+    "id": "zerodev-guardian-cannot-be-self-2",
+    "title": "ZeroDev 7579 Plugins: GuardianCannotBeSelf",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6c371b13"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error GuardianCannotBeSelf().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the GuardianCannotBeSelf custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/WeightedECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0x6c371b13 // GuardianCannotBeSelf()"
+    ]
+  },
+  {
+    "id": "zerodev-guardian-not-enabled",
+    "title": "ZeroDev Kernel: Guardian not enabled",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Guardian not enabled['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Guardian not enabled.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/validator/WeightedECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Guardian not enabled"
+    ]
+  },
+  {
+    "id": "zerodev-initialize-error",
+    "title": "ZeroDev Kernel: InitializeError",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x90fcc612"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InitializeError().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InitializeError custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/factory/KernelFactory.sol"
+      }
+    ],
+    "examples": [
+      "0x90fcc612 // InitializeError()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-call-type",
+    "title": "ZeroDev Kernel: InvalidCallType",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x39d2eb55"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InvalidCallType().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidCallType custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/Kernel.sol"
+      }
+    ],
+    "examples": [
+      "0x39d2eb55 // InvalidCallType()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-caller",
+    "title": "ZeroDev Kernel: InvalidCaller",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x48f5c3ed"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InvalidCaller().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidCaller custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/Kernel.sol"
+      }
+    ],
+    "examples": [
+      "0x48f5c3ed // InvalidCaller()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-data-length",
+    "title": "ZeroDev 7579 Plugins: InvalidDataLength",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdfe93090"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error InvalidDataLength().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidDataLength custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/ECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0xdfe93090 // InvalidDataLength()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-delay",
+    "title": "ZeroDev 7579 Plugins: InvalidDelay",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4fbe5dba"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error InvalidDelay().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidDelay custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/policies/TimelockPolicy.sol"
+      }
+    ],
+    "examples": [
+      "0x4fbe5dba // InvalidDelay()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-executor",
+    "title": "ZeroDev Kernel: InvalidExecutor",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x710c9497"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InvalidExecutor().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidExecutor custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/Kernel.sol"
+      }
+    ],
+    "examples": [
+      "0x710c9497 // InvalidExecutor()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-expiration-period",
+    "title": "ZeroDev 7579 Plugins: InvalidExpirationPeriod",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xcd597e60"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error InvalidExpirationPeriod().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidExpirationPeriod custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/policies/TimelockPolicy.sol"
+      }
+    ],
+    "examples": [
+      "0xcd597e60 // InvalidExpirationPeriod()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-fallback",
+    "title": "ZeroDev Kernel: InvalidFallback",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5a93724d"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InvalidFallback().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidFallback custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/Kernel.sol"
+      }
+    ],
+    "examples": [
+      "0x5a93724d // InvalidFallback()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-mode",
+    "title": "ZeroDev Kernel: InvalidMode",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa0042b17"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InvalidMode().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidMode custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0xa0042b17 // InvalidMode()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-module-type",
+    "title": "ZeroDev Kernel: InvalidModuleType",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2125deae"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InvalidModuleType().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidModuleType custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/Kernel.sol"
+      }
+    ],
+    "examples": [
+      "0x2125deae // InvalidModuleType()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-nonce",
+    "title": "ZeroDev Kernel: InvalidNonce",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x756688fe"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InvalidNonce().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidNonce custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0x756688fe // InvalidNonce()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-public-key",
+    "title": "ZeroDev 7579 Plugins: InvalidPublicKey",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa2d0fee8"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error InvalidPublicKey().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidPublicKey custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/WebAuthnSigner.sol"
+      }
+    ],
+    "examples": [
+      "0xa2d0fee8 // InvalidPublicKey()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-selector",
+    "title": "ZeroDev Kernel: InvalidSelector",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7352d91c"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InvalidSelector().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidSelector custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/Kernel.sol"
+      }
+    ],
+    "examples": [
+      "0x7352d91c // InvalidSelector()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-selector-data",
+    "title": "ZeroDev Kernel: Invalid selectorData",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid selectorData['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Invalid selectorData.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid selectorData"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-selector-data-2",
+    "title": "ZeroDev Kernel: Invalid selector data",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid selector data['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Invalid selector data.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/sdk/TestBase/KernelTestBase.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid selector data"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-signature",
+    "title": "ZeroDev Kernel: InvalidSignature",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8baa579f"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InvalidSignature().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidSignature custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0x8baa579f // InvalidSignature()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-target-address-address",
+    "title": "ZeroDev Kernel: InvalidTargetAddress",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x78bedf4d"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InvalidTargetAddress(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidTargetAddress custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/interfaces/IERC7579Modules.sol"
+      }
+    ],
+    "examples": [
+      "0x78bedf4d // InvalidTargetAddress(address)"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-validation-type",
+    "title": "ZeroDev Kernel: InvalidValidationType",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc389d236"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InvalidValidationType().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidValidationType custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0xc389d236 // InvalidValidationType()"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-validation-type-2",
+    "title": "ZeroDev Kernel: Invalid validation type",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid validation type['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Invalid validation type.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/sdk/TestBase/KernelTestBase.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid validation type"
+    ]
+  },
+  {
+    "id": "zerodev-invalid-validator",
+    "title": "ZeroDev Kernel: InvalidValidator",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x682a6e7c"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error InvalidValidator().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidValidator custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0x682a6e7c // InvalidValidator()"
+    ]
+  },
+  {
+    "id": "zerodev-kernel-not-enabled",
+    "title": "ZeroDev Kernel: Kernel not enabled",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Kernel not enabled['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Kernel not enabled.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/validator/WeightedECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Kernel not enabled"
+    ]
+  },
+  {
+    "id": "zerodev-length-mismatch",
+    "title": "ZeroDev Kernel: Length mismatch",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Length mismatch['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Length mismatch.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/validator/WeightedECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Length mismatch"
+    ]
+  },
+  {
+    "id": "zerodev-length-mismatch-2",
+    "title": "ZeroDev 7579 Plugins: LengthMismatch",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xff633a38"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error LengthMismatch().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the LengthMismatch custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/WeightedECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0xff633a38 // LengthMismatch()"
+    ]
+  },
+  {
+    "id": "zerodev-no-sig",
+    "title": "ZeroDev Kernel: No sig",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?No sig['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: No sig.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/validator/WeightedECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: No sig"
+    ]
+  },
+  {
+    "id": "zerodev-nonce-invalidation-error",
+    "title": "ZeroDev Kernel: NonceInvalidationError",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe60fd647"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error NonceInvalidationError().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NonceInvalidationError custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0xe60fd647 // NonceInvalidationError()"
+    ]
+  },
+  {
+    "id": "zerodev-not-approved-factory",
+    "title": "ZeroDev Kernel: NotApprovedFactory",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc88357cc"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error NotApprovedFactory().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NotApprovedFactory custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/factory/FactoryStaker.sol"
+      }
+    ],
+    "examples": [
+      "0xc88357cc // NotApprovedFactory()"
+    ]
+  },
+  {
+    "id": "zerodev-not-initialized-address",
+    "title": "ZeroDev Kernel: NotInitialized",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf91bd6f1"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error NotInitialized(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NotInitialized custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/interfaces/IERC7579Modules.sol"
+      }
+    ],
+    "examples": [
+      "0xf91bd6f1 // NotInitialized(address)"
+    ]
+  },
+  {
+    "id": "zerodev-not-supported-call-type",
+    "title": "ZeroDev Kernel: NotSupportedCallType",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2d6a6bb7"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error NotSupportedCallType().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NotSupportedCallType custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/SelectorManager.sol"
+      }
+    ],
+    "examples": [
+      "0x2d6a6bb7 // NotSupportedCallType()"
+    ]
+  },
+  {
+    "id": "zerodev-only-account",
+    "title": "ZeroDev 7579 Plugins: OnlyAccount",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf3f6425d"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error OnlyAccount().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the OnlyAccount custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/policies/TimelockPolicy.sol"
+      }
+    ],
+    "examples": [
+      "0xf3f6425d // OnlyAccount()"
+    ]
+  },
+  {
+    "id": "zerodev-only-execute-user-op",
+    "title": "ZeroDev Kernel: OnlyExecuteUserOp",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdbbb044b"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error OnlyExecuteUserOp().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the OnlyExecuteUserOp custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/Kernel.sol"
+      }
+    ],
+    "examples": [
+      "0xdbbb044b // OnlyExecuteUserOp()"
+    ]
+  },
+  {
+    "id": "zerodev-parameters-too-large",
+    "title": "ZeroDev 7579 Plugins: ParametersTooLarge",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd23b5c93"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error ParametersTooLarge().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ParametersTooLarge custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/policies/TimelockPolicy.sol"
+      }
+    ],
+    "examples": [
+      "0xd23b5c93 // ParametersTooLarge()"
+    ]
+  },
+  {
+    "id": "zerodev-permission-data-length-mismatch",
+    "title": "ZeroDev Kernel: PermissionDataLengthMismatch",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x09ee6468"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error PermissionDataLengthMismatch().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PermissionDataLengthMismatch custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0x09ee6468 // PermissionDataLengthMismatch()"
+    ]
+  },
+  {
+    "id": "zerodev-permission-not-alllowed-for-signature",
+    "title": "ZeroDev Kernel: PermissionNotAlllowedForSignature",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5b710579"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error PermissionNotAlllowedForSignature().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PermissionNotAlllowedForSignature custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0x5b710579 // PermissionNotAlllowedForSignature()"
+    ]
+  },
+  {
+    "id": "zerodev-permission-not-alllowed-for-user-op",
+    "title": "ZeroDev Kernel: PermissionNotAlllowedForUserOp",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x14b9743f"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error PermissionNotAlllowedForUserOp().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PermissionNotAlllowedForUserOp custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0x14b9743f // PermissionNotAlllowedForUserOp()"
+    ]
+  },
+  {
+    "id": "zerodev-policy-already-installed",
+    "title": "ZeroDev 7579 Plugins: PolicyAlreadyInstalled",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc41b4b78"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error PolicyAlreadyInstalled().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PolicyAlreadyInstalled custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/policies/CallerPolicy.sol"
+      }
+    ],
+    "examples": [
+      "0xc41b4b78 // PolicyAlreadyInstalled()"
+    ]
+  },
+  {
+    "id": "zerodev-policy-data-too-large",
+    "title": "ZeroDev Kernel: PolicyDataTooLarge",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb62d956d"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error PolicyDataTooLarge().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PolicyDataTooLarge custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0xb62d956d // PolicyDataTooLarge()"
+    ]
+  },
+  {
+    "id": "zerodev-policy-failed-uint256",
+    "title": "ZeroDev Kernel: PolicyFailed",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3e4983f6"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error PolicyFailed(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PolicyFailed custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0x3e4983f6 // PolicyFailed(uint256)"
+    ]
+  },
+  {
+    "id": "zerodev-policy-not-live",
+    "title": "ZeroDev 7579 Plugins: PolicyNotLive",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf22b4ce7"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error PolicyNotLive().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PolicyNotLive custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/policies/CallerPolicy.sol"
+      }
+    ],
+    "examples": [
+      "0xf22b4ce7 // PolicyNotLive()"
+    ]
+  },
+  {
+    "id": "zerodev-policy-signature-order-error",
+    "title": "ZeroDev Kernel: PolicySignatureOrderError",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0ec17b9e"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error PolicySignatureOrderError().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PolicySignatureOrderError custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0x0ec17b9e // PolicySignatureOrderError()"
+    ]
+  },
+  {
+    "id": "zerodev-post-op-reverted-bytes",
+    "title": "ZeroDev Kernel: PostOpReverted",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xad7954bc"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error PostOpReverted(bytes).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PostOpReverted custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/interfaces/IEntryPoint.sol"
+      }
+    ],
+    "examples": [
+      "0xad7954bc // PostOpReverted(bytes)"
+    ]
+  },
+  {
+    "id": "zerodev-proposal-not-ongoing",
+    "title": "ZeroDev Kernel: Proposal not ongoing",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Proposal not ongoing['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Proposal not ongoing.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/validator/WeightedECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Proposal not ongoing"
+    ]
+  },
+  {
+    "id": "zerodev-proposal-not-pending",
+    "title": "ZeroDev 7579 Plugins: ProposalNotPending",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x49e7376a"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error ProposalNotPending().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ProposalNotPending custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/policies/TimelockPolicy.sol"
+      }
+    ],
+    "examples": [
+      "0x49e7376a // ProposalNotPending()"
+    ]
+  },
+  {
+    "id": "zerodev-root-validator-cannot-be-removed",
+    "title": "ZeroDev Kernel: RootValidatorCannotBeRemoved",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x98015ee8"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error RootValidatorCannotBeRemoved().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RootValidatorCannotBeRemoved custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0x98015ee8 // RootValidatorCannotBeRemoved()"
+    ]
+  },
+  {
+    "id": "zerodev-salt-does-not-start-with-caller",
+    "title": "ZeroDev Kernel: SaltDoesNotStartWithCaller",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2f634836"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error SaltDoesNotStartWithCaller().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SaltDoesNotStartWithCaller custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/factory/AdminLessERC1967Factory.sol"
+      }
+    ],
+    "examples": [
+      "0x2f634836 // SaltDoesNotStartWithCaller()"
+    ]
+  },
+  {
+    "id": "zerodev-sender-address-result-address",
+    "title": "ZeroDev Kernel: SenderAddressResult",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6ca7b806"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error SenderAddressResult(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SenderAddressResult custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/interfaces/IEntryPoint.sol"
+      }
+    ],
+    "examples": [
+      "0x6ca7b806 // SenderAddressResult(address)"
+    ]
+  },
+  {
+    "id": "zerodev-sender-not-owner",
+    "title": "ZeroDev 7579 Plugins: SenderNotOwner",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x19494c8a"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error SenderNotOwner().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SenderNotOwner custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/validators/ECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "0x19494c8a // SenderNotOwner()"
+    ]
+  },
+  {
+    "id": "zerodev-signature-validation-failed-address",
+    "title": "ZeroDev Kernel: SignatureValidationFailed",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x86a9f750"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error SignatureValidationFailed(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SignatureValidationFailed custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/interfaces/IEntryPoint.sol"
+      }
+    ],
+    "examples": [
+      "0x86a9f750 // SignatureValidationFailed(address)"
+    ]
+  },
+  {
+    "id": "zerodev-signature-validation-not-supported",
+    "title": "ZeroDev 7579 Plugins: SignatureValidationNotSupported",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x73555ef0"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error SignatureValidationNotSupported().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SignatureValidationNotSupported custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/policies/TimelockPolicy.sol"
+      }
+    ],
+    "examples": [
+      "0x73555ef0 // SignatureValidationNotSupported()"
+    ]
+  },
+  {
+    "id": "zerodev-signer-already-set",
+    "title": "ZeroDev 7579 Plugins: SignerAlreadySet",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb7c51b65"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error SignerAlreadySet().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SignerAlreadySet custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/ECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0xb7c51b65 // SignerAlreadySet()"
+    ]
+  },
+  {
+    "id": "zerodev-signer-not-set",
+    "title": "ZeroDev 7579 Plugins: SignerNotSet",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc322e327"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error SignerNotSet().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SignerNotSet custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/ECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0xc322e327 // SignerNotSet()"
+    ]
+  },
+  {
+    "id": "zerodev-signer-prefix-not-present",
+    "title": "ZeroDev Kernel: SignerPrefixNotPresent",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb32eeb69"
+      }
+    ],
+    "summary": "ZeroDev Kernel custom error SignerPrefixNotPresent().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SignerPrefixNotPresent custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev Kernel precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/core/ValidationManager.sol"
+      }
+    ],
+    "examples": [
+      "0xb32eeb69 // SignerPrefixNotPresent()"
+    ]
+  },
+  {
+    "id": "zerodev-signers-not-sorted",
+    "title": "ZeroDev 7579 Plugins: SignersNotSorted",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa7781cbb"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error SignersNotSorted().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SignersNotSorted custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/WeightedECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0xa7781cbb // SignersNotSorted()"
+    ]
+  },
+  {
+    "id": "zerodev-stateless-validation-not-supported",
+    "title": "ZeroDev 7579 Plugins: StatelessValidationNotSupported",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x733234ca"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error StatelessValidationNotSupported().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the StatelessValidationNotSupported custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/policies/TimelockPolicy.sol"
+      }
+    ],
+    "examples": [
+      "0x733234ca // StatelessValidationNotSupported()"
+    ]
+  },
+  {
+    "id": "zerodev-threshold-exceeds-total-weight",
+    "title": "ZeroDev 7579 Plugins: ThresholdExceedsTotalWeight",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3c7a2aad"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error ThresholdExceedsTotalWeight().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ThresholdExceedsTotalWeight custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/WeightedECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0x3c7a2aad // ThresholdExceedsTotalWeight()"
+    ]
+  },
+  {
+    "id": "zerodev-unsupported",
+    "title": "ZeroDev Kernel: Unsupported",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Unsupported['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Unsupported.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/utils/ExecLib.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Unsupported"
+    ]
+  },
+  {
+    "id": "zerodev-weight-cannot-be-0",
+    "title": "ZeroDev Kernel: Weight cannot be 0",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Weight cannot be 0['\"]?\\s*$"
+      }
+    ],
+    "summary": "ZeroDev Kernel revert reason string: Weight cannot be 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev Kernel GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel/blob/main/src/validator/WeightedECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Weight cannot be 0"
+    ]
+  },
+  {
+    "id": "zerodev-zero-address-caller",
+    "title": "ZeroDev 7579 Plugins: ZeroAddressCaller",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2e507a6b"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error ZeroAddressCaller().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZeroAddressCaller custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/policies/CallerPolicy.sol"
+      }
+    ],
+    "examples": [
+      "0x2e507a6b // ZeroAddressCaller()"
+    ]
+  },
+  {
+    "id": "zerodev-zero-address-guardian",
+    "title": "ZeroDev 7579 Plugins: ZeroAddressGuardian",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb93228cd"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error ZeroAddressGuardian().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZeroAddressGuardian custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/WeightedECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0xb93228cd // ZeroAddressGuardian()"
+    ]
+  },
+  {
+    "id": "zerodev-zero-address-owner",
+    "title": "ZeroDev 7579 Plugins: ZeroAddressOwner",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5ee32a24"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error ZeroAddressOwner().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZeroAddressOwner custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/validators/ECDSAValidator.sol"
+      }
+    ],
+    "examples": [
+      "0x5ee32a24 // ZeroAddressOwner()"
+    ]
+  },
+  {
+    "id": "zerodev-zero-address-signer",
+    "title": "ZeroDev 7579 Plugins: ZeroAddressSigner",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xec67b1b9"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error ZeroAddressSigner().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZeroAddressSigner custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/ECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0xec67b1b9 // ZeroAddressSigner()"
+    ]
+  },
+  {
+    "id": "zerodev-zero-threshold",
+    "title": "ZeroDev 7579 Plugins: ZeroThreshold",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x831761d7"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error ZeroThreshold().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZeroThreshold custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/WeightedECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0x831761d7 // ZeroThreshold()"
+    ]
+  },
+  {
+    "id": "zerodev-zero-weight",
+    "title": "ZeroDev 7579 Plugins: ZeroWeight",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x19a2a9bd"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error ZeroWeight().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZeroWeight custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/WeightedECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0x19a2a9bd // ZeroWeight()"
+    ]
+  },
+  {
+    "id": "zerodev-zero-weight-signer",
+    "title": "ZeroDev 7579 Plugins: ZeroWeightSigner",
+    "layer": "account_abstraction",
+    "source": "zerodev",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb8c50173"
+      }
+    ],
+    "summary": "ZeroDev 7579 Plugins custom error ZeroWeightSigner().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZeroWeightSigner custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the ZeroDev 7579 Plugins precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ZeroDev 7579 Plugins GitHub repository",
+        "url": "https://github.com/zerodevapp/kernel-7579-plugins/blob/master/src/signers/WeightedECDSASigner.sol"
+      }
+    ],
+    "examples": [
+      "0xb8c50173 // ZeroWeightSigner()"
+    ]
+  }
+]

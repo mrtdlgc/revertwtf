@@ -1,0 +1,1046 @@
+[
+  {
+    "id": "sourcify-signatures-reentrancy-chad-already-locked-93e89266",
+    "title": "Reentrancy or lock guard: ChadAlreadyLocked",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x93e89266"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ChadAlreadyLocked indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: ChadLocker on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x52447fdee13d166970b10ac935370a0994b26ceb"
+      }
+    ],
+    "examples": [
+      "0x93e89266 // ChadAlreadyLocked()",
+      "0x93e89266 // ChadAlreadyLocked() - seen in ChadLocker on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-dnt-actuals-already-locked-ad0f180d",
+    "title": "Reentrancy or lock guard: DntActualsAlreadyLocked",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xad0f180d"
+      }
+    ],
+    "summary": "Sourcify-verified custom error DntActualsAlreadyLocked indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xad0f180d // DntActualsAlreadyLocked()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-ekd-reentrant-b6b8144c",
+    "title": "Reentrancy or lock guard: EKD_Reentrant",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb6b8144c"
+      }
+    ],
+    "summary": "Sourcify-verified custom error EKD_Reentrant indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xb6b8144c // EKD_Reentrant()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-fiat24-card-application-blocked-for-update-404cfe2e",
+    "title": "Reentrancy or lock guard: Fiat24CardApplication__BlockedForUpdate",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x404cfe2e"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Fiat24CardApplication__BlockedForUpdate indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Fiat24CardApplication on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x5339512481efe11d1d58b2ceae16fb772bd4edfa"
+      },
+      {
+        "label": "Sourcify: Fiat24CardApplication on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xd429bdac510859b887f730c8aad0a3421f23c58b"
+      }
+    ],
+    "examples": [
+      "0x404cfe2e // Fiat24CardApplication__BlockedForUpdate()",
+      "0x404cfe2e // Fiat24CardApplication__BlockedForUpdate() - seen in Fiat24CardApplication on arbitrum",
+      "0x404cfe2e // Fiat24CardApplication__BlockedForUpdate() - seen in Fiat24CardApplication on arbitrum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-fiat24-client-application-blocked-for-update-38ef4873",
+    "title": "Reentrancy or lock guard: Fiat24ClientApplication__BlockedForUpdate",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x38ef4873"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Fiat24ClientApplication__BlockedForUpdate indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Fiat24ClientApplication on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x6ff8c4d9d33801e461a152adbdb2275e5545c380"
+      },
+      {
+        "label": "Sourcify: Fiat24ClientApplication on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x9d6a5cfa3fb5a92e77c3fe937c02dc397b6a4ddc"
+      },
+      {
+        "label": "Sourcify: Fiat24ClientApplication on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x3bc74bf4b453f60aa77cb962362931723a252b90"
+      }
+    ],
+    "examples": [
+      "0x38ef4873 // Fiat24ClientApplication__BlockedForUpdate()",
+      "0x38ef4873 // Fiat24ClientApplication__BlockedForUpdate() - seen in Fiat24ClientApplication on arbitrum",
+      "0x38ef4873 // Fiat24ClientApplication__BlockedForUpdate() - seen in Fiat24ClientApplication on arbitrum",
+      "0x38ef4873 // Fiat24ClientApplication__BlockedForUpdate() - seen in Fiat24ClientApplication on arbitrum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-fv-reentrant-call-ac284fb7",
+    "title": "Reentrancy or lock guard: FV_ReentrantCall",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xac284fb7"
+      }
+    ],
+    "summary": "Sourcify-verified custom error FV_ReentrantCall indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xac284fb7 // FV_ReentrantCall()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-gt3-gauge-reentrancy-guard-reentrant-call-f301eb89",
+    "title": "Reentrancy or lock guard: GT3GaugeReentrancyGuardReentrantCall",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf301eb89"
+      }
+    ],
+    "summary": "Sourcify-verified custom error GT3GaugeReentrancyGuardReentrantCall indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xf301eb89 // GT3GaugeReentrancyGuardReentrantCall()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-job-already-locked-uint256-83c4ef3b",
+    "title": "Reentrancy or lock guard: JobAlreadyLocked",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x83c4ef3b"
+      }
+    ],
+    "summary": "Sourcify-verified custom error JobAlreadyLocked indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x83c4ef3b // JobAlreadyLocked(uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-lb-factory-function-is-locked-for-users-address-3a43e980",
+    "title": "Reentrancy or lock guard: LBFactory__FunctionIsLockedForUsers",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3a43e980"
+      }
+    ],
+    "summary": "Sourcify-verified custom error LBFactory__FunctionIsLockedForUsers indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: LBFactory on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x1886d09c9ade0c5db822d85d21678db67b6c2982"
+      },
+      {
+        "label": "Sourcify: LBFactory on optimism",
+        "url": "https://sourcify.dev/server/v2/contract/10/0x5b87083ee483728dfff218a5538104050268ec43"
+      }
+    ],
+    "examples": [
+      "0x3a43e980 // LBFactory__FunctionIsLockedForUsers(address)",
+      "0x3a43e980 // LBFactory__FunctionIsLockedForUsers(address) - seen in LBFactory on arbitrum",
+      "0x3a43e980 // LBFactory__FunctionIsLockedForUsers(address) - seen in LBFactory on optimism"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-lb-factory-function-is-locked-for-users-address-uint256-c0c662f9",
+    "title": "Reentrancy or lock guard: LBFactory__FunctionIsLockedForUsers",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc0c662f9"
+      }
+    ],
+    "summary": "Sourcify-verified custom error LBFactory__FunctionIsLockedForUsers indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xc0c662f9 // LBFactory__FunctionIsLockedForUsers(address,uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-lb-factory-function-is-locked-for-users-address-uint8-6a63f77a",
+    "title": "Reentrancy or lock guard: LBFactory__FunctionIsLockedForUsers",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6a63f77a"
+      }
+    ],
+    "summary": "Sourcify-verified custom error LBFactory__FunctionIsLockedForUsers indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x6a63f77a // LBFactory__FunctionIsLockedForUsers(address,uint8)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-lw-reentrant-call-9b39c86b",
+    "title": "Reentrancy or lock guard: LW_ReentrantCall",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9b39c86b"
+      }
+    ],
+    "summary": "Sourcify-verified custom error LW_ReentrantCall indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x9b39c86b // LW_ReentrantCall()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-nebuloids-reentrant-515c2c46",
+    "title": "Reentrancy or lock guard: Nebuloids__Reentrant",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x515c2c46"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Nebuloids__Reentrant indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: NebuloidsNFT on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x7d10f3aa87808c2660231483202c37e2f06637d8"
+      },
+      {
+        "label": "Sourcify: NebuloidsNFT on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xdff321a4c9e02a67b2ed8399ded1024f84424445"
+      },
+      {
+        "label": "Sourcify: NebuloidsNFT on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xc077519505698c5b2b4e8171869a66402a5a3895"
+      }
+    ],
+    "examples": [
+      "0x515c2c46 // Nebuloids__Reentrant()",
+      "0x515c2c46 // Nebuloids__Reentrant() - seen in NebuloidsNFT on ethereum",
+      "0x515c2c46 // Nebuloids__Reentrant() - seen in NebuloidsNFT on ethereum",
+      "0x515c2c46 // Nebuloids__Reentrant() - seen in NebuloidsNFT on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-nxm-is-locked-for-governance-vote-6fbfa1d7",
+    "title": "Reentrancy or lock guard: NxmIsLockedForGovernanceVote",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6fbfa1d7"
+      }
+    ],
+    "summary": "Sourcify-verified custom error NxmIsLockedForGovernanceVote indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: StakingPool on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xcafeacf62fb96fa1243618c4727edf7e04d1d4ca"
+      },
+      {
+        "label": "Sourcify: StakingPool on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xcafea0a9d6befca134763849c159fbdd1175c2a7"
+      },
+      {
+        "label": "Sourcify: StakingPool on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xcafea95d5e0256418186872a41127f1ae087e5c8"
+      },
+      {
+        "label": "Sourcify: StakingPool on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xcafea518644e270f87c32ee95afe55cb2af5cd55"
+      },
+      {
+        "label": "Sourcify: StakingPool on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xcafeafc88de52fb702c07bc7f98f4772eb47a01e"
+      }
+    ],
+    "examples": [
+      "0x6fbfa1d7 // NxmIsLockedForGovernanceVote()",
+      "0x6fbfa1d7 // NxmIsLockedForGovernanceVote() - seen in StakingPool on ethereum",
+      "0x6fbfa1d7 // NxmIsLockedForGovernanceVote() - seen in StakingPool on ethereum",
+      "0x6fbfa1d7 // NxmIsLockedForGovernanceVote() - seen in StakingPool on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-obol-already-locked-ea1ca104",
+    "title": "Reentrancy or lock guard: OBOLAlreadyLocked",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xea1ca104"
+      }
+    ],
+    "summary": "Sourcify-verified custom error OBOLAlreadyLocked indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xea1ca104 // OBOLAlreadyLocked()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-occt-minter-already-locked-e80c6d66",
+    "title": "Reentrancy or lock guard: OCCT_MinterAlreadyLocked",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe80c6d66"
+      }
+    ],
+    "summary": "Sourcify-verified custom error OCCT_MinterAlreadyLocked indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xe80c6d66 // OCCT_MinterAlreadyLocked()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-pacca-ice-lock-active-31caf752",
+    "title": "Reentrancy or lock guard: PaccaIceLockActive",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x31caf752"
+      }
+    ],
+    "summary": "Sourcify-verified custom error PaccaIceLockActive indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x31caf752 // PaccaIceLockActive()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-psm-already-locked-890b0988",
+    "title": "Reentrancy or lock guard: PsmAlreadyLocked",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x890b0988"
+      }
+    ],
+    "summary": "Sourcify-verified custom error PsmAlreadyLocked indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x890b0988 // PsmAlreadyLocked()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-rm2-reentrant-call-f0056c6a",
+    "title": "Reentrancy or lock guard: RM2_ReentrantCall",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf0056c6a"
+      }
+    ],
+    "summary": "Sourcify-verified custom error RM2_ReentrantCall indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xf0056c6a // RM2_ReentrantCall()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-rm3-reentrant-call-4c1a1a29",
+    "title": "Reentrancy or lock guard: RM3_ReentrantCall",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4c1a1a29"
+      }
+    ],
+    "summary": "Sourcify-verified custom error RM3_ReentrantCall indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x4c1a1a29 // RM3_ReentrantCall()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-u-reentrancy-guard-reentrant-call-error-f3203236",
+    "title": "Reentrancy or lock guard: UReentrancyGuardReentrantCallError",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf3203236"
+      }
+    ],
+    "summary": "Sourcify-verified custom error UReentrancyGuardReentrantCallError indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Collateral on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xe547a6d15e5d28437dd1fef67a3545ade6c53aa3"
+      },
+      {
+        "label": "Sourcify: Incentivizer on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0x4a0f50b19b02ac927911c559629536b9a24d9314"
+      },
+      {
+        "label": "Sourcify: Product on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x427bc8694ea59f063b7caa43e3dd77d416922250"
+      },
+      {
+        "label": "Sourcify: Collateral on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x2b99224dad73d7d84b7c74e9161bbd0d01a2a15b"
+      },
+      {
+        "label": "Sourcify: Product on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x9df509186b6d3b7d033359f94c8b1bb5544d51b3"
+      }
+    ],
+    "examples": [
+      "0xf3203236 // UReentrancyGuardReentrantCallError()",
+      "0xf3203236 // UReentrancyGuardReentrantCallError() - seen in Collateral on ethereum",
+      "0xf3203236 // UReentrancyGuardReentrantCallError() - seen in Incentivizer on base",
+      "0xf3203236 // UReentrancyGuardReentrantCallError() - seen in Product on arbitrum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-uri-blocked-for-token-ed3f643f",
+    "title": "Reentrancy or lock guard: URIBlockedForToken",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xed3f643f"
+      }
+    ],
+    "summary": "Sourcify-verified custom error URIBlockedForToken indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xed3f643f // URIBlockedForToken()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-reentrancy-vyt-already-locked-f3354e40",
+    "title": "Reentrancy or lock guard: VYTAlreadyLocked",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf3354e40"
+      }
+    ],
+    "summary": "Sourcify-verified custom error VYTAlreadyLocked indicates the contract's reentrancy guard, lock, or transient execution latch is already active.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The call path attempted to re-enter a protected function before the previous execution completed.",
+      "A pool, vault, hook, or router lock is active for this operation or caller.",
+      "A callback tried to invoke a function that is forbidden during settlement."
+    ],
+    "nextSteps": [
+      "Inspect callbacks, hooks, token receiver functions, and multicall ordering for re-entry into the same contract.",
+      "Avoid calling locked functions from inside protocol callbacks.",
+      "Split the workflow into separate transactions if the protocol requires lock release between phases."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xf3354e40 // VYTAlreadyLocked()"
+    ]
+  }
+]

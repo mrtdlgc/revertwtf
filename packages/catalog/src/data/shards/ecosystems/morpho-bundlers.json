@@ -1,0 +1,72 @@
+[
+  {
+    "id": "morpho-bundlers-bad-signatory",
+    "title": "Morpho Bundlers: BadSignatory",
+    "layer": "protocol",
+    "source": "morpho-bundlers",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x40622f2c"
+      }
+    ],
+    "summary": "Morpho Bundlers custom error BadSignatory().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with BadSignatory, a Morpho bundler, callback, permit, transfer, multicall, wrapping, or vault action flow precondition.",
+      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Morpho Bundlers source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Morpho Bundlers source",
+        "url": "https://github.com/morpho-org/morpho-blue-bundlers/blob/main/src/migration/interfaces/ICompoundV3.sol"
+      }
+    ],
+    "examples": [
+      "0x40622f2c // BadSignatory()"
+    ]
+  },
+  {
+    "id": "morpho-bundlers-invalid-signatory",
+    "title": "Morpho Bundlers: InvalidSignatory",
+    "layer": "protocol",
+    "source": "morpho-bundlers",
+    "category": "lending",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xba0e0fd5"
+      }
+    ],
+    "summary": "Morpho Bundlers custom error InvalidSignatory().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with InvalidSignatory, a Morpho bundler, callback, permit, transfer, multicall, wrapping, or vault action flow precondition.",
+      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Morpho Bundlers source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Morpho Bundlers source",
+        "url": "https://github.com/morpho-org/morpho-blue-bundlers/blob/main/src/migration/interfaces/IAaveV3Optimizer.sol"
+      }
+    ],
+    "examples": [
+      "0xba0e0fd5 // InvalidSignatory()"
+    ]
+  }
+]

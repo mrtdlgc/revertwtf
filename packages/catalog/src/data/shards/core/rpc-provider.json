@@ -1,0 +1,277 @@
+[
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "provider-archive-state-required",
+    "title": "archive state required",
+    "layer": "provider",
+    "source": "rpc-provider",
+    "category": "state_unavailable",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "archive state required"
+      }
+    ],
+    "summary": "RPC provider returned: archive state required.",
+    "likelyCauses": [
+      "The provider rejected, throttled, or could not serve the request."
+    ],
+    "nextSteps": [
+      "Back off, check credentials/quota, or fail over to another provider."
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "provider-chain-not-supported",
+    "title": "chain not supported",
+    "layer": "provider",
+    "source": "rpc-provider",
+    "category": "chain_mgmt",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "chain not supported"
+      }
+    ],
+    "summary": "RPC provider returned: chain not supported.",
+    "likelyCauses": [
+      "The provider rejected, throttled, or could not serve the request."
+    ],
+    "nextSteps": [
+      "Back off, check credentials/quota, or fail over to another provider."
+    ]
+  },
+  {
+    "id": "provider-daily-request-count-exceeded",
+    "title": "daily request count exceeded",
+    "layer": "provider",
+    "source": "rpc-provider",
+    "category": "rate_limit",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "daily request count exceeded"
+      }
+    ],
+    "summary": "RPC provider daily quota was exhausted.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The API key or project exceeded its daily request allowance.",
+      "The app is polling or backfilling too aggressively for the plan."
+    ],
+    "nextSteps": [
+      "Reduce polling and cache repeated reads.",
+      "Wait for quota reset or move to a higher-capacity endpoint."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium"
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "provider-invalid-api-key",
+    "title": "invalid api key",
+    "layer": "provider",
+    "source": "rpc-provider",
+    "category": "auth",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "invalid api key"
+      }
+    ],
+    "summary": "RPC provider returned: invalid api key.",
+    "likelyCauses": [
+      "The provider rejected, throttled, or could not serve the request."
+    ],
+    "nextSteps": [
+      "Back off, check credentials/quota, or fail over to another provider."
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "provider-method-disabled",
+    "title": "method disabled",
+    "layer": "provider",
+    "source": "rpc-provider",
+    "category": "permissions",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "method disabled"
+      }
+    ],
+    "summary": "RPC provider returned: method disabled.",
+    "likelyCauses": [
+      "The provider rejected, throttled, or could not serve the request."
+    ],
+    "nextSteps": [
+      "Back off, check credentials/quota, or fail over to another provider."
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "provider-project-id-request-rate-exceeded",
+    "title": "project ID request rate exceeded",
+    "layer": "provider",
+    "source": "rpc-provider",
+    "category": "rate_limit",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "project ID request rate exceeded"
+      }
+    ],
+    "summary": "RPC provider returned: project ID request rate exceeded.",
+    "likelyCauses": [
+      "The provider rejected, throttled, or could not serve the request."
+    ],
+    "nextSteps": [
+      "Back off, check credentials/quota, or fail over to another provider."
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "provider-request-timed-out",
+    "title": "request timed out",
+    "layer": "provider",
+    "source": "rpc-provider",
+    "category": "connectivity",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "request timed out"
+      }
+    ],
+    "summary": "RPC provider returned: request timed out.",
+    "likelyCauses": [
+      "The provider rejected, throttled, or could not serve the request."
+    ],
+    "nextSteps": [
+      "Back off, check credentials/quota, or fail over to another provider."
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "provider-too-many-requests",
+    "title": "too many requests",
+    "layer": "provider",
+    "source": "rpc-provider",
+    "category": "rate_limit",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "too many requests"
+      }
+    ],
+    "summary": "RPC provider returned: too many requests.",
+    "likelyCauses": [
+      "The provider rejected, throttled, or could not serve the request."
+    ],
+    "nextSteps": [
+      "Back off, check credentials/quota, or fail over to another provider."
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "provider-unauthorized",
+    "title": "unauthorized",
+    "layer": "provider",
+    "source": "rpc-provider",
+    "category": "auth",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "unauthorized"
+      }
+    ],
+    "summary": "RPC provider returned: unauthorized.",
+    "likelyCauses": [
+      "The provider rejected, throttled, or could not serve the request."
+    ],
+    "nextSteps": [
+      "Back off, check credentials/quota, or fail over to another provider."
+    ]
+  },
+  {
+    "layer": "provider",
+    "source": "rpc-provider",
+    "category": "connectivity",
+    "rootCauseKnown": true,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "Browser CORS restrictions, blocked endpoint, offline network, bad URL, or provider outage."
+    ],
+    "nextSteps": [
+      "Use a server-side proxy for private keys, verify CORS support, and test the endpoint from the deployment environment."
+    ],
+    "id": "rpc-cors-or-fetch-failed",
+    "title": "RPC network request failed",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Failed to fetch"
+      },
+      {
+        "type": "substring",
+        "value": "Network request failed"
+      },
+      {
+        "type": "substring",
+        "value": "CORS"
+      }
+    ],
+    "summary": "The client could not reach the RPC endpoint from the current runtime."
+  },
+  {
+    "layer": "provider",
+    "source": "rpc-provider",
+    "category": "auth",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The API key, project ID, token, or endpoint URL is wrong, revoked, or not enabled for this chain."
+    ],
+    "nextSteps": [
+      "Check environment variables, endpoint URLs, dashboard restrictions, and server-side secret injection."
+    ],
+    "id": "rpc-invalid-api-key",
+    "title": "RPC API key invalid",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:invalid|missing|unauthorized).*(?:api key|project id|access token)",
+        "flags": "i"
+      }
+    ],
+    "summary": "The RPC provider rejected the request because credentials are missing or invalid."
+  }
+]

@@ -1,0 +1,811 @@
+[
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-action-rejected",
+    "title": "ethers: ACTION_REJECTED",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "ACTION_REJECTED"
+      }
+    ],
+    "summary": "ethers raised error code ACTION_REJECTED.",
+    "likelyCauses": [
+      "The ethers error code is ACTION_REJECTED.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-bad-data",
+    "title": "ethers: BAD_DATA",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "BAD_DATA"
+      }
+    ],
+    "summary": "ethers raised error code BAD_DATA.",
+    "likelyCauses": [
+      "The ethers error code is BAD_DATA.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-buffer-overrun",
+    "title": "ethers: BUFFER_OVERRUN",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "BUFFER_OVERRUN"
+      }
+    ],
+    "summary": "ethers raised error code BUFFER_OVERRUN.",
+    "likelyCauses": [
+      "The ethers error code is BUFFER_OVERRUN.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "id": "ethers-call-exception",
+    "title": "ethers: CALL_EXCEPTION",
+    "layer": "library",
+    "source": "ethers",
+    "category": "revert",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "CALL_EXCEPTION"
+      },
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "CALL_EXCEPTION"
+      }
+    ],
+    "summary": "An eth_call or contract read reverted. ethers wraps the revert in a CALL_EXCEPTION error with optional revert data.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The target function reverted with a custom error, Error(string), or Panic(uint256).",
+      "Wrong address or chainId (calling the wrong contract).",
+      "Reading a function the contract does not implement (ABI mismatch).",
+      "Stale state assumption (paused, ownership, allowance)."
+    ],
+    "nextSteps": [
+      "Decode error.data with the revert decoder to identify the exact revert reason.",
+      "Confirm the contract address and chainId match the ABI being used.",
+      "Cross-check storage prerequisites: allowance, balance, paused, owner, role."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ethers errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/#CallExceptionError"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-cancelled",
+    "title": "ethers: CANCELLED",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "CANCELLED"
+      }
+    ],
+    "summary": "ethers raised error code CANCELLED.",
+    "likelyCauses": [
+      "The ethers error code is CANCELLED.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "sometimes",
+    "confidence": "high",
+    "id": "ethers-insufficient-funds",
+    "title": "ethers: INSUFFICIENT_FUNDS",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "INSUFFICIENT_FUNDS"
+      }
+    ],
+    "summary": "ethers raised error code INSUFFICIENT_FUNDS.",
+    "likelyCauses": [
+      "The ethers error code is INSUFFICIENT_FUNDS.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-invalid-argument",
+    "title": "ethers: INVALID_ARGUMENT",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "INVALID_ARGUMENT"
+      }
+    ],
+    "summary": "ethers raised error code INVALID_ARGUMENT.",
+    "likelyCauses": [
+      "The ethers error code is INVALID_ARGUMENT.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-missing-argument",
+    "title": "ethers: MISSING_ARGUMENT",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "MISSING_ARGUMENT"
+      }
+    ],
+    "summary": "ethers raised error code MISSING_ARGUMENT.",
+    "likelyCauses": [
+      "The ethers error code is MISSING_ARGUMENT.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-network-error",
+    "title": "ethers: NETWORK_ERROR",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "NETWORK_ERROR"
+      }
+    ],
+    "summary": "ethers raised error code NETWORK_ERROR.",
+    "likelyCauses": [
+      "The ethers error code is NETWORK_ERROR.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
+    "confidence": "high",
+    "id": "ethers-nonce-expired",
+    "title": "ethers: NONCE_EXPIRED",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "NONCE_EXPIRED"
+      }
+    ],
+    "summary": "ethers raised error code NONCE_EXPIRED.",
+    "likelyCauses": [
+      "The ethers error code is NONCE_EXPIRED.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-not-implemented",
+    "title": "ethers: NOT_IMPLEMENTED",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "NOT_IMPLEMENTED"
+      }
+    ],
+    "summary": "ethers raised error code NOT_IMPLEMENTED.",
+    "likelyCauses": [
+      "The ethers error code is NOT_IMPLEMENTED.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-numeric-fault",
+    "title": "ethers: NUMERIC_FAULT",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "NUMERIC_FAULT"
+      }
+    ],
+    "summary": "ethers raised error code NUMERIC_FAULT.",
+    "likelyCauses": [
+      "The ethers error code is NUMERIC_FAULT.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-offchain-fault",
+    "title": "ethers: OFFCHAIN_FAULT",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "OFFCHAIN_FAULT"
+      }
+    ],
+    "summary": "ethers raised error code OFFCHAIN_FAULT.",
+    "likelyCauses": [
+      "The ethers error code is OFFCHAIN_FAULT.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
+    "confidence": "high",
+    "id": "ethers-replacement-underpriced",
+    "title": "ethers: REPLACEMENT_UNDERPRICED",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "REPLACEMENT_UNDERPRICED"
+      }
+    ],
+    "summary": "ethers raised error code REPLACEMENT_UNDERPRICED.",
+    "likelyCauses": [
+      "The ethers error code is REPLACEMENT_UNDERPRICED.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-server-error",
+    "title": "ethers: SERVER_ERROR",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "SERVER_ERROR"
+      }
+    ],
+    "summary": "ethers raised error code SERVER_ERROR.",
+    "likelyCauses": [
+      "The ethers error code is SERVER_ERROR.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-timeout",
+    "title": "ethers: TIMEOUT",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "TIMEOUT"
+      }
+    ],
+    "summary": "ethers raised error code TIMEOUT.",
+    "likelyCauses": [
+      "The ethers error code is TIMEOUT.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-transaction-replaced",
+    "title": "ethers: TRANSACTION_REPLACED",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "TRANSACTION_REPLACED"
+      }
+    ],
+    "summary": "ethers raised error code TRANSACTION_REPLACED.",
+    "likelyCauses": [
+      "The ethers error code is TRANSACTION_REPLACED.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-unconfigured-name",
+    "title": "ethers: UNCONFIGURED_NAME",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "UNCONFIGURED_NAME"
+      }
+    ],
+    "summary": "ethers raised error code UNCONFIGURED_NAME.",
+    "likelyCauses": [
+      "The ethers error code is UNCONFIGURED_NAME.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-unexpected-argument",
+    "title": "ethers: UNEXPECTED_ARGUMENT",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "UNEXPECTED_ARGUMENT"
+      }
+    ],
+    "summary": "ethers raised error code UNEXPECTED_ARGUMENT.",
+    "likelyCauses": [
+      "The ethers error code is UNEXPECTED_ARGUMENT.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "id": "ethers-unpredictable-gas-limit",
+    "title": "ethers: UNPREDICTABLE_GAS_LIMIT",
+    "layer": "library",
+    "source": "ethers",
+    "category": "gas_estimation",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "UNPREDICTABLE_GAS_LIMIT"
+      },
+      {
+        "type": "substring",
+        "value": "cannot estimate gas"
+      }
+    ],
+    "summary": "eth_estimateGas reverted during simulation, so ethers cannot predict a safe gas limit. The transaction would fail on-chain.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The simulated call reverts (missing approval, insufficient balance, paused, deadline expired).",
+      "The provider stripped revert data, hiding the real reason.",
+      "Calling the wrong function selector / ABI mismatch."
+    ],
+    "nextSteps": [
+      "Re-run as an eth_call against the same block to surface revert bytes.",
+      "Decode any revert data with the revert decoder.",
+      "If revert data is missing, retry on a different RPC that preserves it (e.g. an archive endpoint)."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "related": [
+      "execution-reverted",
+      "missing-revert-data"
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-unsupported-operation",
+    "title": "ethers: UNSUPPORTED_OPERATION",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "UNSUPPORTED_OPERATION"
+      }
+    ],
+    "summary": "ethers raised error code UNSUPPORTED_OPERATION.",
+    "likelyCauses": [
+      "The ethers error code is UNSUPPORTED_OPERATION.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "id": "ethers-v6-could-not-coalesce-error",
+    "title": "ethers v6: could not coalesce error",
+    "layer": "library",
+    "source": "ethers",
+    "category": "wrapped_rpc_error",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "could not coalesce error"
+      },
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "UNKNOWN_ERROR"
+      }
+    ],
+    "summary": "ethers could not classify the nested provider/RPC error. This is usually a wrapper around a deeper RPC, simulation, or EVM failure.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The RPC provider returned a non-standard error shape.",
+      "An eth_call or eth_estimateGas simulation reverted.",
+      "Revert data is nested inside error.data or was omitted by the provider.",
+      "The RPC backend failed internally."
+    ],
+    "nextSteps": [
+      "Inspect nested error, error.data, payload, info, and cause fields.",
+      "Identify whether the failing method was eth_call, eth_estimateGas, or eth_sendRawTransaction.",
+      "If revert bytes are present, decode them via the revert decoder.",
+      "Retry the same call against another RPC provider to rule out backend issues."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "unknown",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ],
+    "related": [
+      "ethers-call-exception",
+      "rpc-internal-error-32603"
+    ]
+  },
+  {
+    "rootCauseKnown": false,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "ethers-value-mismatch",
+    "title": "ethers: VALUE_MISMATCH",
+    "layer": "library",
+    "source": "ethers",
+    "category": "ethers_error",
+    "patterns": [
+      {
+        "type": "json_path",
+        "path": "code",
+        "equals": "VALUE_MISMATCH"
+      }
+    ],
+    "summary": "ethers raised error code VALUE_MISMATCH.",
+    "likelyCauses": [
+      "The ethers error code is VALUE_MISMATCH.",
+      "A nested provider, transaction, or revert error may contain the deeper cause."
+    ],
+    "nextSteps": [
+      "Inspect `shortMessage`, `reason`, `action`, `transaction`, and nested `error` fields.",
+      "Decode revert data if present."
+    ],
+    "references": [
+      {
+        "label": "ethers v6 errors",
+        "url": "https://docs.ethers.org/v6/api/utils/errors/"
+      }
+    ]
+  },
+  {
+    "id": "missing-revert-data",
+    "title": "missing revert data",
+    "layer": "library",
+    "source": "ethers",
+    "category": "evidence_missing",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "missing revert data"
+      }
+    ],
+    "summary": "The call reverted, but the RPC provider did not return revert bytes. Without bytes, the precise cause cannot be decoded.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "The RPC node strips revert data on certain methods.",
+      "The contract reverted with empty data (e.g. `revert();` with no message).",
+      "Provider-side caching of a failed simulation."
+    ],
+    "nextSteps": [
+      "Retry against an archive node or a different provider that preserves revert data.",
+      "Re-issue as an eth_call rather than estimateGas to maximize chance of bytes.",
+      "Reproduce locally with Foundry / Hardhat to capture the revert."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium"
+  }
+]

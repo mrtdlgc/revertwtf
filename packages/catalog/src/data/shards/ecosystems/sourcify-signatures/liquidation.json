@@ -1,0 +1,332 @@
+[
+  {
+    "id": "sourcify-signatures-liquidation-dhc-engine-cannot-liquidate-yourself-ad466f95",
+    "title": "Liquidation rejected: DHCEngine__CannotLiquidateYourself",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xad466f95"
+      }
+    ],
+    "summary": "Sourcify-verified custom error DHCEngine__CannotLiquidateYourself indicates a liquidation path rejected the account, repay amount, collateral, or liquidator.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The target account is still healthy or no longer meets the protocol's liquidation threshold.",
+      "The repay amount, close factor, seized collateral, or liquidation incentive is outside allowed bounds.",
+      "The caller is not an authorized liquidator for this market or phase."
+    ],
+    "nextSteps": [
+      "Recheck health factor, oracle prices, debt, collateral, close factor, and liquidation bonus at the latest block.",
+      "Adjust repay amount and collateral selection to the protocol's liquidation math.",
+      "Confirm the caller has any required liquidator role or auction permission."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xad466f95 // DHCEngine__CannotLiquidateYourself()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-liquidation-gt-is-not-healthy-uint256-address-uint128-733a8cc3",
+    "title": "Liquidation rejected: GtIsNotHealthy",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x733a8cc3"
+      }
+    ],
+    "summary": "Sourcify-verified custom error GtIsNotHealthy indicates a liquidation path rejected the account, repay amount, collateral, or liquidator.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The target account is still healthy or no longer meets the protocol's liquidation threshold.",
+      "The repay amount, close factor, seized collateral, or liquidation incentive is outside allowed bounds.",
+      "The caller is not an authorized liquidator for this market or phase."
+    ],
+    "nextSteps": [
+      "Recheck health factor, oracle prices, debt, collateral, close factor, and liquidation bonus at the latest block.",
+      "Adjust repay amount and collateral selection to the protocol's liquidation math.",
+      "Confirm the caller has any required liquidator role or auction permission."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: GearingTokenWithERC20V2 on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x09d79cb520548605713d89775c174c00469a1821"
+      },
+      {
+        "label": "Sourcify: GearingTokenWithERC20 on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x8a2e5bfe2c0b1930575c75a61aad0d81baf93daa"
+      }
+    ],
+    "examples": [
+      "0x733a8cc3 // GtIsNotHealthy(uint256,address,uint128)",
+      "0x733a8cc3 // GtIsNotHealthy(uint256,address,uint128) - seen in GearingTokenWithERC20V2 on ethereum",
+      "0x733a8cc3 // GtIsNotHealthy(uint256,address,uint128) - seen in GearingTokenWithERC20 on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-liquidation-i-liquidation-service-account-healthy-6d1b003f",
+    "title": "Liquidation rejected: ILiquidationService_AccountHealthy",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6d1b003f"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ILiquidationService_AccountHealthy indicates a liquidation path rejected the account, repay amount, collateral, or liquidator.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The target account is still healthy or no longer meets the protocol's liquidation threshold.",
+      "The repay amount, close factor, seized collateral, or liquidation incentive is outside allowed bounds.",
+      "The caller is not an authorized liquidator for this market or phase."
+    ],
+    "nextSteps": [
+      "Recheck health factor, oracle prices, debt, collateral, close factor, and liquidation bonus at the latest block.",
+      "Adjust repay amount and collateral selection to the protocol's liquidation math.",
+      "Confirm the caller has any required liquidator role or auction permission."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: LiquidationService on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xbbc6d8c4613190f5f16c3e19f7982f0aedec89f3"
+      },
+      {
+        "label": "Sourcify: LiquidationService on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xc9335b3d9ebf21e9c63eaa2c1f6944379da8d538"
+      },
+      {
+        "label": "Sourcify: LiquidationService on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x5bb83667e29ef15f141256eec189e60b0c18db14"
+      },
+      {
+        "label": "Sourcify: LiquidationService on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0xe83803e469ecbe5e51c3e9c8c1b9ef0f5c21a379"
+      },
+      {
+        "label": "Sourcify: LiquidationService on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xf21bf25249a105617f0e372b019cff3132579597"
+      }
+    ],
+    "examples": [
+      "0x6d1b003f // ILiquidationService_AccountHealthy()",
+      "0x6d1b003f // ILiquidationService_AccountHealthy() - seen in LiquidationService on arbitrum",
+      "0x6d1b003f // ILiquidationService_AccountHealthy() - seen in LiquidationService on arbitrum",
+      "0x6d1b003f // ILiquidationService_AccountHealthy() - seen in LiquidationService on arbitrum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-liquidation-lm-batch-liquidation-not-allowed-in-recovery-mode-65ed0e92",
+    "title": "Liquidation rejected: LM__BatchLiquidationNotAllowedInRecoveryMode",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x65ed0e92"
+      }
+    ],
+    "summary": "Sourcify-verified custom error LM__BatchLiquidationNotAllowedInRecoveryMode indicates a liquidation path rejected the account, repay amount, collateral, or liquidator.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The target account is still healthy or no longer meets the protocol's liquidation threshold.",
+      "The repay amount, close factor, seized collateral, or liquidation incentive is outside allowed bounds.",
+      "The caller is not an authorized liquidator for this market or phase."
+    ],
+    "nextSteps": [
+      "Recheck health factor, oracle prices, debt, collateral, close factor, and liquidation bonus at the latest block.",
+      "Adjust repay amount and collateral selection to the protocol's liquidation math.",
+      "Confirm the caller has any required liquidator role or auction permission."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x65ed0e92 // LM__BatchLiquidationNotAllowedInRecoveryMode()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-liquidation-mv-cannot-liquidate-43e6ff01",
+    "title": "Liquidation rejected: MV_CannotLiquidate",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x43e6ff01"
+      }
+    ],
+    "summary": "Sourcify-verified custom error MV_CannotLiquidate indicates a liquidation path rejected the account, repay amount, collateral, or liquidator.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The target account is still healthy or no longer meets the protocol's liquidation threshold.",
+      "The repay amount, close factor, seized collateral, or liquidation incentive is outside allowed bounds.",
+      "The caller is not an authorized liquidator for this market or phase."
+    ],
+    "nextSteps": [
+      "Recheck health factor, oracle prices, debt, collateral, close factor, and liquidation bonus at the latest block.",
+      "Adjust repay amount and collateral selection to the protocol's liquidation math.",
+      "Confirm the caller has any required liquidator role or auction permission."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: MoonVault on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xf328340e09a45e620b33c468c491fffcb68e2112"
+      }
+    ],
+    "examples": [
+      "0x43e6ff01 // MV_CannotLiquidate()",
+      "0x43e6ff01 // MV_CannotLiquidate() - seen in MoonVault on arbitrum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-liquidation-sub-account-healthy-eda35efa",
+    "title": "Liquidation rejected: SubAccountHealthy",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xeda35efa"
+      }
+    ],
+    "summary": "Sourcify-verified custom error SubAccountHealthy indicates a liquidation path rejected the account, repay amount, collateral, or liquidator.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The target account is still healthy or no longer meets the protocol's liquidation threshold.",
+      "The repay amount, close factor, seized collateral, or liquidation incentive is outside allowed bounds.",
+      "The caller is not an authorized liquidator for this market or phase."
+    ],
+    "nextSteps": [
+      "Recheck health factor, oracle prices, debt, collateral, close factor, and liquidation bonus at the latest block.",
+      "Adjust repay amount and collateral selection to the protocol's liquidation math.",
+      "Confirm the caller has any required liquidator role or auction permission."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: OrderDispatch on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xe071f6a33f9477e8caec9203a73573a019764a94"
+      }
+    ],
+    "examples": [
+      "0xeda35efa // SubAccountHealthy()",
+      "0xeda35efa // SubAccountHealthy() - seen in OrderDispatch on arbitrum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-liquidation-z-mint-vault-healthy-fe3022f3",
+    "title": "Liquidation rejected: ZMintVault__Healthy",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xfe3022f3"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ZMintVault__Healthy indicates a liquidation path rejected the account, repay amount, collateral, or liquidator.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The target account is still healthy or no longer meets the protocol's liquidation threshold.",
+      "The repay amount, close factor, seized collateral, or liquidation incentive is outside allowed bounds.",
+      "The caller is not an authorized liquidator for this market or phase."
+    ],
+    "nextSteps": [
+      "Recheck health factor, oracle prices, debt, collateral, close factor, and liquidation bonus at the latest block.",
+      "Adjust repay amount and collateral selection to the protocol's liquidation math.",
+      "Confirm the caller has any required liquidator role or auction permission."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xfe3022f3 // ZMintVault__Healthy()"
+    ]
+  }
+]

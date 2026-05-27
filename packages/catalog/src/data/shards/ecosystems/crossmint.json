@@ -1,0 +1,73 @@
+[
+  {
+    "layer": "provider",
+    "source": "crossmint",
+    "category": "account_abstraction",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The smart account, factory, paymaster, or bundler validation failed."
+    ],
+    "nextSteps": [
+      "Parse the AAxx code and inspect the nested EntryPoint/UserOperation context."
+    ],
+    "references": [
+      {
+        "label": "Crossmint transaction error handling",
+        "url": "https://docs.crossmint.com/wallets/guides/error-handling"
+      }
+    ],
+    "id": "crossmint-aa-reason-data",
+    "title": "Crossmint Account Abstraction reasonData",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "reasonData"
+      },
+      {
+        "type": "regex",
+        "value": "AA[0-9]{2}",
+        "flags": "i"
+      }
+    ],
+    "requires": [
+      {
+        "type": "substring",
+        "value": "Crossmint"
+      }
+    ],
+    "summary": "Crossmint included an Account Abstraction AAxx reason code in the error payload."
+  },
+  {
+    "layer": "provider",
+    "source": "crossmint",
+    "category": "wallet_api",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The wallet API successfully built or submitted the request, but contract execution failed."
+    ],
+    "nextSteps": [
+      "Inspect data.error.revert.reason, data.error.revert.reasonData, and any nested revert bytes."
+    ],
+    "references": [
+      {
+        "label": "Crossmint transaction error handling",
+        "url": "https://docs.crossmint.com/wallets/guides/error-handling"
+      }
+    ],
+    "id": "crossmint-execution-reverted-see-revert",
+    "title": "Crossmint execution reverted",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Execution reverted, see 'revert' for details"
+      }
+    ],
+    "summary": "Crossmint reports that the EVM transaction reverted and placed the detailed cause under its revert payload."
+  }
+]

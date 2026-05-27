@@ -1,0 +1,112 @@
+[
+  {
+    "id": "sourcify-signatures-gas-jb-arbitrum-sucker-not-enough-gas-uint256-uint256-514f5196",
+    "title": "Gas limit rejected: JBArbitrumSucker_NotEnoughGas",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x514f5196"
+      }
+    ],
+    "summary": "Sourcify-verified custom error JBArbitrumSucker_NotEnoughGas indicates the contract is explicitly checking available gas, callback gas, or call depth.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A callback, bridge message, hook, or low-level call was configured with too little gas.",
+      "The contract requires a minimum gas reserve before making an external call.",
+      "The transaction hit a call-depth or gas-forwarding guard inside the protocol."
+    ],
+    "nextSteps": [
+      "Increase the callback, execution, or message gas limit field used by the protocol.",
+      "Check whether a relayer, bundler, or bridge adapter enforces a separate gas limit from the transaction gas.",
+      "If the error is call-depth related, simplify the call path instead of only raising gas."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "yes",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: JBArbitrumSucker on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0x2aa1146b81bfaf1730bb7685bd384908d4bee51d"
+      },
+      {
+        "label": "Sourcify: JBArbitrumSucker on arbitrum",
+        "url": "https://sourcify.dev/server/v2/contract/42161/0xfb63658838ccb6ff40733e2688b3e73298bcdecf"
+      },
+      {
+        "label": "Sourcify: JBArbitrumSucker on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0x2aa1146b81bfaf1730bb7685bd384908d4bee51d"
+      },
+      {
+        "label": "Sourcify: JBArbitrumSucker on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xfb63658838ccb6ff40733e2688b3e73298bcdecf"
+      },
+      {
+        "label": "Sourcify: JBArbitrumSucker on optimism",
+        "url": "https://sourcify.dev/server/v2/contract/10/0x2aa1146b81bfaf1730bb7685bd384908d4bee51d"
+      }
+    ],
+    "examples": [
+      "0x514f5196 // JBArbitrumSucker_NotEnoughGas(uint256,uint256)",
+      "0x514f5196 // JBArbitrumSucker_NotEnoughGas(uint256,uint256) - seen in JBArbitrumSucker on arbitrum",
+      "0x514f5196 // JBArbitrumSucker_NotEnoughGas(uint256,uint256) - seen in JBArbitrumSucker on arbitrum",
+      "0x514f5196 // JBArbitrumSucker_NotEnoughGas(uint256,uint256) - seen in JBArbitrumSucker on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-gas-m-token-gateway-not-enough-gas-fee-1d919099",
+    "title": "Gas limit rejected: mTokenGateway_NotEnoughGasFee",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1d919099"
+      }
+    ],
+    "summary": "Sourcify-verified custom error mTokenGateway_NotEnoughGasFee indicates the contract is explicitly checking available gas, callback gas, or call depth.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A callback, bridge message, hook, or low-level call was configured with too little gas.",
+      "The contract requires a minimum gas reserve before making an external call.",
+      "The transaction hit a call-depth or gas-forwarding guard inside the protocol."
+    ],
+    "nextSteps": [
+      "Increase the callback, execution, or message gas limit field used by the protocol.",
+      "Check whether a relayer, bundler, or bridge adapter enforces a separate gas limit from the transaction gas.",
+      "If the error is call-depth related, simplify the call path instead of only raising gas."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "yes",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: mTokenGateway on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0xf8b6b844565374929e43bfe77c94eb1742a48ee3"
+      }
+    ],
+    "examples": [
+      "0x1d919099 // mTokenGateway_NotEnoughGasFee()",
+      "0x1d919099 // mTokenGateway_NotEnoughGasFee() - seen in mTokenGateway on base"
+    ]
+  }
+]

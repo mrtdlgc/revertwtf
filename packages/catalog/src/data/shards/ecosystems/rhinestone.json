@@ -1,0 +1,3992 @@
+[
+  {
+    "id": "rhinestone-access-denied",
+    "title": "Rhinestone ModuleKit: AccessDenied",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4ca88867"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error AccessDenied().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AccessDenied custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x4ca88867 // AccessDenied()"
+    ]
+  },
+  {
+    "id": "rhinestone-account-initialization-failed",
+    "title": "Rhinestone ModuleKit: AccountInitializationFailed",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x36f2eeee"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error AccountInitializationFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AccountInitializationFailed custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/erc7579/interfaces/IMSA.sol"
+      }
+    ],
+    "examples": [
+      "0x36f2eeee // AccountInitializationFailed()"
+    ]
+  },
+  {
+    "id": "rhinestone-address-book-invalid-chain-id",
+    "title": "Rhinestone Core Modules: AddressBook: Invalid ChainId",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AddressBook: Invalid ChainId['\"]?\\s*$"
+      }
+    ],
+    "summary": "Rhinestone Core Modules revert reason string: AddressBook: Invalid ChainId.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/utils/AddressBook.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: AddressBook: Invalid ChainId"
+    ]
+  },
+  {
+    "id": "rhinestone-already-attested",
+    "title": "Rhinestone ModuleKit: AlreadyAttested",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x35d90805"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error AlreadyAttested().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AlreadyAttested custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x35d90805 // AlreadyAttested()"
+    ]
+  },
+  {
+    "id": "rhinestone-already-registered-address",
+    "title": "Rhinestone ModuleKit: AlreadyRegistered",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x45ed80e9"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error AlreadyRegistered(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AlreadyRegistered custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x45ed80e9 // AlreadyRegistered(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-already-revoked",
+    "title": "Rhinestone ModuleKit: AlreadyRevoked",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x905e7107"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error AlreadyRevoked().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AlreadyRevoked custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x905e7107 // AlreadyRevoked()"
+    ]
+  },
+  {
+    "id": "rhinestone-associated-array-out-of-bounds-uint256",
+    "title": "Rhinestone ModuleKit: AssociatedArray_OutOfBounds",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8277484f"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error AssociatedArray_OutOfBounds(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AssociatedArray_OutOfBounds custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x8277484f // AssociatedArray_OutOfBounds(uint256)"
+    ]
+  },
+  {
+    "id": "rhinestone-attestation-not-found",
+    "title": "Rhinestone ModuleKit: AttestationNotFound",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x120a2e77"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error AttestationNotFound().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AttestationNotFound custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x120a2e77 // AttestationNotFound()"
+    ]
+  },
+  {
+    "id": "rhinestone-cannot-remove-credential",
+    "title": "Rhinestone Core Modules: CannotRemoveCredential",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x040053de"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error CannotRemoveCredential().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CannotRemoveCredential custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/WebAuthnValidator/WebAuthnValidator.sol"
+      }
+    ],
+    "examples": [
+      "0x040053de // CannotRemoveCredential()"
+    ]
+  },
+  {
+    "id": "rhinestone-cannot-remove-guardian",
+    "title": "Rhinestone Core Modules: CannotRemoveGuardian",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x701b4422"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error CannotRemoveGuardian().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CannotRemoveGuardian custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/SocialRecovery/SocialRecovery.sol"
+      }
+    ],
+    "examples": [
+      "0x701b4422 // CannotRemoveGuardian()"
+    ]
+  },
+  {
+    "id": "rhinestone-cannot-remove-owner",
+    "title": "Rhinestone Core Modules: CannotRemoveOwner",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1e6d14ea"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error CannotRemoveOwner().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CannotRemoveOwner custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/OwnableValidator/OwnableValidator.sol"
+      }
+    ],
+    "examples": [
+      "0x1e6d14ea // CannotRemoveOwner()"
+    ]
+  },
+  {
+    "id": "rhinestone-chain-id-mismatch-uint64",
+    "title": "Rhinestone ModuleKit: ChainIdMismatch",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe75e2379"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ChainIdMismatch(uint64).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ChainIdMismatch custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0xe75e2379 // ChainIdMismatch(uint64)"
+    ]
+  },
+  {
+    "id": "rhinestone-credential-already-exists",
+    "title": "Rhinestone Core Modules: CredentialAlreadyExists",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x724efe91"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error CredentialAlreadyExists().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CredentialAlreadyExists custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/WebAuthnValidator/WebAuthnValidator.sol"
+      }
+    ],
+    "examples": [
+      "0x724efe91 // CredentialAlreadyExists()"
+    ]
+  },
+  {
+    "id": "rhinestone-delegatecall-failed",
+    "title": "Rhinestone ModuleKit: Delegatecall failed",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Delegatecall failed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit revert reason string: Delegatecall failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/kernel/lib/ExecLib.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Delegatecall failed"
+    ]
+  },
+  {
+    "id": "rhinestone-deployer-deployment-failed",
+    "title": "Rhinestone ModuleKit: Deployer: deployment failed",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Deployer: deployment failed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit revert reason string: Deployer: deployment failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/precompiles/BytecodeDeployer.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Deployer: deployment failed"
+    ]
+  },
+  {
+    "id": "rhinestone-different-resolvers",
+    "title": "Rhinestone ModuleKit: DifferentResolvers",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1ac80ea7"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error DifferentResolvers().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DifferentResolvers custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x1ac80ea7 // DifferentResolvers()"
+    ]
+  },
+  {
+    "id": "rhinestone-erc20-transfer-failed",
+    "title": "Rhinestone Core Modules: ERC20TransferFailed",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf27f64e4"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error ERC20TransferFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ERC20TransferFailed custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/ScheduledTransfers/ScheduledTransfers.sol"
+      }
+    ],
+    "examples": [
+      "0xf27f64e4 // ERC20TransferFailed()"
+    ]
+  },
+  {
+    "id": "rhinestone-erc7579-decoding-error",
+    "title": "Rhinestone ModuleKit: ERC7579DecodingError",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xeb0bcc5d"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ERC7579DecodingError().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ERC7579DecodingError custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/erc7579/lib/ExecutionLib.sol"
+      }
+    ],
+    "examples": [
+      "0xeb0bcc5d // ERC7579DecodingError()"
+    ]
+  },
+  {
+    "id": "rhinestone-execution-failed",
+    "title": "Rhinestone ModuleKit: ExecutionFailed",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xacfdb444"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ExecutionFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ExecutionFailed custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/erc7579/helpers/ExecutionHelper.sol"
+      }
+    ],
+    "examples": [
+      "0xacfdb444 // ExecutionFailed()"
+    ]
+  },
+  {
+    "id": "rhinestone-external-error-module-registration",
+    "title": "Rhinestone ModuleKit: ExternalError_ModuleRegistration",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3b0cfdad"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ExternalError_ModuleRegistration().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ExternalError_ModuleRegistration custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x3b0cfdad // ExternalError_ModuleRegistration()"
+    ]
+  },
+  {
+    "id": "rhinestone-external-error-resolve-attestation",
+    "title": "Rhinestone ModuleKit: ExternalError_ResolveAttestation",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5b0ae41f"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ExternalError_ResolveAttestation().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ExternalError_ResolveAttestation custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x5b0ae41f // ExternalError_ResolveAttestation()"
+    ]
+  },
+  {
+    "id": "rhinestone-external-error-resolve-revocation",
+    "title": "Rhinestone ModuleKit: ExternalError_ResolveRevocation",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1664e7fc"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ExternalError_ResolveRevocation().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ExternalError_ResolveRevocation custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x1664e7fc // ExternalError_ResolveRevocation()"
+    ]
+  },
+  {
+    "id": "rhinestone-external-error-schema-validation",
+    "title": "Rhinestone ModuleKit: ExternalError_SchemaValidation",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5e1d8679"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ExternalError_SchemaValidation().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ExternalError_SchemaValidation custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x5e1d8679 // ExternalError_SchemaValidation()"
+    ]
+  },
+  {
+    "id": "rhinestone-factory-call-failed-address",
+    "title": "Rhinestone ModuleKit: FactoryCallFailed",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x06ce8e0c"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error FactoryCallFailed(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FactoryCallFailed custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x06ce8e0c // FactoryCallFailed(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-fallback-installed-bytes4",
+    "title": "Rhinestone ModuleKit: FallbackInstalled",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x74420d15"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error FallbackInstalled(bytes4).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FallbackInstalled custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/safe/interfaces/ISafe7579.sol"
+      }
+    ],
+    "examples": [
+      "0x74420d15 // FallbackInstalled(bytes4)"
+    ]
+  },
+  {
+    "id": "rhinestone-flashloan-callback-failed",
+    "title": "Rhinestone Core Modules: FlashloanCallbackFailed",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf594248f"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error FlashloanCallbackFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FlashloanCallbackFailed custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/Flashloan/FlashloanLender.sol"
+      }
+    ],
+    "examples": [
+      "0xf594248f // FlashloanCallbackFailed()"
+    ]
+  },
+  {
+    "id": "rhinestone-flashloan-lender-not-allowed-borrower",
+    "title": "Rhinestone Core Modules: FlashloanLender: not allowed borrower",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?FlashloanLender: not allowed borrower['\"]?\\s*$"
+      }
+    ],
+    "summary": "Rhinestone Core Modules revert reason string: FlashloanLender: not allowed borrower.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/Flashloan/FlashloanLender.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: FlashloanLender: not allowed borrower"
+    ]
+  },
+  {
+    "id": "rhinestone-forbidden-validation-data",
+    "title": "Rhinestone ModuleKit: ForbiddenValidationData",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2d39e3f4"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ForbiddenValidationData().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ForbiddenValidationData custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x2d39e3f4 // ForbiddenValidationData()"
+    ]
+  },
+  {
+    "id": "rhinestone-hash-index-out-of-bounds-uint256",
+    "title": "Rhinestone ModuleKit: HashIndexOutOfBounds",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2c502de1"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error HashIndexOutOfBounds(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the HashIndexOutOfBounds custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x2c502de1 // HashIndexOutOfBounds(uint256)"
+    ]
+  },
+  {
+    "id": "rhinestone-hash-mismatch-bytes32-bytes32",
+    "title": "Rhinestone ModuleKit: HashMismatch",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0b08d5be"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error HashMismatch(bytes32,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the HashMismatch custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x0b08d5be // HashMismatch(bytes32,bytes32)"
+    ]
+  },
+  {
+    "id": "rhinestone-hook-already-installed-address",
+    "title": "Rhinestone ModuleKit: HookAlreadyInstalled",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x741cbe03"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error HookAlreadyInstalled(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the HookAlreadyInstalled custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/safe/interfaces/ISafe7579.sol"
+      }
+    ],
+    "examples": [
+      "0x741cbe03 // HookAlreadyInstalled(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-hook-invalid-selector",
+    "title": "Rhinestone ModuleKit: HookInvalidSelector",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2654c34c"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error HookInvalidSelector().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the HookInvalidSelector custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/module-bases/ERC7579HookDestruct.sol"
+      }
+    ],
+    "examples": [
+      "0x2654c34c // HookInvalidSelector()"
+    ]
+  },
+  {
+    "id": "rhinestone-hooks-not-sorted",
+    "title": "Rhinestone Core Modules: HooksNotSorted",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3dc0b54c"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error HooksNotSorted().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the HooksNotSorted custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/HookMultiPlexer/HookMultiPlexerLib.sol"
+      }
+    ],
+    "examples": [
+      "0x3dc0b54c // HooksNotSorted()"
+    ]
+  },
+  {
+    "id": "rhinestone-insufficient-attestations",
+    "title": "Rhinestone ModuleKit: InsufficientAttestations",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe424f994"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InsufficientAttestations().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InsufficientAttestations custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0xe424f994 // InsufficientAttestations()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-action-id",
+    "title": "Rhinestone ModuleKit: InvalidActionId",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe068d3a2"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidActionId().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidActionId custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0xe068d3a2 // InvalidActionId()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-attestation",
+    "title": "Rhinestone ModuleKit: InvalidAttestation",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbd8ba84d"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidAttestation().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidAttestation custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0xbd8ba84d // InvalidAttestation()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-call-target",
+    "title": "Rhinestone ModuleKit: InvalidCallTarget",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x05eae184"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidCallTarget().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidCallTarget custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x05eae184 // InvalidCallTarget()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-call-type",
+    "title": "Rhinestone ModuleKit: InvalidCallType",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x39d2eb55"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidCallType().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidCallType custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/module-bases/ERC7579HookDestruct.sol"
+      }
+    ],
+    "examples": [
+      "0x39d2eb55 // InvalidCallType()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-credential-bytes32",
+    "title": "Rhinestone Core Modules: InvalidCredential",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb8a051b7"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error InvalidCredential(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidCredential custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/WebAuthnValidator/WebAuthnValidator.sol"
+      }
+    ],
+    "examples": [
+      "0xb8a051b7 // InvalidCredential(bytes32)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-data",
+    "title": "Rhinestone ModuleKit: InvalidData",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5cb045db"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidData().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidData custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x5cb045db // InvalidData()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-deployment",
+    "title": "Rhinestone ModuleKit: InvalidDeployment",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7483e907"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidDeployment().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidDeployment custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x7483e907 // InvalidDeployment()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-enable-signature-address-bytes32",
+    "title": "Rhinestone ModuleKit: InvalidEnableSignature",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3ca8ef0c"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidEnableSignature(address,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidEnableSignature custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x3ca8ef0c // InvalidEnableSignature(address,bytes32)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-execution",
+    "title": "Rhinestone ModuleKit: InvalidExecution",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x29adbb29"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidExecution().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidExecution custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/module-bases/SchedulingBase.sol"
+      }
+    ],
+    "examples": [
+      "0x29adbb29 // InvalidExecution()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-execution-hash-bytes32",
+    "title": "Rhinestone Core Modules: InvalidExecutionHash",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdb5d09aa"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error InvalidExecutionHash(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidExecutionHash custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/ColdStorageHook/ColdStorageHook.sol"
+      }
+    ],
+    "examples": [
+      "0xdb5d09aa // InvalidExecutionHash(bytes32)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-execution-type",
+    "title": "Rhinestone ModuleKit: InvalidExecutionType",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3bee738a"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidExecutionType().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidExecutionType custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/module-bases/utils/ERC7579ValidatorLib.sol"
+      }
+    ],
+    "examples": [
+      "0x3bee738a // InvalidExecutionType()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-expiration-time",
+    "title": "Rhinestone ModuleKit: InvalidExpirationTime",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x08e8b937"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidExpirationTime().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidExpirationTime custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x08e8b937 // InvalidExpirationTime()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-fallback-handler-bytes4",
+    "title": "Rhinestone ModuleKit: InvalidFallbackHandler",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x79bd117b"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidFallbackHandler(bytes4).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidFallbackHandler custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/safe/interfaces/ISafe7579.sol"
+      }
+    ],
+    "examples": [
+      "0x79bd117b // InvalidFallbackHandler(bytes4)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-guardian-address",
+    "title": "Rhinestone Core Modules: InvalidGuardian",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf38d406d"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error InvalidGuardian(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidGuardian custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/SocialRecovery/SocialRecovery.sol"
+      }
+    ],
+    "examples": [
+      "0xf38d406d // InvalidGuardian(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-hook-type",
+    "title": "Rhinestone ModuleKit: InvalidHookType",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5691922f"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidHookType().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidHookType custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/safe/interfaces/ISafe7579.sol"
+      }
+    ],
+    "examples": [
+      "0x5691922f // InvalidHookType()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-input",
+    "title": "Rhinestone ModuleKit: InvalidInput",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb4fa3fb3"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidInput().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidInput custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/safe/interfaces/ISafe7579.sol"
+      }
+    ],
+    "examples": [
+      "0xb4fa3fb3 // InvalidInput()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-isession-validator-address",
+    "title": "Rhinestone ModuleKit: InvalidISessionValidator",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa7eae112"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidISessionValidator(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidISessionValidator custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0xa7eae112 // InvalidISessionValidator(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-module-address",
+    "title": "Rhinestone ModuleKit: InvalidModule",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb927fe5e"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidModule(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidModule custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/safe/interfaces/ISafe7579.sol"
+      }
+    ],
+    "examples": [
+      "0xb927fe5e // InvalidModule(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-module-type",
+    "title": "Rhinestone ModuleKit: InvalidModuleType",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2125deae"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidModuleType().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidModuleType custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x2125deae // InvalidModuleType()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-module-type-address-uint256",
+    "title": "Rhinestone ModuleKit: InvalidModuleType",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x484d2181"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidModuleType(address,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidModuleType custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/safe/interfaces/ISafe7579.sol"
+      }
+    ],
+    "examples": [
+      "0x484d2181 // InvalidModuleType(address,uint256)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-module-types",
+    "title": "Rhinestone ModuleKit: InvalidModuleTypes",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x342c9006"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidModuleTypes().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidModuleTypes custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x342c9006 // InvalidModuleTypes()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-owner",
+    "title": "Rhinestone Core Modules: InvalidOwner",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x49e27cff"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error InvalidOwner().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidOwner custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/ColdStorageHook/ColdStorageHook.sol"
+      }
+    ],
+    "examples": [
+      "0x49e27cff // InvalidOwner()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-owner-address",
+    "title": "Rhinestone Core Modules: InvalidOwner",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb20f76e3"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error InvalidOwner(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidOwner custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/OwnableExecutor/OwnableExecutor.sol"
+      }
+    ],
+    "examples": [
+      "0xb20f76e3 // InvalidOwner(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-public-key",
+    "title": "Rhinestone Core Modules: InvalidPublicKey",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa2d0fee8"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error InvalidPublicKey().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidPublicKey custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/WebAuthnValidator/WebAuthnValidator.sol"
+      }
+    ],
+    "examples": [
+      "0xa2d0fee8 // InvalidPublicKey()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-resolver",
+    "title": "Rhinestone ModuleKit: InvalidResolver",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6da3f654"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidResolver().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidResolver custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/RegistryDeployer.sol"
+      }
+    ],
+    "examples": [
+      "0x6da3f654 // InvalidResolver()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-resolver-address",
+    "title": "Rhinestone ModuleKit: InvalidResolver",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf9492e75"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidResolver(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidResolver custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0xf9492e75 // InvalidResolver(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-schema",
+    "title": "Rhinestone ModuleKit: InvalidSchema",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbf37b20e"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidSchema().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidSchema custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0xbf37b20e // InvalidSchema()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-schema-validator-address",
+    "title": "Rhinestone ModuleKit: InvalidSchemaValidator",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0f091407"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidSchemaValidator(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidSchemaValidator custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x0f091407 // InvalidSchemaValidator(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-self-call",
+    "title": "Rhinestone ModuleKit: InvalidSelfCall",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x540733ea"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidSelfCall().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidSelfCall custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x540733ea // InvalidSelfCall()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-signature",
+    "title": "Rhinestone ModuleKit: InvalidSignature",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8baa579f"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidSignature().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidSignature custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x8baa579f // InvalidSignature()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-sqrt-price-limit-x96",
+    "title": "Rhinestone Core Modules: InvalidSqrtPriceLimitX96",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8582dc3d"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error InvalidSqrtPriceLimitX96().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidSqrtPriceLimitX96 custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/AutoSavings/AutoSavings.sol"
+      }
+    ],
+    "examples": [
+      "0x8582dc3d // InvalidSqrtPriceLimitX96()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-target",
+    "title": "Rhinestone ModuleKit: InvalidTarget",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x82d5d76a"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidTarget().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidTarget custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x82d5d76a // InvalidTarget()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-target-address-address",
+    "title": "Rhinestone ModuleKit: InvalidTargetAddress",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x78bedf4d"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidTargetAddress(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidTargetAddress custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/common/interfaces/IERC7579Module.sol"
+      }
+    ],
+    "examples": [
+      "0x78bedf4d // InvalidTargetAddress(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-threshold",
+    "title": "Rhinestone Core Modules: InvalidThreshold",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xaabd5a09"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error InvalidThreshold().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidThreshold custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/OwnableValidator/OwnableValidator.sol"
+      }
+    ],
+    "examples": [
+      "0xaabd5a09 // InvalidThreshold()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-threshold-uint256-uint256",
+    "title": "Rhinestone Core Modules: InvalidThreshold",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7b7a98f1"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error InvalidThreshold(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidThreshold custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/MultiFactor/MultiFactor.sol"
+      }
+    ],
+    "examples": [
+      "0x7b7a98f1 // InvalidThreshold(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-transfer-receiver",
+    "title": "Rhinestone Core Modules: InvalidTransferReceiver",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb4aeba32"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error InvalidTransferReceiver().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidTransferReceiver custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/ColdStorageHook/ColdStorageHook.sol"
+      }
+    ],
+    "examples": [
+      "0xb4aeba32 // InvalidTransferReceiver()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-trusted-attester-input",
+    "title": "Rhinestone ModuleKit: InvalidTrustedAttesterInput",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xcd0ecff1"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidTrustedAttesterInput().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidTrustedAttesterInput custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0xcd0ecff1 // InvalidTrustedAttesterInput()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-user-op-sender-address",
+    "title": "Rhinestone ModuleKit: InvalidUserOpSender",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x04a4ab94"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error InvalidUserOpSender(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidUserOpSender custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x04a4ab94 // InvalidUserOpSender(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-validator-data",
+    "title": "Rhinestone Core Modules: InvalidValidatorData",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7052173e"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error InvalidValidatorData().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidValidatorData custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/MultiFactor/MultiFactor.sol"
+      }
+    ],
+    "examples": [
+      "0x7052173e // InvalidValidatorData()"
+    ]
+  },
+  {
+    "id": "rhinestone-invalid-wait-period",
+    "title": "Rhinestone Core Modules: InvalidWaitPeriod",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb5784bc1"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error InvalidWaitPeriod().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidWaitPeriod custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/ColdStorageHook/ColdStorageHook.sol"
+      }
+    ],
+    "examples": [
+      "0xb5784bc1 // InvalidWaitPeriod()"
+    ]
+  },
+  {
+    "id": "rhinestone-max-credentials-reached",
+    "title": "Rhinestone Core Modules: MaxCredentialsReached",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4028a50d"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error MaxCredentialsReached().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MaxCredentialsReached custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/WebAuthnValidator/WebAuthnValidator.sol"
+      }
+    ],
+    "examples": [
+      "0x4028a50d // MaxCredentialsReached()"
+    ]
+  },
+  {
+    "id": "rhinestone-max-guardians-reached",
+    "title": "Rhinestone Core Modules: MaxGuardiansReached",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdfc3481a"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error MaxGuardiansReached().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MaxGuardiansReached custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/SocialRecovery/SocialRecovery.sol"
+      }
+    ],
+    "examples": [
+      "0xdfc3481a // MaxGuardiansReached()"
+    ]
+  },
+  {
+    "id": "rhinestone-max-owners-reached",
+    "title": "Rhinestone Core Modules: MaxOwnersReached",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2414149d"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error MaxOwnersReached().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MaxOwnersReached custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/OwnableValidator/OwnableValidator.sol"
+      }
+    ],
+    "examples": [
+      "0x2414149d // MaxOwnersReached()"
+    ]
+  },
+  {
+    "id": "rhinestone-mismatch-module-type-id-uint256",
+    "title": "Rhinestone ModuleKit: MismatchModuleTypeId",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd393448a"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error MismatchModuleTypeId(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MismatchModuleTypeId custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/erc7579/interfaces/IMSA.sol"
+      }
+    ],
+    "examples": [
+      "0xd393448a // MismatchModuleTypeId(uint256)"
+    ]
+  },
+  {
+    "id": "rhinestone-mock-attester-not-deployed",
+    "title": "Rhinestone ModuleKit: MockAttester not deployed",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?MockAttester not deployed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit revert reason string: MockAttester not deployed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/RegistryDeployer.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: MockAttester not deployed"
+    ]
+  },
+  {
+    "id": "rhinestone-module-address-is-not-contract-address",
+    "title": "Rhinestone ModuleKit: ModuleAddressIsNotContract",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb6519d9d"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ModuleAddressIsNotContract(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ModuleAddressIsNotContract custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0xb6519d9d // ModuleAddressIsNotContract(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-module-already-initialized-address",
+    "title": "Rhinestone ModuleKit: ModuleAlreadyInitialized",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4d6b9dd3"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ModuleAlreadyInitialized(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ModuleAlreadyInitialized custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/common/interfaces/IERC7579Module.sol"
+      }
+    ],
+    "examples": [
+      "0x4d6b9dd3 // ModuleAlreadyInitialized(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-module-not-found-in-registry-address",
+    "title": "Rhinestone ModuleKit: ModuleNotFoundInRegistry",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4eb2dcd7"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ModuleNotFoundInRegistry(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ModuleNotFoundInRegistry custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x4eb2dcd7 // ModuleNotFoundInRegistry(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-no-executions-in-batch",
+    "title": "Rhinestone ModuleKit: NoExecutionsInBatch",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x56d93c1a"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error NoExecutionsInBatch().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NoExecutionsInBatch custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x56d93c1a // NoExecutionsInBatch()"
+    ]
+  },
+  {
+    "id": "rhinestone-no-fallback-handler-bytes4",
+    "title": "Rhinestone ModuleKit: NoFallbackHandler",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x48c9ceda"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error NoFallbackHandler(bytes4).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NoFallbackHandler custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/safe/interfaces/ISafe7579.sol"
+      }
+    ],
+    "examples": [
+      "0x48c9ceda // NoFallbackHandler(bytes4)"
+    ]
+  },
+  {
+    "id": "rhinestone-no-trusted-attesters-found",
+    "title": "Rhinestone ModuleKit: NoTrustedAttestersFound",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x05a74e61"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error NoTrustedAttestersFound().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NoTrustedAttestersFound custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x05a74e61 // NoTrustedAttestersFound()"
+    ]
+  },
+  {
+    "id": "rhinestone-not-initialized-address",
+    "title": "Rhinestone ModuleKit: NotInitialized",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf91bd6f1"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error NotInitialized(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NotInitialized custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/common/interfaces/IERC7579Module.sol"
+      }
+    ],
+    "examples": [
+      "0xf91bd6f1 // NotInitialized(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-not-sorted",
+    "title": "Rhinestone Core Modules: NotSorted",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xba50f911"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error NotSorted().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NotSorted custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/WebAuthnValidator/WebAuthnValidator.sol"
+      }
+    ],
+    "examples": [
+      "0xba50f911 // NotSorted()"
+    ]
+  },
+  {
+    "id": "rhinestone-not-sorted-and-unique",
+    "title": "Rhinestone Core Modules: NotSortedAndUnique",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe7190273"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error NotSortedAndUnique().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NotSortedAndUnique custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/OwnableValidator/OwnableValidator.sol"
+      }
+    ],
+    "examples": [
+      "0xe7190273 // NotSortedAndUnique()"
+    ]
+  },
+  {
+    "id": "rhinestone-not-unique",
+    "title": "Rhinestone Core Modules: NotUnique",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8c9946f9"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error NotUnique().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NotUnique custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/WebAuthnValidator/WebAuthnValidator.sol"
+      }
+    ],
+    "examples": [
+      "0x8c9946f9 // NotUnique()"
+    ]
+  },
+  {
+    "id": "rhinestone-partly-enabled-actions",
+    "title": "Rhinestone ModuleKit: PartlyEnabledActions",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa9fc47ea"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error PartlyEnabledActions().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PartlyEnabledActions custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0xa9fc47ea // PartlyEnabledActions()"
+    ]
+  },
+  {
+    "id": "rhinestone-partly-enabled-policies",
+    "title": "Rhinestone ModuleKit: PartlyEnabledPolicies",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x25a77122"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error PartlyEnabledPolicies().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PartlyEnabledPolicies custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x25a77122 // PartlyEnabledPolicies()"
+    ]
+  },
+  {
+    "id": "rhinestone-resolver-already-exists",
+    "title": "Rhinestone ModuleKit: ResolverAlreadyExists",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3d7cae84"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ResolverAlreadyExists().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ResolverAlreadyExists custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x3d7cae84 // ResolverAlreadyExists()"
+    ]
+  },
+  {
+    "id": "rhinestone-revoked-attestation-address",
+    "title": "Rhinestone ModuleKit: RevokedAttestation",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x879943f8"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error RevokedAttestation(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RevokedAttestation custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/deployment/registry/interfaces/IRegistry.sol"
+      }
+    ],
+    "examples": [
+      "0x879943f8 // RevokedAttestation(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-safe-erc20-transfer-failed",
+    "title": "Rhinestone ModuleKit: SafeERC20TransferFailed",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8b66d818"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error SafeERC20TransferFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SafeERC20TransferFailed custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/ERC20.sol"
+      }
+    ],
+    "examples": [
+      "0x8b66d818 // SafeERC20TransferFailed()"
+    ]
+  },
+  {
+    "id": "rhinestone-smart-session-module-already-installed-address",
+    "title": "Rhinestone ModuleKit: SmartSessionModuleAlreadyInstalled",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbcf00e1d"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error SmartSessionModuleAlreadyInstalled(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SmartSessionModuleAlreadyInstalled custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0xbcf00e1d // SmartSessionModuleAlreadyInstalled(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-sub-hook-post-check-error-address",
+    "title": "Rhinestone Core Modules: SubHookPostCheckError",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9a7bb05a"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error SubHookPostCheckError(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SubHookPostCheckError custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/HookMultiPlexer/HookMultiPlexerLib.sol"
+      }
+    ],
+    "examples": [
+      "0x9a7bb05a // SubHookPostCheckError(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-sub-hook-pre-check-error-address",
+    "title": "Rhinestone Core Modules: SubHookPreCheckError",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5d0eb4ab"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error SubHookPreCheckError(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SubHookPreCheckError custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/HookMultiPlexer/HookMultiPlexerLib.sol"
+      }
+    ],
+    "examples": [
+      "0x5d0eb4ab // SubHookPreCheckError(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-threshold-not-set",
+    "title": "Rhinestone Core Modules: ThresholdNotSet",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x34b46f48"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error ThresholdNotSet().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ThresholdNotSet custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/OwnableValidator/OwnableValidator.sol"
+      }
+    ],
+    "examples": [
+      "0x34b46f48 // ThresholdNotSet()"
+    ]
+  },
+  {
+    "id": "rhinestone-token-gated-tx-failed",
+    "title": "Rhinestone Core Modules: TokenGatedTxFailed",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2c8ce0b3"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error TokenGatedTxFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TokenGatedTxFailed custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/Flashloan/FlashloanCallback.sol"
+      }
+    ],
+    "examples": [
+      "0x2c8ce0b3 // TokenGatedTxFailed()"
+    ]
+  },
+  {
+    "id": "rhinestone-token-not-repaid",
+    "title": "Rhinestone Core Modules: TokenNotRepaid",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbd88352f"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error TokenNotRepaid().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TokenNotRepaid custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/Flashloan/FlashloanLender.sol"
+      }
+    ],
+    "examples": [
+      "0xbd88352f // TokenNotRepaid()"
+    ]
+  },
+  {
+    "id": "rhinestone-too-many-tokens",
+    "title": "Rhinestone Core Modules: TooManyTokens",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x748e67b2"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error TooManyTokens().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TooManyTokens custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/AutoSavings/AutoSavings.sol"
+      }
+    ],
+    "examples": [
+      "0x748e67b2 // TooManyTokens()"
+    ]
+  },
+  {
+    "id": "rhinestone-unauthorized",
+    "title": "Rhinestone Core Modules: Unauthorized",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x82b42900"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error Unauthorized().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the Unauthorized custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/Flashloan/FlashloanCallback.sol"
+      }
+    ],
+    "examples": [
+      "0x82b42900 // Unauthorized()"
+    ]
+  },
+  {
+    "id": "rhinestone-unauthorized-access",
+    "title": "Rhinestone Core Modules: UnauthorizedAccess",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x344fd586"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error UnauthorizedAccess().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnauthorizedAccess custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/ColdStorageHook/ColdStorageHook.sol"
+      }
+    ],
+    "examples": [
+      "0x344fd586 // UnauthorizedAccess()"
+    ]
+  },
+  {
+    "id": "rhinestone-unsupported",
+    "title": "Rhinestone ModuleKit: Unsupported",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Unsupported['\"]?\\s*$"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit revert reason string: Unsupported.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/kernel/lib/ExecLib.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Unsupported"
+    ]
+  },
+  {
+    "id": "rhinestone-unsupported-execution",
+    "title": "Rhinestone Core Modules: UnsupportedExecution",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x226f153d"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error UnsupportedExecution().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnsupportedExecution custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/ColdStorageHook/ColdStorageHook.sol"
+      }
+    ],
+    "examples": [
+      "0x226f153d // UnsupportedExecution()"
+    ]
+  },
+  {
+    "id": "rhinestone-unsupported-execution-type",
+    "title": "Rhinestone ModuleKit: UnsupportedExecutionType",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6c4872f9"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error UnsupportedExecutionType().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnsupportedExecutionType custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x6c4872f9 // UnsupportedExecutionType()"
+    ]
+  },
+  {
+    "id": "rhinestone-unsupported-module-type-uint256",
+    "title": "Rhinestone ModuleKit: UnsupportedModuleType",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x41c38b30"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error UnsupportedModuleType(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnsupportedModuleType custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/accounts/erc7579/interfaces/IMSA.sol"
+      }
+    ],
+    "examples": [
+      "0x41c38b30 // UnsupportedModuleType(uint256)"
+    ]
+  },
+  {
+    "id": "rhinestone-unsupported-operation",
+    "title": "Rhinestone Core Modules: UnsupportedOperation",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9ba6061b"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error UnsupportedOperation().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnsupportedOperation custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/DeadmanSwitch/DeadmanSwitch.sol"
+      }
+    ],
+    "examples": [
+      "0x9ba6061b // UnsupportedOperation()"
+    ]
+  },
+  {
+    "id": "rhinestone-unsupported-policy-address",
+    "title": "Rhinestone ModuleKit: UnsupportedPolicy",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6a01dd01"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error UnsupportedPolicy(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnsupportedPolicy custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/ISmartSession.sol"
+      }
+    ],
+    "examples": [
+      "0x6a01dd01 // UnsupportedPolicy(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-unsupported-token-address",
+    "title": "Rhinestone Core Modules: UnsupportedToken",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbf16aab6"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error UnsupportedToken(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnsupportedToken custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/ColdStorageHook/ColdStorageHook.sol"
+      }
+    ],
+    "examples": [
+      "0xbf16aab6 // UnsupportedToken(address)"
+    ]
+  },
+  {
+    "id": "rhinestone-unsupported-token-type",
+    "title": "Rhinestone Core Modules: UnsupportedTokenType",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd78b7d54"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error UnsupportedTokenType().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnsupportedTokenType custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/Flashloan/FlashloanLender.sol"
+      }
+    ],
+    "examples": [
+      "0xd78b7d54 // UnsupportedTokenType()"
+    ]
+  },
+  {
+    "id": "rhinestone-zero-address",
+    "title": "Rhinestone ModuleKit: ZeroAddress",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd92e233d"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ZeroAddress().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZeroAddress custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/morpho/MorphoTypesAaveV3.sol"
+      }
+    ],
+    "examples": [
+      "0xd92e233d // ZeroAddress()"
+    ]
+  },
+  {
+    "id": "rhinestone-zero-threshold",
+    "title": "Rhinestone Core Modules: ZeroThreshold",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x831761d7"
+      }
+    ],
+    "summary": "Rhinestone Core Modules custom error ZeroThreshold().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZeroThreshold custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone Core Modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone Core Modules GitHub repository",
+        "url": "https://github.com/rhinestonewtf/core-modules/blob/main/src/MultiFactor/MultiFactor.sol"
+      }
+    ],
+    "examples": [
+      "0x831761d7 // ZeroThreshold()"
+    ]
+  },
+  {
+    "id": "rhinestone-zero-value",
+    "title": "Rhinestone ModuleKit: ZeroValue",
+    "layer": "account_abstraction",
+    "source": "rhinestone",
+    "category": "account_abstraction",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7c946ed7"
+      }
+    ],
+    "summary": "Rhinestone ModuleKit custom error ZeroValue().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZeroValue custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Rhinestone ModuleKit precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Rhinestone ModuleKit GitHub repository",
+        "url": "https://github.com/rhinestonewtf/modulekit/blob/main/src/integrations/interfaces/morpho/MorphoTypesAaveV3.sol"
+      }
+    ],
+    "examples": [
+      "0x7c946ed7 // ZeroValue()"
+    ]
+  }
+]

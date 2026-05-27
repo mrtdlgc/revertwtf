@@ -1,0 +1,352 @@
+[
+  {
+    "id": "gnosis-tokenbridge-accepts-only-bridge-calls",
+    "title": "Gnosis TokenBridge: accepts only bridge calls",
+    "layer": "protocol",
+    "source": "gnosis-tokenbridge",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?accepts only bridge calls['\"]?\\s*$"
+      }
+    ],
+    "summary": "Gnosis TokenBridge revert reason string: accepts only bridge calls.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Gnosis TokenBridge GitHub repository",
+        "url": "https://github.com/gnosischain/tokenbridge-contracts/blob/master/contracts/gsn/token_paymaster/TokenPaymaster.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: accepts only bridge calls"
+    ]
+  },
+  {
+    "id": "gnosis-tokenbridge-can-only-be-called-by-relay-hub",
+    "title": "Gnosis TokenBridge: can only be called by RelayHub",
+    "layer": "protocol",
+    "source": "gnosis-tokenbridge",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?can only be called by RelayHub['\"]?\\s*$"
+      }
+    ],
+    "summary": "Gnosis TokenBridge revert reason string: can only be called by RelayHub.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Gnosis TokenBridge GitHub repository",
+        "url": "https://github.com/gnosischain/tokenbridge-contracts/blob/master/contracts/gsn/BasePaymaster.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: can only be called by RelayHub"
+    ]
+  },
+  {
+    "id": "gnosis-tokenbridge-data-too-short",
+    "title": "Gnosis TokenBridge: data too short",
+    "layer": "protocol",
+    "source": "gnosis-tokenbridge",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?data too short['\"]?\\s*$"
+      }
+    ],
+    "summary": "Gnosis TokenBridge revert reason string: data too short.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Gnosis TokenBridge GitHub repository",
+        "url": "https://github.com/gnosischain/tokenbridge-contracts/blob/master/contracts/gsn/token_paymaster/TokenPaymaster.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: data too short"
+    ]
+  },
+  {
+    "id": "gnosis-tokenbridge-forwarder-is-not-trusted",
+    "title": "Gnosis TokenBridge: Forwarder is not trusted",
+    "layer": "protocol",
+    "source": "gnosis-tokenbridge",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Forwarder is not trusted['\"]?\\s*$"
+      }
+    ],
+    "summary": "Gnosis TokenBridge revert reason string: Forwarder is not trusted.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Gnosis TokenBridge GitHub repository",
+        "url": "https://github.com/gnosischain/tokenbridge-contracts/blob/master/contracts/gsn/BasePaymaster.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Forwarder is not trusted"
+    ]
+  },
+  {
+    "id": "gnosis-tokenbridge-message-hasn-t-been-confirmed",
+    "title": "Gnosis TokenBridge: message hasn't been confirmed",
+    "layer": "protocol",
+    "source": "gnosis-tokenbridge",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?message hasn't been confirmed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Gnosis TokenBridge revert reason string: message hasn't been confirmed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Gnosis TokenBridge GitHub repository",
+        "url": "https://github.com/gnosischain/tokenbridge-contracts/blob/master/contracts/helpers/Erc20ToNativeBridgeHelper.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: message hasn't been confirmed"
+    ]
+  },
+  {
+    "id": "gnosis-tokenbridge-not-allowed-target",
+    "title": "Gnosis TokenBridge: not allowed target",
+    "layer": "protocol",
+    "source": "gnosis-tokenbridge",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not allowed target['\"]?\\s*$"
+      }
+    ],
+    "summary": "Gnosis TokenBridge revert reason string: not allowed target.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Gnosis TokenBridge GitHub repository",
+        "url": "https://github.com/gnosischain/tokenbridge-contracts/blob/master/contracts/gsn/token_paymaster/TokenPaymaster.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: not allowed target"
+    ]
+  },
+  {
+    "id": "gnosis-tokenbridge-not-an-owner",
+    "title": "Gnosis TokenBridge: not an owner",
+    "layer": "protocol",
+    "source": "gnosis-tokenbridge",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not an owner['\"]?\\s*$"
+      }
+    ],
+    "summary": "Gnosis TokenBridge revert reason string: not an owner.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Gnosis TokenBridge GitHub repository",
+        "url": "https://github.com/gnosischain/tokenbridge-contracts/blob/master/contracts/helpers/Erc20ToNativeBridgeHelper.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: not an owner"
+    ]
+  },
+  {
+    "id": "gnosis-tokenbridge-relay-hub-address-not-set",
+    "title": "Gnosis TokenBridge: relay hub address not set",
+    "layer": "protocol",
+    "source": "gnosis-tokenbridge",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?relay hub address not set['\"]?\\s*$"
+      }
+    ],
+    "summary": "Gnosis TokenBridge revert reason string: relay hub address not set.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Gnosis TokenBridge GitHub repository",
+        "url": "https://github.com/gnosischain/tokenbridge-contracts/blob/master/contracts/gsn/BasePaymaster.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: relay hub address not set"
+    ]
+  },
+  {
+    "id": "gnosis-tokenbridge-sender-does-not-match-recipient",
+    "title": "Gnosis TokenBridge: sender does not match recipient",
+    "layer": "protocol",
+    "source": "gnosis-tokenbridge",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?sender does not match recipient['\"]?\\s*$"
+      }
+    ],
+    "summary": "Gnosis TokenBridge revert reason string: sender does not match recipient.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Gnosis TokenBridge GitHub repository",
+        "url": "https://github.com/gnosischain/tokenbridge-contracts/blob/master/contracts/gsn/token_paymaster/TokenPaymaster.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: sender does not match recipient"
+    ]
+  },
+  {
+    "id": "gnosis-tokenbridge-tokens-fee-can-t-cover-expenses",
+    "title": "Gnosis TokenBridge: tokens fee can't cover expenses",
+    "layer": "protocol",
+    "source": "gnosis-tokenbridge",
+    "category": "bridge",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?tokens fee can't cover expenses['\"]?\\s*$"
+      }
+    ],
+    "summary": "Gnosis TokenBridge revert reason string: tokens fee can't cover expenses.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Gnosis TokenBridge GitHub repository",
+        "url": "https://github.com/gnosischain/tokenbridge-contracts/blob/master/contracts/gsn/token_paymaster/TokenPaymaster.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: tokens fee can't cover expenses"
+    ]
+  }
+]

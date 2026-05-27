@@ -1,0 +1,1297 @@
+[
+  {
+    "id": "redstone-evm-connector-account-must-be-solvent-after-liquidation",
+    "title": "RedStone EVM connector: Account must be solvent after liquidation",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Account must be solvent after liquidation['\"]?\\s*$"
+      }
+    ],
+    "summary": "RedStone EVM connector revert reason string: Account must be solvent after liquidation.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "execution reverted: Account must be solvent after liquidation"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-all-values-must-be-equal",
+    "title": "RedStone EVM connector: AllValuesMustBeEqual",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd5e55d18"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error AllValuesMustBeEqual().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AllValuesMustBeEqual custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xd5e55d18 // AllValuesMustBeEqual()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-calldata-must-have-valid-payload",
+    "title": "RedStone EVM connector: CalldataMustHaveValidPayload",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe7764c9e"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error CalldataMustHaveValidPayload().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CalldataMustHaveValidPayload custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xe7764c9e // CalldataMustHaveValidPayload()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-calldata-over-or-under-flow",
+    "title": "RedStone EVM connector: CalldataOverOrUnderFlow",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5796f78a"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error CalldataOverOrUnderFlow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CalldataOverOrUnderFlow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x5796f78a // CalldataOverOrUnderFlow()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-can-not-pick-median-of-empty-array",
+    "title": "RedStone EVM connector: CanNotPickMedianOfEmptyArray",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9e198af9"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error CanNotPickMedianOfEmptyArray().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CanNotPickMedianOfEmptyArray custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x9e198af9 // CanNotPickMedianOfEmptyArray()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-cannot-burn-more-than-minted",
+    "title": "RedStone EVM connector: Cannot burn more than minted",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot burn more than minted['\"]?\\s*$"
+      }
+    ],
+    "summary": "RedStone EVM connector revert reason string: Cannot burn more than minted.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "execution reverted: Cannot burn more than minted"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-cannot-liquidate-a-solvent-account",
+    "title": "RedStone EVM connector: Cannot liquidate a solvent account",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot liquidate a solvent account['\"]?\\s*$"
+      }
+    ],
+    "summary": "RedStone EVM connector revert reason string: Cannot liquidate a solvent account.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "execution reverted: Cannot liquidate a solvent account"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-cannot-remove-more-collateral-than-deposited",
+    "title": "RedStone EVM connector: Cannot remove more collateral than deposited",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot remove more collateral than deposited['\"]?\\s*$"
+      }
+    ],
+    "summary": "RedStone EVM connector revert reason string: Cannot remove more collateral than deposited.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "execution reverted: Cannot remove more collateral than deposited"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-data-package-timestamp-must-not-be-zero",
+    "title": "RedStone EVM connector: DataPackageTimestampMustNotBeZero",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x336dc9d0"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error DataPackageTimestampMustNotBeZero().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DataPackageTimestampMustNotBeZero custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x336dc9d0 // DataPackageTimestampMustNotBeZero()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-data-package-timestamps-must-be-equal",
+    "title": "RedStone EVM connector: DataPackageTimestampsMustBeEqual",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd9d1f465"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error DataPackageTimestampsMustBeEqual().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DataPackageTimestampsMustBeEqual custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xd9d1f465 // DataPackageTimestampsMustBeEqual()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-data-timestamp-cannot-be-zero",
+    "title": "RedStone EVM connector: DataTimestampCannotBeZero",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdfb25a79"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error DataTimestampCannotBeZero().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DataTimestampCannotBeZero custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xdfb25a79 // DataTimestampCannotBeZero()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-each-signer-must-provide-the-same-value",
+    "title": "RedStone EVM connector: EachSignerMustProvideTheSameValue",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xece458ec"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error EachSignerMustProvideTheSameValue().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the EachSignerMustProvideTheSameValue custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xece458ec // EachSignerMustProvideTheSameValue()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-empty-calldata-pointers-arr",
+    "title": "RedStone EVM connector: EmptyCalldataPointersArr",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6c2325dc"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error EmptyCalldataPointersArr().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the EmptyCalldataPointersArr custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x6c2325dc // EmptyCalldataPointersArr()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-erc20-transfer-amount-exceeds-allowance",
+    "title": "RedStone EVM connector: ERC20: transfer amount exceeds allowance",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC20: transfer amount exceeds allowance['\"]?\\s*$"
+      }
+    ],
+    "summary": "RedStone EVM connector revert reason string: ERC20: transfer amount exceeds allowance.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "execution reverted: ERC20: transfer amount exceeds allowance"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-expected-msg-value-not-to-be-passed",
+    "title": "RedStone EVM connector: ExpectedMsgValueNotToBePassed",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x99d04048"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error ExpectedMsgValueNotToBePassed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ExpectedMsgValueNotToBePassed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x99d04048 // ExpectedMsgValueNotToBePassed()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-expected-msg-value-to-be-passed",
+    "title": "RedStone EVM connector: ExpectedMsgValueToBePassed",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x26d2b8a2"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error ExpectedMsgValueToBePassed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ExpectedMsgValueToBePassed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x26d2b8a2 // ExpectedMsgValueToBePassed()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-get-data-service-id-not-implemented",
+    "title": "RedStone EVM connector: GetDataServiceIdNotImplemented",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x608b5307"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error GetDataServiceIdNotImplemented().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the GetDataServiceIdNotImplemented custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x608b5307 // GetDataServiceIdNotImplemented()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-incorrect-unsigned-metadata-size",
+    "title": "RedStone EVM connector: IncorrectUnsignedMetadataSize",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc30a7bd7"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error IncorrectUnsignedMetadataSize().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the IncorrectUnsignedMetadataSize custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xc30a7bd7 // IncorrectUnsignedMetadataSize()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-insufficient-number-of-unique-signers",
+    "title": "RedStone EVM connector: InsufficientNumberOfUniqueSigners",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2b13aef5"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error InsufficientNumberOfUniqueSigners(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InsufficientNumberOfUniqueSigners custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x2b13aef5 // InsufficientNumberOfUniqueSigners(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-invalid-calldata-pointer",
+    "title": "RedStone EVM connector: InvalidCalldataPointer",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb0e86e51"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error InvalidCalldataPointer().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidCalldataPointer custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xb0e86e51 // InvalidCalldataPointer()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-invalid-signature",
+    "title": "RedStone EVM connector: InvalidSignature",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x666b7cba"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error InvalidSignature(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidSignature custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x666b7cba // InvalidSignature(bytes32)"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-proxy-calldata-failed-with-custom-error",
+    "title": "RedStone EVM connector: ProxyCalldataFailedWithCustomError",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xfd36fde3"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error ProxyCalldataFailedWithCustomError(bytes).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ProxyCalldataFailedWithCustomError custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xfd36fde3 // ProxyCalldataFailedWithCustomError(bytes)"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-proxy-calldata-failed-with-string-message",
+    "title": "RedStone EVM connector: ProxyCalldataFailedWithStringMessage",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0f7e8278"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error ProxyCalldataFailedWithStringMessage(string).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ProxyCalldataFailedWithStringMessage custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x0f7e8278 // ProxyCalldataFailedWithStringMessage(string)"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-proxy-calldata-failed-without-err-msg",
+    "title": "RedStone EVM connector: ProxyCalldataFailedWithoutErrMsg",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x567fe27a"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error ProxyCalldataFailedWithoutErrMsg().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ProxyCalldataFailedWithoutErrMsg custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x567fe27a // ProxyCalldataFailedWithoutErrMsg()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-redstone-payload-must-have-at-least-one-data-package",
+    "title": "RedStone EVM connector: RedstonePayloadMustHaveAtLeastOneDataPackage",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8552ff3c"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error RedstonePayloadMustHaveAtLeastOneDataPackage().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RedstonePayloadMustHaveAtLeastOneDataPackage custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x8552ff3c // RedstonePayloadMustHaveAtLeastOneDataPackage()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-request-not-found",
+    "title": "RedStone EVM connector: Request not found",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Request not found['\"]?\\s*$"
+      }
+    ],
+    "summary": "RedStone EVM connector revert reason string: Request not found.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "execution reverted: Request not found"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-signer-not-authorised",
+    "title": "RedStone EVM connector: SignerNotAuthorised",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xec459bc0"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error SignerNotAuthorised(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SignerNotAuthorised custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xec459bc0 // SignerNotAuthorised(address)"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-test-message",
+    "title": "RedStone EVM connector: Test message",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Test message['\"]?\\s*$"
+      }
+    ],
+    "summary": "RedStone EVM connector revert reason string: Test message.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "execution reverted: Test message"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-the-account-must-remain-solvent",
+    "title": "RedStone EVM connector: The account must remain solvent",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?The account must remain solvent['\"]?\\s*$"
+      }
+    ],
+    "summary": "RedStone EVM connector revert reason string: The account must remain solvent.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "execution reverted: The account must remain solvent"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-timestamp-from-too-long-future",
+    "title": "RedStone EVM connector: TimestampFromTooLongFuture",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb6b0916d"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error TimestampFromTooLongFuture(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TimestampFromTooLongFuture custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xb6b0916d // TimestampFromTooLongFuture(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-timestamp-is-too-old",
+    "title": "RedStone EVM connector: TimestampIsTooOld",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0321d0b5"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error TimestampIsTooOld(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TimestampIsTooOld custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x0321d0b5 // TimestampIsTooOld(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-timestamps-must-be-equal",
+    "title": "RedStone EVM connector: TimestampsMustBeEqual",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4cbc4742"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error TimestampsMustBeEqual().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TimestampsMustBeEqual custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x4cbc4742 // TimestampsMustBeEqual()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-too-large-value-byte-size",
+    "title": "RedStone EVM connector: TooLargeValueByteSize",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc000fc42"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error TooLargeValueByteSize(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TooLargeValueByteSize custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xc000fc42 // TooLargeValueByteSize(uint256)"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-unexpected-oracle-value",
+    "title": "RedStone EVM connector: UnexpectedOracleValue",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x49831700"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error UnexpectedOracleValue().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnexpectedOracleValue custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x49831700 // UnexpectedOracleValue()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-user-did-not-pass-kyd",
+    "title": "RedStone EVM connector: UserDidNotPassKYD",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdb1e860d"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error UserDidNotPassKYD(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UserDidNotPassKYD custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xdb1e860d // UserDidNotPassKYD(address)"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-values-array-can-not-be-empty",
+    "title": "RedStone EVM connector: ValuesArrayCanNotBeEmpty",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdfac221e"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error ValuesArrayCanNotBeEmpty().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ValuesArrayCanNotBeEmpty custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0xdfac221e // ValuesArrayCanNotBeEmpty()"
+    ]
+  },
+  {
+    "id": "redstone-evm-connector-wrong-value",
+    "title": "RedStone EVM connector: WrongValue",
+    "layer": "protocol",
+    "source": "redstone",
+    "category": "oracle",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x98d4901c"
+      }
+    ],
+    "summary": "RedStone EVM connector custom error WrongValue().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the WrongValue custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "RedStone EVM connector npm package",
+        "url": "https://www.npmjs.com/package/@redstone-finance/evm-connector"
+      }
+    ],
+    "examples": [
+      "0x98d4901c // WrongValue()"
+    ]
+  }
+]

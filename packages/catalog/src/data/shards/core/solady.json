@@ -1,0 +1,4692 @@
+[
+  {
+    "id": "solady-0x",
+    "title": "Solady: 0x",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?0x['\"]?\\s*$"
+      }
+    ],
+    "summary": "Solady revert reason string: 0x.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "execution reverted: 0x"
+    ]
+  },
+  {
+    "id": "solady-account-balance-overflow",
+    "title": "Solady: AccountBalanceOverflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x01336cea"
+      }
+    ],
+    "summary": "Solady custom error AccountBalanceOverflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AccountBalanceOverflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x01336cea // AccountBalanceOverflow()"
+    ]
+  },
+  {
+    "id": "solady-account-creation-failed",
+    "title": "Solady: AccountCreationFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x20188a59"
+      }
+    ],
+    "summary": "Solady custom error AccountCreationFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AccountCreationFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x20188a59 // AccountCreationFailed()"
+    ]
+  },
+  {
+    "id": "solady-allowance-overflow",
+    "title": "Solady: AllowanceOverflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf9067066"
+      }
+    ],
+    "summary": "Solady custom error AllowanceOverflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AllowanceOverflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xf9067066 // AllowanceOverflow()"
+    ]
+  },
+  {
+    "id": "solady-allowance-underflow",
+    "title": "Solady: AllowanceUnderflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8301ab38"
+      }
+    ],
+    "summary": "Solady custom error AllowanceUnderflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AllowanceUnderflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x8301ab38 // AllowanceUnderflow()"
+    ]
+  },
+  {
+    "id": "solady-already-initialized",
+    "title": "Solady: AlreadyInitialized",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0dc149f0"
+      }
+    ],
+    "summary": "Solady custom error AlreadyInitialized().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AlreadyInitialized custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x0dc149f0 // AlreadyInitialized()"
+    ]
+  },
+  {
+    "id": "solady-approve-failed",
+    "title": "Solady: ApproveFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3e3f8f73"
+      }
+    ],
+    "summary": "Solady custom error ApproveFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ApproveFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x3e3f8f73 // ApproveFailed()"
+    ]
+  },
+  {
+    "id": "solady-array-lengths-mismatch",
+    "title": "Solady: ArrayLengthsMismatch",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3b800a46"
+      }
+    ],
+    "summary": "Solady custom error ArrayLengthsMismatch().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ArrayLengthsMismatch custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x3b800a46 // ArrayLengthsMismatch()"
+    ]
+  },
+  {
+    "id": "solady-auto-upgrade",
+    "title": "Solady: auto-upgrade",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?auto-upgrade['\"]?\\s*$"
+      }
+    ],
+    "summary": "Solady revert reason string: auto-upgrade.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "execution reverted: auto-upgrade"
+    ]
+  },
+  {
+    "id": "solady-balance-overflow",
+    "title": "Solady: BalanceOverflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x89560ca1"
+      }
+    ],
+    "summary": "Solady custom error BalanceOverflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the BalanceOverflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x89560ca1 // BalanceOverflow()"
+    ]
+  },
+  {
+    "id": "solady-balance-query-for-zero-address",
+    "title": "Solady: BalanceQueryForZeroAddress",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8f4eb604"
+      }
+    ],
+    "summary": "Solady custom error BalanceQueryForZeroAddress().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the BalanceQueryForZeroAddress custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x8f4eb604 // BalanceQueryForZeroAddress()"
+    ]
+  },
+  {
+    "id": "solady-base58-decoding-error",
+    "title": "Solady: Base58DecodingError",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe8fad793"
+      }
+    ],
+    "summary": "Solady custom error Base58DecodingError().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the Base58DecodingError custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xe8fad793 // Base58DecodingError()"
+    ]
+  },
+  {
+    "id": "solady-batch-of-batches-decoding-error",
+    "title": "Solady: BatchOfBatchesDecodingError",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3995943b"
+      }
+    ],
+    "summary": "Solady custom error BatchOfBatchesDecodingError().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the BatchOfBatchesDecodingError custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x3995943b // BatchOfBatchesDecodingError()"
+    ]
+  },
+  {
+    "id": "solady-change-proxy-admin-failed",
+    "title": "Solady: ChangeProxyAdminFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc502e37e"
+      }
+    ],
+    "summary": "Solady custom error ChangeProxyAdminFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ChangeProxyAdminFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xc502e37e // ChangeProxyAdminFailed()"
+    ]
+  },
+  {
+    "id": "solady-create3",
+    "title": "Solady: CREATE3",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?CREATE3['\"]?\\s*$"
+      }
+    ],
+    "summary": "Solady revert reason string: CREATE3.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "execution reverted: CREATE3"
+    ]
+  },
+  {
+    "id": "solady-data-too-short",
+    "title": "Solady: DataTooShort",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0acec8bd"
+      }
+    ],
+    "summary": "Solady custom error DataTooShort().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DataTooShort custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x0acec8bd // DataTooShort()"
+    ]
+  },
+  {
+    "id": "solady-decoding-error",
+    "title": "Solady: DecodingError",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xba597e7e"
+      }
+    ],
+    "summary": "Solady custom error DecodingError().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DecodingError custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xba597e7e // DecodingError()"
+    ]
+  },
+  {
+    "id": "solady-deployment-failed",
+    "title": "Solady: DeploymentFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x30116425"
+      }
+    ],
+    "summary": "Solady custom error DeploymentFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DeploymentFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x30116425 // DeploymentFailed()"
+    ]
+  },
+  {
+    "id": "solady-deposit-more-than-max",
+    "title": "Solady: DepositMoreThanMax",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb3c61a83"
+      }
+    ],
+    "summary": "Solady custom error DepositMoreThanMax().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DepositMoreThanMax custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xb3c61a83 // DepositMoreThanMax()"
+    ]
+  },
+  {
+    "id": "solady-div-failed",
+    "title": "Solady: DivFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x65244e4e"
+      }
+    ],
+    "summary": "Solady custom error DivFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DivFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x65244e4e // DivFailed()"
+    ]
+  },
+  {
+    "id": "solady-div-wad-failed",
+    "title": "Solady: DivWadFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7c5f487d"
+      }
+    ],
+    "summary": "Solady custom error DivWadFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DivWadFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x7c5f487d // DivWadFailed()"
+    ]
+  },
+  {
+    "id": "solady-enumerable-map-key-not-found",
+    "title": "Solady: EnumerableMapKeyNotFound",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x88682bf3"
+      }
+    ],
+    "summary": "Solady custom error EnumerableMapKeyNotFound().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the EnumerableMapKeyNotFound custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x88682bf3 // EnumerableMapKeyNotFound()"
+    ]
+  },
+  {
+    "id": "solady-enumerable-roles-unauthorized",
+    "title": "Solady: EnumerableRolesUnauthorized",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x99152cca"
+      }
+    ],
+    "summary": "Solady custom error EnumerableRolesUnauthorized().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the EnumerableRolesUnauthorized custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x99152cca // EnumerableRolesUnauthorized()"
+    ]
+  },
+  {
+    "id": "solady-erc5805-checkpoint-index-out-of-bounds",
+    "title": "Solady: ERC5805CheckpointIndexOutOfBounds",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x86df9d10"
+      }
+    ],
+    "summary": "Solady custom error ERC5805CheckpointIndexOutOfBounds().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ERC5805CheckpointIndexOutOfBounds custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x86df9d10 // ERC5805CheckpointIndexOutOfBounds()"
+    ]
+  },
+  {
+    "id": "solady-erc5805-checkpoint-value-overflow",
+    "title": "Solady: ERC5805CheckpointValueOverflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9dbbeb75"
+      }
+    ],
+    "summary": "Solady custom error ERC5805CheckpointValueOverflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ERC5805CheckpointValueOverflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x9dbbeb75 // ERC5805CheckpointValueOverflow()"
+    ]
+  },
+  {
+    "id": "solady-erc5805-checkpoint-value-underflow",
+    "title": "Solady: ERC5805CheckpointValueUnderflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5915f686"
+      }
+    ],
+    "summary": "Solady custom error ERC5805CheckpointValueUnderflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ERC5805CheckpointValueUnderflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x5915f686 // ERC5805CheckpointValueUnderflow()"
+    ]
+  },
+  {
+    "id": "solady-erc5805-delegate-invalid-signature",
+    "title": "Solady: ERC5805DelegateInvalidSignature",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1838d95c"
+      }
+    ],
+    "summary": "Solady custom error ERC5805DelegateInvalidSignature().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ERC5805DelegateInvalidSignature custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x1838d95c // ERC5805DelegateInvalidSignature()"
+    ]
+  },
+  {
+    "id": "solady-erc5805-delegate-signature-expired",
+    "title": "Solady: ERC5805DelegateSignatureExpired",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3480e9e1"
+      }
+    ],
+    "summary": "Solady custom error ERC5805DelegateSignatureExpired().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ERC5805DelegateSignatureExpired custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x3480e9e1 // ERC5805DelegateSignatureExpired()"
+    ]
+  },
+  {
+    "id": "solady-erc5805-future-lookup",
+    "title": "Solady: ERC5805FutureLookup",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf9874464"
+      }
+    ],
+    "summary": "Solady custom error ERC5805FutureLookup().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ERC5805FutureLookup custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xf9874464 // ERC5805FutureLookup()"
+    ]
+  },
+  {
+    "id": "solady-ethtransfer-failed",
+    "title": "Solady: ETHTransferFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb12d13eb"
+      }
+    ],
+    "summary": "Solady custom error ETHTransferFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ETHTransferFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xb12d13eb // ETHTransferFailed()"
+    ]
+  },
+  {
+    "id": "solady-exceeds-capacity",
+    "title": "Solady: ExceedsCapacity",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2aa2ed72"
+      }
+    ],
+    "summary": "Solady custom error ExceedsCapacity().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ExceedsCapacity custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x2aa2ed72 // ExceedsCapacity()"
+    ]
+  },
+  {
+    "id": "solady-exp-overflow",
+    "title": "Solady: ExpOverflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa37bfec9"
+      }
+    ],
+    "summary": "Solady custom error ExpOverflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ExpOverflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xa37bfec9 // ExpOverflow()"
+    ]
+  },
+  {
+    "id": "solady-factorial-overflow",
+    "title": "Solady: FactorialOverflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xaba0f2a2"
+      }
+    ],
+    "summary": "Solady custom error FactorialOverflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FactorialOverflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xaba0f2a2 // FactorialOverflow()"
+    ]
+  },
+  {
+    "id": "solady-fee-denominator-cannot-be-zero",
+    "title": "Solady: Fee denominator cannot be zero.",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Fee denominator cannot be zero\\.['\"]?\\s*$"
+      }
+    ],
+    "summary": "Solady revert reason string: Fee denominator cannot be zero..",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "execution reverted: Fee denominator cannot be zero."
+    ]
+  },
+  {
+    "id": "solady-fn-selector-not-recognized",
+    "title": "Solady: FnSelectorNotRecognized",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3c10b94e"
+      }
+    ],
+    "summary": "Solady custom error FnSelectorNotRecognized().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FnSelectorNotRecognized custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x3c10b94e // FnSelectorNotRecognized()"
+    ]
+  },
+  {
+    "id": "solady-full-mul-div-failed",
+    "title": "Solady: FullMulDivFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xae47f702"
+      }
+    ],
+    "summary": "Solady custom error FullMulDivFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FullMulDivFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xae47f702 // FullMulDivFailed()"
+    ]
+  },
+  {
+    "id": "solady-g1-add-failed",
+    "title": "Solady: G1AddFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd6cc76eb"
+      }
+    ],
+    "summary": "Solady custom error G1AddFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the G1AddFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xd6cc76eb // G1AddFailed()"
+    ]
+  },
+  {
+    "id": "solady-g1-msmfailed",
+    "title": "Solady: G1MSMFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5f776986"
+      }
+    ],
+    "summary": "Solady custom error G1MSMFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the G1MSMFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x5f776986 // G1MSMFailed()"
+    ]
+  },
+  {
+    "id": "solady-g2-add-failed",
+    "title": "Solady: G2AddFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc55e5e33"
+      }
+    ],
+    "summary": "Solady custom error G2AddFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the G2AddFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xc55e5e33 // G2AddFailed()"
+    ]
+  },
+  {
+    "id": "solady-g2-msmfailed",
+    "title": "Solady: G2MSMFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe3dc5425"
+      }
+    ],
+    "summary": "Solady custom error G2MSMFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the G2MSMFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xe3dc5425 // G2MSMFailed()"
+    ]
+  },
+  {
+    "id": "solady-heap-is-empty",
+    "title": "Solady: HeapIsEmpty",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa6ca772e"
+      }
+    ],
+    "summary": "Solady custom error HeapIsEmpty().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the HeapIsEmpty custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xa6ca772e // HeapIsEmpty()"
+    ]
+  },
+  {
+    "id": "solady-hex-length-insufficient",
+    "title": "Solady: HexLengthInsufficient",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2194895a"
+      }
+    ],
+    "summary": "Solady custom error HexLengthInsufficient().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the HexLengthInsufficient custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x2194895a // HexLengthInsufficient()"
+    ]
+  },
+  {
+    "id": "solady-index-out-of-bounds",
+    "title": "Solady: IndexOutOfBounds",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4e23d035"
+      }
+    ],
+    "summary": "Solady custom error IndexOutOfBounds().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the IndexOutOfBounds custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x4e23d035 // IndexOutOfBounds()"
+    ]
+  },
+  {
+    "id": "solady-insufficient-allowance",
+    "title": "Solady: InsufficientAllowance",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x13be252b"
+      }
+    ],
+    "summary": "Solady custom error InsufficientAllowance().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InsufficientAllowance custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x13be252b // InsufficientAllowance()"
+    ]
+  },
+  {
+    "id": "solady-insufficient-permission",
+    "title": "Solady: InsufficientPermission",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdeda9030"
+      }
+    ],
+    "summary": "Solady custom error InsufficientPermission().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InsufficientPermission custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xdeda9030 // InsufficientPermission()"
+    ]
+  },
+  {
+    "id": "solady-invalid-initial-lazy-shuffler-length",
+    "title": "Solady: InvalidInitialLazyShufflerLength",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x83b53941"
+      }
+    ],
+    "summary": "Solady custom error InvalidInitialLazyShufflerLength().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidInitialLazyShufflerLength custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x83b53941 // InvalidInitialLazyShufflerLength()"
+    ]
+  },
+  {
+    "id": "solady-invalid-new-lazy-shuffler-length",
+    "title": "Solady: InvalidNewLazyShufflerLength",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbed37c6e"
+      }
+    ],
+    "summary": "Solady custom error InvalidNewLazyShufflerLength().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidNewLazyShufflerLength custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xbed37c6e // InvalidNewLazyShufflerLength()"
+    ]
+  },
+  {
+    "id": "solady-invalid-permit",
+    "title": "Solady: InvalidPermit",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xddafbaef"
+      }
+    ],
+    "summary": "Solady custom error InvalidPermit().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidPermit custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xddafbaef // InvalidPermit()"
+    ]
+  },
+  {
+    "id": "solady-invalid-role",
+    "title": "Solady: InvalidRole",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd954416a"
+      }
+    ],
+    "summary": "Solady custom error InvalidRole().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidRole custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xd954416a // InvalidRole()"
+    ]
+  },
+  {
+    "id": "solady-invalid-signature",
+    "title": "Solady: InvalidSignature",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8baa579f"
+      }
+    ],
+    "summary": "Solady custom error InvalidSignature().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidSignature custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x8baa579f // InvalidSignature()"
+    ]
+  },
+  {
+    "id": "solady-invalid-timed-role",
+    "title": "Solady: InvalidTimedRole",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x802ee27f"
+      }
+    ],
+    "summary": "Solady custom error InvalidTimedRole().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidTimedRole custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x802ee27f // InvalidTimedRole()"
+    ]
+  },
+  {
+    "id": "solady-invalid-timed-role-range",
+    "title": "Solady: InvalidTimedRoleRange",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3304dd8c"
+      }
+    ],
+    "summary": "Solady custom error InvalidTimedRoleRange().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidTimedRoleRange custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x3304dd8c // InvalidTimedRoleRange()"
+    ]
+  },
+  {
+    "id": "solady-lazy-shuffle-finished",
+    "title": "Solady: LazyShuffleFinished",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x51065f79"
+      }
+    ],
+    "summary": "Solady custom error LazyShuffleFinished().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the LazyShuffleFinished custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x51065f79 // LazyShuffleFinished()"
+    ]
+  },
+  {
+    "id": "solady-lazy-shuffler-already-initialized",
+    "title": "Solady: LazyShufflerAlreadyInitialized",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0c9f11f2"
+      }
+    ],
+    "summary": "Solady custom error LazyShufflerAlreadyInitialized().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the LazyShufflerAlreadyInitialized custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x0c9f11f2 // LazyShufflerAlreadyInitialized()"
+    ]
+  },
+  {
+    "id": "solady-lazy-shuffler-get-out-of-bounds",
+    "title": "Solady: LazyShufflerGetOutOfBounds",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x61367cc4"
+      }
+    ],
+    "summary": "Solady custom error LazyShufflerGetOutOfBounds().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the LazyShufflerGetOutOfBounds custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x61367cc4 // LazyShufflerGetOutOfBounds()"
+    ]
+  },
+  {
+    "id": "solady-lazy-shuffler-not-initialized",
+    "title": "Solady: LazyShufflerNotInitialized",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1ead2566"
+      }
+    ],
+    "summary": "Solady custom error LazyShufflerNotInitialized().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the LazyShufflerNotInitialized custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x1ead2566 // LazyShufflerNotInitialized()"
+    ]
+  },
+  {
+    "id": "solady-ln-wad-undefined",
+    "title": "Solady: LnWadUndefined",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1615e638"
+      }
+    ],
+    "summary": "Solady custom error LnWadUndefined().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the LnWadUndefined custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x1615e638 // LnWadUndefined()"
+    ]
+  },
+  {
+    "id": "solady-mantissa-overflow",
+    "title": "Solady: MantissaOverflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xce30380c"
+      }
+    ],
+    "summary": "Solady custom error MantissaOverflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MantissaOverflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xce30380c // MantissaOverflow()"
+    ]
+  },
+  {
+    "id": "solady-map-fp-to-g1-failed",
+    "title": "Solady: MapFpToG1Failed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x24a289fc"
+      }
+    ],
+    "summary": "Solady custom error MapFpToG1Failed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MapFpToG1Failed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x24a289fc // MapFpToG1Failed()"
+    ]
+  },
+  {
+    "id": "solady-map-fp2-to-g2-failed",
+    "title": "Solady: MapFp2ToG2Failed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x89083b91"
+      }
+    ],
+    "summary": "Solady custom error MapFp2ToG2Failed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MapFp2ToG2Failed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x89083b91 // MapFp2ToG2Failed()"
+    ]
+  },
+  {
+    "id": "solady-merkle-tree-invalid-leaf-indices",
+    "title": "Solady: MerkleTreeInvalidLeafIndices",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe9729976"
+      }
+    ],
+    "summary": "Solady custom error MerkleTreeInvalidLeafIndices().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MerkleTreeInvalidLeafIndices custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xe9729976 // MerkleTreeInvalidLeafIndices()"
+    ]
+  },
+  {
+    "id": "solady-merkle-tree-leaves-empty",
+    "title": "Solady: MerkleTreeLeavesEmpty",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe7171dc4"
+      }
+    ],
+    "summary": "Solady custom error MerkleTreeLeavesEmpty().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MerkleTreeLeavesEmpty custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xe7171dc4 // MerkleTreeLeavesEmpty()"
+    ]
+  },
+  {
+    "id": "solady-merkle-tree-out-of-bounds-access",
+    "title": "Solady: MerkleTreeOutOfBoundsAccess",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7a856a38"
+      }
+    ],
+    "summary": "Solady custom error MerkleTreeOutOfBoundsAccess().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MerkleTreeOutOfBoundsAccess custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x7a856a38 // MerkleTreeOutOfBoundsAccess()"
+    ]
+  },
+  {
+    "id": "solady-mint-more-than-max",
+    "title": "Solady: MintMoreThanMax",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6a695959"
+      }
+    ],
+    "summary": "Solady custom error MintMoreThanMax().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MintMoreThanMax custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x6a695959 // MintMoreThanMax()"
+    ]
+  },
+  {
+    "id": "solady-mul-div-failed",
+    "title": "Solady: MulDivFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xad251c27"
+      }
+    ],
+    "summary": "Solady custom error MulDivFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MulDivFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xad251c27 // MulDivFailed()"
+    ]
+  },
+  {
+    "id": "solady-mul-wad-failed",
+    "title": "Solady: MulWadFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbac65e5b"
+      }
+    ],
+    "summary": "Solady custom error MulWadFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MulWadFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xbac65e5b // MulWadFailed()"
+    ]
+  },
+  {
+    "id": "solady-n-r-t",
+    "title": "Solady:  \\n\\r\\t",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]? \\\\n\\\\r\\\\t['\"]?\\s*$"
+      }
+    ],
+    "summary": "Solady revert reason string:  \\n\\r\\t.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "execution reverted:  \\n\\r\\t"
+    ]
+  },
+  {
+    "id": "solady-new-implementation-has-no-code",
+    "title": "Solady: NewImplementationHasNoCode",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6d3e283b"
+      }
+    ],
+    "summary": "Solady custom error NewImplementationHasNoCode().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NewImplementationHasNoCode custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x6d3e283b // NewImplementationHasNoCode()"
+    ]
+  },
+  {
+    "id": "solady-new-owner-is-zero-address",
+    "title": "Solady: NewOwnerIsZeroAddress",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7448fbae"
+      }
+    ],
+    "summary": "Solady custom error NewOwnerIsZeroAddress().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NewOwnerIsZeroAddress custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x7448fbae // NewOwnerIsZeroAddress()"
+    ]
+  },
+  {
+    "id": "solady-no-handover-request",
+    "title": "Solady: NoHandoverRequest",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6f5e8818"
+      }
+    ],
+    "summary": "Solady custom error NoHandoverRequest().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NoHandoverRequest custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x6f5e8818 // NoHandoverRequest()"
+    ]
+  },
+  {
+    "id": "solady-no-init-code-hash-found",
+    "title": "Solady: NoInitCodeHashFound",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa3a58d1c"
+      }
+    ],
+    "summary": "Solady custom error NoInitCodeHashFound().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NoInitCodeHashFound custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xa3a58d1c // NoInitCodeHashFound()"
+    ]
+  },
+  {
+    "id": "solady-not-owner-nor-approved",
+    "title": "Solady: NotOwnerNorApproved",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4b6e7f18"
+      }
+    ],
+    "summary": "Solady custom error NotOwnerNorApproved().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NotOwnerNorApproved custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x4b6e7f18 // NotOwnerNorApproved()"
+    ]
+  },
+  {
+    "id": "solady-operation-not-supported",
+    "title": "Solady: OperationNotSupported",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x29a270f5"
+      }
+    ],
+    "summary": "Solady custom error OperationNotSupported().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the OperationNotSupported custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x29a270f5 // OperationNotSupported()"
+    ]
+  },
+  {
+    "id": "solady-out-of-domain",
+    "title": "Solady: OutOfDomain",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf2b402bb"
+      }
+    ],
+    "summary": "Solady custom error OutOfDomain().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the OutOfDomain custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xf2b402bb // OutOfDomain()"
+    ]
+  },
+  {
+    "id": "solady-overflow",
+    "title": "Solady: Overflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x35278d12"
+      }
+    ],
+    "summary": "Solady custom error Overflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the Overflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x35278d12 // Overflow()"
+    ]
+  },
+  {
+    "id": "solady-pairing-failed",
+    "title": "Solady: PairingFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4df45e2f"
+      }
+    ],
+    "summary": "Solady custom error PairingFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PairingFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x4df45e2f // PairingFailed()"
+    ]
+  },
+  {
+    "id": "solady-parsing-failed",
+    "title": "Solady: ParsingFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x10182796"
+      }
+    ],
+    "summary": "Solady custom error ParsingFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ParsingFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x10182796 // ParsingFailed()"
+    ]
+  },
+  {
+    "id": "solady-permit-expired",
+    "title": "Solady: PermitExpired",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1a15a3cc"
+      }
+    ],
+    "summary": "Solady custom error PermitExpired().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PermitExpired custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x1a15a3cc // PermitExpired()"
+    ]
+  },
+  {
+    "id": "solady-permit2-allowance-is-fixed-at-infinity",
+    "title": "Solady: Permit2AllowanceIsFixedAtInfinity",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3f68539a"
+      }
+    ],
+    "summary": "Solady custom error Permit2AllowanceIsFixedAtInfinity().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the Permit2AllowanceIsFixedAtInfinity custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x3f68539a // Permit2AllowanceIsFixedAtInfinity()"
+    ]
+  },
+  {
+    "id": "solady-permit2-amount-overflow",
+    "title": "Solady: Permit2AmountOverflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8757f0fd"
+      }
+    ],
+    "summary": "Solady custom error Permit2AmountOverflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the Permit2AmountOverflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x8757f0fd // Permit2AmountOverflow()"
+    ]
+  },
+  {
+    "id": "solady-permit2-approve-failed",
+    "title": "Solady: Permit2ApproveFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x324f14ae"
+      }
+    ],
+    "summary": "Solady custom error Permit2ApproveFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the Permit2ApproveFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x324f14ae // Permit2ApproveFailed()"
+    ]
+  },
+  {
+    "id": "solady-permit2-failed",
+    "title": "Solady: Permit2Failed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6b836e6b"
+      }
+    ],
+    "summary": "Solady custom error Permit2Failed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the Permit2Failed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x6b836e6b // Permit2Failed()"
+    ]
+  },
+  {
+    "id": "solady-permit2-lockdown-failed",
+    "title": "Solady: Permit2LockdownFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x96b3de23"
+      }
+    ],
+    "summary": "Solady custom error Permit2LockdownFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the Permit2LockdownFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x96b3de23 // Permit2LockdownFailed()"
+    ]
+  },
+  {
+    "id": "solady-pointer-out-of-bounds",
+    "title": "Solady: PointerOutOfBounds",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xccd52fbc"
+      }
+    ],
+    "summary": "Solady custom error PointerOutOfBounds().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PointerOutOfBounds custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xccd52fbc // PointerOutOfBounds()"
+    ]
+  },
+  {
+    "id": "solady-proxy-query-failed",
+    "title": "Solady: ProxyQueryFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x26ec9b6a"
+      }
+    ],
+    "summary": "Solady custom error ProxyQueryFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ProxyQueryFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x26ec9b6a // ProxyQueryFailed()"
+    ]
+  },
+  {
+    "id": "solady-receive-eth-uint256",
+    "title": "Solady: ReceiveETH(uint256)",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ReceiveETH\\(uint256\\)['\"]?\\s*$"
+      }
+    ],
+    "summary": "Solady revert reason string: ReceiveETH(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "execution reverted: ReceiveETH(uint256)"
+    ]
+  },
+  {
+    "id": "solady-redeem-more-than-max",
+    "title": "Solady: RedeemMoreThanMax",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4656425a"
+      }
+    ],
+    "summary": "Solady custom error RedeemMoreThanMax().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RedeemMoreThanMax custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x4656425a // RedeemMoreThanMax()"
+    ]
+  },
+  {
+    "id": "solady-reentrancy",
+    "title": "Solady: Reentrancy",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xab143c06"
+      }
+    ],
+    "summary": "Solady custom error Reentrancy().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the Reentrancy custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xab143c06 // Reentrancy()"
+    ]
+  },
+  {
+    "id": "solady-rescue-transfer-failed",
+    "title": "Solady: RescueTransferFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7ec62e76"
+      }
+    ],
+    "summary": "Solady custom error RescueTransferFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RescueTransferFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x7ec62e76 // RescueTransferFailed()"
+    ]
+  },
+  {
+    "id": "solady-rescue-unauthorized-or-locked",
+    "title": "Solady: RescueUnauthorizedOrLocked",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0a0362e0"
+      }
+    ],
+    "summary": "Solady custom error RescueUnauthorizedOrLocked().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RescueUnauthorizedOrLocked custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x0a0362e0 // RescueUnauthorizedOrLocked()"
+    ]
+  },
+  {
+    "id": "solady-returned-address-mismatch",
+    "title": "Solady: ReturnedAddressMismatch",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd1f6b812"
+      }
+    ],
+    "summary": "Solady custom error ReturnedAddressMismatch().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ReturnedAddressMismatch custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xd1f6b812 // ReturnedAddressMismatch()"
+    ]
+  },
+  {
+    "id": "solady-role-holder-is-zero-address",
+    "title": "Solady: RoleHolderIsZeroAddress",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x82550143"
+      }
+    ],
+    "summary": "Solady custom error RoleHolderIsZeroAddress().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RoleHolderIsZeroAddress custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x82550143 // RoleHolderIsZeroAddress()"
+    ]
+  },
+  {
+    "id": "solady-role-holders-index-out-of-bounds",
+    "title": "Solady: RoleHoldersIndexOutOfBounds",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5694da8e"
+      }
+    ],
+    "summary": "Solady custom error RoleHoldersIndexOutOfBounds().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RoleHoldersIndexOutOfBounds custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x5694da8e // RoleHoldersIndexOutOfBounds()"
+    ]
+  },
+  {
+    "id": "solady-royalty-overflow",
+    "title": "Solady: RoyaltyOverflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x350a88b3"
+      }
+    ],
+    "summary": "Solady custom error RoyaltyOverflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RoyaltyOverflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x350a88b3 // RoyaltyOverflow()"
+    ]
+  },
+  {
+    "id": "solady-royalty-receiver-is-zero-address",
+    "title": "Solady: RoyaltyReceiverIsZeroAddress",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb4457eaa"
+      }
+    ],
+    "summary": "Solady custom error RoyaltyReceiverIsZeroAddress().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RoyaltyReceiverIsZeroAddress custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xb4457eaa // RoyaltyReceiverIsZeroAddress()"
+    ]
+  },
+  {
+    "id": "solady-rpow-overflow",
+    "title": "Solady: RPowOverflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x49f7642b"
+      }
+    ],
+    "summary": "Solady custom error RPowOverflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RPowOverflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x49f7642b // RPowOverflow()"
+    ]
+  },
+  {
+    "id": "solady-salt-does-not-start-with",
+    "title": "Solady: SaltDoesNotStartWith",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0c4549ef"
+      }
+    ],
+    "summary": "Solady custom error SaltDoesNotStartWith().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SaltDoesNotStartWith custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x0c4549ef // SaltDoesNotStartWith()"
+    ]
+  },
+  {
+    "id": "solady-salt-does-not-start-with-caller",
+    "title": "Solady: SaltDoesNotStartWithCaller",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2f634836"
+      }
+    ],
+    "summary": "Solady custom error SaltDoesNotStartWithCaller().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SaltDoesNotStartWithCaller custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x2f634836 // SaltDoesNotStartWithCaller()"
+    ]
+  },
+  {
+    "id": "solady-sdiv-wad-failed",
+    "title": "Solady: SDivWadFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5c43740d"
+      }
+    ],
+    "summary": "Solady custom error SDivWadFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SDivWadFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x5c43740d // SDivWadFailed()"
+    ]
+  },
+  {
+    "id": "solady-self-own-detected",
+    "title": "Solady: SelfOwnDetected",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xaed146d3"
+      }
+    ],
+    "summary": "Solady custom error SelfOwnDetected().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SelfOwnDetected custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xaed146d3 // SelfOwnDetected()"
+    ]
+  },
+  {
+    "id": "solady-smul-wad-failed",
+    "title": "Solady: SMulWadFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xedcd4dd4"
+      }
+    ],
+    "summary": "Solady custom error SMulWadFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SMulWadFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xedcd4dd4 // SMulWadFailed()"
+    ]
+  },
+  {
+    "id": "solady-stack-is-empty",
+    "title": "Solady: StackIsEmpty",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbb704e21"
+      }
+    ],
+    "summary": "Solady custom error StackIsEmpty().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the StackIsEmpty custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xbb704e21 // StackIsEmpty()"
+    ]
+  },
+  {
+    "id": "solady-string-not7-bit-ascii",
+    "title": "Solady: StringNot7BitASCII",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc9807e0d"
+      }
+    ],
+    "summary": "Solady custom error StringNot7BitASCII().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the StringNot7BitASCII custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xc9807e0d // StringNot7BitASCII()"
+    ]
+  },
+  {
+    "id": "solady-target-is-not-contract",
+    "title": "Solady: TargetIsNotContract",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5a836a5f"
+      }
+    ],
+    "summary": "Solady custom error TargetIsNotContract().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TargetIsNotContract custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x5a836a5f // TargetIsNotContract()"
+    ]
+  },
+  {
+    "id": "solady-timed-role-holder-is-zero-address",
+    "title": "Solady: TimedRoleHolderIsZeroAddress",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x093a136f"
+      }
+    ],
+    "summary": "Solady custom error TimedRoleHolderIsZeroAddress().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TimedRoleHolderIsZeroAddress custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x093a136f // TimedRoleHolderIsZeroAddress()"
+    ]
+  },
+  {
+    "id": "solady-timed-roles-unauthorized",
+    "title": "Solady: TimedRolesUnauthorized",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb0c7b036"
+      }
+    ],
+    "summary": "Solady custom error TimedRolesUnauthorized().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TimedRolesUnauthorized custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xb0c7b036 // TimedRolesUnauthorized()"
+    ]
+  },
+  {
+    "id": "solady-timelock-already-initialized",
+    "title": "Solady: TimelockAlreadyInitialized",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc44f149c"
+      }
+    ],
+    "summary": "Solady custom error TimelockAlreadyInitialized().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TimelockAlreadyInitialized custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xc44f149c // TimelockAlreadyInitialized()"
+    ]
+  },
+  {
+    "id": "solady-timelock-delay-overflow",
+    "title": "Solady: TimelockDelayOverflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd1efaf25"
+      }
+    ],
+    "summary": "Solady custom error TimelockDelayOverflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TimelockDelayOverflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xd1efaf25 // TimelockDelayOverflow()"
+    ]
+  },
+  {
+    "id": "solady-timelock-invalid-operation",
+    "title": "Solady: TimelockInvalidOperation",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd639b0bf"
+      }
+    ],
+    "summary": "Solady custom error TimelockInvalidOperation(bytes32,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TimelockInvalidOperation custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xd639b0bf // TimelockInvalidOperation(bytes32,uint256)"
+    ]
+  },
+  {
+    "id": "solady-timelock-unauthorized",
+    "title": "Solady: TimelockUnauthorized",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x55140ae8"
+      }
+    ],
+    "summary": "Solady custom error TimelockUnauthorized().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TimelockUnauthorized custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x55140ae8 // TimelockUnauthorized()"
+    ]
+  },
+  {
+    "id": "solady-token-already-exists",
+    "title": "Solady: TokenAlreadyExists",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc991cbb1"
+      }
+    ],
+    "summary": "Solady custom error TokenAlreadyExists().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TokenAlreadyExists custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xc991cbb1 // TokenAlreadyExists()"
+    ]
+  },
+  {
+    "id": "solady-token-does-not-exist",
+    "title": "Solady: TokenDoesNotExist",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xceea21b6"
+      }
+    ],
+    "summary": "Solady custom error TokenDoesNotExist().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TokenDoesNotExist custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xceea21b6 // TokenDoesNotExist()"
+    ]
+  },
+  {
+    "id": "solady-too-big-for-small-string",
+    "title": "Solady: TooBigForSmallString",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xec92f9a3"
+      }
+    ],
+    "summary": "Solady custom error TooBigForSmallString().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TooBigForSmallString custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xec92f9a3 // TooBigForSmallString()"
+    ]
+  },
+  {
+    "id": "solady-total-supply-overflow",
+    "title": "Solady: TotalSupplyOverflow",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe5cfe957"
+      }
+    ],
+    "summary": "Solady custom error TotalSupplyOverflow().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TotalSupplyOverflow custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xe5cfe957 // TotalSupplyOverflow()"
+    ]
+  },
+  {
+    "id": "solady-total-supply-query-failed",
+    "title": "Solady: TotalSupplyQueryFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x54cd9435"
+      }
+    ],
+    "summary": "Solady custom error TotalSupplyQueryFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TotalSupplyQueryFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x54cd9435 // TotalSupplyQueryFailed()"
+    ]
+  },
+  {
+    "id": "solady-transfer-failed",
+    "title": "Solady: TransferFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x90b8ec18"
+      }
+    ],
+    "summary": "Solady custom error TransferFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TransferFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x90b8ec18 // TransferFailed()"
+    ]
+  },
+  {
+    "id": "solady-transfer-from-failed",
+    "title": "Solady: TransferFromFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7939f424"
+      }
+    ],
+    "summary": "Solady custom error TransferFromFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TransferFromFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x7939f424 // TransferFromFailed()"
+    ]
+  },
+  {
+    "id": "solady-transfer-from-incorrect-owner",
+    "title": "Solady: TransferFromIncorrectOwner",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa1148100"
+      }
+    ],
+    "summary": "Solady custom error TransferFromIncorrectOwner().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TransferFromIncorrectOwner custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xa1148100 // TransferFromIncorrectOwner()"
+    ]
+  },
+  {
+    "id": "solady-transfer-to-non-erc1155-receiver-implementer",
+    "title": "Solady: TransferToNonERC1155ReceiverImplementer",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9c05499b"
+      }
+    ],
+    "summary": "Solady custom error TransferToNonERC1155ReceiverImplementer().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TransferToNonERC1155ReceiverImplementer custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x9c05499b // TransferToNonERC1155ReceiverImplementer()"
+    ]
+  },
+  {
+    "id": "solady-transfer-to-non-erc721-receiver-implementer",
+    "title": "Solady: TransferToNonERC721ReceiverImplementer",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd1a57ed6"
+      }
+    ],
+    "summary": "Solady custom error TransferToNonERC721ReceiverImplementer().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TransferToNonERC721ReceiverImplementer custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xd1a57ed6 // TransferToNonERC721ReceiverImplementer()"
+    ]
+  },
+  {
+    "id": "solady-transfer-to-zero-address",
+    "title": "Solady: TransferToZeroAddress",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xea553b34"
+      }
+    ],
+    "summary": "Solady custom error TransferToZeroAddress().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TransferToZeroAddress custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xea553b34 // TransferToZeroAddress()"
+    ]
+  },
+  {
+    "id": "solady-tree-is-full",
+    "title": "Solady: TreeIsFull",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xed732d0c"
+      }
+    ],
+    "summary": "Solady custom error TreeIsFull().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TreeIsFull custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xed732d0c // TreeIsFull()"
+    ]
+  },
+  {
+    "id": "solady-unauthorized-call-context",
+    "title": "Solady: UnauthorizedCallContext",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9f03a026"
+      }
+    ],
+    "summary": "Solady custom error UnauthorizedCallContext().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnauthorizedCallContext custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x9f03a026 // UnauthorizedCallContext()"
+    ]
+  },
+  {
+    "id": "solady-upgrade-failed",
+    "title": "Solady: UpgradeFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x55299b49"
+      }
+    ],
+    "summary": "Solady custom error UpgradeFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UpgradeFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x55299b49 // UpgradeFailed()"
+    ]
+  },
+  {
+    "id": "solady-upgrade-proxy-failed",
+    "title": "Solady: UpgradeProxyFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc6edd882"
+      }
+    ],
+    "summary": "Solady custom error UpgradeProxyFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UpgradeProxyFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xc6edd882 // UpgradeProxyFailed()"
+    ]
+  },
+  {
+    "id": "solady-value-already-exists",
+    "title": "Solady: ValueAlreadyExists",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbb33e6ac"
+      }
+    ],
+    "summary": "Solady custom error ValueAlreadyExists().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ValueAlreadyExists custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xbb33e6ac // ValueAlreadyExists()"
+    ]
+  },
+  {
+    "id": "solady-value-does-not-exist",
+    "title": "Solady: ValueDoesNotExist",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb113638a"
+      }
+    ],
+    "summary": "Solady custom error ValueDoesNotExist().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ValueDoesNotExist custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xb113638a // ValueDoesNotExist()"
+    ]
+  },
+  {
+    "id": "solady-value-is-empty",
+    "title": "Solady: ValueIsEmpty",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc94f1877"
+      }
+    ],
+    "summary": "Solady custom error ValueIsEmpty().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ValueIsEmpty custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xc94f1877 // ValueIsEmpty()"
+    ]
+  },
+  {
+    "id": "solady-value-is-zero-sentinel",
+    "title": "Solady: ValueIsZeroSentinel",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf5a267f1"
+      }
+    ],
+    "summary": "Solady custom error ValueIsZeroSentinel().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ValueIsZeroSentinel custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0xf5a267f1 // ValueIsZeroSentinel()"
+    ]
+  },
+  {
+    "id": "solady-values-aren",
+    "title": "Solady:  values aren",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]? values aren['\"]?\\s*$"
+      }
+    ],
+    "summary": "Solady revert reason string:  values aren.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "execution reverted:  values aren"
+    ]
+  },
+  {
+    "id": "solady-withdraw-all-failed",
+    "title": "Solady: WithdrawAllFailed",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x651aee10"
+      }
+    ],
+    "summary": "Solady custom error WithdrawAllFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the WithdrawAllFailed custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x651aee10 // WithdrawAllFailed()"
+    ]
+  },
+  {
+    "id": "solady-withdraw-more-than-max",
+    "title": "Solady: WithdrawMoreThanMax",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x936941fc"
+      }
+    ],
+    "summary": "Solady custom error WithdrawMoreThanMax().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the WithdrawMoreThanMax custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "0x936941fc // WithdrawMoreThanMax()"
+    ]
+  },
+  {
+    "id": "solady-x19-x01",
+    "title": "Solady: \\x19\\x01",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?\\\\x19\\\\x01['\"]?\\s*$"
+      }
+    ],
+    "summary": "Solady revert reason string: \\x19\\x01.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "execution reverted: \\x19\\x01"
+    ]
+  },
+  {
+    "id": "solady-zksync-create2",
+    "title": "Solady: zksyncCreate2",
+    "layer": "protocol",
+    "source": "solady",
+    "category": "utility",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?zksyncCreate2['\"]?\\s*$"
+      }
+    ],
+    "summary": "Solady revert reason string: zksyncCreate2.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Solady npm package",
+        "url": "https://www.npmjs.com/package/solady"
+      }
+    ],
+    "examples": [
+      "execution reverted: zksyncCreate2"
+    ]
+  }
+]

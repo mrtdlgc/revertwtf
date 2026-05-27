@@ -1,0 +1,78 @@
+[
+  {
+    "layer": "provider",
+    "source": "lifi",
+    "category": "simulation",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The destination protocol, vault, bridge, or route leg is paused, full, misconfigured, or not accepting deposits."
+    ],
+    "nextSteps": [
+      "Inspect status.substatus and substatusMessage, then simulate the exact route leg or protocol call."
+    ],
+    "references": [
+      {
+        "label": "LI.FI Composer error handling",
+        "url": "https://docs.li.fi/composer/reference/error-handling"
+      }
+    ],
+    "id": "lifi-simulation-failed",
+    "title": "LI.FI simulation failed",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Simulation failed"
+      }
+    ],
+    "requires": [
+      {
+        "type": "substring",
+        "value": "LI.FI"
+      }
+    ],
+    "summary": "LI.FI Composer rejected the route/transfer during simulation."
+  },
+  {
+    "layer": "provider",
+    "source": "lifi",
+    "category": "bridge",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "A bridge, DEX, or destination protocol leg failed after quote/build."
+    ],
+    "nextSteps": [
+      "Show the substatusMessage and map it to the route step that failed."
+    ],
+    "references": [
+      {
+        "label": "LI.FI Composer error handling",
+        "url": "https://docs.li.fi/composer/reference/error-handling"
+      }
+    ],
+    "id": "lifi-substatus-message",
+    "title": "LI.FI transfer substatus message",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "substatusMessage"
+      },
+      {
+        "type": "substring",
+        "value": "substatus"
+      }
+    ],
+    "requires": [
+      {
+        "type": "substring",
+        "value": "LI.FI"
+      }
+    ],
+    "summary": "LI.FI returned a route/transfer substatus that should be surfaced directly to the user."
+  }
+]

@@ -1,0 +1,253 @@
+[
+  {
+    "layer": "provider",
+    "source": "tenderly",
+    "category": "auth",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The request omitted the API access token or sent it under the wrong header."
+    ],
+    "nextSteps": [
+      "Set the X-Access-Key header from a server-side secret and avoid exposing it in client code."
+    ],
+    "references": [
+      {
+        "label": "Tenderly simulations documentation",
+        "url": "https://docs.tenderly.co/simulations/single-simulations"
+      }
+    ],
+    "id": "tenderly-access-key-missing",
+    "title": "Tenderly API access key missing",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "X-Access-Key"
+      },
+      {
+        "type": "substring",
+        "value": "access token"
+      }
+    ],
+    "requires": [
+      {
+        "type": "substring",
+        "value": "Tenderly"
+      }
+    ],
+    "summary": "Tenderly Simulation API calls require an access key header."
+  },
+  {
+    "layer": "provider",
+    "source": "tenderly",
+    "category": "auth",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The user opened a full debugger view without an authenticated Tenderly account."
+    ],
+    "nextSteps": [
+      "Use the public simulation link for shared context, or sign in before opening the full debugger."
+    ],
+    "references": [
+      {
+        "label": "Alchemy Debug with Tenderly",
+        "url": "https://www.alchemy.com/docs/wallets/transactions/debug-transactions/debug-with-tenderly"
+      }
+    ],
+    "id": "tenderly-debugger-login-required",
+    "title": "Tenderly debugger login required",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Tenderly debugger requires login"
+      },
+      {
+        "type": "substring",
+        "value": "full debugger requires a Tenderly login"
+      }
+    ],
+    "summary": "A shared simulation may be visible, but the full Tenderly debugger requires authentication."
+  },
+  {
+    "layer": "provider",
+    "source": "tenderly",
+    "category": "auth",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The API endpoint was built with a stale account slug, project slug, or workspace name."
+    ],
+    "nextSteps": [
+      "Copy the account/project slugs from the Tenderly dashboard and rebuild the API URL."
+    ],
+    "references": [
+      {
+        "label": "Tenderly simulations documentation",
+        "url": "https://docs.tenderly.co/simulations/single-simulations"
+      }
+    ],
+    "id": "tenderly-invalid-account-project-slug",
+    "title": "Tenderly account or project slug invalid",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "account slug"
+      },
+      {
+        "type": "substring",
+        "value": "project slug"
+      }
+    ],
+    "requires": [
+      {
+        "type": "substring",
+        "value": "Tenderly"
+      }
+    ],
+    "summary": "The Tenderly API URL likely contains the wrong account or project slug."
+  },
+  {
+    "layer": "provider",
+    "source": "tenderly",
+    "category": "simulation",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The transaction call, block tag, state override, gas, value, or calldata shape is invalid."
+    ],
+    "nextSteps": [
+      "Compare the request against Tenderly's simulateTransaction parameter schema."
+    ],
+    "references": [
+      {
+        "label": "Tenderly simulations documentation",
+        "url": "https://docs.tenderly.co/simulations/single-simulations"
+      }
+    ],
+    "id": "tenderly-invalid-simulate-params",
+    "title": "tenderly_simulateTransaction invalid params",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Invalid params"
+      }
+    ],
+    "requires": [
+      {
+        "type": "json_path",
+        "path": "method",
+        "equals": "tenderly_simulateTransaction"
+      }
+    ],
+    "summary": "Tenderly rejected the simulation request parameters."
+  },
+  {
+    "layer": "provider",
+    "source": "tenderly",
+    "category": "simulation",
+    "rootCauseKnown": true,
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The simulation request was malformed, unsupported, or could not reconstruct the transaction context.",
+      "For UserOperations, the bundled operation may not decode or replay cleanly."
+    ],
+    "nextSteps": [
+      "Validate the simulation payload, chain, sender, target, calldata, and block context.",
+      "If this came from a wallet/API dashboard, inspect the underlying user operation or transaction request."
+    ],
+    "references": [
+      {
+        "label": "Alchemy Debug with Tenderly",
+        "url": "https://www.alchemy.com/docs/wallets/transactions/debug-transactions/debug-with-tenderly"
+      }
+    ],
+    "id": "tenderly-simulation-failed-try-again",
+    "title": "Tenderly simulation failed",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Simulation failed. Try again."
+      }
+    ],
+    "summary": "A Tenderly-backed simulation failed before producing a useful execution trace."
+  },
+  {
+    "layer": "provider",
+    "source": "tenderly",
+    "category": "rate_limit",
+    "rootCauseKnown": true,
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "Too many simulations were requested in the current limit window."
+    ],
+    "nextSteps": [
+      "Reuse cached simulation links when possible, add backoff, or reduce automatic simulation frequency."
+    ],
+    "references": [
+      {
+        "label": "Alchemy Debug with Tenderly",
+        "url": "https://www.alchemy.com/docs/wallets/transactions/debug-transactions/debug-with-tenderly"
+      }
+    ],
+    "id": "tenderly-simulation-rate-limit",
+    "title": "Tenderly simulation rate limit reached",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Simulation rate limit reached"
+      },
+      {
+        "type": "substring",
+        "value": "10 simulations per hour"
+      }
+    ],
+    "summary": "The transaction simulation was blocked by a Tenderly simulation quota or rate limit."
+  },
+  {
+    "layer": "provider",
+    "source": "tenderly",
+    "category": "simulation",
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "likelyCauses": [
+      "The chain is not supported by the Tenderly integration, or the failure type does not match debug/simulate requirements."
+    ],
+    "nextSteps": [
+      "Check the chain support table and fall back to native RPC trace/debug methods when available."
+    ],
+    "references": [
+      {
+        "label": "Alchemy Debug with Tenderly",
+        "url": "https://www.alchemy.com/docs/wallets/transactions/debug-transactions/debug-with-tenderly"
+      }
+    ],
+    "id": "tenderly-unsupported-network",
+    "title": "Tenderly unsupported network",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "unsupported Tenderly network"
+      },
+      {
+        "type": "substring",
+        "value": "supported Tenderly network"
+      }
+    ],
+    "summary": "The transaction cannot be debugged or simulated through Tenderly for this network/context."
+  }
+]

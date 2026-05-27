@@ -1,0 +1,667 @@
+[
+  {
+    "id": "safe-modules-allowance-nonce-type-uint16-max-use-different-delegate",
+    "title": "Safe modules: allowance.nonce != type(uint16).max (use different delegate)",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?allowance\\.nonce != type\\(uint16\\)\\.max \\(use different delegate\\)['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: allowance.nonce != type(uint16).max (use different delegate).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: allowance.nonce != type(uint16).max (use different delegate)"
+    ]
+  },
+  {
+    "id": "safe-modules-contract-signatures-are-not-supported-by-this-module",
+    "title": "Safe modules: Contract signatures are not supported by this module",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Contract signatures are not supported by this module['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: Contract signatures are not supported by this module.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Contract signatures are not supported by this module"
+    ]
+  },
+  {
+    "id": "safe-modules-could-not-execute-ether-transfer",
+    "title": "Safe modules: Could not execute ether transfer",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Could not execute ether transfer['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: Could not execute ether transfer.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Could not execute ether transfer"
+    ]
+  },
+  {
+    "id": "safe-modules-could-not-execute-token-transfer",
+    "title": "Safe modules: Could not execute token transfer",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Could not execute token transfer['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: Could not execute token transfer.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Could not execute token transfer"
+    ]
+  },
+  {
+    "id": "safe-modules-current-delegate-delegate",
+    "title": "Safe modules: currentDelegate == delegate",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?currentDelegate == delegate['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: currentDelegate == delegate.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: currentDelegate == delegate"
+    ]
+  },
+  {
+    "id": "safe-modules-current-delegate-delegate-2",
+    "title": "Safe modules: current.delegate == delegate",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?current\\.delegate == delegate['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: current.delegate == delegate.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: current.delegate == delegate"
+    ]
+  },
+  {
+    "id": "safe-modules-delegate-address-0",
+    "title": "Safe modules: delegate != address(0)",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?delegate != address\\(0\\)['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: delegate != address(0).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: delegate != address(0)"
+    ]
+  },
+  {
+    "id": "safe-modules-delegates-msg-sender-uint48-delegate-delegate-delegate",
+    "title": "Safe modules: delegates[msg.sender][uint48(delegate)].delegate == delegate",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?delegates\\[msg\\.sender\\]\\[uint48\\(delegate\\)\\]\\.delegate == delegate['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: delegates[msg.sender][uint48(delegate)].delegate == delegate.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: delegates[msg.sender][uint48(delegate)].delegate == delegate"
+    ]
+  },
+  {
+    "id": "safe-modules-expected-delegate-signer-delegates-address-safe-uint48-signer-delegate-signer",
+    "title": "Safe modules: expectedDelegate == signer && delegates[address(safe)][uint48(signer)].delegate == signer",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?expectedDelegate == signer && delegates\\[address\\(safe\\)\\]\\[uint48\\(signer\\)\\]\\.delegate == signer['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: expectedDelegate == signer && delegates[address(safe)][uint48(signer)].delegate == signer.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: expectedDelegate == signer && delegates[address(safe)][uint48(signer)].delegate == signer"
+    ]
+  },
+  {
+    "id": "safe-modules-index-uint-0",
+    "title": "Safe modules: index != uint(0)",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?index != uint\\(0\\)['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: index != uint(0).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: index != uint(0)"
+    ]
+  },
+  {
+    "id": "safe-modules-invalid-entry-point",
+    "title": "Safe modules: InvalidEntryPoint",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2039d3c9"
+      }
+    ],
+    "summary": "Safe modules custom error InvalidEntryPoint().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidEntryPoint custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Safe modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/4337/contracts/Safe4337Module.sol"
+      }
+    ],
+    "examples": [
+      "0x2039d3c9 // InvalidEntryPoint()"
+    ]
+  },
+  {
+    "id": "safe-modules-new-spent-allowance-spent-new-spent-allowance-amount",
+    "title": "Safe modules: newSpent > allowance.spent && newSpent <= allowance.amount",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?newSpent > allowance\\.spent && newSpent <= allowance\\.amount['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: newSpent > allowance.spent && newSpent <= allowance.amount.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: newSpent > allowance.spent && newSpent <= allowance.amount"
+    ]
+  },
+  {
+    "id": "safe-modules-new-spent-payment-allowance-spent-new-spent-payment-allowance-amount",
+    "title": "Safe modules: newSpent > paymentAllowance.spent && newSpent <= paymentAllowance.amount",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?newSpent > paymentAllowance\\.spent && newSpent <= paymentAllowance\\.amount['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: newSpent > paymentAllowance.spent && newSpent <= paymentAllowance.amount.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: newSpent > paymentAllowance.spent && newSpent <= paymentAllowance.amount"
+    ]
+  },
+  {
+    "id": "safe-modules-not-delegate-called",
+    "title": "Safe modules: NotDelegateCalled",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x02eecf08"
+      }
+    ],
+    "summary": "Safe modules custom error NotDelegateCalled().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NotDelegateCalled custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Safe modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/passkey/contracts/4337/SafeWebAuthnSharedSigner.sol"
+      }
+    ],
+    "examples": [
+      "0x02eecf08 // NotDelegateCalled()"
+    ]
+  },
+  {
+    "id": "safe-modules-owner-address-0",
+    "title": "Safe modules: owner != address(0)",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?owner != address\\(0\\)['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: owner != address(0).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: owner != address(0)"
+    ]
+  },
+  {
+    "id": "safe-modules-reset-base-min-current-min-reset-time-min-0",
+    "title": "Safe modules: resetBaseMin <= currentMin && resetTimeMin > 0",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?resetBaseMin <= currentMin && resetTimeMin > 0['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: resetBaseMin <= currentMin && resetTimeMin > 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: resetBaseMin <= currentMin && resetTimeMin > 0"
+    ]
+  },
+  {
+    "id": "safe-modules-signatures-length-65",
+    "title": "Safe modules: signatures.length == 65",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?signatures\\.length == 65['\"]?\\s*$"
+      }
+    ],
+    "summary": "Safe modules revert reason string: signatures.length == 65.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named ecosystem contract failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the source repository for the exact string.",
+      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/allowances/contracts/AllowanceModule.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: signatures.length == 65"
+    ]
+  },
+  {
+    "id": "safe-modules-unsupported-entry-point",
+    "title": "Safe modules: UnsupportedEntryPoint",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x85db247d"
+      }
+    ],
+    "summary": "Safe modules custom error UnsupportedEntryPoint().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnsupportedEntryPoint custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Safe modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/4337/contracts/Safe4337Module.sol"
+      }
+    ],
+    "examples": [
+      "0x85db247d // UnsupportedEntryPoint()"
+    ]
+  },
+  {
+    "id": "safe-modules-unsupported-execution-function-bytes4",
+    "title": "Safe modules: UnsupportedExecutionFunction",
+    "layer": "protocol",
+    "source": "safe-modules",
+    "category": "smart_account",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x45c229ce"
+      }
+    ],
+    "summary": "Safe modules custom error UnsupportedExecutionFunction(bytes4).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnsupportedExecutionFunction custom error.",
+      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Safe modules precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Safe modules GitHub repository",
+        "url": "https://github.com/safe-global/safe-modules/blob/main/modules/4337/contracts/Safe4337Module.sol"
+      }
+    ],
+    "examples": [
+      "0x45c229ce // UnsupportedExecutionFunction(bytes4)"
+    ]
+  }
+]

@@ -1,0 +1,343 @@
+[
+  {
+    "id": "evm-error-string",
+    "title": "Error(string) revert",
+    "layer": "evm",
+    "source": "solidity",
+    "category": "revert",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x08c379a0"
+      }
+    ],
+    "summary": "Standard Solidity revert reason. Selector 0x08c379a0 encodes a single string argument — the reason text.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A `require(cond, \"msg\")` failed.",
+      "A `revert(\"msg\")` was hit."
+    ],
+    "nextSteps": [
+      "Read the decoded reason string — it usually pinpoints the cause directly."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high"
+  },
+  {
+    "id": "panic-arith-overflow",
+    "title": "Panic(0x11): arithmetic overflow / underflow",
+    "layer": "evm",
+    "source": "solidity",
+    "category": "panic",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Panic(0x11)"
+      },
+      {
+        "type": "substring",
+        "value": "arithmetic overflow"
+      }
+    ],
+    "summary": "Solidity 0.8+ inserts overflow checks. Adding past uint256.max or subtracting below 0 panics with code 0x11.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Subtracting a larger number from a smaller one.",
+      "Multiplying past uint range.",
+      "Negative downcast."
+    ],
+    "nextSteps": [
+      "Add explicit guards (e.g. require(a >= b)) or use SafeCast.",
+      "If intentional, wrap in `unchecked { ... }` and document why."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high"
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "panic-assert-false",
+    "title": "Panic(0x01): assert(false)",
+    "layer": "evm",
+    "source": "solidity",
+    "category": "panic",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Panic(0x01)"
+      }
+    ],
+    "summary": "Solidity Panic(0x01) means assert(false).",
+    "likelyCauses": [
+      "The contract hit the Solidity panic condition: assert(false).",
+      "A compiler-inserted runtime check failed."
+    ],
+    "nextSteps": [
+      "Decode the full revert data and inspect the failing source line with a trace.",
+      "Add an explicit guard or custom error before this condition if user-triggerable."
+    ],
+    "references": [
+      {
+        "label": "Solidity panic errors",
+        "url": "https://docs.soliditylang.org/en/latest/control-structures.html#panic-via-assert-and-error-via-require"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "panic-bad-storage-byte-array-encoding",
+    "title": "Panic(0x22): bad storage byte array encoding",
+    "layer": "evm",
+    "source": "solidity",
+    "category": "panic",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Panic(0x22)"
+      }
+    ],
+    "summary": "Solidity Panic(0x22) means bad storage byte array encoding.",
+    "likelyCauses": [
+      "The contract hit the Solidity panic condition: bad storage byte array encoding.",
+      "A compiler-inserted runtime check failed."
+    ],
+    "nextSteps": [
+      "Decode the full revert data and inspect the failing source line with a trace.",
+      "Add an explicit guard or custom error before this condition if user-triggerable."
+    ],
+    "references": [
+      {
+        "label": "Solidity panic errors",
+        "url": "https://docs.soliditylang.org/en/latest/control-structures.html#panic-via-assert-and-error-via-require"
+      }
+    ]
+  },
+  {
+    "id": "panic-div-by-zero",
+    "title": "Panic(0x12): division or modulo by zero",
+    "layer": "evm",
+    "source": "solidity",
+    "category": "panic",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Panic(0x12)"
+      },
+      {
+        "type": "substring",
+        "value": "division by zero"
+      }
+    ],
+    "summary": "A `/` or `%` operation had a zero denominator.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Uninitialized denominator.",
+      "Empty pool / first-deposit edge cases."
+    ],
+    "nextSteps": [
+      "Guard with require(d != 0).",
+      "Handle empty-state initialization explicitly."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high"
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "panic-generic-compiler-inserted-panic",
+    "title": "Panic(0x00): generic compiler-inserted panic",
+    "layer": "evm",
+    "source": "solidity",
+    "category": "panic",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Panic(0x00)"
+      }
+    ],
+    "summary": "Solidity Panic(0x00) means generic compiler-inserted panic.",
+    "likelyCauses": [
+      "The contract hit the Solidity panic condition: generic compiler-inserted panic.",
+      "A compiler-inserted runtime check failed."
+    ],
+    "nextSteps": [
+      "Decode the full revert data and inspect the failing source line with a trace.",
+      "Add an explicit guard or custom error before this condition if user-triggerable."
+    ],
+    "references": [
+      {
+        "label": "Solidity panic errors",
+        "url": "https://docs.soliditylang.org/en/latest/control-structures.html#panic-via-assert-and-error-via-require"
+      }
+    ]
+  },
+  {
+    "id": "panic-index-oob",
+    "title": "Panic(0x32): array index out of bounds",
+    "layer": "evm",
+    "source": "solidity",
+    "category": "panic",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Panic(0x32)"
+      },
+      {
+        "type": "substring",
+        "value": "out of bounds"
+      }
+    ],
+    "summary": "Accessed an array index that does not exist.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Off-by-one.",
+      "Reading from an empty dynamic array.",
+      "Misindexed view function in the front-end."
+    ],
+    "nextSteps": [
+      "Check `arr.length` before access.",
+      "Add bounds asserts in the front-end too."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high"
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "panic-invalid-enum-conversion",
+    "title": "Panic(0x21): invalid enum conversion",
+    "layer": "evm",
+    "source": "solidity",
+    "category": "panic",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Panic(0x21)"
+      }
+    ],
+    "summary": "Solidity Panic(0x21) means invalid enum conversion.",
+    "likelyCauses": [
+      "The contract hit the Solidity panic condition: invalid enum conversion.",
+      "A compiler-inserted runtime check failed."
+    ],
+    "nextSteps": [
+      "Decode the full revert data and inspect the failing source line with a trace.",
+      "Add an explicit guard or custom error before this condition if user-triggerable."
+    ],
+    "references": [
+      {
+        "label": "Solidity panic errors",
+        "url": "https://docs.soliditylang.org/en/latest/control-structures.html#panic-via-assert-and-error-via-require"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "panic-memory-allocation-overflow",
+    "title": "Panic(0x41): memory allocation overflow",
+    "layer": "evm",
+    "source": "solidity",
+    "category": "panic",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Panic(0x41)"
+      }
+    ],
+    "summary": "Solidity Panic(0x41) means memory allocation overflow.",
+    "likelyCauses": [
+      "The contract hit the Solidity panic condition: memory allocation overflow.",
+      "A compiler-inserted runtime check failed."
+    ],
+    "nextSteps": [
+      "Decode the full revert data and inspect the failing source line with a trace.",
+      "Add an explicit guard or custom error before this condition if user-triggerable."
+    ],
+    "references": [
+      {
+        "label": "Solidity panic errors",
+        "url": "https://docs.soliditylang.org/en/latest/control-structures.html#panic-via-assert-and-error-via-require"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "panic-pop-on-empty-array",
+    "title": "Panic(0x31): pop on empty array",
+    "layer": "evm",
+    "source": "solidity",
+    "category": "panic",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Panic(0x31)"
+      }
+    ],
+    "summary": "Solidity Panic(0x31) means pop on empty array.",
+    "likelyCauses": [
+      "The contract hit the Solidity panic condition: pop on empty array.",
+      "A compiler-inserted runtime check failed."
+    ],
+    "nextSteps": [
+      "Decode the full revert data and inspect the failing source line with a trace.",
+      "Add an explicit guard or custom error before this condition if user-triggerable."
+    ],
+    "references": [
+      {
+        "label": "Solidity panic errors",
+        "url": "https://docs.soliditylang.org/en/latest/control-structures.html#panic-via-assert-and-error-via-require"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "panic-uninitialized-internal-function",
+    "title": "Panic(0x51): uninitialized internal function",
+    "layer": "evm",
+    "source": "solidity",
+    "category": "panic",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Panic(0x51)"
+      }
+    ],
+    "summary": "Solidity Panic(0x51) means uninitialized internal function.",
+    "likelyCauses": [
+      "The contract hit the Solidity panic condition: uninitialized internal function.",
+      "A compiler-inserted runtime check failed."
+    ],
+    "nextSteps": [
+      "Decode the full revert data and inspect the failing source line with a trace.",
+      "Add an explicit guard or custom error before this condition if user-triggerable."
+    ],
+    "references": [
+      {
+        "label": "Solidity panic errors",
+        "url": "https://docs.soliditylang.org/en/latest/control-structures.html#panic-via-assert-and-error-via-require"
+      }
+    ]
+  }
+]

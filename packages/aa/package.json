@@ -1,0 +1,78 @@
+{
+  "name": "@revertwtf/aa",
+  "version": "0.1.0",
+  "description": "ERC-4337 AA code parser, FailedOp decoder, and explainer",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "browser": "./dist/browser.js",
+      "import": "./dist/index.js"
+    },
+    "./codes": {
+      "types": "./dist/codes.d.ts",
+      "import": "./dist/codes.js"
+    },
+    "./parse": {
+      "types": "./dist/parseAACode.d.ts",
+      "import": "./dist/parseAACode.js"
+    },
+    "./entrypoint-abi": {
+      "types": "./dist/entryPointAbi.d.ts",
+      "import": "./dist/entryPointAbi.js"
+    },
+    "./decode-entrypoint": {
+      "types": "./dist/decodeEntryPointError.d.ts",
+      "import": "./dist/decodeEntryPointError.js"
+    },
+    "./explain": {
+      "types": "./dist/explainAAError.d.ts",
+      "browser": "./dist/browserExplain.js",
+      "import": "./dist/explainAAError.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@revertwtf/core": "workspace:*",
+    "@revertwtf/parser": "workspace:*",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "keywords": [
+    "evm",
+    "ethereum",
+    "erc-4337",
+    "account-abstraction",
+    "useroperation",
+    "errors"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrtdlgc/revertwtf.git",
+    "directory": "packages/aa"
+  },
+  "homepage": "https://revert.wtf",
+  "bugs": {
+    "url": "https://github.com/mrtdlgc/revertwtf/issues"
+  }
+}

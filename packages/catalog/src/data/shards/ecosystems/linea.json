@@ -1,0 +1,2802 @@
+[
+  {
+    "id": "linea-already-bridged-token-address",
+    "title": "Linea contracts: AlreadyBridgedToken",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x12f3df09"
+      }
+    ],
+    "summary": "Linea contracts custom error AlreadyBridgedToken(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AlreadyBridgedToken custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0x12f3df09 // AlreadyBridgedToken(address)"
+    ]
+  },
+  {
+    "id": "linea-already-briged-to-native-token-set-address",
+    "title": "Linea contracts: AlreadyBrigedToNativeTokenSet",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf8fb7c27"
+      }
+    ],
+    "summary": "Linea contracts custom error AlreadyBrigedToNativeTokenSet(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the AlreadyBrigedToNativeTokenSet custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0xf8fb7c27 // AlreadyBrigedToNativeTokenSet(address)"
+    ]
+  },
+  {
+    "id": "linea-array-lengths-do-not-match",
+    "title": "Linea contracts: ArrayLengthsDoNotMatch",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x280b0ef2"
+      }
+    ],
+    "summary": "Linea contracts custom error ArrayLengthsDoNotMatch().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ArrayLengthsDoNotMatch custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/token/ITokenMintingRateLimiter.sol"
+      }
+    ],
+    "examples": [
+      "0x280b0ef2 // ArrayLengthsDoNotMatch()"
+    ]
+  },
+  {
+    "id": "linea-array-lengths-do-not-match-2",
+    "title": "Linea contracts: Array lengths do not match",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Array lengths do not match['\"]?\\s*$"
+      }
+    ],
+    "summary": "Linea contracts revert reason string: Array lengths do not match.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/token/LineaSurgeXP.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Array lengths do not match"
+    ]
+  },
+  {
+    "id": "linea-blob-submission-data-is-missing",
+    "title": "Linea contracts: BlobSubmissionDataIsMissing",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb1504a5f"
+      }
+    ],
+    "summary": "Linea contracts custom error BlobSubmissionDataIsMissing().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the BlobSubmissionDataIsMissing custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xb1504a5f // BlobSubmissionDataIsMissing()"
+    ]
+  },
+  {
+    "id": "linea-bytes-length-not-multiple-of-two-uint256",
+    "title": "Linea contracts: BytesLengthNotMultipleOfTwo",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0c91d776"
+      }
+    ],
+    "summary": "Linea contracts custom error BytesLengthNotMultipleOfTwo(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the BytesLengthNotMultipleOfTwo custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/IL1MessageManager.sol"
+      }
+    ],
+    "examples": [
+      "0x0c91d776 // BytesLengthNotMultipleOfTwo(uint256)"
+    ]
+  },
+  {
+    "id": "linea-bytes-length-not-multiple-of32",
+    "title": "Linea contracts: BytesLengthNotMultipleOf32",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6426c6c5"
+      }
+    ],
+    "summary": "Linea contracts custom error BytesLengthNotMultipleOf32().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the BytesLengthNotMultipleOf32 custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x6426c6c5 // BytesLengthNotMultipleOf32()"
+    ]
+  },
+  {
+    "id": "linea-caller-is-not-contract",
+    "title": "Linea contracts: CallerIsNotContract",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7b5269d3"
+      }
+    ],
+    "summary": "Linea contracts custom error CallerIsNotContract().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CallerIsNotContract custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/token/LineaSurgeXP.sol"
+      }
+    ],
+    "examples": [
+      "0x7b5269d3 // CallerIsNotContract()"
+    ]
+  },
+  {
+    "id": "linea-caller-is-not-message-service",
+    "title": "Linea contracts: CallerIsNotMessageService",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8c56efb1"
+      }
+    ],
+    "summary": "Linea contracts custom error CallerIsNotMessageService().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CallerIsNotMessageService custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/messageService/MessageServiceBase.sol"
+      }
+    ],
+    "examples": [
+      "0x8c56efb1 // CallerIsNotMessageService()"
+    ]
+  },
+  {
+    "id": "linea-data-already-submitted-bytes32",
+    "title": "Linea contracts: DataAlreadySubmitted",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0f06cd15"
+      }
+    ],
+    "summary": "Linea contracts custom error DataAlreadySubmitted(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DataAlreadySubmitted custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x0f06cd15 // DataAlreadySubmitted(bytes32)"
+    ]
+  },
+  {
+    "id": "linea-data-ending-block-does-not-match-uint256-uint256",
+    "title": "Linea contracts: DataEndingBlockDoesNotMatch",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9f6adc69"
+      }
+    ],
+    "summary": "Linea contracts custom error DataEndingBlockDoesNotMatch(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DataEndingBlockDoesNotMatch custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/LineaRollupAlphaV3.sol"
+      }
+    ],
+    "examples": [
+      "0x9f6adc69 // DataEndingBlockDoesNotMatch(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-data-hashes-not-in-sequence-bytes32-bytes32",
+    "title": "Linea contracts: DataHashesNotInSequence",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x710cd580"
+      }
+    ],
+    "summary": "Linea contracts custom error DataHashesNotInSequence(bytes32,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DataHashesNotInSequence custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/LineaRollupAlphaV3.sol"
+      }
+    ],
+    "examples": [
+      "0x710cd580 // DataHashesNotInSequence(bytes32,bytes32)"
+    ]
+  },
+  {
+    "id": "linea-data-parent-has-empty-shnarf",
+    "title": "Linea contracts: DataParentHasEmptyShnarf",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5548c6b3"
+      }
+    ],
+    "summary": "Linea contracts custom error DataParentHasEmptyShnarf().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DataParentHasEmptyShnarf custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/LineaRollupAlphaV3.sol"
+      }
+    ],
+    "examples": [
+      "0x5548c6b3 // DataParentHasEmptyShnarf()"
+    ]
+  },
+  {
+    "id": "linea-data-starting-block-does-not-match-uint256-uint256",
+    "title": "Linea contracts: DataStartingBlockDoesNotMatch",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xabefa5e8"
+      }
+    ],
+    "summary": "Linea contracts custom error DataStartingBlockDoesNotMatch(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DataStartingBlockDoesNotMatch custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xabefa5e8 // DataStartingBlockDoesNotMatch(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-decimals-are-unknown-address",
+    "title": "Linea contracts: DecimalsAreUnknown",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb5a2f1c6"
+      }
+    ],
+    "summary": "Linea contracts custom error DecimalsAreUnknown(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the DecimalsAreUnknown custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0xb5a2f1c6 // DecimalsAreUnknown(address)"
+    ]
+  },
+  {
+    "id": "linea-empty-blob-data",
+    "title": "Linea contracts: EmptyBlobData",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa0feae8d"
+      }
+    ],
+    "summary": "Linea contracts custom error EmptyBlobData().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the EmptyBlobData custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xa0feae8d // EmptyBlobData()"
+    ]
+  },
+  {
+    "id": "linea-empty-blob-data-at-index-uint256",
+    "title": "Linea contracts: EmptyBlobDataAtIndex",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc0e41e1d"
+      }
+    ],
+    "summary": "Linea contracts custom error EmptyBlobDataAtIndex(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the EmptyBlobDataAtIndex custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xc0e41e1d // EmptyBlobDataAtIndex(uint256)"
+    ]
+  },
+  {
+    "id": "linea-empty-message-hashes-array",
+    "title": "Linea contracts: EmptyMessageHashesArray",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x52e9bb24"
+      }
+    ],
+    "summary": "Linea contracts custom error EmptyMessageHashesArray().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the EmptyMessageHashesArray custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/L2MessageServiceLineaMainnet.sol"
+      }
+    ],
+    "examples": [
+      "0x52e9bb24 // EmptyMessageHashesArray()"
+    ]
+  },
+  {
+    "id": "linea-empty-submission-data",
+    "title": "Linea contracts: EmptySubmissionData",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc01eab56"
+      }
+    ],
+    "summary": "Linea contracts custom error EmptySubmissionData().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the EmptySubmissionData custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xc01eab56 // EmptySubmissionData()"
+    ]
+  },
+  {
+    "id": "linea-final-block-does-not-match-shnarf-final-block-uint256-uint256",
+    "title": "Linea contracts: FinalBlockDoesNotMatchShnarfFinalBlock",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xfb4cd6ef"
+      }
+    ],
+    "summary": "Linea contracts custom error FinalBlockDoesNotMatchShnarfFinalBlock(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FinalBlockDoesNotMatchShnarfFinalBlock custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xfb4cd6ef // FinalBlockDoesNotMatchShnarfFinalBlock(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-final-block-number-less-than-or-equal-to-last-finalized-block-uint256-uint256",
+    "title": "Linea contracts: FinalBlockNumberLessThanOrEqualToLastFinalizedBlock",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x70614405"
+      }
+    ],
+    "summary": "Linea contracts custom error FinalBlockNumberLessThanOrEqualToLastFinalizedBlock(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FinalBlockNumberLessThanOrEqualToLastFinalizedBlock custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x70614405 // FinalBlockNumberLessThanOrEqualToLastFinalizedBlock(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-final-block-state-equals-zero-hash",
+    "title": "Linea contracts: FinalBlockStateEqualsZeroHash",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2898482a"
+      }
+    ],
+    "summary": "Linea contracts custom error FinalBlockStateEqualsZeroHash().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FinalBlockStateEqualsZeroHash custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x2898482a // FinalBlockStateEqualsZeroHash()"
+    ]
+  },
+  {
+    "id": "linea-final-rolling-hash-is-zero",
+    "title": "Linea contracts: FinalRollingHashIsZero",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x36a4bb94"
+      }
+    ],
+    "summary": "Linea contracts custom error FinalRollingHashIsZero().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FinalRollingHashIsZero custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l2/IL2MessageManager.sol"
+      }
+    ],
+    "examples": [
+      "0x36a4bb94 // FinalRollingHashIsZero()"
+    ]
+  },
+  {
+    "id": "linea-final-shnarf-wrong-bytes32-bytes32",
+    "title": "Linea contracts: FinalShnarfWrong",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd3664fb3"
+      }
+    ],
+    "summary": "Linea contracts custom error FinalShnarfWrong(bytes32,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FinalShnarfWrong custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xd3664fb3 // FinalShnarfWrong(bytes32,bytes32)"
+    ]
+  },
+  {
+    "id": "linea-final-state-root-hash-does-not-match-bytes32-bytes32",
+    "title": "Linea contracts: FinalStateRootHashDoesNotMatch",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe1cb6e60"
+      }
+    ],
+    "summary": "Linea contracts custom error FinalStateRootHashDoesNotMatch(bytes32,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FinalStateRootHashDoesNotMatch custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/LineaRollupAlphaV3.sol"
+      }
+    ],
+    "examples": [
+      "0xe1cb6e60 // FinalStateRootHashDoesNotMatch(bytes32,bytes32)"
+    ]
+  },
+  {
+    "id": "linea-finalization-data-missing",
+    "title": "Linea contracts: FinalizationDataMissing",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdcb23885"
+      }
+    ],
+    "summary": "Linea contracts custom error FinalizationDataMissing().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FinalizationDataMissing custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/LineaRollupAlphaV3.sol"
+      }
+    ],
+    "examples": [
+      "0xdcb23885 // FinalizationDataMissing()"
+    ]
+  },
+  {
+    "id": "linea-finalization-in-the-future-uint256-uint256",
+    "title": "Linea contracts: FinalizationInTheFuture",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbf81c6e0"
+      }
+    ],
+    "summary": "Linea contracts custom error FinalizationInTheFuture(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FinalizationInTheFuture custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xbf81c6e0 // FinalizationInTheFuture(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-finalization-state-incorrect-bytes32-bytes32",
+    "title": "Linea contracts: FinalizationStateIncorrect",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xbc5aad11"
+      }
+    ],
+    "summary": "Linea contracts custom error FinalizationStateIncorrect(bytes32,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FinalizationStateIncorrect custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xbc5aad11 // FinalizationStateIncorrect(bytes32,bytes32)"
+    ]
+  },
+  {
+    "id": "linea-first-block-greater-than-final-block-uint256-uint256",
+    "title": "Linea contracts: FirstBlockGreaterThanFinalBlock",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xcbbd7953"
+      }
+    ],
+    "summary": "Linea contracts custom error FirstBlockGreaterThanFinalBlock(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FirstBlockGreaterThanFinalBlock custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xcbbd7953 // FirstBlockGreaterThanFinalBlock(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-first-block-less-than-or-equal-to-last-finalized-block-uint256-uint256",
+    "title": "Linea contracts: FirstBlockLessThanOrEqualToLastFinalizedBlock",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa386ed70"
+      }
+    ],
+    "summary": "Linea contracts custom error FirstBlockLessThanOrEqualToLastFinalizedBlock(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FirstBlockLessThanOrEqualToLastFinalizedBlock custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xa386ed70 // FirstBlockLessThanOrEqualToLastFinalizedBlock(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-first-byte-is-not-zero",
+    "title": "Linea contracts: FirstByteIsNotZero",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x729eebce"
+      }
+    ],
+    "summary": "Linea contracts custom error FirstByteIsNotZero().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the FirstByteIsNotZero custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x729eebce // FirstByteIsNotZero()"
+    ]
+  },
+  {
+    "id": "linea-function-call-reverted",
+    "title": "Linea contracts: Function call reverted",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Function call reverted['\"]?\\s*$"
+      }
+    ],
+    "summary": "Linea contracts revert reason string: Function call reverted.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/TestL1MessageService.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Function call reverted"
+    ]
+  },
+  {
+    "id": "linea-invalid-permit-data-bytes4-bytes4",
+    "title": "Linea contracts: InvalidPermitData",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xcf9e2946"
+      }
+    ],
+    "summary": "Linea contracts custom error InvalidPermitData(bytes4,bytes4).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidPermitData custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0xcf9e2946 // InvalidPermitData(bytes4,bytes4)"
+    ]
+  },
+  {
+    "id": "linea-invalid-proof-type",
+    "title": "Linea contracts: InvalidProofType",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x69ed70ab"
+      }
+    ],
+    "summary": "Linea contracts custom error InvalidProofType().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidProofType custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/IZkEvmV2.sol"
+      }
+    ],
+    "examples": [
+      "0x69ed70ab // InvalidProofType()"
+    ]
+  },
+  {
+    "id": "linea-is-not-paused-bytes32",
+    "title": "Linea contracts: IsNotPaused",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x15d8d2e1"
+      }
+    ],
+    "summary": "Linea contracts custom error IsNotPaused(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the IsNotPaused custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/L2MessageServiceLineaMainnet.sol"
+      }
+    ],
+    "examples": [
+      "0x15d8d2e1 // IsNotPaused(bytes32)"
+    ]
+  },
+  {
+    "id": "linea-is-not-paused-uint256",
+    "title": "Linea contracts: IsNotPaused",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb015579f"
+      }
+    ],
+    "summary": "Linea contracts custom error IsNotPaused(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the IsNotPaused custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/IPauseManager.sol"
+      }
+    ],
+    "examples": [
+      "0xb015579f // IsNotPaused(uint256)"
+    ]
+  },
+  {
+    "id": "linea-is-paused-bytes32",
+    "title": "Linea contracts: IsPaused",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8698dd2b"
+      }
+    ],
+    "summary": "Linea contracts custom error IsPaused(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the IsPaused custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/L2MessageServiceLineaMainnet.sol"
+      }
+    ],
+    "examples": [
+      "0x8698dd2b // IsPaused(bytes32)"
+    ]
+  },
+  {
+    "id": "linea-is-paused-uint256",
+    "title": "Linea contracts: IsPaused",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdb246dde"
+      }
+    ],
+    "summary": "Linea contracts custom error IsPaused(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the IsPaused custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/IPauseManager.sol"
+      }
+    ],
+    "examples": [
+      "0xdb246dde // IsPaused(uint256)"
+    ]
+  },
+  {
+    "id": "linea-l1-l2-message-not-sent-bytes32",
+    "title": "Linea contracts: L1L2MessageNotSent",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x62a064c5"
+      }
+    ],
+    "summary": "Linea contracts custom error L1L2MessageNotSent(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the L1L2MessageNotSent custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/LineaRollupAlphaV3.sol"
+      }
+    ],
+    "examples": [
+      "0x62a064c5 // L1L2MessageNotSent(bytes32)"
+    ]
+  },
+  {
+    "id": "linea-l1-message-number-synchronization-wrong-uint256-uint256",
+    "title": "Linea contracts: L1MessageNumberSynchronizationWrong",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd39e75f9"
+      }
+    ],
+    "summary": "Linea contracts custom error L1MessageNumberSynchronizationWrong(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the L1MessageNumberSynchronizationWrong custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l2/IL2MessageManager.sol"
+      }
+    ],
+    "examples": [
+      "0xd39e75f9 // L1MessageNumberSynchronizationWrong(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-l1-rolling-hash-does-not-exist-on-l1-uint256-bytes32",
+    "title": "Linea contracts: L1RollingHashDoesNotExistOnL1",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x36459fa0"
+      }
+    ],
+    "summary": "Linea contracts custom error L1RollingHashDoesNotExistOnL1(uint256,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the L1RollingHashDoesNotExistOnL1 custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x36459fa0 // L1RollingHashDoesNotExistOnL1(uint256,bytes32)"
+    ]
+  },
+  {
+    "id": "linea-l1-rolling-hash-synchronization-wrong-bytes32-bytes32",
+    "title": "Linea contracts: L1RollingHashSynchronizationWrong",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7557a60a"
+      }
+    ],
+    "summary": "Linea contracts custom error L1RollingHashSynchronizationWrong(bytes32,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the L1RollingHashSynchronizationWrong custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l2/IL2MessageManager.sol"
+      }
+    ],
+    "examples": [
+      "0x7557a60a // L1RollingHashSynchronizationWrong(bytes32,bytes32)"
+    ]
+  },
+  {
+    "id": "linea-l2-merkle-root-already-anchored-bytes32",
+    "title": "Linea contracts: L2MerkleRootAlreadyAnchored",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe5d14425"
+      }
+    ],
+    "summary": "Linea contracts custom error L2MerkleRootAlreadyAnchored(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the L2MerkleRootAlreadyAnchored custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/IL1MessageManager.sol"
+      }
+    ],
+    "examples": [
+      "0xe5d14425 // L2MerkleRootAlreadyAnchored(bytes32)"
+    ]
+  },
+  {
+    "id": "linea-l2-merkle-root-does-not-exist",
+    "title": "Linea contracts: L2MerkleRootDoesNotExist",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4e686675"
+      }
+    ],
+    "summary": "Linea contracts custom error L2MerkleRootDoesNotExist().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the L2MerkleRootDoesNotExist custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/IL1MessageService.sol"
+      }
+    ],
+    "examples": [
+      "0x4e686675 // L2MerkleRootDoesNotExist()"
+    ]
+  },
+  {
+    "id": "linea-last-finalized-shnarf-wrong-bytes32-bytes32",
+    "title": "Linea contracts: LastFinalizedShnarfWrong",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2f22b98a"
+      }
+    ],
+    "summary": "Linea contracts custom error LastFinalizedShnarfWrong(bytes32,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the LastFinalizedShnarfWrong custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x2f22b98a // LastFinalizedShnarfWrong(bytes32,bytes32)"
+    ]
+  },
+  {
+    "id": "linea-limit-is-zero",
+    "title": "Linea contracts: LimitIsZero",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd10d72bb"
+      }
+    ],
+    "summary": "Linea contracts custom error LimitIsZero().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the LimitIsZero custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/IRateLimiter.sol"
+      }
+    ],
+    "examples": [
+      "0xd10d72bb // LimitIsZero()"
+    ]
+  },
+  {
+    "id": "linea-message-already-claimed-uint256",
+    "title": "Linea contracts: MessageAlreadyClaimed",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x335a4a90"
+      }
+    ],
+    "summary": "Linea contracts custom error MessageAlreadyClaimed(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MessageAlreadyClaimed custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/IL1MessageManager.sol"
+      }
+    ],
+    "examples": [
+      "0x335a4a90 // MessageAlreadyClaimed(uint256)"
+    ]
+  },
+  {
+    "id": "linea-message-already-received-bytes32",
+    "title": "Linea contracts: MessageAlreadyReceived",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xee49e001"
+      }
+    ],
+    "summary": "Linea contracts custom error MessageAlreadyReceived(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MessageAlreadyReceived custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/LineaRollupAlphaV3.sol"
+      }
+    ],
+    "examples": [
+      "0xee49e001 // MessageAlreadyReceived(bytes32)"
+    ]
+  },
+  {
+    "id": "linea-message-does-not-exist-or-has-already-been-claimed-bytes32",
+    "title": "Linea contracts: MessageDoesNotExistOrHasAlreadyBeenClaimed",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x992d87c3"
+      }
+    ],
+    "summary": "Linea contracts custom error MessageDoesNotExistOrHasAlreadyBeenClaimed(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MessageDoesNotExistOrHasAlreadyBeenClaimed custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/IL1MessageManagerV1.sol"
+      }
+    ],
+    "examples": [
+      "0x992d87c3 // MessageDoesNotExistOrHasAlreadyBeenClaimed(bytes32)"
+    ]
+  },
+  {
+    "id": "linea-message-hashes-list-length-higher-than-one-hundred-uint256",
+    "title": "Linea contracts: MessageHashesListLengthHigherThanOneHundred",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3b174434"
+      }
+    ],
+    "summary": "Linea contracts custom error MessageHashesListLengthHigherThanOneHundred(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MessageHashesListLengthHigherThanOneHundred custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l2/IL2MessageManagerV1.sol"
+      }
+    ],
+    "examples": [
+      "0x3b174434 // MessageHashesListLengthHigherThanOneHundred(uint256)"
+    ]
+  },
+  {
+    "id": "linea-missing-message-number-for-rolling-hash-bytes32",
+    "title": "Linea contracts: MissingMessageNumberForRollingHash",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0c256592"
+      }
+    ],
+    "summary": "Linea contracts custom error MissingMessageNumberForRollingHash(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MissingMessageNumberForRollingHash custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x0c256592 // MissingMessageNumberForRollingHash(bytes32)"
+    ]
+  },
+  {
+    "id": "linea-missing-rolling-hash-for-message-number-uint256",
+    "title": "Linea contracts: MissingRollingHashForMessageNumber",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5228f4c8"
+      }
+    ],
+    "summary": "Linea contracts custom error MissingRollingHashForMessageNumber(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MissingRollingHashForMessageNumber custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x5228f4c8 // MissingRollingHashForMessageNumber(uint256)"
+    ]
+  },
+  {
+    "id": "linea-native-to-bridged-token-already-set-address",
+    "title": "Linea contracts: NativeToBridgedTokenAlreadySet",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x022bc841"
+      }
+    ],
+    "summary": "Linea contracts custom error NativeToBridgedTokenAlreadySet(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NativeToBridgedTokenAlreadySet custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0x022bc841 // NativeToBridgedTokenAlreadySet(address)"
+    ]
+  },
+  {
+    "id": "linea-not-reserved-address",
+    "title": "Linea contracts: NotReserved",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x82f5d0a5"
+      }
+    ],
+    "summary": "Linea contracts custom error NotReserved(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NotReserved custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0x82f5d0a5 // NotReserved(address)"
+    ]
+  },
+  {
+    "id": "linea-only-bridge-address",
+    "title": "Linea contracts: OnlyBridge",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd8ee8db0"
+      }
+    ],
+    "summary": "Linea contracts custom error OnlyBridge(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the OnlyBridge custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/BridgedToken.sol"
+      }
+    ],
+    "examples": [
+      "0xd8ee8db0 // OnlyBridge(address)"
+    ]
+  },
+  {
+    "id": "linea-parent-hashes-does-not-match-bytes32-bytes32",
+    "title": "Linea contracts: ParentHashesDoesNotMatch",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9a89a758"
+      }
+    ],
+    "summary": "Linea contracts custom error ParentHashesDoesNotMatch(bytes32,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ParentHashesDoesNotMatch custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/LineaRollupAlphaV3.sol"
+      }
+    ],
+    "examples": [
+      "0x9a89a758 // ParentHashesDoesNotMatch(bytes32,bytes32)"
+    ]
+  },
+  {
+    "id": "linea-parent-state-root-hash-invalid-bytes32-bytes32",
+    "title": "Linea contracts: ParentStateRootHashInvalid",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x595caf7e"
+      }
+    ],
+    "summary": "Linea contracts custom error ParentStateRootHashInvalid(bytes32,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ParentStateRootHashInvalid custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x595caf7e // ParentStateRootHashInvalid(bytes32,bytes32)"
+    ]
+  },
+  {
+    "id": "linea-period-is-zero",
+    "title": "Linea contracts: PeriodIsZero",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xb5ed5a3b"
+      }
+    ],
+    "summary": "Linea contracts custom error PeriodIsZero().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PeriodIsZero custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/IRateLimiter.sol"
+      }
+    ],
+    "examples": [
+      "0xb5ed5a3b // PeriodIsZero()"
+    ]
+  },
+  {
+    "id": "linea-permit-not-allowing-bridge-address",
+    "title": "Linea contracts: PermitNotAllowingBridge",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x29115948"
+      }
+    ],
+    "summary": "Linea contracts custom error PermitNotAllowingBridge(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PermitNotAllowingBridge custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0x29115948 // PermitNotAllowingBridge(address)"
+    ]
+  },
+  {
+    "id": "linea-permit-not-from-sender-address",
+    "title": "Linea contracts: PermitNotFromSender",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x200688cc"
+      }
+    ],
+    "summary": "Linea contracts custom error PermitNotFromSender(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PermitNotFromSender custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0x200688cc // PermitNotFromSender(address)"
+    ]
+  },
+  {
+    "id": "linea-point-evaluation-failed",
+    "title": "Linea contracts: PointEvaluationFailed",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa71194af"
+      }
+    ],
+    "summary": "Linea contracts custom error PointEvaluationFailed().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PointEvaluationFailed custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xa71194af // PointEvaluationFailed()"
+    ]
+  },
+  {
+    "id": "linea-point-evaluation-failed-2",
+    "title": "Linea contracts: PointEvaluationFailed",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?PointEvaluationFailed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Linea contracts revert reason string: PointEvaluationFailed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/TestEIP4844.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: PointEvaluationFailed"
+    ]
+  },
+  {
+    "id": "linea-point-evaluation-response-invalid-uint256-uint256",
+    "title": "Linea contracts: PointEvaluationResponseInvalid",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x68dcad5f"
+      }
+    ],
+    "summary": "Linea contracts custom error PointEvaluationResponseInvalid(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PointEvaluationResponseInvalid custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x68dcad5f // PointEvaluationResponseInvalid(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-precompile-return-data-length-wrong-uint256-uint256",
+    "title": "Linea contracts: PrecompileReturnDataLengthWrong",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf75db381"
+      }
+    ],
+    "summary": "Linea contracts custom error PrecompileReturnDataLengthWrong(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PrecompileReturnDataLengthWrong custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0xf75db381 // PrecompileReturnDataLengthWrong(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-proof-is-empty",
+    "title": "Linea contracts: ProofIsEmpty",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7907d79b"
+      }
+    ],
+    "summary": "Linea contracts custom error ProofIsEmpty().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ProofIsEmpty custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/IZkEvmV2.sol"
+      }
+    ],
+    "examples": [
+      "0x7907d79b // ProofIsEmpty()"
+    ]
+  },
+  {
+    "id": "linea-proof-length-different-than-merkle-depth-uint256-uint256",
+    "title": "Linea contracts: ProofLengthDifferentThanMerkleDepth",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5e3fd6ad"
+      }
+    ],
+    "summary": "Linea contracts custom error ProofLengthDifferentThanMerkleDepth(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ProofLengthDifferentThanMerkleDepth custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/IL1MessageService.sol"
+      }
+    ],
+    "examples": [
+      "0x5e3fd6ad // ProofLengthDifferentThanMerkleDepth(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-remote-token-bridge-already-set-address",
+    "title": "Linea contracts: RemoteTokenBridgeAlreadySet",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x94fbfd2e"
+      }
+    ],
+    "summary": "Linea contracts custom error RemoteTokenBridgeAlreadySet(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the RemoteTokenBridgeAlreadySet custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0x94fbfd2e // RemoteTokenBridgeAlreadySet(address)"
+    ]
+  },
+  {
+    "id": "linea-reserved-token-address",
+    "title": "Linea contracts: ReservedToken",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6dad9c78"
+      }
+    ],
+    "summary": "Linea contracts custom error ReservedToken(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ReservedToken custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0x6dad9c78 // ReservedToken(address)"
+    ]
+  },
+  {
+    "id": "linea-reverting-with-receive",
+    "title": "Linea contracts: Reverting with receive",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Reverting with receive['\"]?\\s*$"
+      }
+    ],
+    "summary": "Linea contracts revert reason string: Reverting with receive.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert/assert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/TestL1RevertContract.sol"
+      }
+    ],
+    "examples": [
+      "execution reverted: Reverting with receive"
+    ]
+  },
+  {
+    "id": "linea-sender-not-authorized",
+    "title": "Linea contracts: SenderNotAuthorized",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x79d1e58f"
+      }
+    ],
+    "summary": "Linea contracts custom error SenderNotAuthorized().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SenderNotAuthorized custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/messageService/MessageServiceBase.sol"
+      }
+    ],
+    "examples": [
+      "0x79d1e58f // SenderNotAuthorized()"
+    ]
+  },
+  {
+    "id": "linea-shnarf-and-final-block-number-lengths-mismatched-uint256-uint256",
+    "title": "Linea contracts: ShnarfAndFinalBlockNumberLengthsMismatched",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2526f108"
+      }
+    ],
+    "summary": "Linea contracts custom error ShnarfAndFinalBlockNumberLengthsMismatched(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ShnarfAndFinalBlockNumberLengthsMismatched custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x2526f108 // ShnarfAndFinalBlockNumberLengthsMismatched(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-snark-hash-is-zero-hash",
+    "title": "Linea contracts: SnarkHashIsZeroHash",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7dc2487d"
+      }
+    ],
+    "summary": "Linea contracts custom error SnarkHashIsZeroHash().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the SnarkHashIsZeroHash custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/ILineaRollup.sol"
+      }
+    ],
+    "examples": [
+      "0x7dc2487d // SnarkHashIsZeroHash()"
+    ]
+  },
+  {
+    "id": "linea-starting-root-hash-does-not-match",
+    "title": "Linea contracts: StartingRootHashDoesNotMatch",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xead4c30e"
+      }
+    ],
+    "summary": "Linea contracts custom error StartingRootHashDoesNotMatch().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the StartingRootHashDoesNotMatch custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/interfaces/l1/IZkEvmV2.sol"
+      }
+    ],
+    "examples": [
+      "0xead4c30e // StartingRootHashDoesNotMatch()"
+    ]
+  },
+  {
+    "id": "linea-state-root-hash-invalid-bytes32-bytes32",
+    "title": "Linea contracts: StateRootHashInvalid",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd5aa5ad6"
+      }
+    ],
+    "summary": "Linea contracts custom error StateRootHashInvalid(bytes32,bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the StateRootHashInvalid custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/LineaRollupAlphaV3.sol"
+      }
+    ],
+    "examples": [
+      "0xd5aa5ad6 // StateRootHashInvalid(bytes32,bytes32)"
+    ]
+  },
+  {
+    "id": "linea-status-address-not-allowed-address",
+    "title": "Linea contracts: StatusAddressNotAllowed",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd8ce8acb"
+      }
+    ],
+    "summary": "Linea contracts custom error StatusAddressNotAllowed(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the StatusAddressNotAllowed custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0xd8ce8acb // StatusAddressNotAllowed(address)"
+    ]
+  },
+  {
+    "id": "linea-timestamps-not-in-sequence-uint256-uint256",
+    "title": "Linea contracts: TimestampsNotInSequence",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3211d9be"
+      }
+    ],
+    "summary": "Linea contracts custom error TimestampsNotInSequence(uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TimestampsNotInSequence custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/LineaRollupAlphaV3.sol"
+      }
+    ],
+    "examples": [
+      "0x3211d9be // TimestampsNotInSequence(uint256,uint256)"
+    ]
+  },
+  {
+    "id": "linea-token-is-soul-bound",
+    "title": "Linea contracts: TokenIsSoulBound",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa3c47ac4"
+      }
+    ],
+    "summary": "Linea contracts custom error TokenIsSoulBound().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TokenIsSoulBound custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/token/LineaSurgeXP.sol"
+      }
+    ],
+    "examples": [
+      "0xa3c47ac4 // TokenIsSoulBound()"
+    ]
+  },
+  {
+    "id": "linea-token-not-deployed-address",
+    "title": "Linea contracts: TokenNotDeployed",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa5ea89da"
+      }
+    ],
+    "summary": "Linea contracts custom error TokenNotDeployed(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TokenNotDeployed custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0xa5ea89da // TokenNotDeployed(address)"
+    ]
+  },
+  {
+    "id": "linea-ypoint-greater-than-curve-modulus",
+    "title": "Linea contracts: YPointGreaterThanCurveModulus",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x32bdd925"
+      }
+    ],
+    "summary": "Linea contracts custom error YPointGreaterThanCurveModulus().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the YPointGreaterThanCurveModulus custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/test-contracts/LineaRollupAlphaV3.sol"
+      }
+    ],
+    "examples": [
+      "0x32bdd925 // YPointGreaterThanCurveModulus()"
+    ]
+  },
+  {
+    "id": "linea-zero-amount-not-allowed-uint256",
+    "title": "Linea contracts: ZeroAmountNotAllowed",
+    "layer": "protocol",
+    "source": "linea",
+    "category": "l2",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4618044a"
+      }
+    ],
+    "summary": "Linea contracts custom error ZeroAmountNotAllowed(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZeroAmountNotAllowed custom error.",
+      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or selector catalog.",
+      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Linea contracts GitHub repository",
+        "url": "https://github.com/Consensys/linea-contracts/blob/main/contracts/tokenBridge/interfaces/ITokenBridge.sol"
+      }
+    ],
+    "examples": [
+      "0x4618044a // ZeroAmountNotAllowed(uint256)"
+    ]
+  }
+]

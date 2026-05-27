@@ -1,0 +1,1577 @@
+[
+  {
+    "id": "seaport-bad-fraction",
+    "title": "Seaport: BadFraction",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5a052b32"
+      }
+    ],
+    "summary": "Seaport custom error BadFraction().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the BadFraction custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0x5a052b32 // BadFraction()"
+    ]
+  },
+  {
+    "id": "seaport-bubble-up",
+    "title": "Seaport: Bubble up",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Bubble up['\"]?\\s*$"
+      }
+    ],
+    "summary": "Seaport revert reason string: Bubble up.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "execution reverted: Bubble up"
+    ]
+  },
+  {
+    "id": "seaport-caller-is-not-operator",
+    "title": "Seaport: CallerIsNotOperator",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd0769d8e"
+      }
+    ],
+    "summary": "Seaport custom error CallerIsNotOperator().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CallerIsNotOperator custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0xd0769d8e // CallerIsNotOperator()"
+    ]
+  },
+  {
+    "id": "seaport-caller-is-not-owner",
+    "title": "Seaport: CallerIsNotOwner",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6db2465f"
+      }
+    ],
+    "summary": "Seaport custom error CallerIsNotOwner().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CallerIsNotOwner custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x6db2465f // CallerIsNotOwner()"
+    ]
+  },
+  {
+    "id": "seaport-caller-is-not-potential-owner",
+    "title": "Seaport: CallerIsNotPotentialOwner",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1ff958b6"
+      }
+    ],
+    "summary": "Seaport custom error CallerIsNotPotentialOwner().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CallerIsNotPotentialOwner custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x1ff958b6 // CallerIsNotPotentialOwner()"
+    ]
+  },
+  {
+    "id": "seaport-cannot-derive-proof-for-single-token-id",
+    "title": "Seaport: CannotDeriveProofForSingleTokenId",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2cb05413"
+      }
+    ],
+    "summary": "Seaport custom error CannotDeriveProofForSingleTokenId().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CannotDeriveProofForSingleTokenId custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x2cb05413 // CannotDeriveProofForSingleTokenId()"
+    ]
+  },
+  {
+    "id": "seaport-cannot-derive-root-for-single-token-id",
+    "title": "Seaport: CannotDeriveRootForSingleTokenId",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xba6a2c5a"
+      }
+    ],
+    "summary": "Seaport custom error CannotDeriveRootForSingleTokenId().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CannotDeriveRootForSingleTokenId custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0xba6a2c5a // CannotDeriveRootForSingleTokenId()"
+    ]
+  },
+  {
+    "id": "seaport-cannot-fulfill-provided-combined-order",
+    "title": "Seaport: CannotFulfillProvidedCombinedOrder",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0f8d04d1"
+      }
+    ],
+    "summary": "Seaport custom error CannotFulfillProvidedCombinedOrder().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the CannotFulfillProvidedCombinedOrder custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x0f8d04d1 // CannotFulfillProvidedCombinedOrder()"
+    ]
+  },
+  {
+    "id": "seaport-consideration-not-met",
+    "title": "Seaport: ConsiderationNotMet",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa5f54208"
+      }
+    ],
+    "summary": "Seaport custom error ConsiderationNotMet(uint256,uint256,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ConsiderationNotMet custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0xa5f54208 // ConsiderationNotMet(uint256,uint256,uint256)"
+    ]
+  },
+  {
+    "id": "seaport-contract-orders-not-supported",
+    "title": "Seaport: ContractOrdersNotSupported",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd4ef5524"
+      }
+    ],
+    "summary": "Seaport custom error ContractOrdersNotSupported().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ContractOrdersNotSupported custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0xd4ef5524 // ContractOrdersNotSupported()"
+    ]
+  },
+  {
+    "id": "seaport-ether-transfer-generic-failure",
+    "title": "Seaport: EtherTransferGenericFailure",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x470c7c1d"
+      }
+    ],
+    "summary": "Seaport custom error EtherTransferGenericFailure(address,uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the EtherTransferGenericFailure custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0x470c7c1d // EtherTransferGenericFailure(address,uint256)"
+    ]
+  },
+  {
+    "id": "seaport-insufficient-ether-supplied",
+    "title": "Seaport: InsufficientEtherSupplied",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1a783b8d"
+      }
+    ],
+    "summary": "Seaport custom error InsufficientEtherSupplied().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InsufficientEtherSupplied custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0x1a783b8d // InsufficientEtherSupplied()"
+    ]
+  },
+  {
+    "id": "seaport-invalid-basic-order-parameter-encoding",
+    "title": "Seaport: InvalidBasicOrderParameterEncoding",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x39f3e3fd"
+      }
+    ],
+    "summary": "Seaport custom error InvalidBasicOrderParameterEncoding().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidBasicOrderParameterEncoding custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0x39f3e3fd // InvalidBasicOrderParameterEncoding()"
+    ]
+  },
+  {
+    "id": "seaport-invalid-call-to-conduit",
+    "title": "Seaport: InvalidCallToConduit",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd13d53d4"
+      }
+    ],
+    "summary": "Seaport custom error InvalidCallToConduit(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidCallToConduit custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0xd13d53d4 // InvalidCallToConduit(address)"
+    ]
+  },
+  {
+    "id": "seaport-invalid-canceller",
+    "title": "Seaport: InvalidCanceller",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x80ec7374"
+      }
+    ],
+    "summary": "Seaport custom error InvalidCanceller().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidCanceller custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0x80ec7374 // InvalidCanceller()"
+    ]
+  },
+  {
+    "id": "seaport-invalid-conduit",
+    "title": "Seaport: InvalidConduit",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1cf99b26"
+      }
+    ],
+    "summary": "Seaport custom error InvalidConduit(bytes32,address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidConduit custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0x1cf99b26 // InvalidConduit(bytes32,address)"
+    ]
+  },
+  {
+    "id": "seaport-invalid-contract-order",
+    "title": "Seaport: InvalidContractOrder",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x93979285"
+      }
+    ],
+    "summary": "Seaport custom error InvalidContractOrder(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidContractOrder custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x93979285 // InvalidContractOrder(bytes32)"
+    ]
+  },
+  {
+    "id": "seaport-invalid-controller",
+    "title": "Seaport: InvalidController",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6d5769be"
+      }
+    ],
+    "summary": "Seaport custom error InvalidController().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidController custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x6d5769be // InvalidController()"
+    ]
+  },
+  {
+    "id": "seaport-invalid-identifier",
+    "title": "Seaport: InvalidIdentifier",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x8b7b3608"
+      }
+    ],
+    "summary": "Seaport custom error InvalidIdentifier(uint256,uint256[]).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidIdentifier custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x8b7b3608 // InvalidIdentifier(uint256,uint256[])"
+    ]
+  },
+  {
+    "id": "seaport-invalid-item-type-for-candidate-identifiers",
+    "title": "Seaport: InvalidItemTypeForCandidateIdentifiers",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe2ffab40"
+      }
+    ],
+    "summary": "Seaport custom error InvalidItemTypeForCandidateIdentifiers().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidItemTypeForCandidateIdentifiers custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0xe2ffab40 // InvalidItemTypeForCandidateIdentifiers()"
+    ]
+  },
+  {
+    "id": "seaport-invalid-msg-value",
+    "title": "Seaport: InvalidMsgValue",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa61be9f0"
+      }
+    ],
+    "summary": "Seaport custom error InvalidMsgValue(uint256).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidMsgValue custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0xa61be9f0 // InvalidMsgValue(uint256)"
+    ]
+  },
+  {
+    "id": "seaport-invalid-native-offer-item",
+    "title": "Seaport: InvalidNativeOfferItem",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x12d3f5a3"
+      }
+    ],
+    "summary": "Seaport custom error InvalidNativeOfferItem().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidNativeOfferItem custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0x12d3f5a3 // InvalidNativeOfferItem()"
+    ]
+  },
+  {
+    "id": "seaport-invalid-native-token-unavailable-combination",
+    "title": "Seaport: InvalidNativeTokenUnavailableCombination",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x87afc892"
+      }
+    ],
+    "summary": "Seaport custom error InvalidNativeTokenUnavailableCombination().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidNativeTokenUnavailableCombination custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x87afc892 // InvalidNativeTokenUnavailableCombination()"
+    ]
+  },
+  {
+    "id": "seaport-invalid-operator",
+    "title": "Seaport: InvalidOperator",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xccea9e6f"
+      }
+    ],
+    "summary": "Seaport custom error InvalidOperator().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidOperator custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0xccea9e6f // InvalidOperator()"
+    ]
+  },
+  {
+    "id": "seaport-invalid-pauser",
+    "title": "Seaport: InvalidPauser",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc7260843"
+      }
+    ],
+    "summary": "Seaport custom error InvalidPauser().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidPauser custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0xc7260843 // InvalidPauser()"
+    ]
+  },
+  {
+    "id": "seaport-invalid-restricted-order",
+    "title": "Seaport: InvalidRestrictedOrder",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xfb5014fc"
+      }
+    ],
+    "summary": "Seaport custom error InvalidRestrictedOrder(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidRestrictedOrder custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0xfb5014fc // InvalidRestrictedOrder(bytes32)"
+    ]
+  },
+  {
+    "id": "seaport-invalid-time",
+    "title": "Seaport: InvalidTime",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x6f7eac26"
+      }
+    ],
+    "summary": "Seaport custom error InvalidTime().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the InvalidTime custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0x6f7eac26 // InvalidTime()"
+    ]
+  },
+  {
+    "id": "seaport-issue-string-helpers-unknown-issue-code",
+    "title": "Seaport: IssueStringHelpers: Unknown issue code",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?IssueStringHelpers: Unknown issue code['\"]?\\s*$"
+      }
+    ],
+    "summary": "Seaport revert reason string: IssueStringHelpers: Unknown issue code.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "execution reverted: IssueStringHelpers: Unknown issue code"
+    ]
+  },
+  {
+    "id": "seaport-missing-original-consideration-items",
+    "title": "Seaport: MissingOriginalConsiderationItems",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x466aa616"
+      }
+    ],
+    "summary": "Seaport custom error MissingOriginalConsiderationItems().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the MissingOriginalConsiderationItems custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0x466aa616 // MissingOriginalConsiderationItems()"
+    ]
+  },
+  {
+    "id": "seaport-no-specified-orders-available",
+    "title": "Seaport: NoSpecifiedOrdersAvailable",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd5da9a1b"
+      }
+    ],
+    "summary": "Seaport custom error NoSpecifiedOrdersAvailable().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the NoSpecifiedOrdersAvailable custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0xd5da9a1b // NoSpecifiedOrdersAvailable()"
+    ]
+  },
+  {
+    "id": "seaport-order-already-filled",
+    "title": "Seaport: OrderAlreadyFilled",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x10fda3e1"
+      }
+    ],
+    "summary": "Seaport custom error OrderAlreadyFilled(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the OrderAlreadyFilled custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0x10fda3e1 // OrderAlreadyFilled(bytes32)"
+    ]
+  },
+  {
+    "id": "seaport-order-is-cancelled",
+    "title": "Seaport: OrderIsCancelled",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x1a515574"
+      }
+    ],
+    "summary": "Seaport custom error OrderIsCancelled(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the OrderIsCancelled custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0x1a515574 // OrderIsCancelled(bytes32)"
+    ]
+  },
+  {
+    "id": "seaport-order-partially-filled",
+    "title": "Seaport: OrderPartiallyFilled",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xee9e0e63"
+      }
+    ],
+    "summary": "Seaport custom error OrderPartiallyFilled(bytes32).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the OrderPartiallyFilled custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0xee9e0e63 // OrderPartiallyFilled(bytes32)"
+    ]
+  },
+  {
+    "id": "seaport-owner-can-not-be-set-as-zero",
+    "title": "Seaport: OwnerCanNotBeSetAsZero",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xda72ecf9"
+      }
+    ],
+    "summary": "Seaport custom error OwnerCanNotBeSetAsZero().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the OwnerCanNotBeSetAsZero custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0xda72ecf9 // OwnerCanNotBeSetAsZero()"
+    ]
+  },
+  {
+    "id": "seaport-partial-fills-not-enabled-for-order",
+    "title": "Seaport: PartialFillsNotEnabledForOrder",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xa11b63ff"
+      }
+    ],
+    "summary": "Seaport custom error PartialFillsNotEnabledForOrder().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PartialFillsNotEnabledForOrder custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "OpenSea Seaport events and errors",
+        "url": "https://docs.opensea.io/docs/seaport-events-and-errors"
+      }
+    ],
+    "examples": [
+      "0xa11b63ff // PartialFillsNotEnabledForOrder()"
+    ]
+  },
+  {
+    "id": "seaport-pauser-can-not-be-set-as-zero",
+    "title": "Seaport: PauserCanNotBeSetAsZero",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x5384e6f5"
+      }
+    ],
+    "summary": "Seaport custom error PauserCanNotBeSetAsZero().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the PauserCanNotBeSetAsZero custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x5384e6f5 // PauserCanNotBeSetAsZero()"
+    ]
+  },
+  {
+    "id": "seaport-token-id-not-found",
+    "title": "Seaport: TokenIdNotFound",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xfd91bde6"
+      }
+    ],
+    "summary": "Seaport custom error TokenIdNotFound().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TokenIdNotFound custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0xfd91bde6 // TokenIdNotFound()"
+    ]
+  },
+  {
+    "id": "seaport-type-not-found",
+    "title": "Seaport: TypeNotFound",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x556c9871"
+      }
+    ],
+    "summary": "Seaport custom error TypeNotFound().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the TypeNotFound custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x556c9871 // TypeNotFound()"
+    ]
+  },
+  {
+    "id": "seaport-unknown-action",
+    "title": "Seaport: UnknownAction",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x846fe7bc"
+      }
+    ],
+    "summary": "Seaport custom error UnknownAction().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnknownAction custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x846fe7bc // UnknownAction()"
+    ]
+  },
+  {
+    "id": "seaport-unknown-item-type",
+    "title": "Seaport: UnknownItemType",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2a0c68de"
+      }
+    ],
+    "summary": "Seaport custom error UnknownItemType().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnknownItemType custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x2a0c68de // UnknownItemType()"
+    ]
+  },
+  {
+    "id": "seaport-unknown-selector",
+    "title": "Seaport: UnknownSelector",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdc66f673"
+      }
+    ],
+    "summary": "Seaport custom error UnknownSelector().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the UnknownSelector custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0xdc66f673 // UnknownSelector()"
+    ]
+  },
+  {
+    "id": "seaport-won-t-generate-proof-for-single-leaf",
+    "title": "Seaport: won't generate proof for single leaf",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?won't generate proof for single leaf['\"]?\\s*$"
+      }
+    ],
+    "summary": "Seaport revert reason string: won't generate proof for single leaf.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "execution reverted: won't generate proof for single leaf"
+    ]
+  },
+  {
+    "id": "seaport-won-t-generate-root-for-single-leaf",
+    "title": "Seaport: won't generate root for single leaf",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?won't generate root for single leaf['\"]?\\s*$"
+      }
+    ],
+    "summary": "Seaport revert reason string: won't generate root for single leaf.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol or support library failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "execution reverted: won't generate root for single leaf"
+    ]
+  },
+  {
+    "id": "seaport-zone-already-exists",
+    "title": "Seaport: ZoneAlreadyExists",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x00834385"
+      }
+    ],
+    "summary": "Seaport custom error ZoneAlreadyExists(address).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZoneAlreadyExists custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0x00834385 // ZoneAlreadyExists(address)"
+    ]
+  },
+  {
+    "id": "seaport-zone-is-paused",
+    "title": "Seaport: ZoneIsPaused",
+    "layer": "protocol",
+    "source": "seaport",
+    "category": "marketplace",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe916ac7d"
+      }
+    ],
+    "summary": "Seaport custom error ZoneIsPaused().",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract reverted with the ZoneIsPaused custom error.",
+      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+    ],
+    "nextSteps": [
+      "Decode the custom error arguments with the contract ABI or the selector catalog.",
+      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Seaport repository",
+        "url": "https://github.com/ProjectOpenSea/seaport"
+      }
+    ],
+    "examples": [
+      "0xe916ac7d // ZoneIsPaused()"
+    ]
+  }
+]

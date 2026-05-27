@@ -1,0 +1,171 @@
+[
+  {
+    "id": "sourcify-signatures-epoch-snapshot-hw-epoch-closed-3b4eaecb",
+    "title": "Epoch or snapshot unavailable: HW_EpochClosed",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3b4eaecb"
+      }
+    ],
+    "summary": "Sourcify-verified custom error HW_EpochClosed usually means rewards, votes, balances, or claims depend on an epoch, snapshot, or checkpoint that is not in the expected state.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The epoch has not ended, has not started, or was already claimed for this account.",
+      "The contract has not recorded the snapshot or checkpoint needed for the requested calculation.",
+      "The client is querying a period id that does not line up with the protocol's current epoch."
+    ],
+    "nextSteps": [
+      "Read the current epoch, snapshot id, checkpoint status, and claimed bitmap before submitting.",
+      "Wait for the epoch finalization or checkpoint transaction if the data is not ready.",
+      "Use the exact epoch or snapshot id expected by the claim, vote, or accounting function."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x3b4eaecb // HW_EpochClosed()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-epoch-snapshot-lc-epoch-not-ended-311099b4",
+    "title": "Epoch or snapshot unavailable: LC_EpochNotEnded",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x311099b4"
+      }
+    ],
+    "summary": "Sourcify-verified custom error LC_EpochNotEnded usually means rewards, votes, balances, or claims depend on an epoch, snapshot, or checkpoint that is not in the expected state.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The epoch has not ended, has not started, or was already claimed for this account.",
+      "The contract has not recorded the snapshot or checkpoint needed for the requested calculation.",
+      "The client is querying a period id that does not line up with the protocol's current epoch."
+    ],
+    "nextSteps": [
+      "Read the current epoch, snapshot id, checkpoint status, and claimed bitmap before submitting.",
+      "Wait for the epoch finalization or checkpoint transaction if the data is not ready.",
+      "Use the exact epoch or snapshot id expected by the claim, vote, or accounting function."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: LotteryCoordinator on bsc",
+        "url": "https://sourcify.dev/server/v2/contract/56/0x33a468ba091b9abee50d5b2a0ff0d98dd42592f0"
+      }
+    ],
+    "examples": [
+      "0x311099b4 // LC_EpochNotEnded()",
+      "0x311099b4 // LC_EpochNotEnded() - seen in LotteryCoordinator on bsc"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-epoch-snapshot-sv-epoch-not-ended-46c70559",
+    "title": "Epoch or snapshot unavailable: SV_EpochNotEnded",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x46c70559"
+      }
+    ],
+    "summary": "Sourcify-verified custom error SV_EpochNotEnded usually means rewards, votes, balances, or claims depend on an epoch, snapshot, or checkpoint that is not in the expected state.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The epoch has not ended, has not started, or was already claimed for this account.",
+      "The contract has not recorded the snapshot or checkpoint needed for the requested calculation.",
+      "The client is querying a period id that does not line up with the protocol's current epoch."
+    ],
+    "nextSteps": [
+      "Read the current epoch, snapshot id, checkpoint status, and claimed bitmap before submitting.",
+      "Wait for the epoch finalization or checkpoint transaction if the data is not ready.",
+      "Use the exact epoch or snapshot id expected by the claim, vote, or accounting function."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x46c70559 // SV_EpochNotEnded()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-epoch-snapshot-ylp-epoch-not-ended-83a284e6",
+    "title": "Epoch or snapshot unavailable: YLP__EpochNotEnded",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x83a284e6"
+      }
+    ],
+    "summary": "Sourcify-verified custom error YLP__EpochNotEnded usually means rewards, votes, balances, or claims depend on an epoch, snapshot, or checkpoint that is not in the expected state.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The epoch has not ended, has not started, or was already claimed for this account.",
+      "The contract has not recorded the snapshot or checkpoint needed for the requested calculation.",
+      "The client is querying a period id that does not line up with the protocol's current epoch."
+    ],
+    "nextSteps": [
+      "Read the current epoch, snapshot id, checkpoint status, and claimed bitmap before submitting.",
+      "Wait for the epoch finalization or checkpoint transaction if the data is not ready.",
+      "Use the exact epoch or snapshot id expected by the claim, vote, or accounting function."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x83a284e6 // YLP__EpochNotEnded()"
+    ]
+  }
+]

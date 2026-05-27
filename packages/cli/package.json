@@ -1,0 +1,50 @@
+{
+  "name": "@revertwtf/cli",
+  "version": "0.1.0",
+  "description": "Local command-line decoder for revert.wtf",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "revertwtf": "./dist/bin.js"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@revertwtf/aa": "workspace:*",
+    "@revertwtf/catalog": "workspace:*",
+    "@revertwtf/parser": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "keywords": [
+    "evm",
+    "ethereum",
+    "revert",
+    "errors",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrtdlgc/revertwtf.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://revert.wtf",
+  "bugs": {
+    "url": "https://github.com/mrtdlgc/revertwtf/issues"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "name": "@revertwtf/parser",
+  "version": "0.1.0",
+  "description": "Ethereum error normalizer, revert decoder, and explainer",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "browser": "./dist/browser.js",
+      "import": "./dist/index.js"
+    },
+    "./decode": {
+      "types": "./dist/decodeRevertData.d.ts",
+      "import": "./dist/decodeRevertData.js"
+    },
+    "./extract": {
+      "types": "./dist/extractRevertData.d.ts",
+      "import": "./dist/extractRevertData.js"
+    },
+    "./trace": {
+      "types": "./dist/extractTraceFailures.d.ts",
+      "import": "./dist/extractTraceFailures.js"
+    },
+    "./normalize": {
+      "types": "./dist/normalizeError.d.ts",
+      "import": "./dist/normalizeError.js"
+    },
+    "./match-catalog": {
+      "types": "./dist/matchCatalog.d.ts",
+      "browser": "./dist/browserMatchCatalog.js",
+      "import": "./dist/matchCatalog.js"
+    },
+    "./explain": {
+      "types": "./dist/explain.d.ts",
+      "browser": "./dist/browserExplain.js",
+      "import": "./dist/explain.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@revertwtf/core": "workspace:*",
+    "@revertwtf/catalog": "workspace:*",
+    "@revertwtf/selectors": "workspace:*",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "keywords": [
+    "evm",
+    "ethereum",
+    "revert",
+    "decoder",
+    "rpc",
+    "errors"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrtdlgc/revertwtf.git",
+    "directory": "packages/parser"
+  },
+  "homepage": "https://revert.wtf",
+  "bugs": {
+    "url": "https://github.com/mrtdlgc/revertwtf/issues"
+  }
+}

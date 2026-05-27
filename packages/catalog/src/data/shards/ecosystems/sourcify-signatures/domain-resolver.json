@@ -1,0 +1,43 @@
+[
+  {
+    "id": "sourcify-signatures-domain-resolver-nickname-not-registered-62f1e405",
+    "title": "Name or resolver lookup failed: NicknameNotRegistered",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x62f1e405"
+      }
+    ],
+    "summary": "Sourcify-verified custom error NicknameNotRegistered points to ENS-style name ownership, resolver, labelhash, or record lookup state.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The name is not registered, the resolver is not set, or the requested record is absent.",
+      "The caller is not authorized to update the resolver or record.",
+      "The labelhash, namehash, node, or resolver address was computed for a different name."
+    ],
+    "nextSteps": [
+      "Verify the namehash, labelhash, resolver address, and record key against the registry.",
+      "Check ownership or controller rights before attempting resolver or record updates.",
+      "Set the resolver or required record first if the lookup path is empty."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x62f1e405 // NicknameNotRegistered()"
+    ]
+  }
+]

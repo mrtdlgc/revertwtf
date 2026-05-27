@@ -1,0 +1,66 @@
+{
+  "name": "@revertwtf/mcp",
+  "version": "0.1.0",
+  "description": "Read-only MCP server for EVM, RPC, AA, and x402 error explanations",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "revertwtf-mcp": "./dist/bin.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/bin.ts",
+    "start": "node dist/bin.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@revertwtf/aa": "workspace:*",
+    "@revertwtf/catalog": "workspace:*",
+    "@revertwtf/core": "workspace:*",
+    "@revertwtf/parser": "workspace:*",
+    "@revertwtf/search": "workspace:*",
+    "@revertwtf/selectors": "workspace:*",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "keywords": [
+    "evm",
+    "ethereum",
+    "mcp",
+    "agents",
+    "errors"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrtdlgc/revertwtf.git",
+    "directory": "packages/mcp"
+  },
+  "homepage": "https://revert.wtf",
+  "bugs": {
+    "url": "https://github.com/mrtdlgc/revertwtf/issues"
+  }
+}

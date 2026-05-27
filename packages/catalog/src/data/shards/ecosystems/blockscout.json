@@ -1,0 +1,334 @@
+[
+  {
+    "id": "blockscout-api-invalid-address-format",
+    "title": "Blockscout API: Invalid address format",
+    "layer": "provider",
+    "source": "blockscout",
+    "category": "explorer_api",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Invalid address format"
+      }
+    ],
+    "summary": "Blockscout's Etherscan-compatible API rejected an address parameter as malformed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The request used an address that is not a 20-byte hex string with a 0x prefix.",
+      "The address parameter was omitted, truncated, checksummed incorrectly by the caller, or replaced with a non-address identifier."
+    ],
+    "nextSteps": [
+      "Validate the address before calling the Blockscout API.",
+      "If the user entered a transaction hash, block number, ENS/name, or token symbol, route it to the matching search or lookup endpoint instead."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Blockscout account API reference",
+        "url": "https://docs.blockscout.com/api-reference/account/get-a-list-of-transactions-by-address"
+      }
+    ],
+    "examples": [
+      "{\"message\":\"Invalid address format\",\"result\":null,\"status\":\"0\"}"
+    ]
+  },
+  {
+    "id": "blockscout-api-invalid-txhash-format",
+    "title": "Blockscout API: Invalid txhash format",
+    "layer": "provider",
+    "source": "blockscout",
+    "category": "explorer_api",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Invalid txhash format"
+      }
+    ],
+    "summary": "Blockscout's Etherscan-compatible API rejected a transaction hash parameter as malformed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The request used a transaction hash that is not a 32-byte hex string with a 0x prefix.",
+      "An address, block number, or user-facing search query was sent to a transaction-specific endpoint."
+    ],
+    "nextSteps": [
+      "Validate the transaction hash shape before using transaction endpoints.",
+      "If the input is ambiguous, call Blockscout search first and route by result type."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Blockscout transaction API docs",
+        "url": "https://docs.blockscout.com/devs/apis/rpc/transaction"
+      }
+    ],
+    "examples": [
+      "{\"message\":\"Invalid txhash format\",\"result\":null,\"status\":\"0\"}"
+    ]
+  },
+  {
+    "id": "blockscout-api-unknown-module",
+    "title": "Blockscout API: Unknown module",
+    "layer": "provider",
+    "source": "blockscout",
+    "category": "explorer_api",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Unknown module"
+      }
+    ],
+    "summary": "Blockscout's Etherscan-compatible API could not route the requested module.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The query string uses an unsupported module name.",
+      "The integration is sending an Etherscan-compatible call to a Blockscout instance that does not implement that module."
+    ],
+    "nextSteps": [
+      "Check the module/action pair against the Blockscout instance API docs.",
+      "Prefer the v2 REST endpoint for new integrations when the Etherscan-compatible module is unavailable."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Blockscout API docs",
+        "url": "https://eth.blockscout.com/api-docs"
+      }
+    ],
+    "examples": [
+      "{\"message\":\"Unknown module\",\"result\":null,\"status\":\"0\"}"
+    ]
+  },
+  {
+    "id": "blockscout-api-missing-or-invalid-action",
+    "title": "Blockscout API: Missing or invalid action",
+    "layer": "provider",
+    "source": "blockscout",
+    "category": "explorer_api",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Missing Or invalid Action name"
+      },
+      {
+        "type": "substring",
+        "value": "Unknown action"
+      }
+    ],
+    "summary": "Blockscout could not route the action for an Etherscan-compatible API request.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The action parameter is missing, misspelled, or not supported for the selected module.",
+      "The app is using an Etherscan endpoint variant that this Blockscout instance does not expose."
+    ],
+    "nextSteps": [
+      "Validate the module/action pair before sending the request.",
+      "Use the instance's API docs or migrate the integration path to the equivalent v2 REST endpoint."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Blockscout API docs",
+        "url": "https://eth.blockscout.com/api-docs"
+      }
+    ],
+    "examples": [
+      "{\"status\":\"0\",\"message\":\"NOTOK\",\"result\":\"Error! Missing Or invalid Action name\"}"
+    ]
+  },
+  {
+    "id": "blockscout-api-v2-invalid-path-value",
+    "title": "Blockscout API v2: Invalid path value",
+    "layer": "provider",
+    "source": "blockscout",
+    "category": "explorer_api",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Invalid value"
+      },
+      {
+        "type": "substring",
+        "value": "Invalid format. Expected"
+      }
+    ],
+    "summary": "Blockscout API v2 returned a validation error for a path or query parameter.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A path parameter such as address_hash_param, transaction_hash_param, or block_hash_or_number_param does not match the expected format.",
+      "The request builder routed a user search term into a typed endpoint without validating it first."
+    ],
+    "nextSteps": [
+      "Read the errors array and surface the pointer and expected pattern to the user or caller.",
+      "Validate the input locally and use search/discovery endpoints for ambiguous values."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Blockscout v2 address transactions API",
+        "url": "https://docs.blockscout.com/api-reference/get-address-transactions"
+      }
+    ],
+    "examples": [
+      "{\"errors\":[{\"title\":\"Invalid value\",\"source\":{\"pointer\":\"/address_hash_param\"},\"detail\":\"Invalid format. Expected ~r/^0x([A-Fa-f0-9]{40})$/\"}]}"
+    ]
+  },
+  {
+    "id": "blockscout-api-rate-limit-exceeded",
+    "title": "Blockscout API: Rate limit exceeded",
+    "layer": "provider",
+    "source": "blockscout",
+    "category": "rate_limit",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Rate limit exceeded"
+      },
+      {
+        "type": "substring",
+        "value": "Max rate limit reached"
+      }
+    ],
+    "summary": "A Blockscout API request exceeded the instance or API key rate limit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The integration is sending more requests than the instance allows for the current IP, temporary token, or API key.",
+      "A backfill, polling loop, or retry policy is not respecting Blockscout's per-endpoint limits."
+    ],
+    "nextSteps": [
+      "Back off, cache repeated lookups, and add jittered retries.",
+      "Use an API key or Blockscout PRO/API plan when the integration needs sustained multichain throughput."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Blockscout requests and limits",
+        "url": "https://docs.blockscout.com/devs/apis/requests-and-limits"
+      }
+    ],
+    "examples": [
+      "{\"error\":\"Rate limit exceeded\"}",
+      "{\"status\":\"0\",\"message\":\"NOTOK\",\"result\":\"Max rate limit reached, please use API Key for higher rate limit\"}"
+    ]
+  },
+  {
+    "id": "blockscout-api-query-timeout",
+    "title": "Blockscout API: Query timeout",
+    "layer": "provider",
+    "source": "blockscout",
+    "category": "timeout",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Query Timeout"
+      },
+      {
+        "type": "substring",
+        "value": "select a smaller result dataset"
+      }
+    ],
+    "summary": "Blockscout could not complete the requested explorer query within the allowed time.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The request scans too many blocks, transactions, logs, token transfers, or internal transactions.",
+      "Pagination, date range, or block range limits are missing from a backfill request."
+    ],
+    "nextSteps": [
+      "Split the request into smaller block ranges or pages.",
+      "Persist cursors and avoid retrying the same large unbounded query."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Blockscout account API reference",
+        "url": "https://docs.blockscout.com/api-reference/account/get-a-list-of-transactions-by-address"
+      }
+    ],
+    "examples": [
+      "{\"status\":\"0\",\"message\":\"NOTOK\",\"result\":\"Query Timeout occured. Please select a smaller result dataset\"}"
+    ]
+  },
+  {
+    "id": "blockscout-api-contract-source-not-verified",
+    "title": "Blockscout API: Contract source code not verified",
+    "layer": "provider",
+    "source": "blockscout",
+    "category": "contract_verification",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "Contract source code not verified"
+      }
+    ],
+    "summary": "Blockscout cannot return ABI/source data because the contract is not verified on that explorer instance.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The contract bytecode exists on-chain but has not been verified in Blockscout.",
+      "The app is relying on explorer ABI lookup instead of a bundled ABI or bytecode/signature fallback."
+    ],
+    "nextSteps": [
+      "Fall back to the selector catalog, bytecode database, or a known ABI bundle.",
+      "Ask the contract owner or integration team to verify the contract on the relevant Blockscout instance."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Blockscout bytecode database",
+        "url": "https://docs.blockscout.com/about/features/ethereum-bytecode-database-microservice"
+      }
+    ],
+    "examples": [
+      "{\"status\":\"0\",\"message\":\"NOTOK\",\"result\":\"Contract source code not verified\"}"
+    ]
+  },
+  {
+    "id": "blockscout-api-no-transactions-found",
+    "title": "Blockscout API: No transactions found",
+    "layer": "provider",
+    "source": "blockscout",
+    "category": "not_found",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "No transactions found"
+      }
+    ],
+    "summary": "Blockscout found no transactions for the requested address, filter, or block range.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The address has no indexed transactions matching the requested range or direction filter.",
+      "The integration queried the wrong chain, explorer instance, or chain ID."
+    ],
+    "nextSteps": [
+      "Check the chain ID and explorer URL against the Blockscout chain registry.",
+      "Broaden the block range or remove direction filters before reporting the account as inactive."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Blockscout Chainscout API",
+        "url": "https://chains.blockscout.com/api/chains"
+      }
+    ],
+    "examples": [
+      "{\"status\":\"0\",\"message\":\"No transactions found\",\"result\":[]}"
+    ]
+  }
+]

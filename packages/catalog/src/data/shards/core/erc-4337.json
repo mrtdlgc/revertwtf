@@ -1,0 +1,258 @@
+[
+  {
+    "id": "aa-failed-op",
+    "title": "ERC-4337: FailedOp",
+    "layer": "account_abstraction",
+    "source": "erc-4337",
+    "category": "userop_validation",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "FailedOp"
+      },
+      {
+        "type": "selector",
+        "value": "0x220266b6"
+      }
+    ],
+    "summary": "The EntryPoint reverted a UserOperation during validation with FailedOp(uint256 opIndex, string reason). The reason string usually starts with an AAxx code.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "Bundler rejected the UserOp at simulation.",
+      "Account signature / nonce / prefund check failed."
+    ],
+    "nextSteps": [
+      "Parse the reason string for the AAxx code and look it up.",
+      "If reason includes nested bytes (FailedOpWithRevert), decode those too."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "sometimes",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ERC-4337",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+      }
+    ]
+  },
+  {
+    "id": "aa-failed-op-with-revert",
+    "title": "ERC-4337: FailedOpWithRevert",
+    "layer": "account_abstraction",
+    "source": "erc-4337",
+    "category": "userop_validation",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "FailedOpWithRevert"
+      },
+      {
+        "type": "selector",
+        "value": "0x65c8fd4d"
+      }
+    ],
+    "summary": "EntryPoint v0.7+ wraps an inner revert from the account/paymaster. The inner bytes can be decoded with the standard revert decoder.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "Account contract reverted inside validateUserOp.",
+      "Paymaster reverted inside validatePaymasterUserOp."
+    ],
+    "nextSteps": [
+      "Decode the outer FailedOpWithRevert to get (opIndex, reason, inner).",
+      "Decode `inner` bytes with the revert decoder.",
+      "Use the account/paymaster ABI to resolve custom errors."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "sometimes",
+    "confidence": "high"
+  },
+  {
+    "id": "aa21-didnt-pay-prefund",
+    "title": "AA21: didn't pay prefund",
+    "layer": "account_abstraction",
+    "source": "erc-4337",
+    "category": "userop_prefund",
+    "patterns": [
+      {
+        "type": "aa_code",
+        "value": "AA21"
+      },
+      {
+        "type": "substring",
+        "value": "AA21"
+      }
+    ],
+    "summary": "The smart account does not have enough ETH (or staked deposit) to cover the prefund for this UserOperation.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Account balance below required prefund.",
+      "Paymaster not specified but expected.",
+      "Gas limits over-estimated by the bundler."
+    ],
+    "nextSteps": [
+      "Fund the smart account directly with ETH, or",
+      "Attach a paymaster via paymasterAndData / paymaster fields.",
+      "Lower verificationGasLimit/callGasLimit/preVerificationGas if over-allocated."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high"
+  },
+  {
+    "id": "aa23-reverted-or-oog",
+    "title": "AA23: reverted (or OOG)",
+    "layer": "account_abstraction",
+    "source": "erc-4337",
+    "category": "userop_account",
+    "patterns": [
+      {
+        "type": "aa_code",
+        "value": "AA23"
+      },
+      {
+        "type": "substring",
+        "value": "AA23"
+      }
+    ],
+    "summary": "The account's validateUserOp reverted, or ran out of gas. The most common AA failure.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "Signature check inside validateUserOp threw.",
+      "Custom validation rejected the op (nonce policy, session key expired, etc).",
+      "verificationGasLimit too low for the validation logic."
+    ],
+    "nextSteps": [
+      "If a FailedOpWithRevert is available, decode the inner revert.",
+      "Re-simulate via the bundler's eth_estimateUserOperationGas to size verificationGasLimit.",
+      "Verify the signature scheme and any session-key/policy state in the account."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "sometimes",
+    "confidence": "high"
+  },
+  {
+    "id": "aa24-signature-error",
+    "title": "AA24: signature error",
+    "layer": "account_abstraction",
+    "source": "erc-4337",
+    "category": "userop_account",
+    "patterns": [
+      {
+        "type": "aa_code",
+        "value": "AA24"
+      },
+      {
+        "type": "substring",
+        "value": "AA24"
+      }
+    ],
+    "summary": "validateUserOp returned a non-zero signature validation result — the signature did not verify against the account's expected signer.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Wrong signer key.",
+      "Wrong domain / chainId / EntryPoint address mixed into the userOpHash.",
+      "Account uses a custom signature scheme (e.g. EIP-1271, passkeys) and the encoding is off.",
+      "Bundler used a different EntryPoint version than the account expects."
+    ],
+    "nextSteps": [
+      "Recompute userOpHash with the exact EntryPoint version and chainId in use.",
+      "Confirm the signer key matches the account's owner / validator.",
+      "If using EIP-1271, verify the wrapping bytes."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high"
+  },
+  {
+    "id": "aa25-invalid-account-nonce",
+    "title": "AA25: invalid account nonce",
+    "layer": "account_abstraction",
+    "source": "erc-4337",
+    "category": "userop_account",
+    "patterns": [
+      {
+        "type": "aa_code",
+        "value": "AA25"
+      },
+      {
+        "type": "substring",
+        "value": "AA25"
+      }
+    ],
+    "summary": "The nonce in the UserOperation does not match the EntryPoint's expected nonce for this account/key.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Local nonce out of sync.",
+      "Parallel UserOps reused the same 2D nonce key."
+    ],
+    "nextSteps": [
+      "Read the current nonce from the EntryPoint via getNonce(sender, key).",
+      "Use 2D nonce keys to serialize parallel ops by namespace."
+    ],
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "no",
+    "confidence": "high"
+  },
+  {
+    "id": "aa31-paymaster-deposit-too-low",
+    "title": "AA31: paymaster deposit too low",
+    "layer": "account_abstraction",
+    "source": "erc-4337",
+    "category": "userop_paymaster",
+    "patterns": [
+      {
+        "type": "aa_code",
+        "value": "AA31"
+      },
+      {
+        "type": "substring",
+        "value": "AA31"
+      }
+    ],
+    "summary": "The paymaster does not have enough deposit at the EntryPoint to cover this UserOperation.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Paymaster deposit was drained.",
+      "Gas limits set higher than the paymaster operator expected."
+    ],
+    "nextSteps": [
+      "Top up the paymaster's deposit via EntryPoint.depositTo(paymaster).",
+      "Contact the paymaster operator if it's a third-party service."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high"
+  },
+  {
+    "id": "aa33-reverted-or-oog",
+    "title": "AA33: paymaster reverted (or OOG)",
+    "layer": "account_abstraction",
+    "source": "erc-4337",
+    "category": "userop_paymaster",
+    "patterns": [
+      {
+        "type": "aa_code",
+        "value": "AA33"
+      },
+      {
+        "type": "substring",
+        "value": "AA33"
+      }
+    ],
+    "summary": "The paymaster's validatePaymasterUserOp reverted, or ran out of gas.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "Paymaster's policy rejected the user/op (signature, allowlist, spending cap).",
+      "verificationGasLimit too low for paymaster logic.",
+      "Bug in custom paymaster contract."
+    ],
+    "nextSteps": [
+      "Decode inner revert if FailedOpWithRevert is present.",
+      "Inspect paymaster policy (ERC-20 paymaster: token allowance / price feed staleness).",
+      "Bump verificationGasLimit."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "sometimes",
+    "confidence": "high"
+  }
+]

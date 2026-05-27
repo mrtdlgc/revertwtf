@@ -1,0 +1,40 @@
+name: release
+
+# Publish @revertwtf/* packages to npm on a version tag, e.g. `git tag v0.1.0 && git push --tags`.
+# Requires repo secret NPM_TOKEN (npm granular access token with read+write for the @revertwtf scope).
+# Runs on Node 20 so better-sqlite3 has a prebuilt binary; provenance is attached via OIDC.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # required for npm provenance
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - run: pnpm install --frozen-lockfile
+
+      # Release gate: catalog integrity + build + tests must pass before publishing.
+      - run: pnpm validate:catalog
+      - run: pnpm catalog:duplicates
+      - run: pnpm -r --filter=./packages/* build
+      - run: pnpm -r --filter=./packages/* test
+
+      # Publishes every public workspace package in dependency order, rewriting
+      # workspace:* to the real version. Private packages (apps/web) are skipped.
+      - run: pnpm -r publish --access public --provenance --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: "true"

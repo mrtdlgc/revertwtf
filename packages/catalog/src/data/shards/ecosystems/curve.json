@@ -1,0 +1,4972 @@
+[
+  {
+    "id": "curve-access-denied",
+    "title": "Curve Stablecoin: Access denied",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Access denied['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Access denied.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/factory/OwnerProxy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Access denied"
+    ]
+  },
+  {
+    "id": "curve-admin-fee-too-high",
+    "title": "Curve Stablecoin: Admin fee too high",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Admin fee too high['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Admin fee too high.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Admin fee too high"
+    ]
+  },
+  {
+    "id": "curve-admin-percentage-higher-than-100",
+    "title": "Curve Stablecoin: admin percentage higher than 100%",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?admin percentage higher than 100%['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: admin percentage higher than 100%.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/Configurator.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: admin percentage higher than 100%"
+    ]
+  },
+  {
+    "id": "curve-already-added",
+    "title": "Curve Stablecoin: Already added",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Already added['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Already added.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/AggMonetaryPolicy4.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Already added"
+    ]
+  },
+  {
+    "id": "curve-already-initialized",
+    "title": "Curve Stablecoin: Already initialized",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Already initialized['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Already initialized.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/proxy/ProxyOracle.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Already initialized"
+    ]
+  },
+  {
+    "id": "curve-amount-too-low",
+    "title": "Curve Stablecoin: Amount too low",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Amount too low['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Amount too low.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/AMM.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Amount too low"
+    ]
+  },
+  {
+    "id": "curve-available-balance-exceeded",
+    "title": "Curve Stablecoin: Available balance exceeded",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Available balance exceeded['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Available balance exceeded.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/lending/LendController.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Available balance exceeded"
+    ]
+  },
+  {
+    "id": "curve-band-not-empty",
+    "title": "Curve Stablecoin: Band not empty",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Band not empty['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Band not empty.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/AMM.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Band not empty"
+    ]
+  },
+  {
+    "id": "curve-borrow-cap-exceeded",
+    "title": "Curve Stablecoin: Borrow cap exceeded",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Borrow cap exceeded['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Borrow cap exceeded.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/lending/LendController.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Borrow cap exceeded"
+    ]
+  },
+  {
+    "id": "curve-can-only-increase-lock-duration",
+    "title": "Curve Stablecoin: Can only increase lock duration",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Can only increase lock duration['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Can only increase lock duration.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/VotingEscrow.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Can only increase lock duration"
+    ]
+  },
+  {
+    "id": "curve-can-only-lock-until-time-in-the-future",
+    "title": "Curve Stablecoin: Can only lock until time in the future",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Can only lock until time in the future['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Can only lock until time in the future.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/VotingEscrow.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Can only lock until time in the future"
+    ]
+  },
+  {
+    "id": "curve-can-t-mint-0-shares",
+    "title": "Curve Stablecoin: Can't mint 0 shares",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Can't mint 0 shares['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Can't mint 0 shares.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/lending/Vault.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Can't mint 0 shares"
+    ]
+  },
+  {
+    "id": "curve-can-t-remove-more-collateral-than-user-has",
+    "title": "Curve Stablecoin: Can't remove more collateral than user has",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Can't remove more collateral than user has['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Can't remove more collateral than user has.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerView.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Can't remove more collateral than user has"
+    ]
+  },
+  {
+    "id": "curve-can-t-shrink",
+    "title": "Curve Stablecoin: Can't shrink",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Can't shrink['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Can't shrink.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerView.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Can't shrink"
+    ]
+  },
+  {
+    "id": "curve-cannot-add-to-expired-lock-withdraw",
+    "title": "Curve Stablecoin: Cannot add to expired lock. Withdraw",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot add to expired lock\\. Withdraw['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Cannot add to expired lock. Withdraw.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/VotingEscrow.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Cannot add to expired lock. Withdraw"
+    ]
+  },
+  {
+    "id": "curve-cannot-vote-so-often",
+    "title": "Curve Stablecoin: Cannot vote so often",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot vote so often['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Cannot vote so often.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/GaugeController.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Cannot vote so often"
+    ]
+  },
+  {
+    "id": "curve-chainlink-fail",
+    "title": "Curve Stablecoin: Chainlink fail",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Chainlink fail['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Chainlink fail.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/GoldChainlinkPrice.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Chainlink fail"
+    ]
+  },
+  {
+    "id": "curve-coin0-oracle-price-returns-0",
+    "title": "Curve Stablecoin: coin0_oracle.price() returns 0",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?coin0_oracle\\.price\\(\\) returns 0['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: coin0_oracle.price() returns 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/lp-oracles/LPOracleCrypto.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: coin0_oracle.price() returns 0"
+    ]
+  },
+  {
+    "id": "curve-coin0-oracle-price-w-returns-0",
+    "title": "Curve Stablecoin: coin0_oracle.price_w() returns 0",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?coin0_oracle\\.price_w\\(\\) returns 0['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: coin0_oracle.price_w() returns 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/lp-oracles/LPOracleCrypto.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: coin0_oracle.price_w() returns 0"
+    ]
+  },
+  {
+    "id": "curve-collateral-can-t-increase-during-repay",
+    "title": "Curve Stablecoin: Collateral can't increase during repay",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Collateral can't increase during repay['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Collateral can't increase during repay.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/controller.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Collateral can't increase during repay"
+    ]
+  },
+  {
+    "id": "curve-collateral-decimals-must-be-18",
+    "title": "Curve Stablecoin: collateral decimals must be 18",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?collateral decimals must be 18['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: collateral decimals must be 18.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/LMCallback.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: collateral decimals must be 18"
+    ]
+  },
+  {
+    "id": "curve-could-not-mint-coin",
+    "title": "Curve StableSwap: Could not mint coin",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Could not mint coin['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve StableSwap revert reason string: Could not mint coin.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve contracts GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-contract/master/contracts/pools/compound/DepositCompound.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Could not mint coin"
+    ]
+  },
+  {
+    "id": "curve-could-not-redeem-coin",
+    "title": "Curve StableSwap: Could not redeem coin",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Could not redeem coin['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve StableSwap revert reason string: Could not redeem coin.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve contracts GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-contract/master/contracts/pools/compound/DepositCompound.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Could not redeem coin"
+    ]
+  },
+  {
+    "id": "curve-debt-0",
+    "title": "Curve Stablecoin: _debt = 0",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?_debt = 0['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: _debt = 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerView.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: _debt = 0"
+    ]
+  },
+  {
+    "id": "curve-debt-0-2",
+    "title": "Curve Stablecoin: debt==0",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?debt==0['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: debt==0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerView.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: debt==0"
+    ]
+  },
+  {
+    "id": "curve-debt-too-high",
+    "title": "Curve Stablecoin: Debt too high",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Debt too high['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Debt too high.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/controller.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Debt too high"
+    ]
+  },
+  {
+    "id": "curve-delta-max",
+    "title": "Curve Stablecoin: delta>max",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?delta>max['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: delta>max.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/Configurator.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: delta>max"
+    ]
+  },
+  {
+    "id": "curve-duplicate-coins",
+    "title": "Curve Stablecoin: Duplicate coins",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Duplicate coins['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Duplicate coins.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/factory/StableswapFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Duplicate coins"
+    ]
+  },
+  {
+    "id": "curve-eth-must-be-first-coin",
+    "title": "Curve Stablecoin: ETH must be first coin",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ETH must be first coin['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: ETH must be first coin.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/factory/StableswapFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: ETH must be first coin"
+    ]
+  },
+  {
+    "id": "curve-exchange-resulted-in-fewer-coins-than-expected",
+    "title": "Curve StableSwap: Exchange resulted in fewer coins than expected",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Exchange resulted in fewer coins than expected['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve StableSwap revert reason string: Exchange resulted in fewer coins than expected.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve contracts GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-contract/master/contracts/pool-templates/base/SwapTemplateBase.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Exchange resulted in fewer coins than expected"
+    ]
+  },
+  {
+    "id": "curve-exp-overflow",
+    "title": "Curve Stablecoin: exp overflow",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?exp overflow['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: exp overflow.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/EMAMonetaryPolicy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: exp overflow"
+    ]
+  },
+  {
+    "id": "curve-extra-health-too-high",
+    "title": "Curve Stablecoin: extra_health too high",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?extra_health too high['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: extra_health too high.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/controller.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: extra_health too high"
+    ]
+  },
+  {
+    "id": "curve-factory-not-set",
+    "title": "Curve Stablecoin: Factory not set",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Factory not set['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Factory not set.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/SwapFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Factory not set"
+    ]
+  },
+  {
+    "id": "curve-fee-too-high",
+    "title": "Curve Stablecoin: Fee too high",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Fee too high['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Fee too high.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Fee too high"
+    ]
+  },
+  {
+    "id": "curve-fee-too-low",
+    "title": "Curve Stablecoin: Fee too low",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Fee too low['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Fee too low.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Fee too low"
+    ]
+  },
+  {
+    "id": "curve-flash-borrower-untrusted-lender",
+    "title": "Curve Stablecoin: FlashBorrower: Untrusted lender",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?FlashBorrower: Untrusted lender['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: FlashBorrower: Untrusted lender.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/DummyFlashBorrower.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: FlashBorrower: Untrusted lender"
+    ]
+  },
+  {
+    "id": "curve-flash-borrower-untrusted-loan-initiator",
+    "title": "Curve Stablecoin: FlashBorrower: Untrusted loan initiator",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?FlashBorrower: Untrusted loan initiator['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: FlashBorrower: Untrusted loan initiator.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/DummyFlashBorrower.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: FlashBorrower: Untrusted loan initiator"
+    ]
+  },
+  {
+    "id": "curve-flash-lender-repay-failed",
+    "title": "Curve Stablecoin: FlashLender: Repay failed",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?FlashLender: Repay failed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: FlashLender: Repay failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/flashloan/FlashLender.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: FlashLender: Repay failed"
+    ]
+  },
+  {
+    "id": "curve-flash-lender-unsupported-currency",
+    "title": "Curve Stablecoin: FlashLender: Unsupported currency",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?FlashLender: Unsupported currency['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: FlashLender: Unsupported currency.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/flashloan/FlashLender.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: FlashLender: Unsupported currency"
+    ]
+  },
+  {
+    "id": "curve-frac-100",
+    "title": "Curve Stablecoin: frac >= 100%",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?frac >= 100%['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: frac >= 100%.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerView.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: frac >= 100%"
+    ]
+  },
+  {
+    "id": "curve-frac-100-2",
+    "title": "Curve Stablecoin: frac>100%",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?frac>100%['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: frac>100%.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/controller.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: frac>100%"
+    ]
+  },
+  {
+    "id": "curve-gauge-already-deployed",
+    "title": "Curve Stablecoin: Gauge already deployed",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Gauge already deployed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Gauge already deployed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/factory/StableswapFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Gauge already deployed"
+    ]
+  },
+  {
+    "id": "curve-gauge-implementation-not-set",
+    "title": "Curve Stablecoin: Gauge implementation not set",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Gauge implementation not set['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Gauge implementation not set.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/factory/StableswapFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Gauge implementation not set"
+    ]
+  },
+  {
+    "id": "curve-gauge-not-added",
+    "title": "Curve Stablecoin: Gauge not added",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Gauge not added['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Gauge not added.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/GaugeController.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Gauge not added"
+    ]
+  },
+  {
+    "id": "curve-health-too-high",
+    "title": "Curve Stablecoin: health too high",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?health too high['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: health too high.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/zaps/PartialRepayZapLending.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: health too high"
+    ]
+  },
+  {
+    "id": "curve-high-ratio-too-high",
+    "title": "Curve Stablecoin: high_ratio too high",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?high_ratio too high['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: high_ratio too high.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/EMAMonetaryPolicy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: high_ratio too high"
+    ]
+  },
+  {
+    "id": "curve-insufficient-coins",
+    "title": "Curve Stablecoin: Insufficient coins",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Insufficient coins['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Insufficient coins.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/factory/StableswapFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Insufficient coins"
+    ]
+  },
+  {
+    "id": "curve-invalid-address",
+    "title": "Curve Stablecoin: Invalid address",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid address['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Invalid address.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/proxy/ProxyOracle.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid address"
+    ]
+  },
+  {
+    "id": "curve-invalid-deviation",
+    "title": "Curve Stablecoin: Invalid deviation",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid deviation['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Invalid deviation.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/proxy/ProxyOracle.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid deviation"
+    ]
+  },
+  {
+    "id": "curve-invalid-fee",
+    "title": "Curve Stablecoin: Invalid fee",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid fee['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Invalid fee.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/factory/StableswapFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid fee"
+    ]
+  },
+  {
+    "id": "curve-invalid-implementation-index",
+    "title": "Curve Stablecoin: Invalid implementation index",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid implementation index['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Invalid implementation index.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/factory/StableswapFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid implementation index"
+    ]
+  },
+  {
+    "id": "curve-invalid-max-deviation",
+    "title": "Curve Stablecoin: Invalid max deviation",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid max deviation['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Invalid max deviation.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/proxy/ProxyOracle.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Invalid max deviation"
+    ]
+  },
+  {
+    "id": "curve-invalid-receiver",
+    "title": "Curve Stablecoin: invalid receiver",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?invalid receiver['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: invalid receiver.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/lending/LendFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: invalid receiver"
+    ]
+  },
+  {
+    "id": "curve-less-than-2-coins",
+    "title": "Curve Stablecoin: Less than 2 coins",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Less than 2 coins['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Less than 2 coins.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/lp-oracles/LPOracleStable.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Less than 2 coins"
+    ]
+  },
+  {
+    "id": "curve-liquidation-discount-0",
+    "title": "Curve Stablecoin: liquidation discount = 0",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?liquidation discount = 0['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: liquidation discount = 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/Configurator.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: liquidation discount = 0"
+    ]
+  },
+  {
+    "id": "curve-liquidation-discount-too-low",
+    "title": "Curve Stablecoin: Liquidation discount too low",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Liquidation discount too low['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Liquidation discount too low.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Liquidation discount too low"
+    ]
+  },
+  {
+    "id": "curve-loan-already-created",
+    "title": "Curve Stablecoin: Loan already created",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Loan already created['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Loan already created.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/controller.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Loan already created"
+    ]
+  },
+  {
+    "id": "curve-loan-discount-100",
+    "title": "Curve Stablecoin: loan discount >= 100%",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?loan discount >= 100%['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: loan discount >= 100%.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/Configurator.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: loan discount >= 100%"
+    ]
+  },
+  {
+    "id": "curve-loan-discount-liquidation-discount",
+    "title": "Curve Stablecoin: loan discount <= liquidation discount",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?loan discount <= liquidation discount['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: loan discount <= liquidation discount.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/Configurator.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: loan discount <= liquidation discount"
+    ]
+  },
+  {
+    "id": "curve-loan-discount-too-high",
+    "title": "Curve Stablecoin: Loan discount too high",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Loan discount too high['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Loan discount too high.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Loan discount too high"
+    ]
+  },
+  {
+    "id": "curve-loan-doesn-t-exist",
+    "title": "Curve Stablecoin: Loan doesn't exist",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Loan doesn't exist['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Loan doesn't exist.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerView.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Loan doesn't exist"
+    ]
+  },
+  {
+    "id": "curve-lock-expired",
+    "title": "Curve Stablecoin: Lock expired",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Lock expired['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Lock expired.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/VotingEscrow.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Lock expired"
+    ]
+  },
+  {
+    "id": "curve-low-ratio-must-be-less-than-high-ratio",
+    "title": "Curve Stablecoin: low_ratio must be less than high_ratio",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?low_ratio must be less than high_ratio['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: low_ratio must be less than high_ratio.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/EMAMonetaryPolicy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: low_ratio must be less than high_ratio"
+    ]
+  },
+  {
+    "id": "curve-low-ratio-too-low",
+    "title": "Curve Stablecoin: low_ratio too low",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?low_ratio too low['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: low_ratio too low.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/EMAMonetaryPolicy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: low_ratio too low"
+    ]
+  },
+  {
+    "id": "curve-max-18-decimals-for-coins",
+    "title": "Curve Stablecoin: Max 18 decimals for coins",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Max 18 decimals for coins['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Max 18 decimals for coins.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/factory/StableswapFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Max 18 decimals for coins"
+    ]
+  },
+  {
+    "id": "curve-need-less-ticks",
+    "title": "Curve Stablecoin: Need less ticks",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Need less ticks['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Need less ticks.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerView.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Need less ticks"
+    ]
+  },
+  {
+    "id": "curve-need-loan-discount-liquidation-discount",
+    "title": "Curve Stablecoin: need loan_discount>liquidation_discount",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?need loan_discount>liquidation_discount['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: need loan_discount>liquidation_discount.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: need loan_discount>liquidation_discount"
+    ]
+  },
+  {
+    "id": "curve-need-more-assets",
+    "title": "Curve Stablecoin: Need more assets",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Need more assets['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Need more assets.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/lending/Vault.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Need more assets"
+    ]
+  },
+  {
+    "id": "curve-need-more-ticks",
+    "title": "Curve Stablecoin: Need more ticks",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Need more ticks['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Need more ticks.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerView.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Need more ticks"
+    ]
+  },
+  {
+    "id": "curve-negative-debt",
+    "title": "Curve Stablecoin: Negative debt",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Negative debt['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Negative debt.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/EMAMonetaryPolicy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Negative debt"
+    ]
+  },
+  {
+    "id": "curve-negative-rate",
+    "title": "Curve Stablecoin: Negative rate",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Negative rate['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Negative rate.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/EMAMonetaryPolicy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Negative rate"
+    ]
+  },
+  {
+    "id": "curve-no-argument-for-coins-2",
+    "title": "Curve Stablecoin: no argument for coins > 2",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?no argument for coins > 2['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: no argument for coins > 2.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/lp-oracles/LPOracleStable.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: no argument for coins > 2"
+    ]
+  },
+  {
+    "id": "curve-no-available-market",
+    "title": "Curve Stablecoin: No available market",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?No available market['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: No available market.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/factory/StableswapFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: No available market"
+    ]
+  },
+  {
+    "id": "curve-no-coins-0",
+    "title": "Curve Stablecoin: No coins(0)",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?No coins\\(0\\)['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: No coins(0).",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/CryptoFromPoolsRate.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: No coins(0)"
+    ]
+  },
+  {
+    "id": "curve-no-coins-from-whitelist",
+    "title": "Curve Stablecoin: No coins from whitelist",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?No coins from whitelist['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: No coins from whitelist.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/factory/StableswapFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: No coins from whitelist"
+    ]
+  },
+  {
+    "id": "curve-no-coins-to-repay",
+    "title": "Curve Stablecoin: No coins to repay",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?No coins to repay['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: No coins to repay.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerView.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: No coins to repay"
+    ]
+  },
+  {
+    "id": "curve-no-deposits",
+    "title": "Curve Stablecoin: No deposits",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?No deposits['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: No deposits.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/AMM.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: No deposits"
+    ]
+  },
+  {
+    "id": "curve-no-enough-proceeds",
+    "title": "Curve Stablecoin: no enough proceeds",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?no enough proceeds['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: no enough proceeds.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/controller.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: no enough proceeds"
+    ]
+  },
+  {
+    "id": "curve-no-existing-lock-found",
+    "title": "Curve Stablecoin: No existing lock found",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?No existing lock found['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: No existing lock found.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/VotingEscrow.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: No existing lock found"
+    ]
+  },
+  {
+    "id": "curve-non-empty-data",
+    "title": "Curve Stablecoin: Non-empty data",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Non-empty data['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Non-empty data.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/DummyFlashBorrower.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Non-empty data"
+    ]
+  },
+  {
+    "id": "curve-not-a-controller",
+    "title": "Curve Stablecoin: not a controller",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not a controller['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: not a controller.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/lending/LendFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: not a controller"
+    ]
+  },
+  {
+    "id": "curve-not-admin",
+    "title": "Curve Stablecoin: Not admin",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not admin['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Not admin.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/Configurator.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Not admin"
+    ]
+  },
+  {
+    "id": "curve-not-approved",
+    "title": "Curve Stablecoin: not approved",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not approved['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: not approved.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/zaps/PartialRepayZapLending.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: not approved"
+    ]
+  },
+  {
+    "id": "curve-not-authorized-for-this-controller",
+    "title": "Curve Stablecoin: Not authorized for this controller",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not authorized for this controller['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Not authorized for this controller.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/Configurator.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Not authorized for this controller"
+    ]
+  },
+  {
+    "id": "curve-not-available",
+    "title": "Curve Stablecoin: Not available",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not available['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Not available.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/controller.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Not available"
+    ]
+  },
+  {
+    "id": "curve-not-enough-borrowed-tokens-in-callback-contract",
+    "title": "Curve Stablecoin: Not enough borrowed tokens in callback contract",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not enough borrowed tokens in callback contract['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Not enough borrowed tokens in callback contract.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/DummyCallback.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Not enough borrowed tokens in callback contract"
+    ]
+  },
+  {
+    "id": "curve-not-enough-coins-removed",
+    "title": "Curve StableSwap: Not enough coins removed",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not enough coins removed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve StableSwap revert reason string: Not enough coins removed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve contracts GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-contract/master/contracts/pool-templates/y/DepositTemplateY.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Not enough coins removed"
+    ]
+  },
+  {
+    "id": "curve-not-enough-coins-withdrawn",
+    "title": "Curve StableSwap: Not enough coins withdrawn",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not enough coins withdrawn['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve StableSwap revert reason string: Not enough coins withdrawn.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve contracts GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-contract/master/contracts/pool-templates/y/DepositTemplateY.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Not enough coins withdrawn"
+    ]
+  },
+  {
+    "id": "curve-not-enough-collaterals-token-in-callback-contract",
+    "title": "Curve Stablecoin: Not enough collaterals token in callback contract",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not enough collaterals token in callback contract['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Not enough collaterals token in callback contract.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/DummyCallback.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Not enough collaterals token in callback contract"
+    ]
+  },
+  {
+    "id": "curve-not-enough-rekt",
+    "title": "Curve Stablecoin: Not enough rekt",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not enough rekt['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Not enough rekt.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerView.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Not enough rekt"
+    ]
+  },
+  {
+    "id": "curve-not-factory-admin",
+    "title": "Curve Stablecoin: Not factory admin",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not factory admin['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Not factory admin.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/EMAMonetaryPolicy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Not factory admin"
+    ]
+  },
+  {
+    "id": "curve-nothing-is-locked",
+    "title": "Curve Stablecoin: Nothing is locked",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Nothing is locked['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Nothing is locked.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/VotingEscrow.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Nothing is locked"
+    ]
+  },
+  {
+    "id": "curve-only-admin",
+    "title": "Curve Stablecoin: Only admin",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Only admin['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Only admin.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Only admin"
+    ]
+  },
+  {
+    "id": "curve-only-admin-is-allowed-to-change-name",
+    "title": "Curve Stablecoin: Only admin is allowed to change name",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Only admin is allowed to change name['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Only admin is allowed to change name.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/ERC20CRV.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Only admin is allowed to change name"
+    ]
+  },
+  {
+    "id": "curve-only-configurator",
+    "title": "Curve Stablecoin: Only configurator",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Only configurator['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Only configurator.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/lending/LendController.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Only configurator"
+    ]
+  },
+  {
+    "id": "curve-only-minter-is-allowed-to-burn",
+    "title": "Curve StableSwap: Only minter is allowed to burn",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Only minter is allowed to burn['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve StableSwap revert reason string: Only minter is allowed to burn.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve contracts GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-contract/master/contracts/tokens/CurveTokenV1.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Only minter is allowed to burn"
+    ]
+  },
+  {
+    "id": "curve-oracle-already-exists",
+    "title": "Curve Stablecoin: Oracle already exists",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Oracle already exists['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Oracle already exists.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/lp-oracles/LPOracleFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Oracle already exists"
+    ]
+  },
+  {
+    "id": "curve-peg-unprofitable",
+    "title": "Curve Stablecoin: peg unprofitable",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?peg unprofitable['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: peg unprofitable.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/stabilizer/PegKeeper.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: peg unprofitable"
+    ]
+  },
+  {
+    "id": "curve-pool-lp-price-returns-0",
+    "title": "Curve Stablecoin: pool.lp_price() returns 0",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?pool\\.lp_price\\(\\) returns 0['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: pool.lp_price() returns 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/lp-oracles/LPOracleCrypto.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: pool.lp_price() returns 0"
+    ]
+  },
+  {
+    "id": "curve-pool-price-oracle-i-returns-0",
+    "title": "Curve Stablecoin: pool.price_oracle(i) returns 0",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?pool\\.price_oracle\\(i\\) returns 0['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: pool.price_oracle(i) returns 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/lp-oracles/LPOracleStable.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: pool.price_oracle(i) returns 0"
+    ]
+  },
+  {
+    "id": "curve-pool-price-oracle-returns-0",
+    "title": "Curve Stablecoin: pool.price_oracle() returns 0",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?pool\\.price_oracle\\(\\) returns 0['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: pool.price_oracle() returns 0.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/lp-oracles/LPOracleStable.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: pool.price_oracle() returns 0"
+    ]
+  },
+  {
+    "id": "curve-position-rekt",
+    "title": "Curve Stablecoin: position rekt",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?position rekt['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: position rekt.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/zaps/PartialRepayZapLending.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: position rekt"
+    ]
+  },
+  {
+    "id": "curve-price-call-failed",
+    "title": "Curve Stablecoin: price() call failed",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?price\\(\\) call failed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: price() call failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/proxy/ProxyOracle.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: price() call failed"
+    ]
+  },
+  {
+    "id": "curve-price-deviation-too-high",
+    "title": "Curve Stablecoin: Price deviation too high",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Price deviation too high['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Price deviation too high.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/proxy/ProxyOracle.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Price deviation too high"
+    ]
+  },
+  {
+    "id": "curve-price-moved-too-far",
+    "title": "Curve Stablecoin: Price moved too far",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Price moved too far['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Price moved too far.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/stabilizer/Salvation.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Price moved too far"
+    ]
+  },
+  {
+    "id": "curve-price-w-call-failed",
+    "title": "Curve Stablecoin: price_w() call failed",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?price_w\\(\\) call failed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: price_w() call failed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/proxy/ProxyOracle.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: price_w() call failed"
+    ]
+  },
+  {
+    "id": "curve-rate-shift-too-high",
+    "title": "Curve Stablecoin: rate_shift too high",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?rate_shift too high['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: rate_shift too high.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/EMAMonetaryPolicy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: rate_shift too high"
+    ]
+  },
+  {
+    "id": "curve-reentrant",
+    "title": "Curve Stablecoin: reentrant",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?reentrant['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: reentrant.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/VaultReentrancyCallback.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: reentrant"
+    ]
+  },
+  {
+    "id": "curve-regulator-ban",
+    "title": "Curve Stablecoin: Regulator ban",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Regulator ban['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Regulator ban.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/stabilizer/PegKeeperV2.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Regulator ban"
+    ]
+  },
+  {
+    "id": "curve-repay-amount-is-too-high",
+    "title": "Curve Stablecoin: Repay amount is too high",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Repay amount is too high['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Repay amount is too high.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerView.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Repay amount is too high"
+    ]
+  },
+  {
+    "id": "curve-reserves-too-small",
+    "title": "Curve Stablecoin: Reserves too small",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Reserves too small['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Reserves too small.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/EMAMonetaryPolicy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Reserves too small"
+    ]
+  },
+  {
+    "id": "curve-same-token",
+    "title": "Curve Stablecoin: Same token",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Same token['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Same token.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/lending/LendFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Same token"
+    ]
+  },
+  {
+    "id": "curve-sequencer-is-down",
+    "title": "Curve Stablecoin: Sequencer is down",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Sequencer is down['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Sequencer is down.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/L2/CryptoFromPoolFraxtal.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Sequencer is down"
+    ]
+  },
+  {
+    "id": "curve-slippage",
+    "title": "Curve Stablecoin: Slippage",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Slippage['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Slippage.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/AMM.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Slippage"
+    ]
+  },
+  {
+    "id": "curve-slippage-screwed-you",
+    "title": "Curve StableSwap: Slippage screwed you",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Slippage screwed you['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve StableSwap revert reason string: Slippage screwed you.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve contracts GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-contract/master/contracts/pool-templates/base/SwapTemplateBase.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Slippage screwed you"
+    ]
+  },
+  {
+    "id": "curve-smart-contract-depositors-not-allowed",
+    "title": "Curve Stablecoin: Smart contract depositors not allowed",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Smart contract depositors not allowed['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Smart contract depositors not allowed.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/VotingEscrow.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Smart contract depositors not allowed"
+    ]
+  },
+  {
+    "id": "curve-supply-limit",
+    "title": "Curve Stablecoin: Supply limit",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Supply limit['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Supply limit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/lending/Vault.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Supply limit"
+    ]
+  },
+  {
+    "id": "curve-target-utilization-too-high",
+    "title": "Curve Stablecoin: target_utilization too high",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?target_utilization too high['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: target_utilization too high.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/EMAMonetaryPolicy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: target_utilization too high"
+    ]
+  },
+  {
+    "id": "curve-target-utilization-too-low",
+    "title": "Curve Stablecoin: target_utilization too low",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?target_utilization too low['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: target_utilization too low.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/EMAMonetaryPolicy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: target_utilization too low"
+    ]
+  },
+  {
+    "id": "curve-the-action-ends-with-unhealthy-state",
+    "title": "Curve Stablecoin: The action ends with unhealthy state",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?The action ends with unhealthy state['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: The action ends with unhealthy state.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/controller.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: The action ends with unhealthy state"
+    ]
+  },
+  {
+    "id": "curve-the-lock-didn-t-expire",
+    "title": "Curve Stablecoin: The lock didn't expire",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?The lock didn't expire['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: The lock didn't expire.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/VotingEscrow.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: The lock didn't expire"
+    ]
+  },
+  {
+    "id": "curve-tokens-not-in-pool",
+    "title": "Curve Stablecoin: Tokens not in pool",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Tokens not in pool['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Tokens not in pool.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/zaps/CreateFromPool.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Tokens not in pool"
+    ]
+  },
+  {
+    "id": "curve-too-deep",
+    "title": "Curve Stablecoin: Too deep",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Too deep['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Too deep.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/AMM.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Too deep"
+    ]
+  },
+  {
+    "id": "curve-too-few-coins-in-result",
+    "title": "Curve StableSwap: Too few coins in result",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Too few coins in result['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve StableSwap revert reason string: Too few coins in result.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve contracts GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-contract/master/contracts/pool-templates/meta/SwapTemplateMeta.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Too few coins in result"
+    ]
+  },
+  {
+    "id": "curve-too-many-controllers-for-same-collateral",
+    "title": "Curve Stablecoin: Too many controllers for same collateral",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Too many controllers for same collateral['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Too many controllers for same collateral.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Too many controllers for same collateral"
+    ]
+  },
+  {
+    "id": "curve-trade",
+    "title": "Curve Stablecoin: trade",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?trade['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: trade.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/AMM.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: trade"
+    ]
+  },
+  {
+    "id": "curve-underwater",
+    "title": "Curve Stablecoin: Underwater",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Underwater['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Underwater.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerView.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Underwater"
+    ]
+  },
+  {
+    "id": "curve-unknown-pool",
+    "title": "Curve Stablecoin: Unknown pool",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Unknown pool['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Unknown pool.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/factory/StableswapFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Unknown pool"
+    ]
+  },
+  {
+    "id": "curve-used-too-much-power",
+    "title": "Curve Stablecoin: Used too much power",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Used too much power['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Used too much power.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/GaugeController.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Used too much power"
+    ]
+  },
+  {
+    "id": "curve-view-blueprint-is-empty-address",
+    "title": "Curve Stablecoin: view blueprint is empty address",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?view blueprint is empty address['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: view blueprint is empty address.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/Configurator.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: view blueprint is empty address"
+    ]
+  },
+  {
+    "id": "curve-voting-lock-can-be-4-years-max",
+    "title": "Curve Stablecoin: Voting lock can be 4 years max",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Voting lock can be 4 years max['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Voting lock can be 4 years max.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/VotingEscrow.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Voting lock can be 4 years max"
+    ]
+  },
+  {
+    "id": "curve-wait-after-downtime",
+    "title": "Curve Stablecoin: Wait after downtime",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Wait after downtime['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Wait after downtime.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/L2/CryptoFromPoolFraxtal.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Wait after downtime"
+    ]
+  },
+  {
+    "id": "curve-withdraw-old-tokens-first",
+    "title": "Curve Stablecoin: Withdraw old tokens first",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Withdraw old tokens first['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Withdraw old tokens first.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/VotingEscrow.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Withdraw old tokens first"
+    ]
+  },
+  {
+    "id": "curve-withdrawal-resulted-in-fewer-coins-than-expected",
+    "title": "Curve StableSwap: Withdrawal resulted in fewer coins than expected",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "dex",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Withdrawal resulted in fewer coins than expected['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve StableSwap revert reason string: Withdrawal resulted in fewer coins than expected.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve contracts GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-contract/master/contracts/pool-templates/base/SwapTemplateBase.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Withdrawal resulted in fewer coins than expected"
+    ]
+  },
+  {
+    "id": "curve-wrong-a",
+    "title": "Curve Stablecoin: Wrong A",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Wrong A['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Wrong A.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/ControllerFactory.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Wrong A"
+    ]
+  },
+  {
+    "id": "curve-wrong-controller",
+    "title": "Curve Stablecoin: wrong controller",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?wrong controller['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: wrong controller.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/zaps/LeverageZapMint.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: wrong controller"
+    ]
+  },
+  {
+    "id": "curve-wrong-index",
+    "title": "Curve Stablecoin: Wrong index",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Wrong index['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Wrong index.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/AMM.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Wrong index"
+    ]
+  },
+  {
+    "id": "curve-wrong-pool-counts",
+    "title": "Curve Stablecoin: Wrong pool counts",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Wrong pool counts['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Wrong pool counts.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/price_oracles/CryptoFromPoolsRate.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Wrong pool counts"
+    ]
+  },
+  {
+    "id": "curve-wrong-rates",
+    "title": "Curve Stablecoin: Wrong rates",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Wrong rates['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Wrong rates.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/mpolicies/SemilogMonetaryPolicy.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Wrong rates"
+    ]
+  },
+  {
+    "id": "curve-wrong-sender",
+    "title": "Curve Stablecoin: wrong sender",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?wrong sender['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: wrong sender.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/zaps/PartialRepayZapLending.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: wrong sender"
+    ]
+  },
+  {
+    "id": "curve-you-used-all-your-voting-power",
+    "title": "Curve Stablecoin: You used all your voting power",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?You used all your voting power['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: You used all your voting power.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/GaugeController.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: You used all your voting power"
+    ]
+  },
+  {
+    "id": "curve-your-token-lock-expires-too-soon",
+    "title": "Curve Stablecoin: Your token lock expires too soon",
+    "layer": "protocol",
+    "source": "curve",
+    "category": "stablecoin",
+    "patterns": [
+      {
+        "type": "regex",
+        "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Your token lock expires too soon['\"]?\\s*$"
+      }
+    ],
+    "summary": "Curve Stablecoin revert reason string: Your token lock expires too soon.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "A require/revert condition in the named protocol failed.",
+      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+    ],
+    "nextSteps": [
+      "Search the protocol source for the exact string.",
+      "Check balances, approvals, market configuration, permissions, deadlines, health factors, paused state, or bridge/staking configuration depending on the matched string."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Curve Stablecoin GitHub repository",
+        "url": "https://raw.githubusercontent.com/curvefi/curve-stablecoin/master/curve_stablecoin/testing/GaugeController.vy"
+      }
+    ],
+    "examples": [
+      "execution reverted: Your token lock expires too soon"
+    ]
+  }
+]

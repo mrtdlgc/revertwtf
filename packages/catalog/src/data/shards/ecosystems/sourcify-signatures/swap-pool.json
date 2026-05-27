@@ -1,0 +1,181 @@
+[
+  {
+    "id": "sourcify-signatures-swap-pool-gacha-invalid-ticket-4685e540",
+    "title": "Swap or pool invariant failed: Gacha__InvalidTicket",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x4685e540"
+      }
+    ],
+    "summary": "Sourcify-verified custom error Gacha__InvalidTicket is shaped like an AMM pool, tick, liquidity, or swap invariant failure.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The pool is not initialized, has no usable liquidity, or is currently locked for another operation.",
+      "Tick, tick spacing, price limit, liquidity delta, or invariant math rejects the requested swap or position update.",
+      "The swap amount is zero or route parameters are incompatible with the pool configuration."
+    ],
+    "nextSteps": [
+      "Read pool initialization state, current tick, tick spacing, liquidity, and lock status.",
+      "Validate tick bounds, liquidity amount, swap amount, and price limit against the pool's rules.",
+      "Use a fresh quote from the current pool state before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: Gacha on bsc",
+        "url": "https://sourcify.dev/server/v2/contract/56/0x016f9b6728a081e24ceca17857be39b423d03cc7"
+      }
+    ],
+    "examples": [
+      "0x4685e540 // Gacha__InvalidTicket()",
+      "0x4685e540 // Gacha__InvalidTicket() - seen in Gacha on bsc"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-swap-pool-i-uniswap-v3-tokenized-lp-pool-locked-e7fd0869",
+    "title": "Swap or pool invariant failed: IUniswapV3TokenizedLp_PoolLocked",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xe7fd0869"
+      }
+    ],
+    "summary": "Sourcify-verified custom error IUniswapV3TokenizedLp_PoolLocked is shaped like an AMM pool, tick, liquidity, or swap invariant failure.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The pool is not initialized, has no usable liquidity, or is currently locked for another operation.",
+      "Tick, tick spacing, price limit, liquidity delta, or invariant math rejects the requested swap or position update.",
+      "The swap amount is zero or route parameters are incompatible with the pool configuration."
+    ],
+    "nextSteps": [
+      "Read pool initialization state, current tick, tick spacing, liquidity, and lock status.",
+      "Validate tick bounds, liquidity amount, swap amount, and price limit against the pool's rules.",
+      "Use a fresh quote from the current pool state before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xe7fd0869 // IUniswapV3TokenizedLp_PoolLocked()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-swap-pool-is-able-to-mint-if-no-liquidity-set-address-bool-18194a42",
+    "title": "Swap or pool invariant failed: IsAbleToMintIfNoLiquiditySet",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x18194a42"
+      }
+    ],
+    "summary": "Sourcify-verified custom error IsAbleToMintIfNoLiquiditySet is shaped like an AMM pool, tick, liquidity, or swap invariant failure.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The pool is not initialized, has no usable liquidity, or is currently locked for another operation.",
+      "Tick, tick spacing, price limit, liquidity delta, or invariant math rejects the requested swap or position update.",
+      "The swap amount is zero or route parameters are incompatible with the pool configuration."
+    ],
+    "nextSteps": [
+      "Read pool initialization state, current tick, tick spacing, liquidity, and lock status.",
+      "Validate tick bounds, liquidity amount, swap amount, and price limit against the pool's rules.",
+      "Use a fresh quote from the current pool state before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x18194a42 // IsAbleToMintIfNoLiquiditySet(address,bool)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-swap-pool-p2-p-bet-no-liquidity-to-remove-uint256-3b641274",
+    "title": "Swap or pool invariant failed: P2PBet__NoLiquidityToRemove",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x3b641274"
+      }
+    ],
+    "summary": "Sourcify-verified custom error P2PBet__NoLiquidityToRemove is shaped like an AMM pool, tick, liquidity, or swap invariant failure.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The pool is not initialized, has no usable liquidity, or is currently locked for another operation.",
+      "Tick, tick spacing, price limit, liquidity delta, or invariant math rejects the requested swap or position update.",
+      "The swap amount is zero or route parameters are incompatible with the pool configuration."
+    ],
+    "nextSteps": [
+      "Read pool initialization state, current tick, tick spacing, liquidity, and lock status.",
+      "Validate tick bounds, liquidity amount, swap amount, and price limit against the pool's rules.",
+      "Use a fresh quote from the current pool state before retrying."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: WhiteGloveBet on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0xc5a90b3d99c437b5878e58d9b6b5c1d57b9d82d9"
+      },
+      {
+        "label": "Sourcify: OracleBet on base",
+        "url": "https://sourcify.dev/server/v2/contract/8453/0xf1864584a77938b350da6298cbf75b45b9a474fc"
+      }
+    ],
+    "examples": [
+      "0x3b641274 // P2PBet__NoLiquidityToRemove(uint256)",
+      "0x3b641274 // P2PBet__NoLiquidityToRemove(uint256) - seen in WhiteGloveBet on base",
+      "0x3b641274 // P2PBet__NoLiquidityToRemove(uint256) - seen in OracleBet on base"
+    ]
+  }
+]

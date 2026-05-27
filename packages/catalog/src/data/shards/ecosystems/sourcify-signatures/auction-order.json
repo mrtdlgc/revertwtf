@@ -1,0 +1,668 @@
+[
+  {
+    "id": "sourcify-signatures-auction-order-asc20-order-canceled-address-bytes32-uint64-09305d14",
+    "title": "Order or auction rejected: ASC20OrderCanceled",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x09305d14"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ASC20OrderCanceled usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x09305d14 // ASC20OrderCanceled(address,bytes32,uint64)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-ba-auction-closed-2734c771",
+    "title": "Order or auction rejected: BA_AuctionClosed",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2734c771"
+      }
+    ],
+    "summary": "Sourcify-verified custom error BA_AuctionClosed usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: HashnoteBatchAuction on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xb347bf4fd7f96635795b21dd725fb2b36d45be39"
+      }
+    ],
+    "examples": [
+      "0x2734c771 // BA_AuctionClosed()",
+      "0x2734c771 // BA_AuctionClosed() - seen in HashnoteBatchAuction on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-ba-auction-settled-77680440",
+    "title": "Order or auction rejected: BA_AuctionSettled",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x77680440"
+      }
+    ],
+    "summary": "Sourcify-verified custom error BA_AuctionSettled usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      },
+      {
+        "label": "Sourcify: HashnoteBatchAuction on ethereum",
+        "url": "https://sourcify.dev/server/v2/contract/1/0xb347bf4fd7f96635795b21dd725fb2b36d45be39"
+      }
+    ],
+    "examples": [
+      "0x77680440 // BA_AuctionSettled()",
+      "0x77680440 // BA_AuctionSettled() - seen in HashnoteBatchAuction on ethereum"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-bracket-order-cancelled-uint96-403fbb78",
+    "title": "Order or auction rejected: BracketOrderCancelled",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x403fbb78"
+      }
+    ],
+    "summary": "Sourcify-verified custom error BracketOrderCancelled usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x403fbb78 // BracketOrderCancelled(uint96)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-da-auction-not-started-01789e0e",
+    "title": "Order or auction rejected: DA_AuctionNotStarted",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x01789e0e"
+      }
+    ],
+    "summary": "Sourcify-verified custom error DA_AuctionNotStarted usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x01789e0e // DA_AuctionNotStarted()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-msc20-order-canceled-address-bytes32-2ff1ce1b",
+    "title": "Order or auction rejected: MSC20OrderCanceled",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x2ff1ce1b"
+      }
+    ],
+    "summary": "Sourcify-verified custom error MSC20OrderCanceled usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x2ff1ce1b // MSC20OrderCanceled(address,bytes32)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-otc-order-cancelled-address-bytes32-7a2d00c4",
+    "title": "Order or auction rejected: OTCOrderCancelled",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x7a2d00c4"
+      }
+    ],
+    "summary": "Sourcify-verified custom error OTCOrderCancelled usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x7a2d00c4 // OTCOrderCancelled(address,bytes32)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-otc-order-filled-bytes32-address-address-address-address-uint128-uint128-ac75f773",
+    "title": "Order or auction rejected: OtcOrderFilled",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xac75f773"
+      }
+    ],
+    "summary": "Sourcify-verified custom error OtcOrderFilled usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xac75f773 // OtcOrderFilled(bytes32,address,address,address,address,uint128,uint128)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-rfq-order-filled-bytes32-address-address-address-address-uint128-uint128-bytes32-829fa99d",
+    "title": "Order or auction rejected: RfqOrderFilled",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x829fa99d"
+      }
+    ],
+    "summary": "Sourcify-verified custom error RfqOrderFilled usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x829fa99d // RfqOrderFilled(bytes32,address,address,address,address,uint128,uint128,bytes32)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-rrc20-order-canceled-address-bytes32-uint64-00c9e924",
+    "title": "Order or auction rejected: RRC20OrderCanceled",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x00c9e924"
+      }
+    ],
+    "summary": "Sourcify-verified custom error RRC20OrderCanceled usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x00c9e924 // RRC20OrderCanceled(address,bytes32,uint64)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-twamm-order-cancelled-uint256-0968a75a",
+    "title": "Order or auction rejected: TWAMMOrderCancelled",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x0968a75a"
+      }
+    ],
+    "summary": "Sourcify-verified custom error TWAMMOrderCancelled usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x0968a75a // TWAMMOrderCancelled(uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-twap-buy-order-cancelled-address-bytes32-uint256-9a86ae65",
+    "title": "Order or auction rejected: TWAPBuyOrderCancelled",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0x9a86ae65"
+      }
+    ],
+    "summary": "Sourcify-verified custom error TWAPBuyOrderCancelled usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0x9a86ae65 // TWAPBuyOrderCancelled(address,bytes32,uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-twap-buy-order-expired-address-bytes32-uint256-d6def334",
+    "title": "Order or auction rejected: TWAPBuyOrderExpired",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xd6def334"
+      }
+    ],
+    "summary": "Sourcify-verified custom error TWAPBuyOrderExpired usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xd6def334 // TWAPBuyOrderExpired(address,bytes32,uint256)"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-twap-buy-order-expired-f801e68c",
+    "title": "Order or auction rejected: TWAPBuyOrderExpired",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xf801e68c"
+      }
+    ],
+    "summary": "Sourcify-verified custom error TWAPBuyOrderExpired usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xf801e68c // TWAPBuyOrderExpired()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-zd-lite-order-already-filled-c5b87f53",
+    "title": "Order or auction rejected: ZDLite__OrderAlreadyFilled",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xc5b87f53"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ZDLite__OrderAlreadyFilled usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xc5b87f53 // ZDLite__OrderAlreadyFilled()"
+    ]
+  },
+  {
+    "id": "sourcify-signatures-auction-order-zd-lite-order-expired-dc0ad65f",
+    "title": "Order or auction rejected: ZDLite__OrderExpired",
+    "layer": "protocol",
+    "source": "sourcify-signatures",
+    "category": "custom_error",
+    "patterns": [
+      {
+        "type": "selector",
+        "value": "0xdc0ad65f"
+      }
+    ],
+    "summary": "Sourcify-verified custom error ZDLite__OrderExpired usually comes from orderbook, auction, or settlement state that no longer accepts this fill or bid.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "The order was already filled, cancelled, expired, or otherwise marked not fillable.",
+      "The bid, fill amount, or reserve price is below the auction or order constraints.",
+      "The auction is outside its active window or has already been settled."
+    ],
+    "nextSteps": [
+      "Refresh the order or auction state immediately before signing or submitting the fill transaction.",
+      "Check the order hash, nonce, deadline, fill amount, reserve price, and cancellation status.",
+      "Create a new order or bid with current pricing if the old one is no longer live."
+    ],
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "no",
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Sourcify signature database",
+        "url": "https://docs.sourcify.dev/docs/repository/signature-database/"
+      },
+      {
+        "label": "Sourcify 4byte API",
+        "url": "https://docs.sourcify.dev/docs/api/#4byte-signature-service-api-documentation"
+      }
+    ],
+    "examples": [
+      "0xdc0ad65f // ZDLite__OrderExpired()"
+    ]
+  }
+]

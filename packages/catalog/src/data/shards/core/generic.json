@@ -1,0 +1,57 @@
+[
+  {
+    "id": "already-known",
+    "title": "already known",
+    "layer": "evm",
+    "category": "mempool",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "already known"
+      }
+    ],
+    "summary": "The exact same transaction hash is already in the mempool. The node deduplicated your resubmit.",
+    "rootCauseKnown": true,
+    "likelyCauses": [
+      "Resubmitting the identical signed tx.",
+      "Client retry without changing any field."
+    ],
+    "nextSteps": [
+      "Treat as a non-error — just wait for inclusion.",
+      "If stuck, replace with a higher fee using the same nonce."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "yes",
+    "confidence": "high",
+    "source": "generic"
+  },
+  {
+    "id": "execution-reverted",
+    "title": "execution reverted",
+    "layer": "evm",
+    "category": "revert",
+    "patterns": [
+      {
+        "type": "substring",
+        "value": "execution reverted"
+      }
+    ],
+    "summary": "The EVM executed the REVERT opcode. Revert data, if present, contains the reason as Error(string), Panic(uint256), or a custom error.",
+    "rootCauseKnown": false,
+    "likelyCauses": [
+      "A `require(...)` failed.",
+      "A custom error was thrown.",
+      "An arithmetic overflow caused a Panic.",
+      "An access-control check failed (Ownable, AccessControl, paused)."
+    ],
+    "nextSteps": [
+      "Look for `:` in the message — many providers append the revert string after `execution reverted:`.",
+      "If raw bytes are available, decode them.",
+      "Cross-check approval / allowance / balance / pause state."
+    ],
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "source": "generic"
+  }
+]

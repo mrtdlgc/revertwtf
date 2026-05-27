@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { stats } from "@/lib/catalog";
+import { REPO_URL } from "@/lib/site";
 
 export function SiteHeader() {
   const s = stats();
@@ -28,6 +29,7 @@ export function SiteHeader() {
           <NavItem href="/catalog">catalog</NavItem>
           <NavItem href="/docs">docs</NavItem>
           <NavItem href="/about">about</NavItem>
+          <ExternalNavItem href={REPO_URL}>source</ExternalNavItem>
           <span className="hidden xl:inline-flex brutal-tag bg-acid ml-2">{s.total.toLocaleString()} entries</span>
         </nav>
       </div>
@@ -43,5 +45,19 @@ function NavItem({ href, children }: { href: string; children: React.ReactNode }
     >
       {children}
     </Link>
+  );
+}
+
+function ExternalNavItem({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Source repository on GitHub"
+      className="px-2.5 py-2 border border-acid bg-acid text-ink hover:border-paper hover:bg-paper transition-colors sm:px-3"
+    >
+      {children}
+    </a>
   );
 }

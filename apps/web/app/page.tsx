@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ErrorPasteBox } from "@/components/ErrorPasteBox";
+import { JsonLd } from "@/components/JsonLd";
 import { stats } from "@/lib/catalog";
+import { REPO_URL } from "@/lib/site";
 import { BUILTIN_SELECTORS } from "@revertwtf/selectors/data";
 
 const HOT_SURFACES = [
@@ -41,6 +43,7 @@ export default function HomePage() {
 
   return (
     <>
+      <JsonLd data={homeJsonLd(s.total, selectorCount)} />
       <section className="relative overflow-hidden border-b-2 border-paper/20 bg-ink text-paper topology-bg">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-12 lg:pt-10 lg:pb-16 grid xl:grid-cols-[0.78fr_1.22fr] gap-8 xl:gap-12 items-start">
           <div className="min-w-0">
@@ -138,6 +141,9 @@ export default function HomePage() {
             <Link href="/docs/contributing" className="brutal-button bg-acid text-ink">
               contribute
             </Link>
+            <a href={REPO_URL} target="_blank" rel="noreferrer" className="brutal-button bg-cyan text-ink">
+              source repo
+            </a>
             <Link href="/errors" className="brutal-button bg-paper text-ink">
               browse errors
             </Link>
@@ -146,6 +152,31 @@ export default function HomePage() {
       </section>
     </>
   );
+}
+
+function homeJsonLd(totalEntries: number, selectorCount: number) {
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "revert.wtf",
+      url: "https://revert.wtf",
+      description:
+        "EVM error explanations for revert bytes, JSON-RPC responses, wallet failures, simulation traces, ERC-4337 errors, and x402 payloads.",
+      sameAs: [REPO_URL],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      name: "revert.wtf",
+      codeRepository: REPO_URL,
+      license: "https://opensource.org/license/mit",
+      programmingLanguage: "TypeScript",
+      runtimePlatform: "Node.js",
+      keywords: ["EVM errors", "revert reasons", "RPC errors", "ERC-4337", "x402"],
+      about: `${totalEntries.toLocaleString()} catalog entries and ${selectorCount.toLocaleString()} selector signatures`,
+    },
+  ];
 }
 
 function SpecimenPlate({ total, selectors }: { total: number; selectors: number }) {

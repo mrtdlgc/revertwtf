@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { catalogShards, listEntries, sourceLabel, sourceStatus } from "@/lib/catalog";
+import { CATALOG_SHARDS_URL } from "@/lib/site";
 
 const PAGE_SIZE = 100;
 const DESCRIPTION =
@@ -170,7 +171,7 @@ function catalogJsonLd({
       distribution: {
         "@type": "DataDownload",
         encodingFormat: "application/json",
-        contentUrl: "https://github.com/mrtdlgc/revertwtf/tree/main/packages/catalog/src/data/shards",
+        contentUrl: CATALOG_SHARDS_URL,
       },
     },
     {

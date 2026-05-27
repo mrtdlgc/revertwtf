@@ -1,4 +1,5 @@
 import { DocShell } from "@/components/DocShell";
+import { REPO_URL } from "@/lib/site";
 
 export const metadata = {
   title: "privacy policy - revert.wtf",
@@ -61,13 +62,20 @@ export default function PrivacyPage() {
       <h2 className="font-display text-4xl mt-8">changes</h2>
       <p>
         We may update this policy as the project changes. Material changes
-        should be reflected in the repository and on this page.
+        should be reflected in the{" "}
+        <a href={REPO_URL} target="_blank" rel="noreferrer" className="brutal-link">
+          repository
+        </a>{" "}
+        and on this page.
       </p>
 
       <h2 className="font-display text-4xl mt-8">contact</h2>
       <p>
         For privacy questions or reports, open an issue or security contact
-        through the project repository.
+        through the{" "}
+        <a href={REPO_URL} target="_blank" rel="noreferrer" className="brutal-link">
+          project repository
+        </a>.
       </p>
     </DocShell>
   );

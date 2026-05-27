@@ -1,4 +1,5 @@
 import { DocShell } from "@/components/DocShell";
+import { REPO_URL } from "@/lib/site";
 
 export const metadata = {
   title: "terms - revert.wtf",
@@ -43,9 +44,11 @@ export default function TermsPage() {
       <h2 className="font-display text-4xl mt-8">open source materials</h2>
       <p>
         Source code and package materials are distributed under the license in
-        the project repository. Some referenced protocol docs, standards,
-        package registries, explorer data, or external links may be governed by
-        their own terms.
+        the{" "}
+        <a href={REPO_URL} target="_blank" rel="noreferrer" className="brutal-link">
+          project repository
+        </a>. Some referenced protocol docs, standards, package registries,
+        explorer data, or external links may be governed by their own terms.
       </p>
 
       <h2 className="font-display text-4xl mt-8">catalog contributions</h2>
@@ -59,8 +62,12 @@ export default function TermsPage() {
       <h2 className="font-display text-4xl mt-8">availability</h2>
       <p>
         The public website may change, move, break, or become unavailable. The
-        packages and repository are the durable integration surface for products
-        that need tighter operational control.
+        packages and{" "}
+        <a href={REPO_URL} target="_blank" rel="noreferrer" className="brutal-link">
+          repository
+        </a>{" "}
+        are the durable integration surface for products that need tighter
+        operational control.
       </p>
 
       <h2 className="font-display text-4xl mt-8">warranty boundary</h2>

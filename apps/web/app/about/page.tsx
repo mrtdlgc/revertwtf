@@ -1,4 +1,5 @@
 import { DocShell } from "@/components/DocShell";
+import { CATALOG_SHARDS_URL, REPO_URL } from "@/lib/site";
 
 export const metadata = { title: "about - revert.wtf" };
 
@@ -38,6 +39,20 @@ export default function Page() {
       <p>
         The paste box is designed for local triage in the browser. Catalog
         entries are reusable data with source notes and references.
+      </p>
+
+      <h2 className="font-display text-4xl mt-8">source</h2>
+      <p>
+        The canonical project repository is public on GitHub. It contains the
+        <a href={CATALOG_SHARDS_URL} target="_blank" rel="noreferrer" className="brutal-link">
+          catalog shards
+        </a>, parser packages, API routes, MCP server, CLI, docs, and frontend
+        code that power the site.
+      </p>
+      <p>
+        <a href={REPO_URL} target="_blank" rel="noreferrer" className="brutal-button bg-ink text-acid">
+          open source repo
+        </a>
       </p>
 
       <h2 className="font-display text-4xl mt-8">license</h2>

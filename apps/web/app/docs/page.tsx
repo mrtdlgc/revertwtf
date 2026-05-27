@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { REPO_URL } from "@/lib/site";
 
 export const metadata = { title: "docs - revert.wtf" };
 
@@ -29,6 +30,19 @@ export default function Docs() {
           </li>
         ))}
       </ul>
+      <section className="mt-6 brutal-card-flat bg-ink p-5 text-paper">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="min-w-0">
+            <p className="brutal-tag bg-acid text-ink">source</p>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-paper/70">
+              The catalog data, API routes, MCP server, CLI, skill files, and frontend live in the public repo.
+            </p>
+          </div>
+          <a href={REPO_URL} target="_blank" rel="noreferrer" className="brutal-button bg-acid text-ink">
+            open GitHub
+          </a>
+        </div>
+      </section>
     </div>
   );
 }

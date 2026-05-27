@@ -1,8 +1,7 @@
 import { DocShell } from "@/components/DocShell";
+import { REPO_URL } from "@/lib/site";
 
 export const metadata = { title: "MCP server - revert.wtf" };
-
-const REPO_URL = "https://github.com/revertwtf/revertwtf";
 
 const TOOLS = [
   "explain_error",

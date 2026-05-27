@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { stats } from "@/lib/catalog";
+import { NPM_PACKAGES_URL, REPO_URL } from "@/lib/site";
 
 export function SiteFooter() {
   const s = stats();
@@ -40,8 +41,8 @@ export function SiteFooter() {
             <FooterLink href="/about">about</FooterLink>
             <FooterLink href="/privacy">privacy</FooterLink>
             <FooterLink href="/terms">terms</FooterLink>
-            <FooterLink href="https://github.com/revertwtf/revertwtf" external>github</FooterLink>
-            <FooterLink href="https://www.npmjs.com/" external>npm</FooterLink>
+            <FooterLink href={REPO_URL} external>source repo</FooterLink>
+            <FooterLink href={NPM_PACKAGES_URL} external>npm packages</FooterLink>
           </FooterCol>
         </div>
       </div>
@@ -84,15 +85,19 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
 }
 
 function FooterLink({ href, external, children }: { href: string; external?: boolean; children: React.ReactNode }) {
+  const className = "hover:text-acid underline underline-offset-4 decoration-2 decoration-bone/30 hover:decoration-acid";
+
   return (
     <li>
-      <Link
-        href={href}
-        target={external ? "_blank" : undefined}
-        className="hover:text-acid underline underline-offset-4 decoration-2 decoration-bone/30 hover:decoration-acid"
-      >
-        {children}
-      </Link>
+      {external ? (
+        <a href={href} target="_blank" rel="noreferrer" className={className}>
+          {children}
+        </a>
+      ) : (
+        <Link href={href} className={className}>
+          {children}
+        </Link>
+      )}
     </li>
   );
 }

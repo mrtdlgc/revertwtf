@@ -1,4 +1,5 @@
 import { DocShell } from "@/components/DocShell";
+import { REPO_ISSUES_URL, REPO_URL } from "@/lib/site";
 
 export const metadata = { title: "public API - revert.wtf" };
 
@@ -92,14 +93,20 @@ const matches = await revert.searchCatalog({ query: "AA23", limit: 20 });`}
 
       <h2 className="font-display text-5xl leading-none mt-8">self-hosting</h2>
       <p>
-        The routes are MIT-licensed with the rest of the repo. You can self-host
-        the Next.js app or copy <code>apps/web/app/api/</code> into your own app,
-        then pass <code>baseUrl</code> to <code>@revertwtf/client</code>.
+        The routes are MIT-licensed with the rest of the{" "}
+        <a href={REPO_URL} target="_blank" rel="noreferrer" className="brutal-link">
+          repo
+        </a>. You can self-host the Next.js app or copy{" "}
+        <code>apps/web/app/api/</code> into your own app, then pass{" "}
+        <code>baseUrl</code> to <code>@revertwtf/client</code>.
       </p>
       <p>
         The public endpoint is best-effort and intended for lightweight product
         integrations, agents, demos, and debugging tools. For higher limits,
-        self-host or open an issue.
+        self-host or{" "}
+        <a href={REPO_ISSUES_URL} target="_blank" rel="noreferrer" className="brutal-link">
+          open an issue
+        </a>.
       </p>
     </DocShell>
   );

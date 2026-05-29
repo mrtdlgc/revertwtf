@@ -10,7 +10,7 @@ import {
   getCatalogStats,
   getCatalogSourceMetadata,
 } from "../src/index.js";
-import { describePanic } from "../src/panic.js";
+import { describePanic, normalizePanicCode } from "../src/panic.js";
 
 describe("catalog", () => {
   const entries = getCatalog();
@@ -65,6 +65,21 @@ describe("catalog", () => {
   it("describePanic resolves codes", () => {
     expect(describePanic("0x11")).toMatch(/overflow/i);
     expect(describePanic("0x12")).toMatch(/zero/i);
+  });
+
+  it("describePanic rejects invalid or ambiguous input clearly", () => {
+    expect(describePanic(17)).toMatch(/^Invalid panic code/);
+    expect(describePanic("17")).toMatch(/^Invalid panic code/);
+    expect(describePanic("0xzz")).toMatch(/^Invalid panic code/);
+  });
+
+  it("normalizes valid panic code hex", () => {
+    expect(normalizePanicCode("0x1")).toBe("0x01");
+    expect(normalizePanicCode("0X11")).toBe("0x11");
+    expect(
+      normalizePanicCode("0x0000000000000000000000000000000000000000000000000000000000000011"),
+    ).toBe("0x11");
+    expect(normalizePanicCode("11")).toBeNull();
   });
 
   it("stats compute", () => {

@@ -21,7 +21,7 @@ These paths can use the catalog and may be too large for browser bundles.
 Use focused subpaths when you only need a small local dictionary or decoder:
 
 ```ts
-import { describePanic } from "@revertwtf/catalog/panic";
+import { describePanic, normalizePanicCode } from "@revertwtf/catalog/panic";
 import { decodeRevertData } from "@revertwtf/parser/decode";
 import { normalizeError } from "@revertwtf/parser/normalize";
 import { parseAACode } from "@revertwtf/aa/parse";

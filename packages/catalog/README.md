@@ -14,6 +14,7 @@ pnpm add @revertwtf/catalog
 - `getBlockscoutChains()` / `getBlockscoutChain(chainId)` - generated Blockscout registry snapshot
 - `searchBlockscoutChains(q)` / `getBlockscoutChainStats()` - Blockscout chain lookup helpers
 - `describePanic("0x11")` - Solidity panic-code dictionary, also available as the tiny `@revertwtf/catalog/panic` subpath
+- `normalizePanicCode("0x000...0011")` - canonicalizes valid `0x`-prefixed panic-code hex and rejects ambiguous values such as `"17"`
 
 Entries are pure data in `src/data/shards/`. Source display names and lifecycle
 labels live in `src/sources.ts` so raw source IDs stay stable.

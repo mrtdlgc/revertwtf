@@ -15,12 +15,24 @@
         "value": "Already processing eth_requestAccounts"
       }
     ],
-    "summary": "Wallet returned: Already processing eth_requestAccounts.",
+    "summary": "A wallet connection prompt is already pending for eth_requestAccounts.",
     "likelyCauses": [
-      "The user, wallet UI, or wallet request queue rejected the operation."
+      "The app dispatched multiple connect requests before the user answered the first prompt.",
+      "The wallet keeps only one account-access request active at a time."
     ],
     "nextSteps": [
-      "Do not auto-retry; let the user intentionally retry after reviewing the prompt."
+      "Disable the connect button while a request is pending.",
+      "Bring the user back to the existing wallet prompt instead of dispatching another request."
+    ],
+    "references": [
+      {
+        "label": "MetaMask eth_requestAccounts",
+        "url": "https://metamask.github.io/mm-docs-v2/security-controls/wallet/reference/rpc-api/#eth_requestaccounts"
+      },
+      {
+        "label": "EIP-1193 provider errors",
+        "url": "https://eips.ethereum.org/EIPS/eip-1193#provider-errors"
+      }
     ]
   },
   {
@@ -36,6 +48,16 @@
     ],
     "nextSteps": [
       "Read the current connector/account state before dispatching another connect request."
+    ],
+    "references": [
+      {
+        "label": "wagmi connect",
+        "url": "https://wagmi.sh/core/api/actions/connect"
+      },
+      {
+        "label": "wagmi watchConnections",
+        "url": "https://wagmi.sh/core/api/actions/watchConnections"
+      }
     ],
     "id": "wallet-connector-already-connected",
     "title": "Wallet connector already connected",
@@ -64,6 +86,16 @@
     ],
     "nextSteps": [
       "Require an active account before sending/signing and refresh connector state after page reloads."
+    ],
+    "references": [
+      {
+        "label": "wagmi getConnectorClient",
+        "url": "https://wagmi.sh/core/api/actions/getConnectorClient"
+      },
+      {
+        "label": "wagmi connect",
+        "url": "https://wagmi.sh/core/api/actions/connect"
+      }
     ],
     "id": "wallet-connector-not-connected",
     "title": "Wallet connector not connected",
@@ -1427,7 +1459,21 @@
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
-    "confidence": "medium"
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "EIP-3326 wallet_switchEthereumChain",
+        "url": "https://eips.ethereum.org/EIPS/eip-3326"
+      },
+      {
+        "label": "EIP-3085 wallet_addEthereumChain",
+        "url": "https://eips.ethereum.org/EIPS/eip-3085"
+      },
+      {
+        "label": "MetaMask wallet_switchEthereumChain",
+        "url": "https://metamask.github.io/mm-docs-v2/security-controls/wallet/reference/rpc-api/#wallet_switchethereumchain"
+      }
+    ]
   },
   {
     "rootCauseKnown": true,
@@ -1445,12 +1491,24 @@
         "value": "User denied message signature"
       }
     ],
-    "summary": "Wallet returned: User denied message signature.",
+    "summary": "The user rejected a wallet message-signature request.",
     "likelyCauses": [
-      "The user, wallet UI, or wallet request queue rejected the operation."
+      "User clicked reject or closed the signature prompt.",
+      "The message preview looked unexpected or unsafe."
     ],
     "nextSteps": [
-      "Do not auto-retry; let the user intentionally retry after reviewing the prompt."
+      "Treat this as a user action, not a transaction failure.",
+      "Let the user retry explicitly after showing a clearer message preview."
+    ],
+    "references": [
+      {
+        "label": "EIP-1193 provider errors",
+        "url": "https://eips.ethereum.org/EIPS/eip-1193#provider-errors"
+      },
+      {
+        "label": "MetaMask eth_requestAccounts",
+        "url": "https://metamask.github.io/mm-docs-v2/security-controls/wallet/reference/rpc-api/#eth_requestaccounts"
+      }
     ]
   },
   {
@@ -1469,12 +1527,24 @@
         "value": "User denied transaction signature"
       }
     ],
-    "summary": "Wallet returned: User denied transaction signature.",
+    "summary": "The user rejected a wallet transaction-signature request.",
     "likelyCauses": [
-      "The user, wallet UI, or wallet request queue rejected the operation."
+      "User clicked reject or closed the transaction prompt.",
+      "The transaction preview looked unexpected, unsafe, or too expensive."
     ],
     "nextSteps": [
-      "Do not auto-retry; let the user intentionally retry after reviewing the prompt."
+      "Treat this as a user action, not a gas or revert failure.",
+      "Let the user retry explicitly after showing clearer recipient, value, chain, and approval details."
+    ],
+    "references": [
+      {
+        "label": "EIP-1193 provider errors",
+        "url": "https://eips.ethereum.org/EIPS/eip-1193#provider-errors"
+      },
+      {
+        "label": "MetaMask eth_requestAccounts",
+        "url": "https://metamask.github.io/mm-docs-v2/security-controls/wallet/reference/rpc-api/#eth_requestaccounts"
+      }
     ]
   }
 ]

@@ -11,18 +11,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Account not EOA['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Account not EOA.",
+    "summary": "Optimism contracts reverted with \"Account not EOA\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -46,18 +50,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Actual batch start index does not match expected start index\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Actual batch start index does not match expected start index..",
+    "summary": "Optimism contracts reverted with \"Actual batch start index does not match expected start index.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -81,18 +89,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AddressDictator: Must provide an equal number of names and addresses\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: AddressDictator: Must provide an equal number of names and addresses..",
+    "summary": "Optimism contracts reverted with \"AddressDictator: Must provide an equal number of names and addresses.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -116,18 +128,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AddressDictator: only callable by finalOwner['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: AddressDictator: only callable by finalOwner.",
+    "summary": "Optimism contracts reverted with \"AddressDictator: only callable by finalOwner\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -151,17 +167,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Attempted to append more elements than are available in the queue\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Attempted to append more elements than are available in the queue..",
+    "summary": "Optimism contracts reverted with \"Attempted to append more elements than are available in the queue.\", an exact source-level check that means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -186,15 +206,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Batch header timestamp cannot be zero['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Batch header timestamp cannot be zero.",
+    "summary": "Optimism contracts reverted with \"Batch header timestamp cannot be zero\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -221,18 +245,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?BondManager['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: BondManager.",
+    "summary": "Optimism contracts reverted with \"BondManager\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -256,17 +284,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot publish state roots within the sequencer publication window\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Cannot publish state roots within the sequencer publication window..",
+    "summary": "Optimism contracts reverted with \"Cannot publish state roots within the sequencer publication window.\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,17 +323,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot submit an empty state batch\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Cannot submit an empty state batch..",
+    "summary": "Optimism contracts reverted with \"Cannot submit an empty state batch.\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -326,18 +362,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?CanonicalTransactionChain['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: CanonicalTransactionChain.",
+    "summary": "Optimism contracts reverted with \"CanonicalTransactionChain\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -361,18 +401,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ChainStorageContainer: Function can only be called by the owner\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: ChainStorageContainer: Function can only be called by the owner..",
+    "summary": "Optimism contracts reverted with \"ChainStorageContainer: Function can only be called by the owner.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -396,18 +440,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ChugSplashDictator: Incorrect code hash\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: ChugSplashDictator: Incorrect code hash..",
+    "summary": "Optimism contracts reverted with \"ChugSplashDictator: Incorrect code hash.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -431,18 +479,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ChugSplashDictator: only callable by finalOwner['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: ChugSplashDictator: only callable by finalOwner.",
+    "summary": "Optimism contracts reverted with \"ChugSplashDictator: only callable by finalOwner\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -466,17 +518,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Contract has already been initialized\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Contract has already been initialized..",
+    "summary": "Optimism contracts reverted with \"Contract has already been initialized.\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -501,18 +557,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Function can only be called by the owner of this contract\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Function can only be called by the owner of this contract..",
+    "summary": "Optimism contracts reverted with \"Function can only be called by the owner of this contract.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -536,15 +596,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Index out of bounds\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Index out of bounds..",
+    "summary": "Optimism contracts reverted with \"Index out of bounds.\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -571,18 +635,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Insufficient gas for L2 rate limiting burn\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Insufficient gas for L2 rate limiting burn..",
+    "summary": "Optimism contracts reverted with \"Insufficient gas for L2 rate limiting burn.\", an exact source-level check that means the protocol rejected the gas, execution-fee, or callback-gas value before the call could complete.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A bridge message, callback, hook, keeper, or low-level call was configured with too little execution gas.",
+      "A relayer, paymaster, bridge adapter, or protocol fee field uses a separate gas limit from the outer transaction gas.",
+      "The call path requires a minimum gas reserve before forwarding execution to another contract.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the error arguments and compare the required gas or fee with the gas-related fields submitted in calldata.",
+      "Increase the protocol callback, execution, or message gas field as well as the outer transaction gas if both are present.",
+      "If the error names call depth or forwarding, simplify the call path instead of only raising gas."
     ],
-    "retryHelpful": "sometimes",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "yes",
     "confidence": "high",
     "references": [
       {
@@ -606,18 +674,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid batch header\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid batch header..",
+    "summary": "Optimism contracts reverted with \"Invalid batch header.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -641,18 +713,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid batch index\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid batch index..",
+    "summary": "Optimism contracts reverted with \"Invalid batch index.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -676,18 +752,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid inclusion proof\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid inclusion proof..",
+    "summary": "Optimism contracts reverted with \"Invalid inclusion proof.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -711,18 +791,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid internal node hash['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid internal node hash.",
+    "summary": "Optimism contracts reverted with \"Invalid internal node hash\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -746,18 +830,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid large internal hash['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid large internal hash.",
+    "summary": "Optimism contracts reverted with \"Invalid large internal hash\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -781,18 +869,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid RLP address value\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid RLP address value..",
+    "summary": "Optimism contracts reverted with \"Invalid RLP address value.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -816,18 +908,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid RLP boolean value\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid RLP boolean value..",
+    "summary": "Optimism contracts reverted with \"Invalid RLP boolean value.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -851,18 +947,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid RLP bytes value\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid RLP bytes value..",
+    "summary": "Optimism contracts reverted with \"Invalid RLP bytes value.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -886,18 +986,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid RLP bytes32 value\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid RLP bytes32 value..",
+    "summary": "Optimism contracts reverted with \"Invalid RLP bytes32 value.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -921,18 +1025,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid RLP list value\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid RLP list value..",
+    "summary": "Optimism contracts reverted with \"Invalid RLP list value.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -956,18 +1064,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid RLP long list\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid RLP long list..",
+    "summary": "Optimism contracts reverted with \"Invalid RLP long list.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -991,18 +1103,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid RLP long list length\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid RLP long list length..",
+    "summary": "Optimism contracts reverted with \"Invalid RLP long list length.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1026,18 +1142,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid RLP long string\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid RLP long string..",
+    "summary": "Optimism contracts reverted with \"Invalid RLP long string.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1061,18 +1181,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid RLP long string length\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid RLP long string length..",
+    "summary": "Optimism contracts reverted with \"Invalid RLP long string length.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1096,18 +1220,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid RLP short list\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid RLP short list..",
+    "summary": "Optimism contracts reverted with \"Invalid RLP short list.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1131,18 +1259,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid RLP short string\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid RLP short string..",
+    "summary": "Optimism contracts reverted with \"Invalid RLP short string.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1166,18 +1298,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid root hash['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Invalid root hash.",
+    "summary": "Optimism contracts reverted with \"Invalid root hash\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1201,15 +1337,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?L1ChugSplashProxy: code was not correctly deployed\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: L1ChugSplashProxy: code was not correctly deployed..",
+    "summary": "Optimism contracts reverted with \"L1ChugSplashProxy: code was not correctly deployed.\", an exact source-level check that points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1236,15 +1376,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?L1ChugSplashProxy: implementation is not set yet['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: L1ChugSplashProxy: implementation is not set yet.",
+    "summary": "Optimism contracts reverted with \"L1ChugSplashProxy: implementation is not set yet\", an exact source-level check that points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1271,15 +1415,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?L1ChugSplashProxy: system is currently being upgraded['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: L1ChugSplashProxy: system is currently being upgraded.",
+    "summary": "Optimism contracts reverted with \"L1ChugSplashProxy: system is currently being upgraded\", an exact source-level check that points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1306,17 +1454,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?L1CrossDomainMessenger already intialized\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: L1CrossDomainMessenger already intialized..",
+    "summary": "Optimism contracts reverted with \"L1CrossDomainMessenger already intialized.\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1341,15 +1493,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Lib_MerkleTree: Cannot compute ceil\\(log_2\\) of 0\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Lib_MerkleTree: Cannot compute ceil(log_2) of 0..",
+    "summary": "Optimism contracts reverted with \"Lib_MerkleTree: Cannot compute ceil(log_2) of 0.\", an exact source-level check that means arithmetic, casting, rounding, division, precision, or fixed-point constraints rejected the operation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The submitted amount, price, ratio, or intermediate calculation overflows, underflows, divides by zero, or loses required precision.",
+      "Token decimals, share conversion, fixed-point scaling, or rounding rules differ from the client calculation.",
+      "The protocol's invariant cannot hold for the requested state transition.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Recalculate the relevant amounts using the contract's decimals, scaling factors, and rounding direction.",
+      "Decode error arguments and compare them with the invariant or math helper in the referenced source.",
+      "Reduce the amount or use a valid price/ratio range before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1376,15 +1532,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Lib_MerkleTree: Index out of bounds\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Lib_MerkleTree: Index out of bounds..",
+    "summary": "Optimism contracts reverted with \"Lib_MerkleTree: Index out of bounds.\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1411,18 +1571,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Lib_MerkleTree: Must provide at least one leaf hash\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Lib_MerkleTree: Must provide at least one leaf hash..",
+    "summary": "Optimism contracts reverted with \"Lib_MerkleTree: Must provide at least one leaf hash.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1446,18 +1610,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Lib_MerkleTree: Total leaves must be greater than zero\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Lib_MerkleTree: Total leaves must be greater than zero..",
+    "summary": "Optimism contracts reverted with \"Lib_MerkleTree: Total leaves must be greater than zero.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1481,18 +1649,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Lib_MerkleTree: Total siblings does not correctly correspond to total leaves\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Lib_MerkleTree: Total siblings does not correctly correspond to total leaves..",
+    "summary": "Optimism contracts reverted with \"Lib_MerkleTree: Total siblings does not correctly correspond to total leaves.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1516,18 +1688,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Lib_RLPReader: Invalid RLP boolean value, must be 0 or 1['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Lib_RLPReader: Invalid RLP boolean value, must be 0 or 1.",
+    "summary": "Optimism contracts reverted with \"Lib_RLPReader: Invalid RLP boolean value, must be 0 or 1\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1551,15 +1727,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Message passing predeploy has not been initialized or invalid proof provided\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Message passing predeploy has not been initialized or invalid proof provided..",
+    "summary": "Optimism contracts reverted with \"Message passing predeploy has not been initialized or invalid proof provided.\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1586,15 +1766,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Must provide L1 token address['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Must provide L1 token address.",
+    "summary": "Optimism contracts reverted with \"Must provide L1 token address\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1621,17 +1805,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not enough BatchContexts provided\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Not enough BatchContexts provided..",
+    "summary": "Optimism contracts reverted with \"Not enough BatchContexts provided.\", an exact source-level check that means the account, vault, pool, escrow, reserve, or market does not have enough usable balance or liquidity.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender's token balance, native balance, collateral, vault shares, or internal accounting balance is below the requested amount.",
+      "The pool, reserve, vault, market, or escrow lacks enough available liquidity for the operation.",
+      "Fees, debt, pending withdrawals, slippage, or locked balances reduce the spendable amount below the visible balance.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check token balance, native balance, internal vault balance, debt, and available liquidity at the same block as the revert.",
+      "Reduce the requested amount or add funds, collateral, shares, or liquidity before retrying.",
+      "Account for protocol fees, pending withdrawals, and locked balances when computing spendable amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1656,17 +1844,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Only callable by the Burn Admin\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Only callable by the Burn Admin..",
+    "summary": "Optimism contracts reverted with \"Only callable by the Burn Admin.\", an exact source-level check that means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1691,18 +1883,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Only L2 Bridge can mint and burn['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Only L2 Bridge can mint and burn.",
+    "summary": "Optimism contracts reverted with \"Only L2 Bridge can mint and burn\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1726,17 +1922,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?OVM_DeployerWhitelist: can only be disabled via enableArbitraryContractDeployment['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: OVM_DeployerWhitelist: can only be disabled via enableArbitraryContractDeployment.",
+    "summary": "Optimism contracts reverted with \"OVM_DeployerWhitelist: can only be disabled via enableArbitraryContractDeployment\", an exact source-level check that means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1761,17 +1961,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?OVM_ETH: approve is disabled pending further community discussion\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: OVM_ETH: approve is disabled pending further community discussion..",
+    "summary": "Optimism contracts reverted with \"OVM_ETH: approve is disabled pending further community discussion.\", an exact source-level check that means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1796,17 +2000,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?OVM_ETH: decreaseAllowance is disabled pending further community discussion\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: OVM_ETH: decreaseAllowance is disabled pending further community discussion..",
+    "summary": "Optimism contracts reverted with \"OVM_ETH: decreaseAllowance is disabled pending further community discussion.\", an exact source-level check that means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1831,17 +2039,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?OVM_ETH: increaseAllowance is disabled pending further community discussion\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: OVM_ETH: increaseAllowance is disabled pending further community discussion..",
+    "summary": "Optimism contracts reverted with \"OVM_ETH: increaseAllowance is disabled pending further community discussion.\", an exact source-level check that means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1866,17 +2078,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?OVM_ETH: transferFrom is disabled pending further community discussion\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: OVM_ETH: transferFrom is disabled pending further community discussion..",
+    "summary": "Optimism contracts reverted with \"OVM_ETH: transferFrom is disabled pending further community discussion.\", an exact source-level check that means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1901,17 +2117,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?OVM_ETH: transfer is disabled pending further community discussion\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: OVM_ETH: transfer is disabled pending further community discussion..",
+    "summary": "Optimism contracts reverted with \"OVM_ETH: transfer is disabled pending further community discussion.\", an exact source-level check that means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1936,18 +2156,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?OVM_FraudVerifier['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: OVM_FraudVerifier.",
+    "summary": "Optimism contracts reverted with \"OVM_FraudVerifier\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1971,18 +2195,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?OVM_Sequencer['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: OVM_Sequencer.",
+    "summary": "Optimism contracts reverted with \"OVM_Sequencer\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2006,17 +2234,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?OVM_SequencerFeeVault: withdrawal amount must be greater than minimum withdrawal amount['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: OVM_SequencerFeeVault: withdrawal amount must be greater than minimum withdrawal amount.",
+    "summary": "Optimism contracts reverted with \"OVM_SequencerFeeVault: withdrawal amount must be greater than minimum withdrawal amount\", an exact source-level check that means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2041,18 +2273,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?OVM_XCHAIN: messenger contract unauthenticated['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: OVM_XCHAIN: messenger contract unauthenticated.",
+    "summary": "Optimism contracts reverted with \"OVM_XCHAIN: messenger contract unauthenticated\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2076,18 +2312,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?OVM_XCHAIN: wrong sender of cross-domain message['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: OVM_XCHAIN: wrong sender of cross-domain message.",
+    "summary": "Optimism contracts reverted with \"OVM_XCHAIN: wrong sender of cross-domain message\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2111,18 +2351,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Provided message could not be verified\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Provided message could not be verified..",
+    "summary": "Optimism contracts reverted with \"Provided message could not be verified.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2146,17 +2390,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Provided message has already been received\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Provided message has already been received..",
+    "summary": "Optimism contracts reverted with \"Provided message has already been received.\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2181,15 +2429,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Provided message has been blocked\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Provided message has been blocked..",
+    "summary": "Optimism contracts reverted with \"Provided message has been blocked.\", an exact source-level check that means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
     "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
@@ -2216,18 +2468,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Provided message has not been enqueued\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Provided message has not been enqueued..",
+    "summary": "Optimism contracts reverted with \"Provided message has not been enqueued.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2251,18 +2507,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Provided proof is invalid\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Provided proof is invalid..",
+    "summary": "Optimism contracts reverted with \"Provided proof is invalid.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2286,15 +2546,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Provided RLP list exceeds max list length\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Provided RLP list exceeds max list length..",
+    "summary": "Optimism contracts reverted with \"Provided RLP list exceeds max list length.\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2321,17 +2585,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Received a node with an unknown prefix['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Received a node with an unknown prefix.",
+    "summary": "Optimism contracts reverted with \"Received a node with an unknown prefix\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2356,18 +2624,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Received an unparseable node\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Received an unparseable node..",
+    "summary": "Optimism contracts reverted with \"Received an unparseable node.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2391,18 +2663,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?RLP item cannot be null\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: RLP item cannot be null..",
+    "summary": "Optimism contracts reverted with \"RLP item cannot be null.\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2426,17 +2702,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?State batches can only be deleted within the fraud proof window\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: State batches can only be deleted within the fraud proof window..",
+    "summary": "Optimism contracts reverted with \"State batches can only be deleted within the fraud proof window.\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2461,15 +2741,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Target address must be initialized\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Target address must be initialized..",
+    "summary": "Optimism contracts reverted with \"Target address must be initialized.\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2496,15 +2780,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Transaction data size exceeds maximum for rollup transaction\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Transaction data size exceeds maximum for rollup transaction..",
+    "summary": "Optimism contracts reverted with \"Transaction data size exceeds maximum for rollup transaction.\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2531,18 +2819,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Transaction gas limit exceeds maximum for rollup transaction\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Transaction gas limit exceeds maximum for rollup transaction..",
+    "summary": "Optimism contracts reverted with \"Transaction gas limit exceeds maximum for rollup transaction.\", an exact source-level check that means the protocol rejected the gas, execution-fee, or callback-gas value before the call could complete.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A bridge message, callback, hook, keeper, or low-level call was configured with too little execution gas.",
+      "A relayer, paymaster, bridge adapter, or protocol fee field uses a separate gas limit from the outer transaction gas.",
+      "The call path requires a minimum gas reserve before forwarding execution to another contract.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the error arguments and compare the required gas or fee with the gas-related fields submitted in calldata.",
+      "Increase the protocol callback, execution, or message gas field as well as the outer transaction gas if both are present.",
+      "If the error names call depth or forwarding, simplify the call path instead of only raising gas."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "yes",
     "confidence": "high",
     "references": [
       {
@@ -2566,18 +2858,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Transaction gas limit too low to enqueue\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: Transaction gas limit too low to enqueue..",
+    "summary": "Optimism contracts reverted with \"Transaction gas limit too low to enqueue.\", an exact source-level check that means the protocol rejected the gas, execution-fee, or callback-gas value before the call could complete.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A bridge message, callback, hook, keeper, or low-level call was configured with too little execution gas.",
+      "A relayer, paymaster, bridge adapter, or protocol fee field uses a separate gas limit from the outer transaction gas.",
+      "The call path requires a minimum gas reserve before forwarding execution to another contract.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the error arguments and compare the required gas or fee with the gas-related fields submitted in calldata.",
+      "Increase the protocol callback, execution, or message gas field as well as the outer transaction gas if both are present.",
+      "If the error names call depth or forwarding, simplify the call path instead of only raising gas."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "yes",
     "confidence": "high",
     "references": [
       {
@@ -2601,15 +2897,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?TransferHelper::safeTransferETH: ETH transfer failed['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: TransferHelper::safeTransferETH: ETH transfer failed.",
+    "summary": "Optimism contracts reverted with \"TransferHelper::safeTransferETH: ETH transfer failed\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2636,18 +2936,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?xDomainMessageSender is not set['\"]?\\s*$"
       }
     ],
-    "summary": "Optimism contracts revert reason string: xDomainMessageSender is not set.",
+    "summary": "Optimism contracts reverted with \"xDomainMessageSender is not set\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {

@@ -11,17 +11,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?auction end date must be in the future['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: auction end date must be in the future.",
+    "summary": "Gnosis IDO contracts reverted with \"auction end date must be in the future\", an exact source-level check that points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -46,17 +50,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Auction not in solution submission phase['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Auction not in solution submission phase.",
+    "summary": "Gnosis IDO contracts reverted with \"Auction not in solution submission phase\", an exact source-level check that points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -81,17 +89,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Auction not yet finished['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Auction not yet finished.",
+    "summary": "Gnosis IDO contracts reverted with \"Auction not yet finished\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -116,15 +128,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?cannot auction zero tokens['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: cannot auction zero tokens.",
+    "summary": "Gnosis IDO contracts reverted with \"cannot auction zero tokens\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -151,15 +167,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot insert max uint64['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Cannot insert max uint64.",
+    "summary": "Gnosis IDO contracts reverted with \"Cannot insert max uint64\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -186,15 +206,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot insert zero address['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Cannot insert zero address.",
+    "summary": "Gnosis IDO contracts reverted with \"Cannot insert zero address\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -221,15 +245,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Fee is not allowed to be set higher than 1\\.5%['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Fee is not allowed to be set higher than 1.5%.",
+    "summary": "Gnosis IDO contracts reverted with \"Fee is not allowed to be set higher than 1.5%\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -256,17 +284,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Inserting element is not valid['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Inserting element is not valid.",
+    "summary": "Gnosis IDO contracts reverted with \"Inserting element is not valid\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,17 +323,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Inserting zero is not supported['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Inserting zero is not supported.",
+    "summary": "Gnosis IDO contracts reverted with \"Inserting zero is not supported\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -326,15 +362,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?limit price not better than mimimal offer['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: limit price not better than mimimal offer.",
+    "summary": "Gnosis IDO contracts reverted with \"limit price not better than mimimal offer\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -361,15 +401,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?_minBuyAmounts must be greater than 0['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: _minBuyAmounts must be greater than 0.",
+    "summary": "Gnosis IDO contracts reverted with \"_minBuyAmounts must be greater than 0\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -396,15 +440,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?minimumBiddingAmountPerOrder is not allowed to be zero['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: minimumBiddingAmountPerOrder is not allowed to be zero.",
+    "summary": "Gnosis IDO contracts reverted with \"minimumBiddingAmountPerOrder is not allowed to be zero\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -431,17 +479,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Must have Address to get ID['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Must have Address to get ID.",
+    "summary": "Gnosis IDO contracts reverted with \"Must have Address to get ID\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -466,17 +518,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Must have ID to get Address['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Must have ID to get Address.",
+    "summary": "Gnosis IDO contracts reverted with \"Must have ID to get Address\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -501,17 +557,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?no longer in order placement and cancelation phase['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: no longer in order placement and cancelation phase.",
+    "summary": "Gnosis IDO contracts reverted with \"no longer in order placement and cancelation phase\", an exact source-level check that points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -536,17 +596,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?no longer in order placement phase['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: no longer in order placement phase.",
+    "summary": "Gnosis IDO contracts reverted with \"no longer in order placement phase\", an exact source-level check that points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -571,15 +635,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not allowed to settle auction atomically['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: not allowed to settle auction atomically.",
+    "summary": "Gnosis IDO contracts reverted with \"not allowed to settle auction atomically\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -606,17 +674,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?only allowed to claim for same user['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: only allowed to claim for same user.",
+    "summary": "Gnosis IDO contracts reverted with \"only allowed to claim for same user\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -641,17 +713,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Only one order can be placed atomically['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Only one order can be placed atomically.",
+    "summary": "Gnosis IDO contracts reverted with \"Only one order can be placed atomically\", an exact source-level check that points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -676,17 +752,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Only the user can cancel his orders['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Only the user can cancel his orders.",
+    "summary": "Gnosis IDO contracts reverted with \"Only the user can cancel his orders\", an exact source-level check that points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -711,17 +791,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?order is no longer claimable['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: order is no longer claimable.",
+    "summary": "Gnosis IDO contracts reverted with \"order is no longer claimable\", an exact source-level check that points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -746,15 +830,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?order too small['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: order too small.",
+    "summary": "Gnosis IDO contracts reverted with \"order too small\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,15 +869,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?precalculateSellAmountSum is already too advanced['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: precalculateSellAmountSum is already too advanced.",
+    "summary": "Gnosis IDO contracts reverted with \"precalculateSellAmountSum is already too advanced\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -816,17 +908,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?reached end of order list['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: reached end of order list.",
+    "summary": "Gnosis IDO contracts reverted with \"reached end of order list\", an exact source-level check that points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -851,17 +947,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?time periods are not configured correctly['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: time periods are not configured correctly.",
+    "summary": "Gnosis IDO contracts reverted with \"time periods are not configured correctly\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -886,15 +986,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?tokens cannot be auctioned for free['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: tokens cannot be auctioned for free.",
+    "summary": "Gnosis IDO contracts reverted with \"tokens cannot be auctioned for free\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -921,17 +1025,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?too many orders summed up['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: too many orders summed up.",
+    "summary": "Gnosis IDO contracts reverted with \"too many orders summed up\", an exact source-level check that points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -956,15 +1064,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?too much value sent['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: too much value sent.",
+    "summary": "Gnosis IDO contracts reverted with \"too much value sent\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -991,17 +1103,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Trying to get first from empty set['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Trying to get first from empty set.",
+    "summary": "Gnosis IDO contracts reverted with \"Trying to get first from empty set\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1026,17 +1142,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Trying to get next of last element['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Trying to get next of last element.",
+    "summary": "Gnosis IDO contracts reverted with \"Trying to get next of last element\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1061,17 +1181,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Trying to get next of non-existent element['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: Trying to get next of non-existent element.",
+    "summary": "Gnosis IDO contracts reverted with \"Trying to get next of non-existent element\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1096,15 +1220,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?User already registered['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: User already registered.",
+    "summary": "Gnosis IDO contracts reverted with \"User already registered\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1131,15 +1259,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?user is not allowed to place same order twice['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: user is not allowed to place same order twice.",
+    "summary": "Gnosis IDO contracts reverted with \"user is not allowed to place same order twice\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1166,15 +1298,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?user not allowed to place order['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis IDO contracts revert reason string: user not allowed to place order.",
+    "summary": "Gnosis IDO contracts reverted with \"user not allowed to place order\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",

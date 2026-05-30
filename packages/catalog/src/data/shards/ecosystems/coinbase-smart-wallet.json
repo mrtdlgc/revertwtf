@@ -11,18 +11,22 @@
         "value": "0x128aaaa0"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error AccountDeploymentFailed().",
+    "summary": "Coinbase Smart Wallet rejected the call at AccountDeploymentFailed: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with AccountDeploymentFailed, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -46,15 +50,19 @@
         "value": "0x8d16255a"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error AlreadyOwner(bytes).",
+    "summary": "Coinbase Smart Wallet rejected the call at AlreadyOwner(bytes): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with AlreadyOwner, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -81,15 +89,19 @@
         "value": "0x870dfeb7"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error ImplementationUndeployed().",
+    "summary": "Coinbase Smart Wallet rejected the call at ImplementationUndeployed: points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ImplementationUndeployed, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -116,15 +128,19 @@
         "value": "0x5daa87a0"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error Initialized().",
+    "summary": "Coinbase Smart Wallet rejected the call at Initialized: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with Initialized, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -151,18 +167,22 @@
         "value": "0xbff1ac65"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error InvalidEthereumAddressOwner(bytes).",
+    "summary": "Coinbase Smart Wallet rejected the call at InvalidEthereumAddressOwner(bytes): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidEthereumAddressOwner, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -186,15 +206,19 @@
         "value": "0x0c760937"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error InvalidImplementation(address).",
+    "summary": "Coinbase Smart Wallet rejected the call at InvalidImplementation(address): points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidImplementation, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -221,15 +245,19 @@
         "value": "0x2ef37813"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error InvalidNonceKey(uint256).",
+    "summary": "Coinbase Smart Wallet rejected the call at InvalidNonceKey(uint256): means the transaction, permit, order, message, or request nonce does not match the next valid value expected by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidNonceKey, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The nonce, salt, sequence number, or request id has already been consumed.",
+      "The client submitted transactions out of order or reused a signed payload after another state-changing action.",
+      "A cross-chain message, account module, permit helper, or orderbook tracks nonces separately from the wallet account nonce.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the protocol nonce, consumed bitmap, salt status, or sequence counter for the sender/order/message.",
+      "Regenerate the signed payload with the next unused protocol nonce instead of resubmitting the old one.",
+      "Stop retrying if the id was already consumed and reconcile the resulting on-chain state."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -256,18 +284,22 @@
         "value": "0x4eeab722"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error InvalidOwnerBytesLength(bytes).",
+    "summary": "Coinbase Smart Wallet rejected the call at InvalidOwnerBytesLength(bytes): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidOwnerBytesLength, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -291,18 +323,22 @@
         "value": "0x948bf897"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error LastOwner().",
+    "summary": "Coinbase Smart Wallet rejected the call at LastOwner: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with LastOwner, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -326,18 +362,22 @@
         "value": "0x68188e7a"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error NoOwnerAtIndex(uint256).",
+    "summary": "Coinbase Smart Wallet rejected the call at NoOwnerAtIndex(uint256): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NoOwnerAtIndex, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -361,18 +401,22 @@
         "value": "0x823f1aa8"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error NotLastOwner(uint256).",
+    "summary": "Coinbase Smart Wallet rejected the call at NotLastOwner(uint256): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NotLastOwner, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -396,18 +440,22 @@
         "value": "0x3c776be1"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error OwnerRequired().",
+    "summary": "Coinbase Smart Wallet rejected the call at OwnerRequired: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with OwnerRequired, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -431,18 +479,22 @@
         "value": "0xc8624383"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error ReturnedAddressDoesNotMatchAccount(address,address).",
+    "summary": "Coinbase Smart Wallet rejected the call at ReturnedAddressDoesNotMatchAccount(address,address): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ReturnedAddressDoesNotMatchAccount, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -466,15 +518,19 @@
         "value": "0x3b06e146"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error SelectorNotAllowed(bytes4).",
+    "summary": "Coinbase Smart Wallet rejected the call at SelectorNotAllowed(bytes4): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with SelectorNotAllowed, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -501,15 +557,19 @@
         "value": "0x82b42900"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error Unauthorized().",
+    "summary": "Coinbase Smart Wallet rejected the call at Unauthorized: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with Unauthorized, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -536,18 +596,22 @@
         "value": "0x781f2e39"
       }
     ],
-    "summary": "Coinbase Smart Wallet custom error WrongOwnerAtIndex(uint256,bytes,bytes).",
+    "summary": "Coinbase Smart Wallet rejected the call at WrongOwnerAtIndex(uint256,bytes,bytes): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with WrongOwnerAtIndex, a Coinbase smart wallet validation, WebAuthn, owner, module, paymaster, or EntryPoint flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; encoded payload, signature, proof, route, or hook data; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Coinbase Smart Wallet source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {

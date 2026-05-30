@@ -11,15 +11,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Admin Only['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Admin Only.",
+    "summary": "Ambient / CrocSwap reverted with \"Admin Only\", an exact source-level check that points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,17 +50,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot overwrite boot path['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Cannot overwrite boot path.",
+    "summary": "Ambient / CrocSwap reverted with \"Cannot overwrite boot path\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -81,17 +89,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Does not own deployer['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Does not own deployer.",
+    "summary": "Ambient / CrocSwap reverted with \"Does not own deployer\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -116,15 +128,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Does not receive Ether outside lock['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Does not receive Ether outside lock.",
+    "summary": "Ambient / CrocSwap reverted with \"Does not receive Ether outside lock\", an exact source-level check that means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -151,17 +167,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Emergency Authority['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Emergency Authority.",
+    "summary": "Ambient / CrocSwap reverted with \"Emergency Authority\", an exact source-level check that means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -186,17 +206,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Emergency Safe Mode['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Emergency Safe Mode.",
+    "summary": "Ambient / CrocSwap reverted with \"Emergency Safe Mode\", an exact source-level check that means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -221,15 +245,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Ethereum transfer failed['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Ethereum transfer failed.",
+    "summary": "Ambient / CrocSwap reverted with \"Ethereum transfer failed\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -256,17 +284,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Illegal policy update['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Illegal policy update.",
+    "summary": "Ambient / CrocSwap reverted with \"Illegal policy update\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,15 +323,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Init liq['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Init liq.",
+    "summary": "Ambient / CrocSwap reverted with \"Init liq\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -326,17 +362,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid Authority['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Invalid Authority.",
+    "summary": "Ambient / CrocSwap reverted with \"Invalid Authority\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -361,17 +401,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid command['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Invalid command.",
+    "summary": "Ambient / CrocSwap reverted with \"Invalid command\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -396,17 +440,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid CrocSwapDex['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Invalid CrocSwapDex.",
+    "summary": "Ambient / CrocSwap reverted with \"Invalid CrocSwapDex\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -431,15 +479,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid Router Approve['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Invalid Router Approve.",
+    "summary": "Ambient / CrocSwap reverted with \"Invalid Router Approve\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -466,15 +518,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid Token Pair['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Invalid Token Pair.",
+    "summary": "Ambient / CrocSwap reverted with \"Invalid Token Pair\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -501,17 +557,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?IPS['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: IPS.",
+    "summary": "Ambient / CrocSwap reverted with \"IPS\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -536,17 +596,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Non-Ambient LP Deposit['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Non-Ambient LP Deposit.",
+    "summary": "Ambient / CrocSwap reverted with \"Non-Ambient LP Deposit\", an exact source-level check that means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -571,17 +635,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Ops Authority['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Ops Authority.",
+    "summary": "Ambient / CrocSwap reverted with \"Ops Authority\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -606,17 +674,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Oracle['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Oracle.",
+    "summary": "Ambient / CrocSwap reverted with \"Oracle\", an exact source-level check that means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -641,15 +713,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?overflow['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: overflow.",
+    "summary": "Ambient / CrocSwap reverted with \"overflow\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -676,17 +752,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Policy authority['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Policy authority.",
+    "summary": "Ambient / CrocSwap reverted with \"Policy authority\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -711,15 +791,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Proxy address is not a contract['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Proxy address is not a contract.",
+    "summary": "Ambient / CrocSwap reverted with \"Proxy address is not a contract\", an exact source-level check that points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -746,15 +830,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Proxy does not accept role['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Proxy does not accept role.",
+    "summary": "Ambient / CrocSwap reverted with \"Proxy does not accept role\", an exact source-level check that points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,15 +869,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Re-entrant call['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Re-entrant call.",
+    "summary": "Ambient / CrocSwap reverted with \"Re-entrant call\", an exact source-level check that means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -816,15 +908,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Reentrant['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Reentrant.",
+    "summary": "Ambient / CrocSwap reverted with \"Reentrant\", an exact source-level check that means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -851,17 +947,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Router does not support surplus collateral['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Router does not support surplus collateral.",
+    "summary": "Ambient / CrocSwap reverted with \"Router does not support surplus collateral\", an exact source-level check that means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -886,17 +986,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Sudo['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Sudo.",
+    "summary": "Ambient / CrocSwap reverted with \"Sudo\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -921,17 +1025,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::acceptAdmin: Call must come from pendingAdmin\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::acceptAdmin: Call must come from pendingAdmin..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::acceptAdmin: Call must come from pendingAdmin.\", an exact source-level check that means proposal, vote, quorum, queue, timelock, delegation, or execution state does not allow the requested governance action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proposal is not in the lifecycle state required for voting, queueing, cancelling, or execution.",
+      "The voter already voted, lacks voting weight, or supplied an unsupported vote type.",
+      "Quorum, delay, timelock, or delegation requirements have not been satisfied.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read proposal state, voting window, quorum, vote receipts, delegation, and timelock status.",
+      "Submit the action only during the proposal phase that permits it.",
+      "Refresh voting power and prior receipt state before attempting another vote."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -956,17 +1064,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::cancelTransaction: Call must come from admin\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::cancelTransaction: Call must come from admin..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::cancelTransaction: Call must come from admin.\", an exact source-level check that means proposal, vote, quorum, queue, timelock, delegation, or execution state does not allow the requested governance action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proposal is not in the lifecycle state required for voting, queueing, cancelling, or execution.",
+      "The voter already voted, lacks voting weight, or supplied an unsupported vote type.",
+      "Quorum, delay, timelock, or delegation requirements have not been satisfied.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read proposal state, voting window, quorum, vote receipts, delegation, and timelock status.",
+      "Submit the action only during the proposal phase that permits it.",
+      "Refresh voting power and prior receipt state before attempting another vote."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -991,17 +1103,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::constructor Invalid admin address['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::constructor Invalid admin address.",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::constructor Invalid admin address\", an exact source-level check that means proposal, vote, quorum, queue, timelock, delegation, or execution state does not allow the requested governance action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proposal is not in the lifecycle state required for voting, queueing, cancelling, or execution.",
+      "The voter already voted, lacks voting weight, or supplied an unsupported vote type.",
+      "Quorum, delay, timelock, or delegation requirements have not been satisfied.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read proposal state, voting window, quorum, vote receipts, delegation, and timelock status.",
+      "Submit the action only during the proposal phase that permits it.",
+      "Refresh voting power and prior receipt state before attempting another vote."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1026,17 +1142,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::constructor: Delay must exceed minimum delay\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::constructor: Delay must exceed minimum delay..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::constructor: Delay must exceed minimum delay.\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1061,17 +1181,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::executeTransaction: Call must come from admin\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::executeTransaction: Call must come from admin..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::executeTransaction: Call must come from admin.\", an exact source-level check that means proposal, vote, quorum, queue, timelock, delegation, or execution state does not allow the requested governance action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proposal is not in the lifecycle state required for voting, queueing, cancelling, or execution.",
+      "The voter already voted, lacks voting weight, or supplied an unsupported vote type.",
+      "Quorum, delay, timelock, or delegation requirements have not been satisfied.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read proposal state, voting window, quorum, vote receipts, delegation, and timelock status.",
+      "Submit the action only during the proposal phase that permits it.",
+      "Refresh voting power and prior receipt state before attempting another vote."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1096,17 +1220,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::executeTransaction: Transaction execution reverted\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::executeTransaction: Transaction execution reverted..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::executeTransaction: Transaction execution reverted.\", an exact source-level check that means proposal, vote, quorum, queue, timelock, delegation, or execution state does not allow the requested governance action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proposal is not in the lifecycle state required for voting, queueing, cancelling, or execution.",
+      "The voter already voted, lacks voting weight, or supplied an unsupported vote type.",
+      "Quorum, delay, timelock, or delegation requirements have not been satisfied.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read proposal state, voting window, quorum, vote receipts, delegation, and timelock status.",
+      "Submit the action only during the proposal phase that permits it.",
+      "Refresh voting power and prior receipt state before attempting another vote."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1131,17 +1259,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::executeTransaction: Transaction hasn't been queued\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::executeTransaction: Transaction hasn't been queued..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::executeTransaction: Transaction hasn't been queued.\", an exact source-level check that means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1166,17 +1298,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::executeTransaction: Transaction hasn't surpassed time lock\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::executeTransaction: Transaction hasn't surpassed time lock..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::executeTransaction: Transaction hasn't surpassed time lock.\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1201,17 +1337,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::executeTransaction: Transaction is stale\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::executeTransaction: Transaction is stale..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::executeTransaction: Transaction is stale.\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1236,17 +1376,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::queueTransaction: Call must come from admin\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::queueTransaction: Call must come from admin..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::queueTransaction: Call must come from admin.\", an exact source-level check that means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1271,17 +1415,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::queueTransaction: Estimated execution block must satisfy delay\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::queueTransaction: Estimated execution block must satisfy delay..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::queueTransaction: Estimated execution block must satisfy delay.\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1306,17 +1454,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::setDelay: Call must come from Timelock\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::setDelay: Call must come from Timelock..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::setDelay: Call must come from Timelock.\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1341,17 +1493,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::setDelay: Delay must exceed minimum delay\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::setDelay: Delay must exceed minimum delay..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::setDelay: Delay must exceed minimum delay.\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1376,17 +1532,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::setDelay: Delay must not exceed maximum delay\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::setDelay: Delay must not exceed maximum delay..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::setDelay: Delay must not exceed maximum delay.\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1411,17 +1571,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Timelock::setPendingAdmin: Call must come from Timelock\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Timelock::setPendingAdmin: Call must come from Timelock..",
+    "summary": "Ambient / CrocSwap reverted with \"Timelock::setPendingAdmin: Call must come from Timelock.\", an exact source-level check that means proposal, vote, quorum, queue, timelock, delegation, or execution state does not allow the requested governance action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proposal is not in the lifecycle state required for voting, queueing, cancelling, or execution.",
+      "The voter already voted, lacks voting weight, or supplied an unsupported vote type.",
+      "Quorum, delay, timelock, or delegation requirements have not been satisfied.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read proposal state, voting window, quorum, vote receipts, delegation, and timelock status.",
+      "Submit the action only during the proposal phase that permits it.",
+      "Refresh voting power and prior receipt state before attempting another vote."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1446,17 +1610,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Treasury Authority['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Treasury Authority.",
+    "summary": "Ambient / CrocSwap reverted with \"Treasury Authority\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1481,17 +1649,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Treasury invalid['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Treasury invalid.",
+    "summary": "Ambient / CrocSwap reverted with \"Treasury invalid\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1516,17 +1688,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Treasury start['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Treasury start.",
+    "summary": "Ambient / CrocSwap reverted with \"Treasury start\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1551,17 +1727,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Wrong pool['\"]?\\s*$"
       }
     ],
-    "summary": "Ambient / CrocSwap revert reason string: Wrong pool.",
+    "summary": "Ambient / CrocSwap reverted with \"Wrong pool\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Ambient pool, swap, liquidity, knockout, oracle, path, or settlement flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Ambient / CrocSwap source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [

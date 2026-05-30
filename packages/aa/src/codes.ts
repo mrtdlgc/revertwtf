@@ -27,11 +27,13 @@ export const AA_CODES: Record<string, AACodeInfo> = {
   AA23: { code: "AA23", message: "reverted (or OOG)", category: "account" },
   AA24: { code: "AA24", message: "signature error", category: "account" },
   AA25: { code: "AA25", message: "invalid account nonce", category: "nonce" },
+  AA26: { code: "AA26", message: "over verificationGasLimit", category: "gas" },
   AA30: { code: "AA30", message: "paymaster not deployed", category: "paymaster" },
   AA31: { code: "AA31", message: "paymaster deposit too low", category: "paymaster" },
   AA32: { code: "AA32", message: "paymaster expired or not due", category: "paymaster" },
   AA33: { code: "AA33", message: "paymaster reverted (or OOG)", category: "paymaster" },
   AA34: { code: "AA34", message: "paymaster signature error", category: "paymaster" },
+  AA36: { code: "AA36", message: "over paymasterVerificationGasLimit", category: "paymaster" },
   AA40: { code: "AA40", message: "over verificationGasLimit", category: "gas" },
   AA41: { code: "AA41", message: "too little verificationGas", category: "gas" },
   AA50: { code: "AA50", message: "postOp reverted", category: "postOp" },
@@ -40,8 +42,9 @@ export const AA_CODES: Record<string, AACodeInfo> = {
   AA91: { code: "AA91", message: "failed send to beneficiary", category: "entryPoint" },
   AA92: { code: "AA92", message: "internal call only", category: "entryPoint" },
   AA93: { code: "AA93", message: "invalid paymasterAndData", category: "paymaster" },
-  AA94: { code: "AA94", message: "invalid aggregator", category: "aggregator" },
+  AA94: { code: "AA94", message: "gas values overflow", category: "gas" },
   AA95: { code: "AA95", message: "out of gas", category: "gas" },
+  AA96: { code: "AA96", message: "invalid aggregator", category: "aggregator" },
 };
 
 export function lookupAACode(code: string): AACodeInfo | null {

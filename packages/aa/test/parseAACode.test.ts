@@ -11,6 +11,11 @@ describe("parseAACode", () => {
   it("parses FailedOp wrapper", () => {
     expect(parseAACode('FailedOp(0, "AA24 signature error")')?.code).toBe("AA24");
   });
+  it("knows v0.7/v0.8 gas and aggregator codes", () => {
+    expect(parseAACode("AA26 over verificationGasLimit")?.category).toBe("gas");
+    expect(parseAACode("AA94 gas values overflow")?.message).toMatch(/overflow/i);
+    expect(parseAACode("AA96 invalid aggregator")?.category).toBe("aggregator");
+  });
   it("returns null when absent", () => {
     expect(parseAACode("random text")).toBeNull();
   });

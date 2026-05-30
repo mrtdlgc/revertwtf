@@ -11,18 +11,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AA20 account not deployed['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: AA20 account not deployed.",
+    "summary": "Account Abstraction reverted with \"AA20 account not deployed\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -46,17 +50,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AA25 invalid account nonce['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: AA25 invalid account nonce.",
+    "summary": "Account Abstraction reverted with \"AA25 invalid account nonce\", an exact source-level check that means the transaction, permit, order, message, or request nonce does not match the next valid value expected by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The nonce, salt, sequence number, or request id has already been consumed.",
+      "The client submitted transactions out of order or reused a signed payload after another state-changing action.",
+      "A cross-chain message, account module, permit helper, or orderbook tracks nonces separately from the wallet account nonce.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the protocol nonce, consumed bitmap, salt status, or sequence counter for the sender/order/message.",
+      "Regenerate the signed payload with the next unused protocol nonce instead of resubmitting the old one.",
+      "Stop retrying if the id was already consumed and reconcile the resulting on-chain state."
     ],
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -81,18 +89,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AA30 paymaster not deployed['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: AA30 paymaster not deployed.",
+    "summary": "Account Abstraction reverted with \"AA30 paymaster not deployed\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -116,18 +128,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AA90 invalid beneficiary['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: AA90 invalid beneficiary.",
+    "summary": "Account Abstraction reverted with \"AA90 invalid beneficiary\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -151,18 +167,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AA91 failed send to beneficiary['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: AA91 failed send to beneficiary.",
+    "summary": "Account Abstraction reverted with \"AA91 failed send to beneficiary\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -186,18 +206,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AA92 internal call only['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: AA92 internal call only.",
+    "summary": "Account Abstraction reverted with \"AA92 internal call only\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -221,18 +245,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AA93 invalid paymasterAndData['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: AA93 invalid paymasterAndData.",
+    "summary": "Account Abstraction reverted with \"AA93 invalid paymasterAndData\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -256,15 +284,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AA94 gas values overflow['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: AA94 gas values overflow.",
+    "summary": "Account Abstraction reverted with \"AA94 gas values overflow\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -291,18 +323,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AA97 should call from EntryPoint['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: AA97 should call from EntryPoint.",
+    "summary": "Account Abstraction reverted with \"AA97 should call from EntryPoint\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -326,18 +362,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AA98 invalid paymaster['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: AA98 invalid paymaster.",
+    "summary": "Account Abstraction reverted with \"AA98 invalid paymaster\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -361,18 +401,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?account: not from EntryPoint['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: account: not from EntryPoint.",
+    "summary": "Account Abstraction reverted with \"account: not from EntryPoint\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -396,15 +440,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?account: not Owner or EntryPoint['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: account: not Owner or EntryPoint.",
+    "summary": "Account Abstraction reverted with \"account: not Owner or EntryPoint\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -431,17 +479,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?already unstaking['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: already unstaking.",
+    "summary": "Account Abstraction reverted with \"already unstaking\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -466,17 +518,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?cannot decrease unstake time['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: cannot decrease unstake time.",
+    "summary": "Account Abstraction reverted with \"cannot decrease unstake time\", an exact source-level check that points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -501,18 +557,22 @@
         "value": "0x99410554"
       }
     ],
-    "summary": "Account Abstraction custom error DelegateAndRevert(bool,bytes).",
+    "summary": "Account Abstraction rejected the call at DelegateAndRevert(bool,bytes): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DelegateAndRevert custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant boolean mode or feature flag; encoded payload, signature, proof, route, or hook data; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -536,18 +596,22 @@
         "value": "0x5a154675"
       }
     ],
-    "summary": "Account Abstraction custom error ExecuteError(uint256,bytes).",
+    "summary": "Account Abstraction rejected the call at ExecuteError(uint256,bytes): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ExecuteError custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; encoded payload, signature, proof, route, or hook data; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -571,18 +635,22 @@
         "value": "0x8b7ac980"
       }
     ],
-    "summary": "Account Abstraction custom error ExecutionResult(uint256,uint256,uint48,uint48,bool,bytes).",
+    "summary": "Account Abstraction rejected the call at ExecutionResult(uint256,uint256,uint48,uint48,bool,bytes): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ExecutionResult custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; boolean mode or feature flag; encoded payload, signature, proof, route, or hook data; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -606,17 +674,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?failed to withdraw['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: failed to withdraw.",
+    "summary": "Account Abstraction reverted with \"failed to withdraw\", an exact source-level check that means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -641,17 +713,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?failed to withdraw stake['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: failed to withdraw stake.",
+    "summary": "Account Abstraction reverted with \"failed to withdraw stake\", an exact source-level check that means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -676,15 +752,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?IEntryPoint interface mismatch['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: IEntryPoint interface mismatch.",
+    "summary": "Account Abstraction reverted with \"IEntryPoint interface mismatch\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -711,17 +791,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?must call unlockStake\\(\\) first['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: must call unlockStake() first.",
+    "summary": "Account Abstraction reverted with \"must call unlockStake() first\", an exact source-level check that points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -746,18 +830,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?must override['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: must override.",
+    "summary": "Account Abstraction reverted with \"must override\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -781,17 +869,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?must specify unstake delay['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: must specify unstake delay.",
+    "summary": "Account Abstraction reverted with \"must specify unstake delay\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -816,17 +908,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?no stake specified['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: no stake specified.",
+    "summary": "Account Abstraction reverted with \"no stake specified\", an exact source-level check that points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -851,17 +947,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?No stake to withdraw['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: No stake to withdraw.",
+    "summary": "Account Abstraction reverted with \"No stake to withdraw\", an exact source-level check that means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -886,17 +986,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not an EIP-7702 delegate['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: not an EIP-7702 delegate.",
+    "summary": "Account Abstraction reverted with \"not an EIP-7702 delegate\", an exact source-level check that points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -921,18 +1025,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not from self or EntryPoint['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: not from self or EntryPoint.",
+    "summary": "Account Abstraction reverted with \"not from self or EntryPoint\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -956,17 +1064,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not staked['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: not staked.",
+    "summary": "Account Abstraction reverted with \"not staked\", an exact source-level check that points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -991,18 +1103,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?only callable from SenderCreator['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: only callable from SenderCreator.",
+    "summary": "Account Abstraction reverted with \"only callable from SenderCreator\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1026,15 +1142,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?only owner['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: only owner.",
+    "summary": "Account Abstraction reverted with \"only owner\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1061,18 +1181,22 @@
         "value": "0xad7954bc"
       }
     ],
-    "summary": "Account Abstraction custom error PostOpReverted(bytes).",
+    "summary": "Account Abstraction rejected the call at PostOpReverted(bytes): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PostOpReverted custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1096,18 +1220,22 @@
         "value": "0x6ca7b806"
       }
     ],
-    "summary": "Account Abstraction custom error SenderAddressResult(address).",
+    "summary": "Account Abstraction rejected the call at SenderAddressResult(address): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SenderAddressResult custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1131,18 +1259,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?sender has no code['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: sender has no code.",
+    "summary": "Account Abstraction reverted with \"sender has no code\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1166,18 +1298,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Sender not EntryPoint['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: Sender not EntryPoint.",
+    "summary": "Account Abstraction reverted with \"Sender not EntryPoint\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1201,18 +1337,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?should not be deployed['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: should not be deployed.",
+    "summary": "Account Abstraction reverted with \"should not be deployed\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1236,15 +1376,19 @@
         "value": "0x86a9f750"
       }
     ],
-    "summary": "Account Abstraction custom error SignatureValidationFailed(address).",
+    "summary": "Account Abstraction rejected the call at SignatureValidationFailed(address): means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SignatureValidationFailed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1271,15 +1415,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?stake overflow['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: stake overflow.",
+    "summary": "Account Abstraction reverted with \"stake overflow\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1306,17 +1454,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Stake withdrawal is not due['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: Stake withdrawal is not due.",
+    "summary": "Account Abstraction reverted with \"Stake withdrawal is not due\", an exact source-level check that means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1341,23 +1493,29 @@
         "value": "0xe0cff05f"
       }
     ],
-    "summary": "Account Abstraction custom error ValidationResult((uint256,uint256,bool,uint48,uint48,bytes),(uint256,uint256),(uint256,uint256),(uint256,uint256)).",
+    "summary": "Account Abstraction simulateValidation returned ValidationResult: the EntryPoint intentionally reverted to return account, paymaster, factory, and prefund validation data to the bundler.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ValidationResult custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "simulateValidation is expected to revert with encoded data when validation succeeds.",
+      "The return payload describes validationData, senderInfo, factoryInfo, paymasterInfo, and prefund/accounting values.",
+      "This selector is a simulation result channel, not by itself a failed UserOperation."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the ValidationResult tuple and inspect validationData time range, prefund, sender stake, factory stake, and paymaster stake fields.",
+      "Treat the UserOperation as simulation-successful only if the decoded validation data and bundler policy are acceptable.",
+      "If a later bundler or EntryPoint step fails, classify that later FailedOp/AAxx error separately."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
       {
         "label": "Account Abstraction contracts npm package",
         "url": "https://www.npmjs.com/package/@account-abstraction/contracts"
+      },
+      {
+        "label": "ERC-4337 EntryPoint simulation",
+        "url": "https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html"
       }
     ],
     "examples": [
@@ -1376,23 +1534,29 @@
         "value": "0xfaecb4e4"
       }
     ],
-    "summary": "Account Abstraction custom error ValidationResultWithAggregation((uint256,uint256,bool,uint48,uint48,bytes),(uint256,uint256),(uint256,uint256),(uint256,uint256),(address,(uint256,uint256))).",
+    "summary": "Account Abstraction simulateValidation returned ValidationResultWithAggregation: the EntryPoint intentionally reverted with validation data plus the signature aggregator that must be used for this UserOperation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ValidationResultWithAggregation custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "simulateValidation is expected to revert with encoded data when validation succeeds and the account uses signature aggregation.",
+      "The payload includes account, factory, paymaster, prefund, and aggregator metadata for bundler policy checks.",
+      "The aggregator address and stake info must be accepted before the UserOperation can be included."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the ValidationResultWithAggregation tuple and inspect validationData, prefund/accounting, and aggregatorInfo.",
+      "Verify the aggregator is trusted/supported and has acceptable stake before accepting the UserOperation.",
+      "If execution later fails, classify the later FailedOp/AAxx or inner revert instead of treating this simulation result as the failure."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
       {
         "label": "Account Abstraction contracts npm package",
         "url": "https://www.npmjs.com/package/@account-abstraction/contracts"
+      },
+      {
+        "label": "ERC-4337 EntryPoint simulation",
+        "url": "https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html"
       }
     ],
     "examples": [
@@ -1411,15 +1575,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Withdraw amount too large['\"]?\\s*$"
       }
     ],
-    "summary": "Account Abstraction revert reason string: Withdraw amount too large.",
+    "summary": "Account Abstraction reverted with \"Withdraw amount too large\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",

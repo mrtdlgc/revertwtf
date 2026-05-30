@@ -7,31 +7,37 @@
     "category": "userop_validation",
     "patterns": [
       {
-        "type": "substring",
-        "value": "FailedOp"
+        "type": "regex",
+        "value": "\\bFailedOp\\s*\\("
       },
       {
         "type": "selector",
         "value": "0x220266b6"
       }
     ],
-    "summary": "The EntryPoint reverted a UserOperation during validation with FailedOp(uint256 opIndex, string reason). The reason string usually starts with an AAxx code.",
+    "summary": "The EntryPoint reverted validation with FailedOp(uint256 opIndex, string reason); the reason is expected to begin with an AAxx code that identifies whether the sender, factory, paymaster, or EntryPoint path failed.",
     "rootCauseKnown": false,
     "likelyCauses": [
-      "Bundler rejected the UserOp at simulation.",
-      "Account signature / nonce / prefund check failed."
+      "The bundler simulation rejected a UserOperation before inclusion.",
+      "The AAxx reason string points to the failing phase: account creation, account validation, paymaster validation, gas accounting, or EntryPoint bookkeeping.",
+      "The underlying cause may still require decoding an account, factory, or paymaster revert."
     ],
     "nextSteps": [
-      "Parse the reason string for the AAxx code and look it up.",
-      "If reason includes nested bytes (FailedOpWithRevert), decode those too."
+      "Extract the AAxx code from the FailedOp reason and use the AA code entry for the targeted fix.",
+      "Use the opIndex to identify the failing UserOperation in a bundle.",
+      "If the failing phase is factory or paymaster validation, trace the last called entity because ERC-4337 attributes simulation failures by the last entity called before the revert."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "ERC-4337 error codes and FailedOp",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#error-codes"
+      },
+      {
+        "label": "ERC-4337 EntryPoint explainer",
+        "url": "https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html"
       }
     ]
   },
@@ -51,20 +57,31 @@
         "value": "0x65c8fd4d"
       }
     ],
-    "summary": "EntryPoint v0.7+ wraps an inner revert from the account/paymaster. The inner bytes can be decoded with the standard revert decoder.",
+    "summary": "EntryPoint v0.7+ can wrap the AAxx reason together with inner revert bytes from the account, factory, or paymaster, so the outer AA code tells the failing phase and the inner bytes often reveal the contract-specific reason.",
     "rootCauseKnown": false,
     "likelyCauses": [
-      "Account contract reverted inside validateUserOp.",
-      "Paymaster reverted inside validatePaymasterUserOp."
+      "The account, factory, or paymaster reverted during EntryPoint validation.",
+      "The AAxx reason identifies the failing phase, while the inner bytes carry a standard Error(string), Panic, or custom error.",
+      "The same outer AA code can have different fixes depending on the decoded inner revert."
     ],
     "nextSteps": [
-      "Decode the outer FailedOpWithRevert to get (opIndex, reason, inner).",
-      "Decode `inner` bytes with the revert decoder.",
-      "Use the account/paymaster ABI to resolve custom errors."
+      "Decode FailedOpWithRevert to get opIndex, AAxx reason, and inner revert bytes.",
+      "Run the inner bytes through the revert decoder with the account, factory, or paymaster ABI.",
+      "Apply the fix from the decoded inner error before changing gas fields or retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "sometimes",
-    "confidence": "high"
+    "confidence": "high",
+    "references": [
+      {
+        "label": "ERC-4337 error codes and FailedOpWithRevert",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#error-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      }
+    ]
   },
   {
     "id": "aa21-didnt-pay-prefund",
@@ -82,21 +99,35 @@
         "value": "AA21"
       }
     ],
-    "summary": "The smart account does not have enough ETH (or staked deposit) to cover the prefund for this UserOperation.",
+    "summary": "The sender could not prefund the UserOperation through its EntryPoint deposit or native balance, and no valid paymaster funding path covered the operation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "Account balance below required prefund.",
-      "Paymaster not specified but expected.",
-      "Gas limits over-estimated by the bundler."
+      "The smart account lacks enough native token or EntryPoint deposit to cover the required prefund.",
+      "The client expected sponsorship but did not attach valid paymaster fields for the EntryPoint version.",
+      "Gas or fee fields raised the required prefund above the account's available balance."
     ],
     "nextSteps": [
-      "Fund the smart account directly with ETH, or",
-      "Attach a paymaster via paymasterAndData / paymaster fields.",
-      "Lower verificationGasLimit/callGasLimit/preVerificationGas if over-allocated."
+      "If no paymaster is used, fund the smart account or deposit for it through EntryPoint.depositTo.",
+      "If sponsorship is expected, regenerate and attach paymaster data for the same chain, account, and EntryPoint version.",
+      "Re-estimate gas and fee fields after final calldata and signatures are set so the prefund calculation is current."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
-    "confidence": "high"
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Alchemy EntryPoint v0.7/v0.8 AA21",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 AA21",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 EntryPoint deposits",
+        "url": "https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html"
+      }
+    ]
   },
   {
     "id": "aa23-reverted-or-oog",
@@ -114,21 +145,35 @@
         "value": "AA23"
       }
     ],
-    "summary": "The account's validateUserOp reverted, or ran out of gas. The most common AA failure.",
+    "summary": "The smart account's validateUserOp path reverted or exhausted validation gas, so EntryPoint could not accept the sender's UserOperation.",
     "rootCauseKnown": false,
     "likelyCauses": [
-      "Signature check inside validateUserOp threw.",
-      "Custom validation rejected the op (nonce policy, session key expired, etc).",
-      "verificationGasLimit too low for the validation logic."
+      "The account validation logic rejected the UserOperation because of signature, session key, nonce policy, module policy, or account state.",
+      "verificationGasLimit is too low for the account's validateUserOp execution.",
+      "The account needs prefund or paymaster fields that were not present or were malformed."
     ],
     "nextSteps": [
-      "If a FailedOpWithRevert is available, decode the inner revert.",
-      "Re-simulate via the bundler's eth_estimateUserOperationGas to size verificationGasLimit.",
-      "Verify the signature scheme and any session-key/policy state in the account."
+      "If FailedOpWithRevert is present, decode the inner revert before changing gas settings.",
+      "Re-run UserOperation gas estimation with the final signature, paymaster data, EntryPoint address, and chain id.",
+      "Verify the account's signature scheme, session/module policy, and prefund path against the exact UserOperation hash."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "sometimes",
-    "confidence": "high"
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Alchemy EntryPoint v0.7/v0.8 AA23",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 AA23",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "Alchemy Wallet API AA23 troubleshooting",
+        "url": "https://www.alchemy.com/docs/wallets/troubleshooting/wallet-apis-errors"
+      }
+    ]
   },
   {
     "id": "aa24-signature-error",
@@ -146,22 +191,35 @@
         "value": "AA24"
       }
     ],
-    "summary": "validateUserOp returned a non-zero signature validation result — the signature did not verify against the account's expected signer.",
+    "summary": "The account validation path returned a signature failure: the signature does not validate for this UserOperation hash, EntryPoint address, chain id, signer, or account signature scheme.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "Wrong signer key.",
-      "Wrong domain / chainId / EntryPoint address mixed into the userOpHash.",
-      "Account uses a custom signature scheme (e.g. EIP-1271, passkeys) and the encoding is off.",
-      "Bundler used a different EntryPoint version than the account expects."
+      "The UserOperation was signed with the wrong private key, owner, session key, or passkey credential.",
+      "The userOpHash was computed with the wrong EntryPoint address, chain id, nonce, gas fields, or calldata.",
+      "The account expects a different signature envelope, such as EIP-1271, modular validator bytes, or aggregated signature data."
     ],
     "nextSteps": [
-      "Recompute userOpHash with the exact EntryPoint version and chainId in use.",
-      "Confirm the signer key matches the account's owner / validator.",
-      "If using EIP-1271, verify the wrapping bytes."
+      "Recompute userOpHash from the exact UserOperation sent to the bundler, using the target chain id and EntryPoint address.",
+      "Confirm the signer or validator configured in the smart account matches the signature source.",
+      "Regenerate the signature after paymaster data, gas fields, nonce, and calldata are finalized."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
-    "confidence": "high"
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Alchemy EntryPoint v0.7/v0.8 AA24",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 AA24",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "Alchemy Wallet API invalid signature troubleshooting",
+        "url": "https://www.alchemy.com/docs/wallets/troubleshooting/wallet-apis-errors"
+      }
+    ]
   },
   {
     "id": "aa25-invalid-account-nonce",
@@ -179,19 +237,35 @@
         "value": "AA25"
       }
     ],
-    "summary": "The nonce in the UserOperation does not match the EntryPoint's expected nonce for this account/key.",
+    "summary": "The UserOperation nonce is not the nonce the EntryPoint/account expects for this sender and nonce key; it may be reused, too far ahead, or encoded with the wrong key/sequence format.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "Local nonce out of sync.",
-      "Parallel UserOps reused the same 2D nonce key."
+      "The client reused a nonce that was already included or is already pending.",
+      "Parallel UserOperations are using the same nonce key and sequence.",
+      "The nonce is formatted incorrectly or jumps too far beyond the account's current sequence."
     ],
     "nextSteps": [
-      "Read the current nonce from the EntryPoint via getNonce(sender, key).",
-      "Use 2D nonce keys to serialize parallel ops by namespace."
+      "Read the current nonce from EntryPoint.getNonce(sender, key) immediately before building the UserOperation.",
+      "Use separate nonce keys only when the account supports that parallelization model.",
+      "Cancel or wait for pending UserOperations that occupy the same nonce before resubmitting."
     ],
     "retryHelpful": "yes",
     "increasingGasHelpful": "no",
-    "confidence": "high"
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Alchemy EntryPoint v0.7/v0.8 AA25",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 AA25",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "Alchemy Wallet API AA25 troubleshooting",
+        "url": "https://www.alchemy.com/docs/wallets/troubleshooting/wallet-apis-errors"
+      }
+    ]
   },
   {
     "id": "aa31-paymaster-deposit-too-low",
@@ -209,19 +283,35 @@
         "value": "AA31"
       }
     ],
-    "summary": "The paymaster does not have enough deposit at the EntryPoint to cover this UserOperation.",
+    "summary": "The selected paymaster does not have enough EntryPoint deposit to prefund the UserOperation it is supposed to sponsor.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "Paymaster deposit was drained.",
-      "Gas limits set higher than the paymaster operator expected."
+      "The paymaster deposit at the EntryPoint is below the required prefund.",
+      "The operation's gas and fee fields increased the sponsorship cost above the paymaster's available deposit.",
+      "A third-party sponsorship service is misconfigured, inactive, or out of funds for this chain."
     ],
     "nextSteps": [
-      "Top up the paymaster's deposit via EntryPoint.depositTo(paymaster).",
-      "Contact the paymaster operator if it's a third-party service."
+      "If you operate the paymaster, top up its EntryPoint deposit with depositTo(paymaster).",
+      "If you use a hosted sponsor, request fresh paymaster data and check the sponsorship policy status.",
+      "Re-estimate the UserOperation gas so the paymaster sees the current prefund requirement."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
-    "confidence": "high"
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Alchemy EntryPoint v0.7/v0.8 AA31",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 AA31",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 EntryPoint deposits",
+        "url": "https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html"
+      }
+    ]
   },
   {
     "id": "aa33-reverted-or-oog",
@@ -239,20 +329,34 @@
         "value": "AA33"
       }
     ],
-    "summary": "The paymaster's validatePaymasterUserOp reverted, or ran out of gas.",
+    "summary": "The paymaster's validatePaymasterUserOp path reverted or exhausted its validation gas, so EntryPoint rejected the sponsored UserOperation.",
     "rootCauseKnown": false,
     "likelyCauses": [
-      "Paymaster's policy rejected the user/op (signature, allowlist, spending cap).",
-      "verificationGasLimit too low for paymaster logic.",
-      "Bug in custom paymaster contract."
+      "The paymaster policy rejected the account, target call, token payment, chain, app, or spending limit.",
+      "The paymaster signature or authorization data is malformed for the EntryPoint version.",
+      "The validation gas budget is too low for the paymaster's policy checks."
     ],
     "nextSteps": [
-      "Decode inner revert if FailedOpWithRevert is present.",
-      "Inspect paymaster policy (ERC-20 paymaster: token allowance / price feed staleness).",
-      "Bump verificationGasLimit."
+      "Decode inner revert bytes if FailedOpWithRevert is present.",
+      "Regenerate paymaster data immediately before submission and confirm the sponsorship policy is active.",
+      "Increase the relevant paymaster verification gas only if tracing shows validation gas exhaustion rather than policy rejection."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "sometimes",
-    "confidence": "high"
+    "confidence": "high",
+    "references": [
+      {
+        "label": "Alchemy EntryPoint v0.7/v0.8 AA33",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 AA33",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 paymaster validation",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#paymasters-contracts"
+      }
+    ]
   }
 ]

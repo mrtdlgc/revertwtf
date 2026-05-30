@@ -11,15 +11,19 @@
         "value": "0x57eee766"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error AlreadyProcessed().",
+    "summary": "Wormhole Solidity SDK rejected the call at AlreadyProcessed: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AlreadyProcessed custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,15 +50,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?already set up['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: already set up.",
+    "summary": "Wormhole Solidity SDK reverted with \"already set up\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -81,18 +89,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Callee has no code['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Callee has no code.",
+    "summary": "Wormhole Solidity SDK reverted with \"Callee has no code\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -116,15 +128,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?CctpOverride: already set up['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: CctpOverride: already set up.",
+    "summary": "Wormhole Solidity SDK reverted with \"CctpOverride: already set up\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -151,15 +167,19 @@
         "value": "0x11c53dda"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error CctpVaaMismatch(uint32,uint32,uint64).",
+    "summary": "Wormhole Solidity SDK rejected the call at CctpVaaMismatch(uint32,uint32,uint64): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CctpVaaMismatch custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -186,15 +206,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Chain already has a fork['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Chain already has a fork.",
+    "summary": "Wormhole Solidity SDK reverted with \"Chain already has a fork\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -221,18 +245,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ChainId is not valid['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: ChainId is not valid.",
+    "summary": "Wormhole Solidity SDK reverted with \"ChainId is not valid\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -256,17 +284,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Chain not registered with ForkTest['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Chain not registered with ForkTest.",
+    "summary": "Wormhole Solidity SDK reverted with \"Chain not registered with ForkTest\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,18 +323,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?CoreBridge is not valid['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: CoreBridge is not valid.",
+    "summary": "Wormhole Solidity SDK reverted with \"CoreBridge is not valid\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -326,17 +362,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Delivery not found['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Delivery not found.",
+    "summary": "Wormhole Solidity SDK reverted with \"Delivery not found\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -361,18 +401,22 @@
         "value": "0x82273f20"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error DeliveryProviderDoesNotSupportMessageKeyType(uint8).",
+    "summary": "Wormhole Solidity SDK rejected the call at DeliveryProviderDoesNotSupportMessageKeyType(uint8): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DeliveryProviderDoesNotSupportMessageKeyType custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -396,15 +440,19 @@
         "value": "0x4430ada4"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error DestinationMismatch().",
+    "summary": "Wormhole Solidity SDK rejected the call at DestinationMismatch: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DestinationMismatch custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -431,18 +479,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Expected exactly one delivery['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Expected exactly one delivery.",
+    "summary": "Wormhole Solidity SDK reverted with \"Expected exactly one delivery\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -466,18 +518,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Expected exactly one request for execution['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Expected exactly one request for execution.",
+    "summary": "Wormhole Solidity SDK reverted with \"Expected exactly one request for execution\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -501,18 +557,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Expected no redeliveries['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Expected no redeliveries.",
+    "summary": "Wormhole Solidity SDK reverted with \"Expected no redeliveries\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -536,18 +596,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Failed to find CCTP Message['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Failed to find CCTP Message.",
+    "summary": "Wormhole Solidity SDK reverted with \"Failed to find CCTP Message\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -571,18 +635,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Failed to find published Wormhole message['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Failed to find published Wormhole message.",
+    "summary": "Wormhole Solidity SDK reverted with \"Failed to find published Wormhole message\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -606,18 +674,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Failed to find VAA['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Failed to find VAA.",
+    "summary": "Wormhole Solidity SDK reverted with \"Failed to find VAA\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -641,18 +713,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Failed to update default provider['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Failed to update default provider.",
+    "summary": "Wormhole Solidity SDK reverted with \"Failed to update default provider\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -676,15 +752,19 @@
         "value": "0x71d44f30"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error IdempotentUpgrade().",
+    "summary": "Wormhole Solidity SDK rejected the call at IdempotentUpgrade: points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IdempotentUpgrade custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -711,15 +791,19 @@
         "value": "0x0745e401"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidArguments(uint256,uint256).",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidArguments(uint256,uint256): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidArguments custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -746,18 +830,22 @@
         "value": "0xf7a37b07"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidBoolVal(uint8).",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidBoolVal(uint8): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidBoolVal custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -781,18 +869,22 @@
         "value": "0x12bc29fa"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidCctpMessageBodyVersion().",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidCctpMessageBodyVersion: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidCctpMessageBodyVersion custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -816,18 +908,22 @@
         "value": "0x8dab9869"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidCctpMessageHeaderVersion().",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidCctpMessageHeaderVersion: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidCctpMessageHeaderVersion custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -851,18 +947,22 @@
         "value": "0xa710429d"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidContractAddress().",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidContractAddress: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidContractAddress custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -886,18 +986,22 @@
         "value": "0x5cb045db"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidData().",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidData: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidData custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -921,18 +1025,22 @@
         "value": "0xaafdf434"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidDelivery().",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidDelivery: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidDelivery custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -956,15 +1064,19 @@
         "value": "0x8076dd8a"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidFunctionSignature().",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidFunctionSignature: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidFunctionSignature custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -991,18 +1103,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid instruction type['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Invalid instruction type.",
+    "summary": "Wormhole Solidity SDK reverted with \"Invalid instruction type\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1026,18 +1142,22 @@
         "value": "0xb974a311"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidPayloadId(uint8).",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidPayloadId(uint8): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidPayloadId custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1061,18 +1181,22 @@
         "value": "0x5bb2ebcc"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidPeer().",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidPeer: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidPeer custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1096,18 +1220,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid peer['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Invalid peer.",
+    "summary": "Wormhole Solidity SDK reverted with \"Invalid peer\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1131,18 +1259,22 @@
         "value": "0x051c98b4"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidPercentage(uint16).",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidPercentage(uint16): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidPercentage custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1166,18 +1298,22 @@
         "value": "0x1d9617a0"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidResponseVersion().",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidResponseVersion: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidResponseVersion custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1201,15 +1337,19 @@
         "value": "0x2c33b568"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidSignatureLength(uint256).",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidSignatureLength(uint256): means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidSignatureLength custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1236,18 +1376,22 @@
         "value": "0x15c79f68"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error InvalidVaa().",
+    "summary": "Wormhole Solidity SDK rejected the call at InvalidVaa: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidVaa custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1271,18 +1415,22 @@
         "value": "0x65c1f7cd"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error MessageKeysLengthDoesNotMatchMessagesLength(uint256,uint256).",
+    "summary": "Wormhole Solidity SDK rejected the call at MessageKeysLengthDoesNotMatchMessagesLength(uint256,uint256): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MessageKeysLengthDoesNotMatchMessagesLength custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1306,18 +1454,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?no guardian private keys provided['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: no guardian private keys provided.",
+    "summary": "Wormhole Solidity SDK reverted with \"no guardian private keys provided\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1341,15 +1493,19 @@
         "value": "0x84ae4a30"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error NumberOfResponsesMismatch().",
+    "summary": "Wormhole Solidity SDK rejected the call at NumberOfResponsesMismatch: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NumberOfResponsesMismatch custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1376,18 +1532,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?only VAA_V1 and CCTP_V1 requests are supported by ExecutorTest['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: only VAA_V1 and CCTP_V1 requests are supported by ExecutorTest.",
+    "summary": "Wormhole Solidity SDK reverted with \"only VAA_V1 and CCTP_V1 requests are supported by ExecutorTest\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1411,15 +1571,19 @@
         "value": "0xf5c4e22c"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error OutOfBounds(uint256,uint256).",
+    "summary": "Wormhole Solidity SDK rejected the call at OutOfBounds(uint256,uint256): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the OutOfBounds custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1446,15 +1610,19 @@
         "value": "0x545f4b56"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error PayloadTooLarge(uint256).",
+    "summary": "Wormhole Solidity SDK rejected the call at PayloadTooLarge(uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PayloadTooLarge custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1481,17 +1649,21 @@
         "value": "0x36dfac9c"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error PaymentFailure(address).",
+    "summary": "Wormhole Solidity SDK rejected the call at PaymentFailure(address): means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PaymentFailure custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1516,15 +1688,19 @@
         "value": "0x77ff6734"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error ProxyConstructionFailed(bytes).",
+    "summary": "Wormhole Solidity SDK rejected the call at ProxyConstructionFailed(bytes): points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ProxyConstructionFailed custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1551,15 +1727,19 @@
         "value": "0x02164961"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error RequestTypeMismatch().",
+    "summary": "Wormhole Solidity SDK rejected the call at RequestTypeMismatch: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the RequestTypeMismatch custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1586,18 +1766,22 @@
         "value": "0xbf7528c2"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error SolanaSeedTooLong().",
+    "summary": "Wormhole Solidity SDK rejected the call at SolanaSeedTooLong: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SolanaSeedTooLong custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1621,18 +1805,22 @@
         "value": "0x44b68ce7"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error SolanaTooManyPDAs().",
+    "summary": "Wormhole Solidity SDK rejected the call at SolanaTooManyPDAs: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SolanaTooManyPDAs custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1656,18 +1844,22 @@
         "value": "0x2fca1670"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error SolanaTooManySeeds().",
+    "summary": "Wormhole Solidity SDK rejected the call at SolanaTooManySeeds: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SolanaTooManySeeds custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1691,17 +1883,21 @@
         "value": "0xb10b0aec"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error StaleBlockNum().",
+    "summary": "Wormhole Solidity SDK rejected the call at StaleBlockNum: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the StaleBlockNum custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1726,17 +1922,21 @@
         "value": "0x3a04ceca"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error StaleBlockTime().",
+    "summary": "Wormhole Solidity SDK rejected the call at StaleBlockTime: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the StaleBlockTime custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1761,15 +1961,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?too many guardians, core bridge enforces upper bound of 255['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: too many guardians, core bridge enforces upper bound of 255.",
+    "summary": "Wormhole Solidity SDK reverted with \"too many guardians, core bridge enforces upper bound of 255\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1796,18 +2000,22 @@
         "value": "0x12d6a5c7"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error TooManyMessageKeys(uint256).",
+    "summary": "Wormhole Solidity SDK rejected the call at TooManyMessageKeys(uint256): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TooManyMessageKeys custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1831,15 +2039,19 @@
         "value": "0x0ca274fc"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error TypeIdMismatch(uint256,uint256).",
+    "summary": "Wormhole Solidity SDK rejected the call at TypeIdMismatch(uint256,uint256): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TypeIdMismatch custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1866,18 +2078,22 @@
         "value": "0xb385c62f"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error UnexpectedEmitter(bytes32,bytes32).",
+    "summary": "Wormhole Solidity SDK rejected the call at UnexpectedEmitter(bytes32,bytes32): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnexpectedEmitter custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1901,18 +2117,22 @@
         "value": "0x21d370a7"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error UnexpectedId(uint8,uint8).",
+    "summary": "Wormhole Solidity SDK rejected the call at UnexpectedId(uint8,uint8): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnexpectedId custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1936,18 +2156,22 @@
         "value": "0x5e7bd6ec"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error UnexpectedNumberOfResults().",
+    "summary": "Wormhole Solidity SDK rejected the call at UnexpectedNumberOfResults: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnexpectedNumberOfResults custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1971,18 +2195,22 @@
         "value": "0x6bed78d6"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error UnexpectedVersion(uint8).",
+    "summary": "Wormhole Solidity SDK rejected the call at UnexpectedVersion(uint8): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnexpectedVersion custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2006,17 +2234,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Unknown message key type['\"]?\\s*$"
       }
     ],
-    "summary": "Wormhole Solidity SDK revert reason string: Unknown message key type.",
+    "summary": "Wormhole Solidity SDK reverted with \"Unknown message key type\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2041,18 +2273,22 @@
         "value": "0x63fb54a7"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error UnsupportedChainId(uint16).",
+    "summary": "Wormhole Solidity SDK rejected the call at UnsupportedChainId(uint16): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnsupportedChainId custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2076,18 +2312,22 @@
         "value": "0xe889a121"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error UnsupportedEvmChainId(uint256).",
+    "summary": "Wormhole Solidity SDK rejected the call at UnsupportedEvmChainId(uint256): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnsupportedEvmChainId custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2111,18 +2351,22 @@
         "value": "0x51ee5853"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error UnsupportedQueryType(uint8).",
+    "summary": "Wormhole Solidity SDK rejected the call at UnsupportedQueryType(uint8): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnsupportedQueryType custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2146,15 +2390,19 @@
         "value": "0x0dc0c93f"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error UpgradeFailed(bytes).",
+    "summary": "Wormhole Solidity SDK rejected the call at UpgradeFailed(bytes): points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UpgradeFailed custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2181,15 +2429,19 @@
         "value": "0x714f5513"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error VersionMismatch().",
+    "summary": "Wormhole Solidity SDK rejected the call at VersionMismatch: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the VersionMismatch custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2216,18 +2468,22 @@
         "value": "0x96b8e05b"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error WrongQueryType(uint8,uint8).",
+    "summary": "Wormhole Solidity SDK rejected the call at WrongQueryType(uint8,uint8): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the WrongQueryType custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2251,18 +2507,22 @@
         "value": "0xbb6b170d"
       }
     ],
-    "summary": "Wormhole Solidity SDK custom error ZeroQueries().",
+    "summary": "Wormhole Solidity SDK rejected the call at ZeroQueries: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ZeroQueries custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and message, route, remote contract, fee, nonce, or finality state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Wormhole Solidity SDK precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {

@@ -11,15 +11,19 @@
         "value": "0x40622f2c"
       }
     ],
-    "summary": "Morpho Bundlers custom error BadSignatory().",
+    "summary": "Morpho Bundlers rejected the call at BadSignatory: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with BadSignatory, a Morpho bundler, callback, permit, transfer, multicall, wrapping, or vault action flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Morpho Bundlers source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,15 +50,19 @@
         "value": "0xba0e0fd5"
       }
     ],
-    "summary": "Morpho Bundlers custom error InvalidSignatory().",
+    "summary": "Morpho Bundlers rejected the call at InvalidSignatory: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidSignatory, a Morpho bundler, callback, permit, transfer, multicall, wrapping, or vault action flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Morpho Bundlers source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",

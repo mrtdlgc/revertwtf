@@ -11,15 +11,19 @@
         "value": "0x8b4189ff"
       }
     ],
-    "summary": "Gnosis Guild Zodiac custom error AlreadyDisabledModule(address).",
+    "summary": "Gnosis Guild Zodiac rejected the call at AlreadyDisabledModule(address): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AlreadyDisabledModule custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gnosis Guild Zodiac precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,15 +50,19 @@
         "value": "0x20618973"
       }
     ],
-    "summary": "Gnosis Guild Zodiac custom error AlreadyEnabledModule(address).",
+    "summary": "Gnosis Guild Zodiac rejected the call at AlreadyEnabledModule(address): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AlreadyEnabledModule custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gnosis Guild Zodiac precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -81,15 +89,19 @@
         "value": "0x7dabd399"
       }
     ],
-    "summary": "Gnosis Guild Zodiac custom error FailedInitialization().",
+    "summary": "Gnosis Guild Zodiac rejected the call at FailedInitialization: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FailedInitialization custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gnosis Guild Zodiac precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -116,15 +128,19 @@
         "value": "0x9e1dc0c5"
       }
     ],
-    "summary": "Gnosis Guild Zodiac custom error HashAlreadyConsumed(bytes32).",
+    "summary": "Gnosis Guild Zodiac rejected the call at HashAlreadyConsumed(bytes32): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the HashAlreadyConsumed custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gnosis Guild Zodiac precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -151,18 +167,22 @@
         "value": "0xb927fe5e"
       }
     ],
-    "summary": "Gnosis Guild Zodiac custom error InvalidModule(address).",
+    "summary": "Gnosis Guild Zodiac rejected the call at InvalidModule(address): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidModule custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gnosis Guild Zodiac precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -186,17 +206,21 @@
         "value": "0xe5b7db2e"
       }
     ],
-    "summary": "Gnosis Guild Zodiac custom error InvalidPageSize().",
+    "summary": "Gnosis Guild Zodiac rejected the call at InvalidPageSize: means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidPageSize custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gnosis Guild Zodiac precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -221,15 +245,19 @@
         "value": "0x4a0bfec1"
       }
     ],
-    "summary": "Gnosis Guild Zodiac custom error NotAuthorized(address).",
+    "summary": "Gnosis Guild Zodiac rejected the call at NotAuthorized(address): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotAuthorized custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gnosis Guild Zodiac precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -256,17 +284,21 @@
         "value": "0xb16ea67e"
       }
     ],
-    "summary": "Gnosis Guild Zodiac custom error NotIERC165Compliant(address).",
+    "summary": "Gnosis Guild Zodiac rejected the call at NotIERC165Compliant(address): means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotIERC165Compliant custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gnosis Guild Zodiac precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,15 +323,19 @@
         "value": "0xdfd49ebd"
       }
     ],
-    "summary": "Gnosis Guild Zodiac custom error SetupModulesAlreadyCalled().",
+    "summary": "Gnosis Guild Zodiac rejected the call at SetupModulesAlreadyCalled: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SetupModulesAlreadyCalled custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gnosis Guild Zodiac precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -326,17 +362,21 @@
         "value": "0xdc7a7a24"
       }
     ],
-    "summary": "Gnosis Guild Zodiac custom error TakenAddress(address).",
+    "summary": "Gnosis Guild Zodiac rejected the call at TakenAddress(address): means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TakenAddress custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gnosis Guild Zodiac precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -361,17 +401,21 @@
         "value": "0xfff23361"
       }
     ],
-    "summary": "Gnosis Guild Zodiac custom error TargetHasNoCode(address).",
+    "summary": "Gnosis Guild Zodiac rejected the call at TargetHasNoCode(address): means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TargetHasNoCode custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gnosis Guild Zodiac precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -396,15 +440,19 @@
         "value": "0xc80b8834"
       }
     ],
-    "summary": "Gnosis Guild Zodiac custom error ZeroAddress(address).",
+    "summary": "Gnosis Guild Zodiac rejected the call at ZeroAddress(address): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ZeroAddress custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gnosis Guild Zodiac precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",

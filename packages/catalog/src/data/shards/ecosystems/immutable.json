@@ -11,15 +11,19 @@
         "value": "0xd6f93fb7"
       }
     ],
-    "summary": "Immutable custom error AllowlistDoesNotImplementIOperatorAllowlist().",
+    "summary": "Immutable rejected the call at AllowlistDoesNotImplementIOperatorAllowlist: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AllowlistDoesNotImplementIOperatorAllowlist custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,15 +50,19 @@
         "value": "0x8371ab02"
       }
     ],
-    "summary": "Immutable custom error ApproveTargetNotInAllowlist(address).",
+    "summary": "Immutable rejected the call at ApproveTargetNotInAllowlist(address): points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ApproveTargetNotInAllowlist custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -81,15 +89,19 @@
         "value": "0xf6fa4cbd"
       }
     ],
-    "summary": "Immutable custom error ApproverNotInAllowlist(address).",
+    "summary": "Immutable rejected the call at ApproverNotInAllowlist(address): points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ApproverNotInAllowlist custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -116,18 +128,22 @@
         "value": "0xdbc2c92e"
       }
     ],
-    "summary": "Immutable custom error AttemptToDistributeToNewAccount(address,uint256).",
+    "summary": "Immutable rejected the call at AttemptToDistributeToNewAccount(address,uint256): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AttemptToDistributeToNewAccount custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -151,15 +167,19 @@
         "value": "0x937db65f"
       }
     ],
-    "summary": "Immutable custom error CallerNotInAllowlist(address).",
+    "summary": "Immutable rejected the call at CallerNotInAllowlist(address): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotInAllowlist custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -186,15 +206,19 @@
         "value": "0xd5bb5684"
       }
     ],
-    "summary": "Immutable custom error CanNotUpgradeToLowerOrSameVersion(uint256).",
+    "summary": "Immutable rejected the call at CanNotUpgradeToLowerOrSameVersion(uint256): points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CanNotUpgradeToLowerOrSameVersion custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -221,15 +245,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?CreateDeploy: caller is not the owner['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: CreateDeploy: caller is not the owner.",
+    "summary": "Immutable reverted with \"CreateDeploy: caller is not the owner\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -256,17 +284,21 @@
         "value": "0x23f80101"
       }
     ],
-    "summary": "Immutable custom error EmptyCallArray().",
+    "summary": "Immutable rejected the call at EmptyCallArray: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the EmptyCallArray custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,17 +323,21 @@
         "value": "0x5828dfab"
       }
     ],
-    "summary": "Immutable custom error EmptyDeployerList().",
+    "summary": "Immutable rejected the call at EmptyDeployerList: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the EmptyDeployerList custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -326,15 +362,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Psi: approval to current owner['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: ERC721Psi: approval to current owner.",
+    "summary": "Immutable reverted with \"ERC721Psi: approval to current owner\", an exact source-level check that points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -361,15 +401,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Psi: approve caller is not owner nor approved for all['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: ERC721Psi: approve caller is not owner nor approved for all.",
+    "summary": "Immutable reverted with \"ERC721Psi: approve caller is not owner nor approved for all\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -396,17 +440,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Psi: approved query for nonexistent token['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: ERC721Psi: approved query for nonexistent token.",
+    "summary": "Immutable reverted with \"ERC721Psi: approved query for nonexistent token\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -431,15 +479,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Psi: mint to the zero address['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: ERC721Psi: mint to the zero address.",
+    "summary": "Immutable reverted with \"ERC721Psi: mint to the zero address\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -466,17 +518,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Psi: operator query for nonexistent token['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: ERC721Psi: operator query for nonexistent token.",
+    "summary": "Immutable reverted with \"ERC721Psi: operator query for nonexistent token\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -501,17 +557,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Psi: owner query for nonexistent token['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: ERC721Psi: owner query for nonexistent token.",
+    "summary": "Immutable reverted with \"ERC721Psi: owner query for nonexistent token\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -536,15 +596,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Psi: quantity must be greater 0['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: ERC721Psi: quantity must be greater 0.",
+    "summary": "Immutable reverted with \"ERC721Psi: quantity must be greater 0\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -571,15 +635,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Psi: transfer caller is not owner nor approved['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: ERC721Psi: transfer caller is not owner nor approved.",
+    "summary": "Immutable reverted with \"ERC721Psi: transfer caller is not owner nor approved\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -606,15 +674,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Psi: transfer of token that is not own['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: ERC721Psi: transfer of token that is not own.",
+    "summary": "Immutable reverted with \"ERC721Psi: transfer of token that is not own\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -641,15 +713,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Psi: transfer to non ERC721Receiver implementer['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: ERC721Psi: transfer to non ERC721Receiver implementer.",
+    "summary": "Immutable reverted with \"ERC721Psi: transfer to non ERC721Receiver implementer\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -676,15 +752,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC721Psi: transfer to the zero address['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: ERC721Psi: transfer to the zero address.",
+    "summary": "Immutable reverted with \"ERC721Psi: transfer to the zero address\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -711,17 +791,21 @@
         "value": "0xf80dbaea"
       }
     ],
-    "summary": "Immutable custom error Expired(uint256).",
+    "summary": "Immutable rejected the call at Expired(uint256): means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the Expired custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -746,15 +830,19 @@
         "value": "0xb73c99f5"
       }
     ],
-    "summary": "Immutable custom error IImmutableERC721IDAboveThreshold(uint256).",
+    "summary": "Immutable rejected the call at IImmutableERC721IDAboveThreshold(uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IImmutableERC721IDAboveThreshold custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,15 +869,19 @@
         "value": "0x4fefd561"
       }
     ],
-    "summary": "Immutable custom error IImmutableERC721MismatchedTokenOwner(uint256,address).",
+    "summary": "Immutable rejected the call at IImmutableERC721MismatchedTokenOwner(uint256,address): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IImmutableERC721MismatchedTokenOwner custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -816,15 +908,19 @@
         "value": "0x359a1bc3"
       }
     ],
-    "summary": "Immutable custom error IImmutableERC721MismatchedTransferLengths().",
+    "summary": "Immutable rejected the call at IImmutableERC721MismatchedTransferLengths: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IImmutableERC721MismatchedTransferLengths custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -851,15 +947,19 @@
         "value": "0x0247e3a9"
       }
     ],
-    "summary": "Immutable custom error IImmutableERC721NotOwnerOrOperator(uint256).",
+    "summary": "Immutable rejected the call at IImmutableERC721NotOwnerOrOperator(uint256): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IImmutableERC721NotOwnerOrOperator custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -886,15 +986,19 @@
         "value": "0x6387ca52"
       }
     ],
-    "summary": "Immutable custom error IImmutableERC721SendingToZerothAddress().",
+    "summary": "Immutable rejected the call at IImmutableERC721SendingToZerothAddress: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IImmutableERC721SendingToZerothAddress custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -921,15 +1025,19 @@
         "value": "0xbb9b4220"
       }
     ],
-    "summary": "Immutable custom error IImmutableERC721TokenAlreadyBurned(uint256).",
+    "summary": "Immutable rejected the call at IImmutableERC721TokenAlreadyBurned(uint256): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IImmutableERC721TokenAlreadyBurned custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -956,17 +1064,21 @@
         "value": "0xf9a5af54"
       }
     ],
-    "summary": "Immutable custom error ImxNotFromWimxContract(address).",
+    "summary": "Immutable rejected the call at ImxNotFromWimxContract(address): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ImxNotFromWimxContract custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -991,17 +1103,21 @@
         "value": "0xe29172f9"
       }
     ],
-    "summary": "Immutable custom error InvalidExtraData(string,bytes32).",
+    "summary": "Immutable rejected the call at InvalidExtraData(string,bytes32): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidExtraData custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant name, symbol, reason, URI, or identifier; id, hash, domain, role, message, order, or storage key; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1026,17 +1142,21 @@
         "value": "0x1bcf9bb7"
       }
     ],
-    "summary": "Immutable custom error InvalidFulfiller(address,address,bytes32).",
+    "summary": "Immutable rejected the call at InvalidFulfiller(address,address,bytes32): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidFulfiller custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; id, hash, domain, role, message, order, or storage key; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1061,17 +1181,21 @@
         "value": "0x252f0915"
       }
     ],
-    "summary": "Immutable custom error InvalidReference(bytes32).",
+    "summary": "Immutable rejected the call at InvalidReference(bytes32): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidReference custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1096,15 +1220,19 @@
         "value": "0x8baa579f"
       }
     ],
-    "summary": "Immutable custom error InvalidSignature().",
+    "summary": "Immutable rejected the call at InvalidSignature: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidSignature custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1131,17 +1259,21 @@
         "value": "0xb28a5660"
       }
     ],
-    "summary": "Immutable custom error InvalidZone(address).",
+    "summary": "Immutable rejected the call at InvalidZone(address): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidZone custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1166,15 +1298,19 @@
         "value": "0xeec4e6d5"
       }
     ],
-    "summary": "Immutable custom error LastDefaultAdminRole(address).",
+    "summary": "Immutable rejected the call at LastDefaultAdminRole(address): points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the LastDefaultAdminRole custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1201,15 +1337,19 @@
         "value": "0x9f2b3f27"
       }
     ],
-    "summary": "Immutable custom error MismatchMsgValueAmount(uint256,uint256).",
+    "summary": "Immutable rejected the call at MismatchMsgValueAmount(uint256,uint256): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MismatchMsgValueAmount custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1236,17 +1376,21 @@
         "value": "0xd875e427"
       }
     ],
-    "summary": "Immutable custom error MustDistributeMoreThanZero().",
+    "summary": "Immutable rejected the call at MustDistributeMoreThanZero: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MustDistributeMoreThanZero custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1271,15 +1415,19 @@
         "value": "0x65a9f34c"
       }
     ],
-    "summary": "Immutable custom error MustHaveOneRoleAdmin().",
+    "summary": "Immutable rejected the call at MustHaveOneRoleAdmin: points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MustHaveOneRoleAdmin custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1306,17 +1454,21 @@
         "value": "0x851a8463"
       }
     ],
-    "summary": "Immutable custom error MustStakeMoreThanZero().",
+    "summary": "Immutable rejected the call at MustStakeMoreThanZero: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MustStakeMoreThanZero custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1341,17 +1493,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?No tranfer event found['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: No tranfer event found.",
+    "summary": "Immutable reverted with \"No tranfer event found\", an exact source-level check that points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1376,17 +1532,21 @@
         "value": "0x6fb1b0e9"
       }
     ],
-    "summary": "Immutable custom error NonPayable().",
+    "summary": "Immutable rejected the call at NonPayable: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NonPayable custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1411,15 +1571,19 @@
         "value": "0x5647c891"
       }
     ],
-    "summary": "Immutable custom error NotOwnerOfDeployer().",
+    "summary": "Immutable rejected the call at NotOwnerOfDeployer: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotOwnerOfDeployer custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1446,17 +1610,21 @@
         "value": "0x151a9cfc"
       }
     ],
-    "summary": "Immutable custom error OrderNotRestricted().",
+    "summary": "Immutable rejected the call at OrderNotRestricted: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the OrderNotRestricted custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1481,15 +1649,19 @@
         "value": "0xddfc9a18"
       }
     ],
-    "summary": "Immutable custom error PaymentSplitterLengthMismatchSharesPayees().",
+    "summary": "Immutable rejected the call at PaymentSplitterLengthMismatchSharesPayees: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PaymentSplitterLengthMismatchSharesPayees custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1516,17 +1688,21 @@
         "value": "0xcf64deea"
       }
     ],
-    "summary": "Immutable custom error PaymentSplitterNoPayeesAdded().",
+    "summary": "Immutable rejected the call at PaymentSplitterNoPayeesAdded: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PaymentSplitterNoPayeesAdded custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1551,15 +1727,19 @@
         "value": "0xeb3aafd5"
       }
     ],
-    "summary": "Immutable custom error PaymentSplitterPayeeZeroShares().",
+    "summary": "Immutable rejected the call at PaymentSplitterPayeeZeroShares: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PaymentSplitterPayeeZeroShares custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1586,17 +1766,21 @@
         "value": "0x63642810"
       }
     ],
-    "summary": "Immutable custom error PaymentSplitterPayeeZerothAddress().",
+    "summary": "Immutable rejected the call at PaymentSplitterPayeeZerothAddress: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PaymentSplitterPayeeZerothAddress custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1621,15 +1805,19 @@
         "value": "0x362963cf"
       }
     ],
-    "summary": "Immutable custom error PaymentSplitterSharesAlreadyExistForPayee().",
+    "summary": "Immutable rejected the call at PaymentSplitterSharesAlreadyExistForPayee: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PaymentSplitterSharesAlreadyExistForPayee custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1656,17 +1844,21 @@
         "value": "0x1a15a3cc"
       }
     ],
-    "summary": "Immutable custom error PermitExpired().",
+    "summary": "Immutable rejected the call at PermitExpired: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PermitExpired custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1691,15 +1883,19 @@
         "value": "0x96c553eb"
       }
     ],
-    "summary": "Immutable custom error RenounceOwnershipNotAllowed().",
+    "summary": "Immutable rejected the call at RenounceOwnershipNotAllowed: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the RenounceOwnershipNotAllowed custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1707,7 +1903,7 @@
     "references": [
       {
         "label": "Immutable GitHub repository",
-        "url": "https://github.com/immutable/contracts/blob/main/contracts/token/erc20/preset/Errors.sol"
+        "url": "https://github.com/immutable/contracts/blob/v2.2.18/contracts/token/erc20/preset/Errors.sol"
       }
     ],
     "examples": [
@@ -1726,17 +1922,21 @@
         "value": "0x451a1389"
       }
     ],
-    "summary": "Immutable custom error ReusedReference(bytes32).",
+    "summary": "Immutable rejected the call at ReusedReference(bytes32): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ReusedReference custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1761,17 +1961,21 @@
         "value": "0x431be9c1"
       }
     ],
-    "summary": "Immutable custom error SignatureExpired(uint256,uint256,bytes32).",
+    "summary": "Immutable rejected the call at SignatureExpired(uint256,uint256,bytes32): means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SignatureExpired custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; id, hash, domain, role, message, order, or storage key; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1796,15 +2000,19 @@
         "value": "0xcb89b9b0"
       }
     ],
-    "summary": "Immutable custom error SignerAlreadyActive(address).",
+    "summary": "Immutable rejected the call at SignerAlreadyActive(address): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SignerAlreadyActive custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1831,15 +2039,19 @@
         "value": "0x9d066d5a"
       }
     ],
-    "summary": "Immutable custom error SignerCannotBeReauthorized(address).",
+    "summary": "Immutable rejected the call at SignerCannotBeReauthorized(address): means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SignerCannotBeReauthorized custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1866,15 +2078,19 @@
         "value": "0xcfb6108a"
       }
     ],
-    "summary": "Immutable custom error SignerCannotBeZeroAddress().",
+    "summary": "Immutable rejected the call at SignerCannotBeZeroAddress: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SignerCannotBeZeroAddress custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1901,15 +2117,19 @@
         "value": "0xd84039a9"
       }
     ],
-    "summary": "Immutable custom error SignerCannotBeZerothAddress().",
+    "summary": "Immutable rejected the call at SignerCannotBeZerothAddress: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SignerCannotBeZerothAddress custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1936,15 +2156,19 @@
         "value": "0x3a5a4c21"
       }
     ],
-    "summary": "Immutable custom error SignerNotActive(address).",
+    "summary": "Immutable rejected the call at SignerNotActive(address): means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SignerNotActive custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1971,17 +2195,21 @@
         "value": "0x66980845"
       }
     ],
-    "summary": "Immutable custom error SubstandardViolation(uint256,string,bytes32).",
+    "summary": "Immutable rejected the call at SubstandardViolation(uint256,string,bytes32): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SubstandardViolation custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; name, symbol, reason, URI, or identifier; id, hash, domain, role, message, order, or storage key; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2006,17 +2234,21 @@
         "value": "0x6bb5ca8e"
       }
     ],
-    "summary": "Immutable custom error Substandard3Violation(bytes32).",
+    "summary": "Immutable rejected the call at Substandard3Violation(bytes32): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the Substandard3Violation custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2041,17 +2273,21 @@
         "value": "0xafe27287"
       }
     ],
-    "summary": "Immutable custom error Substandard4Violation(bytes32[],bytes32[],bytes32).",
+    "summary": "Immutable rejected the call at Substandard4Violation(bytes32[],bytes32[],bytes32): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the Substandard4Violation custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2076,17 +2312,21 @@
         "value": "0x4e4b6185"
       }
     ],
-    "summary": "Immutable custom error Substandard6Violation(uint256,uint256,bytes32).",
+    "summary": "Immutable rejected the call at Substandard6Violation(uint256,uint256,bytes32): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the Substandard6Violation custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; id, hash, domain, role, message, order, or storage key; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2111,15 +2351,19 @@
         "value": "0xf9344531"
       }
     ],
-    "summary": "Immutable custom error TransferFromNotInAllowlist(address).",
+    "summary": "Immutable rejected the call at TransferFromNotInAllowlist(address): means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TransferFromNotInAllowlist custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2146,15 +2390,19 @@
         "value": "0x54ce4842"
       }
     ],
-    "summary": "Immutable custom error TransferToNotInAllowlist(address).",
+    "summary": "Immutable rejected the call at TransferToNotInAllowlist(address): means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TransferToNotInAllowlist custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2181,15 +2429,19 @@
         "value": "0x5b8d8517"
       }
     ],
-    "summary": "Immutable custom error UnauthorizedSignature(bytes).",
+    "summary": "Immutable rejected the call at UnauthorizedSignature(bytes): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnauthorizedSignature custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2216,15 +2468,19 @@
         "value": "0xe74c68bb"
       }
     ],
-    "summary": "Immutable custom error UnauthorizedSigner(address).",
+    "summary": "Immutable rejected the call at UnauthorizedSigner(address): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnauthorizedSigner custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2251,17 +2507,21 @@
         "value": "0x67bb64dd"
       }
     ],
-    "summary": "Immutable custom error UnstakeAmountExceedsBalance(uint256,uint256).",
+    "summary": "Immutable rejected the call at UnstakeAmountExceedsBalance(uint256,uint256): means the account, vault, pool, escrow, reserve, or market does not have enough usable balance or liquidity.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnstakeAmountExceedsBalance custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The sender's token balance, native balance, collateral, vault shares, or internal accounting balance is below the requested amount.",
+      "The pool, reserve, vault, market, or escrow lacks enough available liquidity for the operation.",
+      "Fees, debt, pending withdrawals, slippage, or locked balances reduce the spendable amount below the visible balance.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check token balance, native balance, internal vault balance, debt, and available liquidity at the same block as the revert.",
+      "Reduce the requested amount or add funds, collateral, shares, or liquidity before retrying.",
+      "Account for protocol fees, pending withdrawals, and locked balances when computing spendable amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2286,17 +2546,21 @@
         "value": "0x373e0262"
       }
     ],
-    "summary": "Immutable custom error UnstakeTransferFailed().",
+    "summary": "Immutable rejected the call at UnstakeTransferFailed: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnstakeTransferFailed custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2321,17 +2585,21 @@
         "value": "0x2139cc2c"
       }
     ],
-    "summary": "Immutable custom error UnsupportedExtraDataVersion(uint8).",
+    "summary": "Immutable rejected the call at UnsupportedExtraDataVersion(uint8): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnsupportedExtraDataVersion custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2356,15 +2624,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Wrapped IMX: Insufficient allowance['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: Wrapped IMX: Insufficient allowance.",
+    "summary": "Immutable reverted with \"Wrapped IMX: Insufficient allowance\", an exact source-level check that points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2391,17 +2663,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Wrapped IMX: Insufficient balance['\"]?\\s*$"
       }
     ],
-    "summary": "Immutable revert reason string: Wrapped IMX: Insufficient balance.",
+    "summary": "Immutable reverted with \"Wrapped IMX: Insufficient balance\", an exact source-level check that means the account, vault, pool, escrow, reserve, or market does not have enough usable balance or liquidity.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender's token balance, native balance, collateral, vault shares, or internal accounting balance is below the requested amount.",
+      "The pool, reserve, vault, market, or escrow lacks enough available liquidity for the operation.",
+      "Fees, debt, pending withdrawals, slippage, or locked balances reduce the spendable amount below the visible balance.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking token ownership, approval, sale, royalty, or collection state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check token balance, native balance, internal vault balance, debt, and available liquidity at the same block as the revert.",
+      "Reduce the requested amount or add funds, collateral, shares, or liquidity before retrying.",
+      "Account for protocol fees, pending withdrawals, and locked balances when computing spendable amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2426,15 +2702,19 @@
         "value": "0xd92e233d"
       }
     ],
-    "summary": "Immutable custom error ZeroAddress().",
+    "summary": "Immutable rejected the call at ZeroAddress: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ZeroAddress custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Immutable precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",

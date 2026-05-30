@@ -11,15 +11,19 @@
         "value": "0x4ca88867"
       }
     ],
-    "summary": "StakeWise v3 custom error AccessDenied().",
+    "summary": "StakeWise v3 rejected the call at AccessDenied: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with AccessDenied, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,15 +50,19 @@
         "value": "0xf411c327"
       }
     ],
-    "summary": "StakeWise v3 custom error AlreadyAdded().",
+    "summary": "StakeWise v3 rejected the call at AlreadyAdded: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with AlreadyAdded, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -81,15 +89,19 @@
         "value": "0xab5bea8e"
       }
     ],
-    "summary": "StakeWise v3 custom error AlreadyRemoved().",
+    "summary": "StakeWise v3 rejected the call at AlreadyRemoved: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with AlreadyRemoved, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -116,17 +128,21 @@
         "value": "0x01b69982"
       }
     ],
-    "summary": "StakeWise v3 custom error CannotTopUpV1Validators().",
+    "summary": "StakeWise v3 rejected the call at CannotTopUpV1Validators: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with CannotTopUpV1Validators, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -151,15 +167,19 @@
         "value": "0x9ff41fe0"
       }
     ],
-    "summary": "StakeWise v3 custom error CapacityExceeded().",
+    "summary": "StakeWise v3 rejected the call at CapacityExceeded: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with CapacityExceeded, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -186,17 +206,21 @@
         "value": "0x89a1dc63"
       }
     ],
-    "summary": "StakeWise v3 custom error Collateralized().",
+    "summary": "StakeWise v3 rejected the call at Collateralized: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with Collateralized, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -221,17 +245,21 @@
         "value": "0x1ab7da6b"
       }
     ],
-    "summary": "StakeWise v3 custom error DeadlineExpired().",
+    "summary": "StakeWise v3 rejected the call at DeadlineExpired: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with DeadlineExpired, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -256,17 +284,21 @@
         "value": "0xc9b48d4c"
       }
     ],
-    "summary": "StakeWise v3 custom error EjectingVault().",
+    "summary": "StakeWise v3 rejected the call at EjectingVault: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with EjectingVault, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,17 +323,21 @@
         "value": "0x710dadba"
       }
     ],
-    "summary": "StakeWise v3 custom error EjectingVaultNotFound().",
+    "summary": "StakeWise v3 rejected the call at EjectingVaultNotFound: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with EjectingVaultNotFound, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -326,17 +362,21 @@
         "value": "0x2f2714f1"
       }
     ],
-    "summary": "StakeWise v3 custom error EmptySubVaults().",
+    "summary": "StakeWise v3 rejected the call at EmptySubVaults: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with EmptySubVaults, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -361,15 +401,19 @@
         "value": "0x1c7b1d1a"
       }
     ],
-    "summary": "StakeWise v3 custom error ExitRequestNotProcessed().",
+    "summary": "StakeWise v3 rejected the call at ExitRequestNotProcessed: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ExitRequestNotProcessed, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -396,17 +440,21 @@
         "value": "0x92111eb2"
       }
     ],
-    "summary": "StakeWise v3 custom error FlashLoanFailed().",
+    "summary": "StakeWise v3 rejected the call at FlashLoanFailed: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with FlashLoanFailed, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -431,17 +479,21 @@
         "value": "0x1ab33bb2"
       }
     ],
-    "summary": "StakeWise v3 custom error HarvestFailed().",
+    "summary": "StakeWise v3 rejected the call at HarvestFailed: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with HarvestFailed, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -466,18 +518,22 @@
         "value": "0x6d187b28"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidAccount().",
+    "summary": "StakeWise v3 rejected the call at InvalidAccount: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidAccount, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -501,15 +557,19 @@
         "value": "0x2c5211c6"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidAmount().",
+    "summary": "StakeWise v3 rejected the call at InvalidAmount: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidAmount, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -536,15 +596,19 @@
         "value": "0x60dd3f44"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidAssets().",
+    "summary": "StakeWise v3 rejected the call at InvalidAssets: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidAssets, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -571,17 +635,21 @@
         "value": "0xe14a4507"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidAvgRewardPerSecond().",
+    "summary": "StakeWise v3 rejected the call at InvalidAvgRewardPerSecond: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidAvgRewardPerSecond, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -606,17 +674,21 @@
         "value": "0x31278a87"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidCapacity().",
+    "summary": "StakeWise v3 rejected the call at InvalidCapacity: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidCapacity, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -641,17 +713,21 @@
         "value": "0xe8722f8f"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidCheckpointIndex().",
+    "summary": "StakeWise v3 rejected the call at InvalidCheckpointIndex: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidCheckpointIndex, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -676,17 +752,21 @@
         "value": "0xbb220d6c"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidCheckpointValue().",
+    "summary": "StakeWise v3 rejected the call at InvalidCheckpointValue: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidCheckpointValue, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -711,17 +791,21 @@
         "value": "0xb0d77dc2"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidCurator().",
+    "summary": "StakeWise v3 rejected the call at InvalidCurator: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidCurator, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -746,17 +830,21 @@
         "value": "0x4fbe5dba"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidDelay().",
+    "summary": "StakeWise v3 rejected the call at InvalidDelay: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidDelay, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -781,17 +869,21 @@
         "value": "0x8a81d3b3"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidFeePercent().",
+    "summary": "StakeWise v3 rejected the call at InvalidFeePercent: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidFeePercent, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -816,17 +908,21 @@
         "value": "0x768dc598"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidFeeRecipient().",
+    "summary": "StakeWise v3 rejected the call at InvalidFeeRecipient: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidFeeRecipient, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -851,17 +947,21 @@
         "value": "0x30b9f8da"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidHealthFactor().",
+    "summary": "StakeWise v3 rejected the call at InvalidHealthFactor: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidHealthFactor, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -886,15 +986,19 @@
         "value": "0xc284f825"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidInitialHarvest().",
+    "summary": "StakeWise v3 rejected the call at InvalidInitialHarvest: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidInitialHarvest, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -921,15 +1025,19 @@
         "value": "0x20e21fa4"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidLiqBonusPercent().",
+    "summary": "StakeWise v3 rejected the call at InvalidLiqBonusPercent: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidLiqBonusPercent, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -956,15 +1064,19 @@
         "value": "0x54ac108c"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidLiqThresholdPercent().",
+    "summary": "StakeWise v3 rejected the call at InvalidLiqThresholdPercent: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidLiqThresholdPercent, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -991,15 +1103,19 @@
         "value": "0x37f04cf6"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidLtvPercent().",
+    "summary": "StakeWise v3 rejected the call at InvalidLtvPercent: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidLtvPercent, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1026,15 +1142,19 @@
         "value": "0xf7ca2254"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidMinBalancePercent().",
+    "summary": "StakeWise v3 rejected the call at InvalidMinBalancePercent: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidMinBalancePercent, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1061,17 +1181,21 @@
         "value": "0x9589a27d"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidOracle().",
+    "summary": "StakeWise v3 rejected the call at InvalidOracle: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidOracle, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1096,17 +1220,21 @@
         "value": "0xd4297d00"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidOracles().",
+    "summary": "StakeWise v3 rejected the call at InvalidOracles: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidOracles, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1131,17 +1259,21 @@
         "value": "0xce7e065e"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidPosition().",
+    "summary": "StakeWise v3 rejected the call at InvalidPosition: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidPosition, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1166,15 +1298,19 @@
         "value": "0x09bde339"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidProof().",
+    "summary": "StakeWise v3 rejected the call at InvalidProof: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidProof, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1201,17 +1337,21 @@
         "value": "0xefda1a27"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidReceivedAssets().",
+    "summary": "StakeWise v3 rejected the call at InvalidReceivedAssets: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidReceivedAssets, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1236,17 +1376,21 @@
         "value": "0x6ab02a4d"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidRedeemablePositions().",
+    "summary": "StakeWise v3 rejected the call at InvalidRedeemablePositions: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidRedeemablePositions, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1271,17 +1415,21 @@
         "value": "0xd526111a"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidRewardsRoot().",
+    "summary": "StakeWise v3 rejected the call at InvalidRewardsRoot: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidRewardsRoot, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1306,17 +1454,21 @@
         "value": "0xea2559bb"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidSecurityDeposit().",
+    "summary": "StakeWise v3 rejected the call at InvalidSecurityDeposit: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidSecurityDeposit, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1341,17 +1493,21 @@
         "value": "0x6edcc523"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidShares().",
+    "summary": "StakeWise v3 rejected the call at InvalidShares: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidShares, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1376,15 +1532,19 @@
         "value": "0x274cf401"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidSignatures().",
+    "summary": "StakeWise v3 rejected the call at InvalidSignatures: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidSignatures, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1411,17 +1571,21 @@
         "value": "0x6686db64"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidTicket().",
+    "summary": "StakeWise v3 rejected the call at InvalidTicket: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidTicket, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1446,15 +1610,19 @@
         "value": "0xb4fe64dc"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidTokenMeta().",
+    "summary": "StakeWise v3 rejected the call at InvalidTokenMeta: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidTokenMeta, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1481,17 +1649,21 @@
         "value": "0xe3626798"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidValidators().",
+    "summary": "StakeWise v3 rejected the call at InvalidValidators: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidValidators, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1516,17 +1688,21 @@
         "value": "0xdf0d12d5"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidValidatorsRegistryRoot().",
+    "summary": "StakeWise v3 rejected the call at InvalidValidatorsRegistryRoot: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidValidatorsRegistryRoot, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1551,17 +1727,21 @@
         "value": "0xd03a6320"
       }
     ],
-    "summary": "StakeWise v3 custom error InvalidVault().",
+    "summary": "StakeWise v3 rejected the call at InvalidVault: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidVault, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1586,17 +1766,21 @@
         "value": "0x07091331"
       }
     ],
-    "summary": "StakeWise v3 custom error LiquidationDisabled().",
+    "summary": "StakeWise v3 rejected the call at LiquidationDisabled: means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with LiquidationDisabled, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1621,17 +1805,21 @@
         "value": "0xfe382aa7"
       }
     ],
-    "summary": "StakeWise v3 custom error LowBalance().",
+    "summary": "StakeWise v3 rejected the call at LowBalance: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with LowBalance, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1656,17 +1844,21 @@
         "value": "0x3684c659"
       }
     ],
-    "summary": "StakeWise v3 custom error LowLtv().",
+    "summary": "StakeWise v3 rejected the call at LowLtv: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with LowLtv, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1691,17 +1883,21 @@
         "value": "0x3d2a4611"
       }
     ],
-    "summary": "StakeWise v3 custom error MaxOraclesExceeded().",
+    "summary": "StakeWise v3 rejected the call at MaxOraclesExceeded: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with MaxOraclesExceeded, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1726,17 +1922,21 @@
         "value": "0x14c5f7b6"
       }
     ],
-    "summary": "StakeWise v3 custom error NotCollateralized().",
+    "summary": "StakeWise v3 rejected the call at NotCollateralized: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NotCollateralized, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1761,15 +1961,19 @@
         "value": "0xe246dc63"
       }
     ],
-    "summary": "StakeWise v3 custom error NotEnoughSignatures().",
+    "summary": "StakeWise v3 rejected the call at NotEnoughSignatures: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NotEnoughSignatures, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1796,17 +2000,21 @@
         "value": "0xe7757151"
       }
     ],
-    "summary": "StakeWise v3 custom error NotHarvested().",
+    "summary": "StakeWise v3 rejected the call at NotHarvested: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NotHarvested, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1831,17 +2039,21 @@
         "value": "0xd6234725"
       }
     ],
-    "summary": "StakeWise v3 custom error NotImplemented().",
+    "summary": "StakeWise v3 rejected the call at NotImplemented: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NotImplemented, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1866,15 +2078,19 @@
         "value": "0x8ce26e94"
       }
     ],
-    "summary": "StakeWise v3 custom error PermitInvalidSigner().",
+    "summary": "StakeWise v3 rejected the call at PermitInvalidSigner: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with PermitInvalidSigner, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1901,17 +2117,21 @@
         "value": "0xa518151d"
       }
     ],
-    "summary": "StakeWise v3 custom error RepeatedEjectingVault().",
+    "summary": "StakeWise v3 rejected the call at RepeatedEjectingVault: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with RepeatedEjectingVault, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1936,15 +2156,19 @@
         "value": "0xd9aa7328"
       }
     ],
-    "summary": "StakeWise v3 custom error RewardsNonceIsHigher().",
+    "summary": "StakeWise v3 rejected the call at RewardsNonceIsHigher: means the transaction, permit, order, message, or request nonce does not match the next valid value expected by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with RewardsNonceIsHigher, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The nonce, salt, sequence number, or request id has already been consumed.",
+      "The client submitted transactions out of order or reused a signed payload after another state-changing action.",
+      "A cross-chain message, account module, permit helper, or orderbook tracks nonces separately from the wallet account nonce.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the protocol nonce, consumed bitmap, salt status, or sequence counter for the sender/order/message.",
+      "Regenerate the signed payload with the next unused protocol nonce instead of resubmitting the old one.",
+      "Stop retrying if the id was already consumed and reconcile the resulting on-chain state."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1971,17 +2195,21 @@
         "value": "0xb48c0000"
       }
     ],
-    "summary": "StakeWise v3 custom error TooEarlyUpdate().",
+    "summary": "StakeWise v3 rejected the call at TooEarlyUpdate: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with TooEarlyUpdate, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2006,15 +2234,19 @@
         "value": "0x4fec9fc2"
       }
     ],
-    "summary": "StakeWise v3 custom error UnclaimedAssets().",
+    "summary": "StakeWise v3 rejected the call at UnclaimedAssets: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with UnclaimedAssets, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2041,15 +2273,19 @@
         "value": "0x55299b49"
       }
     ],
-    "summary": "StakeWise v3 custom error UpgradeFailed().",
+    "summary": "StakeWise v3 rejected the call at UpgradeFailed: points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with UpgradeFailed, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2076,17 +2312,21 @@
         "value": "0x8c8728c7"
       }
     ],
-    "summary": "StakeWise v3 custom error ValueNotChanged().",
+    "summary": "StakeWise v3 rejected the call at ValueNotChanged: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ValueNotChanged, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2111,15 +2351,19 @@
         "value": "0xd92e233d"
       }
     ],
-    "summary": "StakeWise v3 custom error ZeroAddress().",
+    "summary": "StakeWise v3 rejected the call at ZeroAddress: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ZeroAddress, a StakeWise v3 vault, validator, keeper, oracle, token, curator, node, or withdrawal flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and validator, staking, withdrawal, share, oracle, or operator state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the StakeWise v3 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",

@@ -11,15 +11,19 @@
         "value": "0x25fbd8be"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error AlreadySubscribed(uint256,address).",
+    "summary": "Uniswap v4 periphery rejected the call at AlreadySubscribed(uint256,address): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with AlreadySubscribed, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; account, token, router, module, receiver, or authority address; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,17 +50,21 @@
         "value": "0xace94481"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error BurnNotificationReverted(address,bytes).",
+    "summary": "Uniswap v4 periphery rejected the call at BurnNotificationReverted(address,bytes): means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with BurnNotificationReverted, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; encoded payload, signature, proof, route, or hook data; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -81,17 +89,21 @@
         "value": "0x0474c5c1"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error CompetitionNotOver(uint256,uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at CompetitionNotOver(uint256,uint256): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with CompetitionNotOver, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -116,17 +128,21 @@
         "value": "0xafa178b0"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error CompetitionOver(uint256,uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at CompetitionOver(uint256,uint256): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with CompetitionOver, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -151,17 +167,21 @@
         "value": "0x6f5ffb7e"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error ContractLocked().",
+    "summary": "Uniswap v4 periphery rejected the call at ContractLocked: means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ContractLocked, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -186,17 +206,21 @@
         "value": "0xbfb22adf"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error DeadlinePassed(uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at DeadlinePassed(uint256): means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with DeadlinePassed, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -221,18 +245,22 @@
         "value": "0xed43c3a6"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error GasLimitTooLow().",
+    "summary": "Uniswap v4 periphery rejected the call at GasLimitTooLow: means the protocol rejected the gas, execution-fee, or callback-gas value before the call could complete.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with GasLimitTooLow, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A bridge message, callback, hook, keeper, or low-level call was configured with too little execution gas.",
+      "A relayer, paymaster, bridge adapter, or protocol fee field uses a separate gas limit from the outer transaction gas.",
+      "The call path requires a minimum gas reserve before forwarding execution to another contract.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the error arguments and compare the required gas or fee with the gas-related fields submitted in calldata.",
+      "Increase the protocol callback, execution, or message gas field as well as the outer transaction gas if both are present.",
+      "If the error names call depth or forwarding, simplify the call path instead of only raising gas."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "yes",
     "confidence": "high",
     "references": [
       {
@@ -256,15 +284,19 @@
         "value": "0xaaad13f7"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error InputLengthMismatch().",
+    "summary": "Uniswap v4 periphery rejected the call at InputLengthMismatch: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InputLengthMismatch, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -291,17 +323,21 @@
         "value": "0xf4d678b8"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error InsufficientBalance().",
+    "summary": "Uniswap v4 periphery rejected the call at InsufficientBalance: means the account, vault, pool, escrow, reserve, or market does not have enough usable balance or liquidity.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InsufficientBalance, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The sender's token balance, native balance, collateral, vault shares, or internal accounting balance is below the requested amount.",
+      "The pool, reserve, vault, market, or escrow lacks enough available liquidity for the operation.",
+      "Fees, debt, pending withdrawals, slippage, or locked balances reduce the spendable amount below the visible balance.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check token balance, native balance, internal vault balance, debt, and available liquidity at the same block as the revert.",
+      "Reduce the requested amount or add funds, collateral, shares, or liquidity before retrying.",
+      "Account for protocol fees, pending withdrawals, and locked balances when computing spendable amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -326,15 +362,19 @@
         "value": "0x6d1eca28"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error InvalidAddressLength(uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at InvalidAddressLength(uint256): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidAddressLength, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -361,17 +401,21 @@
         "value": "0xdeaa01e6"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error InvalidBips().",
+    "summary": "Uniswap v4 periphery rejected the call at InvalidBips: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidBips, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -396,17 +440,21 @@
         "value": "0x23639643"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error InvalidBytecode().",
+    "summary": "Uniswap v4 periphery rejected the call at InvalidBytecode: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidBytecode, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -431,17 +479,21 @@
         "value": "0x38bbd576"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error InvalidEthSender().",
+    "summary": "Uniswap v4 periphery rejected the call at InvalidEthSender: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidEthSender, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -466,17 +518,21 @@
         "value": "0x8af5ad98"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error InvalidHopPriceLength().",
+    "summary": "Uniswap v4 periphery rejected the call at InvalidHopPriceLength: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidHopPriceLength, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -501,15 +557,19 @@
         "value": "0x8c7d9949"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error InvalidSender(bytes32,address).",
+    "summary": "Uniswap v4 periphery rejected the call at InvalidSender(bytes32,address): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidSender, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; account, token, router, module, receiver, or authority address; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -536,15 +596,19 @@
         "value": "0xed15e6cf"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error InvalidTokenId(uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at InvalidTokenId(uint256): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidTokenId, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -571,15 +635,19 @@
         "value": "0x31e30ad0"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error MaximumAmountExceeded(uint128,uint128).",
+    "summary": "Uniswap v4 periphery rejected the call at MaximumAmountExceeded(uint128,uint128): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with MaximumAmountExceeded, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -606,15 +674,19 @@
         "value": "0x12816f22"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error MinimumAmountInsufficient(uint128,uint128).",
+    "summary": "Uniswap v4 periphery rejected the call at MinimumAmountInsufficient(uint128,uint128): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with MinimumAmountInsufficient, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -641,17 +713,21 @@
         "value": "0xe94f10e2"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error ModifyLiquidityNotificationReverted(address,bytes).",
+    "summary": "Uniswap v4 periphery rejected the call at ModifyLiquidityNotificationReverted(address,bytes): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ModifyLiquidityNotificationReverted, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; encoded payload, signature, proof, route, or hook data; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -676,17 +752,21 @@
         "value": "0x7c402b21"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error NoCodeSubscriber().",
+    "summary": "Uniswap v4 periphery rejected the call at NoCodeSubscriber: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NoCodeSubscriber, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -711,15 +791,19 @@
         "value": "0x1fb09b80"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error NonceAlreadyUsed().",
+    "summary": "Uniswap v4 periphery rejected the call at NonceAlreadyUsed: means the transaction, permit, order, message, or request nonce does not match the next valid value expected by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NonceAlreadyUsed, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The nonce, salt, sequence number, or request id has already been consumed.",
+      "The client submitted transactions out of order or reused a signed payload after another state-changing action.",
+      "A cross-chain message, account module, permit helper, or orderbook tracks nonces separately from the wallet account nonce.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the protocol nonce, consumed bitmap, salt status, or sequence counter for the sender/order/message.",
+      "Regenerate the signed payload with the next unused protocol nonce instead of resubmitting the old one.",
+      "Stop retrying if the id was already consumed and reconcile the resulting on-chain state."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -746,15 +830,19 @@
         "value": "0x80e05c00"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error NoSelfPermit().",
+    "summary": "Uniswap v4 periphery rejected the call at NoSelfPermit: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NoSelfPermit, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,15 +869,19 @@
         "value": "0xc419b2d2"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error NotAllowedToDeploy(address,address).",
+    "summary": "Uniswap v4 periphery rejected the call at NotAllowedToDeploy(address,address): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NotAllowedToDeploy, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -816,15 +908,19 @@
         "value": "0x0ca968d8"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error NotApproved(address).",
+    "summary": "Uniswap v4 periphery rejected the call at NotApproved(address): points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NotApproved, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -851,17 +947,21 @@
         "value": "0xae18210a"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error NotPoolManager().",
+    "summary": "Uniswap v4 periphery rejected the call at NotPoolManager: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NotPoolManager, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -886,17 +986,21 @@
         "value": "0x29c3b7ee"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error NotSelf().",
+    "summary": "Uniswap v4 periphery rejected the call at NotSelf: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NotSelf, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -921,17 +1025,21 @@
         "value": "0x237e6c28"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error NotSubscribed().",
+    "summary": "Uniswap v4 periphery rejected the call at NotSubscribed: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NotSubscribed, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -956,17 +1064,21 @@
         "value": "0xd4b05fe0"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error PoolManagerMustBeLocked().",
+    "summary": "Uniswap v4 periphery rejected the call at PoolManagerMustBeLocked: means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with PoolManagerMustBeLocked, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -991,17 +1103,21 @@
         "value": "0xecbd9804"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error QuoteSwap(uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at QuoteSwap(uint256): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with QuoteSwap, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1026,17 +1142,21 @@
         "value": "0x5a9165ff"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error SignatureDeadlineExpired().",
+    "summary": "Uniswap v4 periphery rejected the call at SignatureDeadlineExpired: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with SignatureDeadlineExpired, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1061,15 +1181,19 @@
         "value": "0x3b99b53d"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error SliceOutOfBounds().",
+    "summary": "Uniswap v4 periphery rejected the call at SliceOutOfBounds: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with SliceOutOfBounds, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1096,17 +1220,21 @@
         "value": "0x81ea5e9e"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error SubscriptionReverted(address,bytes).",
+    "summary": "Uniswap v4 periphery rejected the call at SubscriptionReverted(address,bytes): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with SubscriptionReverted, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; encoded payload, signature, proof, route, or hook data; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1131,15 +1259,19 @@
         "value": "0x82b42900"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error Unauthorized().",
+    "summary": "Uniswap v4 periphery rejected the call at Unauthorized: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with Unauthorized, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1166,17 +1298,21 @@
         "value": "0xe0752a5a"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error UnexpectedCallSuccess().",
+    "summary": "Uniswap v4 periphery rejected the call at UnexpectedCallSuccess: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with UnexpectedCallSuccess, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1201,17 +1337,21 @@
         "value": "0x6190b2b0"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error UnexpectedRevertBytes(bytes).",
+    "summary": "Uniswap v4 periphery rejected the call at UnexpectedRevertBytes(bytes): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with UnexpectedRevertBytes, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1236,17 +1376,21 @@
         "value": "0x5cda29d7"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error UnsupportedAction(uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at UnsupportedAction(uint256): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with UnsupportedAction, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1271,17 +1415,21 @@
         "value": "0x8b063d73"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error V4TooLittleReceived(uint256,uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at V4TooLittleReceived(uint256,uint256): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with V4TooLittleReceived, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1306,17 +1454,21 @@
         "value": "0xa9b7edf7"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error V4TooLittleReceivedPerHop(uint256,uint256,uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at V4TooLittleReceivedPerHop(uint256,uint256,uint256): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with V4TooLittleReceivedPerHop, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1341,17 +1493,21 @@
         "value": "0x4713c18b"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error V4TooLittleReceivedPerHopSingle(uint256,uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at V4TooLittleReceivedPerHopSingle(uint256,uint256): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with V4TooLittleReceivedPerHopSingle, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1376,15 +1532,19 @@
         "value": "0x12bacdd3"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error V4TooMuchRequested(uint256,uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at V4TooMuchRequested(uint256,uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with V4TooMuchRequested, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1411,15 +1571,19 @@
         "value": "0xe6518043"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error V4TooMuchRequestedPerHop(uint256,uint256,uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at V4TooMuchRequestedPerHop(uint256,uint256,uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with V4TooMuchRequestedPerHop, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1446,15 +1610,19 @@
         "value": "0xefc8d8eb"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error V4TooMuchRequestedPerHopSingle(uint256,uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at V4TooMuchRequestedPerHopSingle(uint256,uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with V4TooMuchRequestedPerHopSingle, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1481,17 +1649,21 @@
         "value": "0x29551db8"
       }
     ],
-    "summary": "Uniswap v4 periphery custom error WorseAddress(address,address,uint256,uint256).",
+    "summary": "Uniswap v4 periphery rejected the call at WorseAddress(address,address,uint256,uint256): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with WorseAddress, a Uniswap v4 periphery routing, position management, liquidity, hook, permit, or multicall flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap v4 periphery source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [

@@ -11,17 +11,21 @@
         "value": "0x0f3a948a"
       }
     ],
-    "summary": "LooksRare v2 custom error AmountInvalid().",
+    "summary": "LooksRare v2 rejected the call at AmountInvalid: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with AmountInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -46,15 +50,19 @@
         "value": "0x7ad0de30"
       }
     ],
-    "summary": "LooksRare v2 custom error AskTooHigh().",
+    "summary": "LooksRare v2 rejected the call at AskTooHigh: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with AskTooHigh, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -81,15 +89,19 @@
         "value": "0xa0d26eb6"
       }
     ],
-    "summary": "LooksRare v2 custom error BidTooLow().",
+    "summary": "LooksRare v2 rejected the call at BidTooLow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with BidTooLow, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -116,15 +128,19 @@
         "value": "0x4ee1d295"
       }
     ],
-    "summary": "LooksRare v2 custom error BundleEIP2981NotAllowed(address).",
+    "summary": "LooksRare v2 rejected the call at BundleEIP2981NotAllowed(address): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with BundleEIP2981NotAllowed, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -151,15 +167,19 @@
         "value": "0xa78d09b9"
       }
     ],
-    "summary": "LooksRare v2 custom error CallerInvalid().",
+    "summary": "LooksRare v2 rejected the call at CallerInvalid: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with CallerInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -186,18 +206,22 @@
         "value": "0x6fd794c7"
       }
     ],
-    "summary": "LooksRare v2 custom error ChainIdInvalid().",
+    "summary": "LooksRare v2 rejected the call at ChainIdInvalid: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ChainIdInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -221,17 +245,21 @@
         "value": "0x6d726edb"
       }
     ],
-    "summary": "LooksRare v2 custom error ChainlinkPriceInvalid().",
+    "summary": "LooksRare v2 rejected the call at ChainlinkPriceInvalid: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ChainlinkPriceInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -256,17 +284,21 @@
         "value": "0x97d7dcfb"
       }
     ],
-    "summary": "LooksRare v2 custom error CreatorFeeBpTooHigh().",
+    "summary": "LooksRare v2 rejected the call at CreatorFeeBpTooHigh: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with CreatorFeeBpTooHigh, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,17 +323,21 @@
         "value": "0x4f795487"
       }
     ],
-    "summary": "LooksRare v2 custom error CurrencyInvalid().",
+    "summary": "LooksRare v2 rejected the call at CurrencyInvalid: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with CurrencyInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -326,17 +362,21 @@
         "value": "0x608b1d56"
       }
     ],
-    "summary": "LooksRare v2 custom error DecimalsInvalid().",
+    "summary": "LooksRare v2 rejected the call at DecimalsInvalid: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with DecimalsInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -361,17 +401,21 @@
         "value": "0x1cd7cc25"
       }
     ],
-    "summary": "LooksRare v2 custom error DiscountGreaterThanFloorPrice().",
+    "summary": "LooksRare v2 rejected the call at DiscountGreaterThanFloorPrice: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with DiscountGreaterThanFloorPrice, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -396,17 +440,21 @@
         "value": "0x6314f899"
       }
     ],
-    "summary": "LooksRare v2 custom error FunctionSelectorInvalid().",
+    "summary": "LooksRare v2 rejected the call at FunctionSelectorInvalid: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with FunctionSelectorInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -431,17 +479,21 @@
         "value": "0x119fec68"
       }
     ],
-    "summary": "LooksRare v2 custom error ItemIdFlagged(address,uint256).",
+    "summary": "LooksRare v2 rejected the call at ItemIdFlagged(address,uint256): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ItemIdFlagged, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -466,15 +518,19 @@
         "value": "0x712a260b"
       }
     ],
-    "summary": "LooksRare v2 custom error ItemTransferredTooRecently(address,uint256).",
+    "summary": "LooksRare v2 rejected the call at ItemTransferredTooRecently(address,uint256): means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ItemTransferredTooRecently, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -501,15 +557,19 @@
         "value": "0xd61ce1fb"
       }
     ],
-    "summary": "LooksRare v2 custom error LastTransferTimeInvalid().",
+    "summary": "LooksRare v2 rejected the call at LastTransferTimeInvalid: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with LastTransferTimeInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -536,15 +596,19 @@
         "value": "0x611b5ec5"
       }
     ],
-    "summary": "LooksRare v2 custom error LatencyToleranceTooHigh().",
+    "summary": "LooksRare v2 rejected the call at LatencyToleranceTooHigh: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with LatencyToleranceTooHigh, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -571,17 +635,21 @@
         "value": "0x97983bdb"
       }
     ],
-    "summary": "LooksRare v2 custom error LengthsInvalid().",
+    "summary": "LooksRare v2 rejected the call at LengthsInvalid: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with LengthsInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -606,17 +674,21 @@
         "value": "0xc8ac23c3"
       }
     ],
-    "summary": "LooksRare v2 custom error MerkleProofInvalid().",
+    "summary": "LooksRare v2 rejected the call at MerkleProofInvalid: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with MerkleProofInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -641,15 +713,19 @@
         "value": "0xebbd838a"
       }
     ],
-    "summary": "LooksRare v2 custom error MerkleProofTooLarge(uint256).",
+    "summary": "LooksRare v2 rejected the call at MerkleProofTooLarge(uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with MerkleProofTooLarge, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -676,18 +752,22 @@
         "value": "0x0da5618b"
       }
     ],
-    "summary": "LooksRare v2 custom error MessageIdInvalid().",
+    "summary": "LooksRare v2 rejected the call at MessageIdInvalid: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with MessageIdInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -711,18 +791,22 @@
         "value": "0xad6d14d6"
       }
     ],
-    "summary": "LooksRare v2 custom error NewGasLimitETHTransferTooLow().",
+    "summary": "LooksRare v2 rejected the call at NewGasLimitETHTransferTooLow: means the protocol rejected the gas, execution-fee, or callback-gas value before the call could complete.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NewGasLimitETHTransferTooLow, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A bridge message, callback, hook, keeper, or low-level call was configured with too little execution gas.",
+      "A relayer, paymaster, bridge adapter, or protocol fee field uses a separate gas limit from the outer transaction gas.",
+      "The call path requires a minimum gas reserve before forwarding execution to another contract.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the error arguments and compare the required gas or fee with the gas-related fields submitted in calldata.",
+      "Increase the protocol callback, execution, or message gas field as well as the outer transaction gas if both are present.",
+      "If the error names call depth or forwarding, simplify the call path instead of only raising gas."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "yes",
     "confidence": "high",
     "references": [
       {
@@ -746,15 +830,19 @@
         "value": "0xf966bcb0"
       }
     ],
-    "summary": "LooksRare v2 custom error NewProtocolFeeRecipientCannotBeNullAddress().",
+    "summary": "LooksRare v2 rejected the call at NewProtocolFeeRecipientCannotBeNullAddress: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NewProtocolFeeRecipientCannotBeNullAddress, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,15 +869,19 @@
         "value": "0xbc17cfe8"
       }
     ],
-    "summary": "LooksRare v2 custom error NoncesInvalid().",
+    "summary": "LooksRare v2 rejected the call at NoncesInvalid: means the transaction, permit, order, message, or request nonce does not match the next valid value expected by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NoncesInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The nonce, salt, sequence number, or request id has already been consumed.",
+      "The client submitted transactions out of order or reused a signed payload after another state-changing action.",
+      "A cross-chain message, account module, permit helper, or orderbook tracks nonces separately from the wallet account nonce.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the protocol nonce, consumed bitmap, salt status, or sequence counter for the sender/order/message.",
+      "Regenerate the signed payload with the next unused protocol nonce instead of resubmitting the old one.",
+      "Stop retrying if the id was already consumed and reconcile the resulting on-chain state."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -816,17 +908,21 @@
         "value": "0xab984846"
       }
     ],
-    "summary": "LooksRare v2 custom error NoSelectorForStrategy().",
+    "summary": "LooksRare v2 rejected the call at NoSelectorForStrategy: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NoSelectorForStrategy, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -851,17 +947,21 @@
         "value": "0x9f630043"
       }
     ],
-    "summary": "LooksRare v2 custom error NotAffiliateController().",
+    "summary": "LooksRare v2 rejected the call at NotAffiliateController: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NotAffiliateController, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -886,15 +986,19 @@
         "value": "0x744cfd12"
       }
     ],
-    "summary": "LooksRare v2 custom error NothingToTransfer().",
+    "summary": "LooksRare v2 rejected the call at NothingToTransfer: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NothingToTransfer, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -921,17 +1025,21 @@
         "value": "0xef8c37d7"
       }
     ],
-    "summary": "LooksRare v2 custom error NotV2Strategy().",
+    "summary": "LooksRare v2 rejected the call at NotV2Strategy: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NotV2Strategy, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -956,15 +1064,19 @@
         "value": "0x730e0eb0"
       }
     ],
-    "summary": "LooksRare v2 custom error OperatorAlreadyAllowed().",
+    "summary": "LooksRare v2 rejected the call at OperatorAlreadyAllowed: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with OperatorAlreadyAllowed, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -991,15 +1103,19 @@
         "value": "0xabb0fc96"
       }
     ],
-    "summary": "LooksRare v2 custom error OperatorAlreadyApprovedByUser().",
+    "summary": "LooksRare v2 rejected the call at OperatorAlreadyApprovedByUser: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with OperatorAlreadyApprovedByUser, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1026,15 +1142,19 @@
         "value": "0x8a109193"
       }
     ],
-    "summary": "LooksRare v2 custom error OperatorNotAllowed().",
+    "summary": "LooksRare v2 rejected the call at OperatorNotAllowed: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with OperatorNotAllowed, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1061,15 +1181,19 @@
         "value": "0x21d29a86"
       }
     ],
-    "summary": "LooksRare v2 custom error OperatorNotApprovedByUser().",
+    "summary": "LooksRare v2 rejected the call at OperatorNotApprovedByUser: points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with OperatorNotApprovedByUser, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1096,17 +1220,21 @@
         "value": "0x2e0c0f71"
       }
     ],
-    "summary": "LooksRare v2 custom error OrderInvalid().",
+    "summary": "LooksRare v2 rejected the call at OrderInvalid: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with OrderInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1131,17 +1259,21 @@
         "value": "0x7476320f"
       }
     ],
-    "summary": "LooksRare v2 custom error OutsideOfTimeRange().",
+    "summary": "LooksRare v2 rejected the call at OutsideOfTimeRange: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with OutsideOfTimeRange, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1166,15 +1298,19 @@
         "value": "0x2242dac9"
       }
     ],
-    "summary": "LooksRare v2 custom error PercentageTooHigh().",
+    "summary": "LooksRare v2 rejected the call at PercentageTooHigh: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with PercentageTooHigh, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1201,15 +1337,19 @@
         "value": "0x6e0da7eb"
       }
     ],
-    "summary": "LooksRare v2 custom error PriceFeedAlreadySet().",
+    "summary": "LooksRare v2 rejected the call at PriceFeedAlreadySet: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with PriceFeedAlreadySet, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1236,17 +1376,21 @@
         "value": "0x4d571883"
       }
     ],
-    "summary": "LooksRare v2 custom error PriceFeedNotAvailable().",
+    "summary": "LooksRare v2 rejected the call at PriceFeedNotAvailable: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with PriceFeedNotAvailable, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1271,17 +1415,21 @@
         "value": "0x9f9ab37d"
       }
     ],
-    "summary": "LooksRare v2 custom error PriceNotRecentEnough().",
+    "summary": "LooksRare v2 rejected the call at PriceNotRecentEnough: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with PriceNotRecentEnough, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1306,17 +1454,21 @@
         "value": "0xd641ac7b"
       }
     ],
-    "summary": "LooksRare v2 custom error QuoteTypeInvalid().",
+    "summary": "LooksRare v2 rejected the call at QuoteTypeInvalid: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with QuoteTypeInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1341,18 +1493,22 @@
         "value": "0xa69915e5"
       }
     ],
-    "summary": "LooksRare v2 custom error SameDomainSeparator().",
+    "summary": "LooksRare v2 rejected the call at SameDomainSeparator: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with SameDomainSeparator, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1376,17 +1532,21 @@
         "value": "0x0819bdcd"
       }
     ],
-    "summary": "LooksRare v2 custom error SignatureExpired().",
+    "summary": "LooksRare v2 rejected the call at SignatureExpired: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with SignatureExpired, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1411,17 +1571,21 @@
         "value": "0xc2d07092"
       }
     ],
-    "summary": "LooksRare v2 custom error StrategyHasNoSelector().",
+    "summary": "LooksRare v2 rejected the call at StrategyHasNoSelector: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with StrategyHasNoSelector, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1446,17 +1610,21 @@
         "value": "0xd73c2c6a"
       }
     ],
-    "summary": "LooksRare v2 custom error StrategyNotAvailable(uint256).",
+    "summary": "LooksRare v2 rejected the call at StrategyNotAvailable(uint256): means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with StrategyNotAvailable, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1481,17 +1649,21 @@
         "value": "0xbd7056c7"
       }
     ],
-    "summary": "LooksRare v2 custom error StrategyNotUsed().",
+    "summary": "LooksRare v2 rejected the call at StrategyNotUsed: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with StrategyNotUsed, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1516,17 +1688,21 @@
         "value": "0xb704b7c1"
       }
     ],
-    "summary": "LooksRare v2 custom error StrategyProtocolFeeTooHigh().",
+    "summary": "LooksRare v2 rejected the call at StrategyProtocolFeeTooHigh: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with StrategyProtocolFeeTooHigh, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1551,15 +1727,19 @@
         "value": "0xb5509544"
       }
     ],
-    "summary": "LooksRare v2 custom error TransferCallerInvalid().",
+    "summary": "LooksRare v2 rejected the call at TransferCallerInvalid: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with TransferCallerInvalid, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1586,17 +1766,21 @@
         "value": "0x97dc351d"
       }
     ],
-    "summary": "LooksRare v2 custom error TransferCooldownPeriodTooHigh().",
+    "summary": "LooksRare v2 rejected the call at TransferCooldownPeriodTooHigh: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with TransferCooldownPeriodTooHigh, a LooksRare v2 order, strategy, transfer manager, royalty, nonce, signature, or settlement precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and token ownership, approval, sale, royalty, or collection state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the LooksRare v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [

@@ -11,15 +11,19 @@
         "value": "0xe7e40b5b"
       }
     ],
-    "summary": "Alchemix v2 custom error ERC20CallFailed(address,bool,bytes).",
+    "summary": "Alchemix v2 rejected the call at ERC20CallFailed(address,bool,bytes): means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ERC20CallFailed, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; boolean mode or feature flag; encoded payload, signature, proof, route, or hook data; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,15 +50,19 @@
         "value": "0xa3528cf5"
       }
     ],
-    "summary": "Alchemix v2 custom error ExpectedValueExceeded(address,uint256,uint256).",
+    "summary": "Alchemix v2 rejected the call at ExpectedValueExceeded(address,uint256,uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ExpectedValueExceeded, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; amount, limit, nonce, timestamp, id, price, or configured bound; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -81,17 +89,21 @@
         "value": "0x9eadfa86"
       }
     ],
-    "summary": "Alchemix v2 custom error FuseError(uint256).",
+    "summary": "Alchemix v2 rejected the call at FuseError(uint256): means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with FuseError, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -116,17 +128,21 @@
         "value": "0x65888470"
       }
     ],
-    "summary": "Alchemix v2 custom error HarvestJobDoesNotExist().",
+    "summary": "Alchemix v2 rejected the call at HarvestJobDoesNotExist: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with HarvestJobDoesNotExist, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -151,17 +167,21 @@
         "value": "0x9a124c80"
       }
     ],
-    "summary": "Alchemix v2 custom error IllegalArgument().",
+    "summary": "Alchemix v2 rejected the call at IllegalArgument: means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with IllegalArgument, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -186,17 +206,21 @@
         "value": "0xa942aeee"
       }
     ],
-    "summary": "Alchemix v2 custom error IllegalArgument(string).",
+    "summary": "Alchemix v2 rejected the call at IllegalArgument(string): means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with IllegalArgument, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Decoded arguments usually identify the relevant name, symbol, reason, URI, or identifier; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -221,17 +245,21 @@
         "value": "0x4a613c41"
       }
     ],
-    "summary": "Alchemix v2 custom error IllegalState().",
+    "summary": "Alchemix v2 rejected the call at IllegalState: means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with IllegalState, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -256,17 +284,21 @@
         "value": "0xc50656df"
       }
     ],
-    "summary": "Alchemix v2 custom error IllegalState(string).",
+    "summary": "Alchemix v2 rejected the call at IllegalState(string): means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with IllegalState, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Decoded arguments usually identify the relevant name, symbol, reason, URI, or identifier; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,15 +323,19 @@
         "value": "0x1c0b5bb5"
       }
     ],
-    "summary": "Alchemix v2 custom error InexactTokens(uint256,uint256).",
+    "summary": "Alchemix v2 rejected the call at InexactTokens(uint256,uint256): means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InexactTokens, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -326,15 +362,19 @@
         "value": "0x2029e525"
       }
     ],
-    "summary": "Alchemix v2 custom error IXERC20_NotFactory().",
+    "summary": "Alchemix v2 rejected the call at IXERC20_NotFactory: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with IXERC20_NotFactory, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -361,15 +401,19 @@
         "value": "0x0b6842aa"
       }
     ],
-    "summary": "Alchemix v2 custom error IXERC20_NotHighEnoughLimits().",
+    "summary": "Alchemix v2 rejected the call at IXERC20_NotHighEnoughLimits: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with IXERC20_NotHighEnoughLimits, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -396,15 +440,19 @@
         "value": "0x637e01ad"
       }
     ],
-    "summary": "Alchemix v2 custom error LiquidationLimitExceeded(address,uint256,uint256).",
+    "summary": "Alchemix v2 rejected the call at LiquidationLimitExceeded(address,uint256,uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with LiquidationLimitExceeded, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; amount, limit, nonce, timestamp, id, price, or configured bound; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -431,15 +479,19 @@
         "value": "0x2ecfcaf9"
       }
     ],
-    "summary": "Alchemix v2 custom error LockAlreadyClaimed().",
+    "summary": "Alchemix v2 rejected the call at LockAlreadyClaimed: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with LockAlreadyClaimed, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -466,15 +518,19 @@
         "value": "0x5c1bc281"
       }
     ],
-    "summary": "Alchemix v2 custom error LossExceeded(address,uint256,uint256).",
+    "summary": "Alchemix v2 rejected the call at LossExceeded(address,uint256,uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with LossExceeded, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; amount, limit, nonce, timestamp, id, price, or configured bound; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -501,17 +557,21 @@
         "value": "0x2f5d44a9"
       }
     ],
-    "summary": "Alchemix v2 custom error MintFailure().",
+    "summary": "Alchemix v2 rejected the call at MintFailure: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with MintFailure, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -536,15 +596,19 @@
         "value": "0x13d73d6b"
       }
     ],
-    "summary": "Alchemix v2 custom error MintingLimitExceeded(uint256,uint256).",
+    "summary": "Alchemix v2 rejected the call at MintingLimitExceeded(uint256,uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with MintingLimitExceeded, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -571,15 +635,19 @@
         "value": "0x1c3125d4"
       }
     ],
-    "summary": "Alchemix v2 custom error MulticallFailed(bytes,bytes).",
+    "summary": "Alchemix v2 rejected the call at MulticallFailed(bytes,bytes): means arithmetic, casting, rounding, division, precision, or fixed-point constraints rejected the operation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with MulticallFailed, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The submitted amount, price, ratio, or intermediate calculation overflows, underflows, divides by zero, or loses required precision.",
+      "Token decimals, share conversion, fixed-point scaling, or rounding rules differ from the client calculation.",
+      "The protocol's invariant cannot hold for the requested state transition.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recalculate the relevant amounts using the contract's decimals, scaling factors, and rounding direction.",
+      "Decode error arguments and compare them with the invariant or math helper in the referenced source.",
+      "Reduce the amount or use a valid price/ratio range before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -606,15 +674,19 @@
         "value": "0x95e6194b"
       }
     ],
-    "summary": "Alchemix v2 custom error RepayLimitExceeded(address,uint256,uint256).",
+    "summary": "Alchemix v2 rejected the call at RepayLimitExceeded(address,uint256,uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with RepayLimitExceeded, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; amount, limit, nonce, timestamp, id, price, or configured bound; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -641,15 +713,19 @@
         "value": "0x71c4efed"
       }
     ],
-    "summary": "Alchemix v2 custom error SlippageExceeded(uint256,uint256).",
+    "summary": "Alchemix v2 rejected the call at SlippageExceeded(uint256,uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with SlippageExceeded, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -676,17 +752,21 @@
         "value": "0xc0f965d8"
       }
     ],
-    "summary": "Alchemix v2 custom error TheGasIsTooDamnHigh().",
+    "summary": "Alchemix v2 rejected the call at TheGasIsTooDamnHigh: means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with TheGasIsTooDamnHigh, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -711,17 +791,21 @@
         "value": "0x1fac2d78"
       }
     ],
-    "summary": "Alchemix v2 custom error TokenDisabled(address).",
+    "summary": "Alchemix v2 rejected the call at TokenDisabled(address): means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with TokenDisabled, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -746,15 +830,19 @@
         "value": "0x82b42900"
       }
     ],
-    "summary": "Alchemix v2 custom error Unauthorized().",
+    "summary": "Alchemix v2 rejected the call at Unauthorized: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with Unauthorized, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,15 +869,19 @@
         "value": "0x8e4a23d6"
       }
     ],
-    "summary": "Alchemix v2 custom error Unauthorized(address).",
+    "summary": "Alchemix v2 rejected the call at Unauthorized(address): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with Unauthorized, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -816,15 +908,19 @@
         "value": "0x973d02cb"
       }
     ],
-    "summary": "Alchemix v2 custom error Unauthorized(string).",
+    "summary": "Alchemix v2 rejected the call at Unauthorized(string): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with Unauthorized, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant name, symbol, reason, URI, or identifier; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -851,17 +947,21 @@
         "value": "0xfddafdf5"
       }
     ],
-    "summary": "Alchemix v2 custom error Undercollateralized().",
+    "summary": "Alchemix v2 rejected the call at Undercollateralized: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with Undercollateralized, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -886,17 +986,21 @@
         "value": "0xe79ed82c"
       }
     ],
-    "summary": "Alchemix v2 custom error UnsupportedOperation(string).",
+    "summary": "Alchemix v2 rejected the call at UnsupportedOperation(string): means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with UnsupportedOperation, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Decoded arguments usually identify the relevant name, symbol, reason, URI, or identifier; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -921,15 +1025,19 @@
         "value": "0xbf16aab6"
       }
     ],
-    "summary": "Alchemix v2 custom error UnsupportedToken(address).",
+    "summary": "Alchemix v2 rejected the call at UnsupportedToken(address): means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with UnsupportedToken, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -956,15 +1064,19 @@
         "value": "0x79c8eba8"
       }
     ],
-    "summary": "Alchemix v2 custom error UnsupportedYieldToken(address).",
+    "summary": "Alchemix v2 rejected the call at UnsupportedYieldToken(address): means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with UnsupportedYieldToken, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -991,17 +1103,21 @@
         "value": "0x0f9d7454"
       }
     ],
-    "summary": "Alchemix v2 custom error YieldTokenDisabled().",
+    "summary": "Alchemix v2 rejected the call at YieldTokenDisabled: means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with YieldTokenDisabled, a Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol balance, route, fee, pool, or configuration state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Alchemix v2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1026,17 +1142,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?!owner['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: !owner.",
+    "summary": "Alchemix v2 reverted with \"!owner\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1061,17 +1181,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?!pendingOwner['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: !pendingOwner.",
+    "summary": "Alchemix v2 reverted with \"!pendingOwner\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1096,17 +1220,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?0 address['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: 0 address.",
+    "summary": "Alchemix v2 reverted with \"0 address\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1131,15 +1259,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AlTokenV1: Alchemist is not whitelisted['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: AlTokenV1: Alchemist is not whitelisted.",
+    "summary": "Alchemix v2 reverted with \"AlTokenV1: Alchemist is not whitelisted\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1166,15 +1298,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AlTokenV1: Only admin['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: AlTokenV1: Only admin.",
+    "summary": "Alchemix v2 reverted with \"AlTokenV1: Only admin\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1201,15 +1337,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AlTokenV1: Only sentinel['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: AlTokenV1: Only sentinel.",
+    "summary": "Alchemix v2 reverted with \"AlTokenV1: Only sentinel\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1236,15 +1376,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AlUSD: Alchemist is blacklisted\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: AlUSD: Alchemist is blacklisted..",
+    "summary": "Alchemix v2 reverted with \"AlUSD: Alchemist is blacklisted.\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1271,17 +1415,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AlUSD: Alchemist's ceiling was breached\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: AlUSD: Alchemist's ceiling was breached..",
+    "summary": "Alchemix v2 reverted with \"AlUSD: Alchemist's ceiling was breached.\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1306,17 +1454,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?AlUSD: Currently paused\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: AlUSD: Currently paused..",
+    "summary": "Alchemix v2 reverted with \"AlUSD: Currently paused.\", an exact source-level check that means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1341,15 +1493,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Caller not harvester['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: Caller not harvester.",
+    "summary": "Alchemix v2 reverted with \"Caller not harvester\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1376,17 +1532,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Chainlink Malfunction['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: Chainlink Malfunction.",
+    "summary": "Alchemix v2 reverted with \"Chainlink Malfunction\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1411,17 +1571,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Incomplete round['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: Incomplete round.",
+    "summary": "Alchemix v2 reverted with \"Incomplete round\", an exact source-level check that means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1446,17 +1610,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?INVALID_DEPOSITOR['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: INVALID_DEPOSITOR.",
+    "summary": "Alchemix v2 reverted with \"INVALID_DEPOSITOR\", an exact source-level check that means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1481,17 +1649,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?INVALID_EXPIRATION['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: INVALID_EXPIRATION.",
+    "summary": "Alchemix v2 reverted with \"INVALID_EXPIRATION\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1516,17 +1688,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?INVALID_OWNER['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: INVALID_OWNER.",
+    "summary": "Alchemix v2 reverted with \"INVALID_OWNER\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1551,15 +1727,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?INVALID_RECIPIENT['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: INVALID_RECIPIENT.",
+    "summary": "Alchemix v2 reverted with \"INVALID_RECIPIENT\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1586,15 +1766,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?INVALID_SIGNATURE['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: INVALID_SIGNATURE.",
+    "summary": "Alchemix v2 reverted with \"INVALID_SIGNATURE\", an exact source-level check that means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1621,15 +1805,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?must be pending admin['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: must be pending admin.",
+    "summary": "Alchemix v2 reverted with \"must be pending admin\", an exact source-level check that points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1656,17 +1844,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Must be Reward Router['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: Must be Reward Router.",
+    "summary": "Alchemix v2 reverted with \"Must be Reward Router\", an exact source-level check that points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1691,15 +1883,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not owner['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: Not owner.",
+    "summary": "Alchemix v2 reverted with \"Not owner\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1726,17 +1922,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not rewardCollector['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: Not rewardCollector.",
+    "summary": "Alchemix v2 reverted with \"Not rewardCollector\", an exact source-level check that points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1761,17 +1961,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ONLY_ONE_AMOUNT_FORMAT_ALLOWED['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: ONLY_ONE_AMOUNT_FORMAT_ALLOWED.",
+    "summary": "Alchemix v2 reverted with \"ONLY_ONE_AMOUNT_FORMAT_ALLOWED\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1796,15 +2000,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?RATE_TOO_HIGH['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: RATE_TOO_HIGH.",
+    "summary": "Alchemix v2 reverted with \"RATE_TOO_HIGH\", an exact source-level check that means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1831,17 +2039,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?StakingPools: governance address cannot be 0x0['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: StakingPools: governance address cannot be 0x0.",
+    "summary": "Alchemix v2 reverted with \"StakingPools: governance address cannot be 0x0\", an exact source-level check that points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1866,17 +2078,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?StakingPools: only governance['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: StakingPools: only governance.",
+    "summary": "Alchemix v2 reverted with \"StakingPools: only governance\", an exact source-level check that points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1901,17 +2117,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?StakingPools: only pending governance['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: StakingPools: only pending governance.",
+    "summary": "Alchemix v2 reverted with \"StakingPools: only pending governance\", an exact source-level check that points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1936,17 +2156,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?StakingPools: pending governance address cannot be 0x0['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: StakingPools: pending governance address cannot be 0x0.",
+    "summary": "Alchemix v2 reverted with \"StakingPools: pending governance address cannot be 0x0\", an exact source-level check that points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1971,15 +2195,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?StakingPools: token already has a pool['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: StakingPools: token already has a pool.",
+    "summary": "Alchemix v2 reverted with \"StakingPools: token already has a pool\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2006,15 +2234,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?StakingPools: weights length mismatch['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: StakingPools: weights length mismatch.",
+    "summary": "Alchemix v2 reverted with \"StakingPools: weights length mismatch\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2041,15 +2273,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Transfer failed['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: Transfer failed.",
+    "summary": "Alchemix v2 reverted with \"Transfer failed\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2076,15 +2312,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?TransferAdapter: only admin['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: TransferAdapter: only admin.",
+    "summary": "Alchemix v2 reverted with \"TransferAdapter: only admin\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2111,15 +2351,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?TransferAdapter: only alchemist['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: TransferAdapter: only alchemist.",
+    "summary": "Alchemix v2 reverted with \"TransferAdapter: only alchemist\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2146,15 +2390,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?TransferAdapter: only pending admin['\"]?\\s*$"
       }
     ],
-    "summary": "Alchemix v2 revert reason string: TransferAdapter: only pending admin.",
+    "summary": "Alchemix v2 reverted with \"TransferAdapter: only pending admin\", an exact source-level check that points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Alchemix alchemist, transmuter, collateral, debt, harvest, keeper, cross-chain token, or access-control flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol balance, route, fee, pool, or configuration state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Alchemix v2 source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",

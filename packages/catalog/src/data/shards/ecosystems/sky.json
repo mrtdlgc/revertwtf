@@ -11,17 +11,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?MkrSky/fee-exceeds-wad['\"]?\\s*$"
       }
     ],
-    "summary": "Sky token contracts revert reason string: MkrSky/fee-exceeds-wad.",
+    "summary": "Sky token contracts reverted with \"MkrSky/fee-exceeds-wad\", an exact source-level check that means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Sky token, MKR/SKY converter, permit, voting, migration, or token accounting flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking mint, redeem, collateral, reserve, oracle, role, or accounting state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Sky token contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -46,15 +50,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?MkrSky/file-unrecognized-param['\"]?\\s*$"
       }
     ],
-    "summary": "Sky token contracts revert reason string: MkrSky/file-unrecognized-param.",
+    "summary": "Sky token contracts reverted with \"MkrSky/file-unrecognized-param\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Sky token, MKR/SKY converter, permit, voting, migration, or token accounting flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking mint, redeem, collateral, reserve, oracle, role, or accounting state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Sky token contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -81,15 +89,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?MkrSky/not-authorized['\"]?\\s*$"
       }
     ],
-    "summary": "Sky token contracts revert reason string: MkrSky/not-authorized.",
+    "summary": "Sky token contracts reverted with \"MkrSky/not-authorized\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Sky token, MKR/SKY converter, permit, voting, migration, or token accounting flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking mint, redeem, collateral, reserve, oracle, role, or accounting state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Sky token contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -116,15 +128,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?MkrSky/nothing-to-collect['\"]?\\s*$"
       }
     ],
-    "summary": "Sky token contracts revert reason string: MkrSky/nothing-to-collect.",
+    "summary": "Sky token contracts reverted with \"MkrSky/nothing-to-collect\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Sky token, MKR/SKY converter, permit, voting, migration, or token accounting flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking mint, redeem, collateral, reserve, oracle, role, or accounting state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Sky token contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -151,15 +167,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Sky/insufficient-allowance['\"]?\\s*$"
       }
     ],
-    "summary": "Sky token contracts revert reason string: Sky/insufficient-allowance.",
+    "summary": "Sky token contracts reverted with \"Sky/insufficient-allowance\", an exact source-level check that points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Sky token, MKR/SKY converter, permit, voting, migration, or token accounting flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking mint, redeem, collateral, reserve, oracle, role, or accounting state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Sky token contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -186,17 +206,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Sky/insufficient-balance['\"]?\\s*$"
       }
     ],
-    "summary": "Sky token contracts revert reason string: Sky/insufficient-balance.",
+    "summary": "Sky token contracts reverted with \"Sky/insufficient-balance\", an exact source-level check that means the account, vault, pool, escrow, reserve, or market does not have enough usable balance or liquidity.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Sky token, MKR/SKY converter, permit, voting, migration, or token accounting flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender's token balance, native balance, collateral, vault shares, or internal accounting balance is below the requested amount.",
+      "The pool, reserve, vault, market, or escrow lacks enough available liquidity for the operation.",
+      "Fees, debt, pending withdrawals, slippage, or locked balances reduce the spendable amount below the visible balance.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking mint, redeem, collateral, reserve, oracle, role, or accounting state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Sky token contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check token balance, native balance, internal vault balance, debt, and available liquidity at the same block as the revert.",
+      "Reduce the requested amount or add funds, collateral, shares, or liquidity before retrying.",
+      "Account for protocol fees, pending withdrawals, and locked balances when computing spendable amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -221,15 +245,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Sky/invalid-address['\"]?\\s*$"
       }
     ],
-    "summary": "Sky token contracts revert reason string: Sky/invalid-address.",
+    "summary": "Sky token contracts reverted with \"Sky/invalid-address\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Sky token, MKR/SKY converter, permit, voting, migration, or token accounting flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking mint, redeem, collateral, reserve, oracle, role, or accounting state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Sky token contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -256,15 +284,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Sky/invalid-owner['\"]?\\s*$"
       }
     ],
-    "summary": "Sky token contracts revert reason string: Sky/invalid-owner.",
+    "summary": "Sky token contracts reverted with \"Sky/invalid-owner\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Sky token, MKR/SKY converter, permit, voting, migration, or token accounting flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking mint, redeem, collateral, reserve, oracle, role, or accounting state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Sky token contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -291,15 +323,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Sky/invalid-permit['\"]?\\s*$"
       }
     ],
-    "summary": "Sky token contracts revert reason string: Sky/invalid-permit.",
+    "summary": "Sky token contracts reverted with \"Sky/invalid-permit\", an exact source-level check that means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Sky token, MKR/SKY converter, permit, voting, migration, or token accounting flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking mint, redeem, collateral, reserve, oracle, role, or accounting state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Sky token contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -326,15 +362,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Sky/not-authorized['\"]?\\s*$"
       }
     ],
-    "summary": "Sky token contracts revert reason string: Sky/not-authorized.",
+    "summary": "Sky token contracts reverted with \"Sky/not-authorized\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Sky token, MKR/SKY converter, permit, voting, migration, or token accounting flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking mint, redeem, collateral, reserve, oracle, role, or accounting state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Sky token contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -361,17 +401,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Sky/permit-expired['\"]?\\s*$"
       }
     ],
-    "summary": "Sky token contracts revert reason string: Sky/permit-expired.",
+    "summary": "Sky token contracts reverted with \"Sky/permit-expired\", an exact source-level check that means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A Sky token, MKR/SKY converter, permit, voting, migration, or token accounting flow precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking mint, redeem, collateral, reserve, oracle, role, or accounting state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the Sky token contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [

@@ -11,15 +11,19 @@
         "value": "0x30442cd8"
       }
     ],
-    "summary": "Pyth SDK custom error CombinedPriceOverflow().",
+    "summary": "Pyth SDK rejected the call at CombinedPriceOverflow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CombinedPriceOverflow custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,15 +50,19 @@
         "value": "0x96c1d04c"
       }
     ],
-    "summary": "Pyth SDK custom error ExponentOverflow().",
+    "summary": "Pyth SDK rejected the call at ExponentOverflow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ExponentOverflow custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -81,17 +89,21 @@
         "value": "0x025dbdd4"
       }
     ],
-    "summary": "Pyth SDK custom error InsufficientFee().",
+    "summary": "Pyth SDK rejected the call at InsufficientFee: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InsufficientFee custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -116,15 +128,19 @@
         "value": "0xa9cb9e0d"
       }
     ],
-    "summary": "Pyth SDK custom error InvalidArgument().",
+    "summary": "Pyth SDK rejected the call at InvalidArgument: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidArgument custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -151,17 +167,21 @@
         "value": "0x360f2d87"
       }
     ],
-    "summary": "Pyth SDK custom error InvalidGovernanceDataSource().",
+    "summary": "Pyth SDK rejected the call at InvalidGovernanceDataSource: means proposal, vote, quorum, queue, timelock, delegation, or execution state does not allow the requested governance action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidGovernanceDataSource custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The proposal is not in the lifecycle state required for voting, queueing, cancelling, or execution.",
+      "The voter already voted, lacks voting weight, or supplied an unsupported vote type.",
+      "Quorum, delay, timelock, or delegation requirements have not been satisfied.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read proposal state, voting window, quorum, vote receipts, delegation, and timelock status.",
+      "Submit the action only during the proposal phase that permits it.",
+      "Refresh voting power and prior receipt state before attempting another vote."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -186,18 +206,22 @@
         "value": "0x97363b35"
       }
     ],
-    "summary": "Pyth SDK custom error InvalidGovernanceMessage().",
+    "summary": "Pyth SDK rejected the call at InvalidGovernanceMessage: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidGovernanceMessage custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -221,17 +245,21 @@
         "value": "0x63daeb77"
       }
     ],
-    "summary": "Pyth SDK custom error InvalidGovernanceTarget().",
+    "summary": "Pyth SDK rejected the call at InvalidGovernanceTarget: means proposal, vote, quorum, queue, timelock, delegation, or execution state does not allow the requested governance action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidGovernanceTarget custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The proposal is not in the lifecycle state required for voting, queueing, cancelling, or execution.",
+      "The voter already voted, lacks voting weight, or supplied an unsupported vote type.",
+      "Quorum, delay, timelock, or delegation requirements have not been satisfied.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read proposal state, voting window, quorum, vote receipts, delegation, and timelock status.",
+      "Submit the action only during the proposal phase that permits it.",
+      "Refresh voting power and prior receipt state before attempting another vote."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -256,15 +284,19 @@
         "value": "0x6a345a28"
       }
     ],
-    "summary": "Pyth SDK custom error InvalidInputExpo().",
+    "summary": "Pyth SDK rejected the call at InvalidInputExpo: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidInputExpo custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -291,17 +323,21 @@
         "value": "0x1dbbd294"
       }
     ],
-    "summary": "Pyth SDK custom error InvalidTwapUpdateData().",
+    "summary": "Pyth SDK rejected the call at InvalidTwapUpdateData: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidTwapUpdateData custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -326,17 +362,21 @@
         "value": "0x196224b0"
       }
     ],
-    "summary": "Pyth SDK custom error InvalidTwapUpdateDataSet().",
+    "summary": "Pyth SDK rejected the call at InvalidTwapUpdateDataSet: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidTwapUpdateDataSet custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -361,17 +401,21 @@
         "value": "0xe69ffece"
       }
     ],
-    "summary": "Pyth SDK custom error InvalidUpdateData().",
+    "summary": "Pyth SDK rejected the call at InvalidUpdateData: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidUpdateData custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -396,17 +440,21 @@
         "value": "0xe60dce71"
       }
     ],
-    "summary": "Pyth SDK custom error InvalidUpdateDataSource().",
+    "summary": "Pyth SDK rejected the call at InvalidUpdateDataSource: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidUpdateDataSource custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -431,18 +479,22 @@
         "value": "0x13d3ed82"
       }
     ],
-    "summary": "Pyth SDK custom error InvalidWormholeAddressToSet().",
+    "summary": "Pyth SDK rejected the call at InvalidWormholeAddressToSet: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidWormholeAddressToSet custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -466,18 +518,22 @@
         "value": "0x2acbe915"
       }
     ],
-    "summary": "Pyth SDK custom error InvalidWormholeVaa().",
+    "summary": "Pyth SDK rejected the call at InvalidWormholeVaa: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidWormholeVaa custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -501,17 +557,21 @@
         "value": "0x4db089c0"
       }
     ],
-    "summary": "Pyth SDK custom error NegativeInputPrice().",
+    "summary": "Pyth SDK rejected the call at NegativeInputPrice: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NegativeInputPrice custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -536,17 +596,21 @@
         "value": "0xde2c57fa"
       }
     ],
-    "summary": "Pyth SDK custom error NoFreshUpdate().",
+    "summary": "Pyth SDK rejected the call at NoFreshUpdate: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NoFreshUpdate custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -571,18 +635,22 @@
         "value": "0x88d1b847"
       }
     ],
-    "summary": "Pyth SDK custom error OldGovernanceMessage().",
+    "summary": "Pyth SDK rejected the call at OldGovernanceMessage: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the OldGovernanceMessage custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -606,17 +674,21 @@
         "value": "0x14aebe68"
       }
     ],
-    "summary": "Pyth SDK custom error PriceFeedNotFound().",
+    "summary": "Pyth SDK rejected the call at PriceFeedNotFound: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PriceFeedNotFound custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -641,17 +713,21 @@
         "value": "0x45805f5d"
       }
     ],
-    "summary": "Pyth SDK custom error PriceFeedNotFoundWithinRange().",
+    "summary": "Pyth SDK rejected the call at PriceFeedNotFoundWithinRange: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PriceFeedNotFoundWithinRange custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -676,17 +752,21 @@
         "value": "0x19abf40e"
       }
     ],
-    "summary": "Pyth SDK custom error StalePrice().",
+    "summary": "Pyth SDK rejected the call at StalePrice: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the StalePrice custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [

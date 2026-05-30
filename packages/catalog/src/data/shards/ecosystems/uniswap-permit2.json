@@ -11,17 +11,21 @@
         "value": "0xd81b2f2e"
       }
     ],
-    "summary": "Uniswap Permit2 custom error AllowanceExpired(uint256).",
+    "summary": "Uniswap Permit2 rejected the call at AllowanceExpired(uint256): means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with AllowanceExpired, a Permit2 allowance, signature, nonce, witness, transfer, expiry, or spender authorization precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap Permit2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -46,17 +50,21 @@
         "value": "0x24d35a26"
       }
     ],
-    "summary": "Uniswap Permit2 custom error ExcessiveInvalidation().",
+    "summary": "Uniswap Permit2 rejected the call at ExcessiveInvalidation: means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ExcessiveInvalidation, a Permit2 allowance, signature, nonce, witness, transfer, expiry, or spender authorization precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap Permit2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -81,15 +89,19 @@
         "value": "0xf96fb071"
       }
     ],
-    "summary": "Uniswap Permit2 custom error InsufficientAllowance(uint256).",
+    "summary": "Uniswap Permit2 rejected the call at InsufficientAllowance(uint256): points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InsufficientAllowance, a Permit2 allowance, signature, nonce, witness, transfer, expiry, or spender authorization precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap Permit2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -116,15 +128,19 @@
         "value": "0x3728b83d"
       }
     ],
-    "summary": "Uniswap Permit2 custom error InvalidAmount(uint256).",
+    "summary": "Uniswap Permit2 rejected the call at InvalidAmount(uint256): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidAmount, a Permit2 allowance, signature, nonce, witness, transfer, expiry, or spender authorization precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap Permit2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -151,15 +167,19 @@
         "value": "0xb0669cbc"
       }
     ],
-    "summary": "Uniswap Permit2 custom error InvalidContractSignature().",
+    "summary": "Uniswap Permit2 rejected the call at InvalidContractSignature: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidContractSignature, a Permit2 allowance, signature, nonce, witness, transfer, expiry, or spender authorization precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap Permit2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -186,15 +206,19 @@
         "value": "0x756688fe"
       }
     ],
-    "summary": "Uniswap Permit2 custom error InvalidNonce().",
+    "summary": "Uniswap Permit2 rejected the call at InvalidNonce: means the transaction, permit, order, message, or request nonce does not match the next valid value expected by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidNonce, a Permit2 allowance, signature, nonce, witness, transfer, expiry, or spender authorization precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The nonce, salt, sequence number, or request id has already been consumed.",
+      "The client submitted transactions out of order or reused a signed payload after another state-changing action.",
+      "A cross-chain message, account module, permit helper, or orderbook tracks nonces separately from the wallet account nonce.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap Permit2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the protocol nonce, consumed bitmap, salt status, or sequence counter for the sender/order/message.",
+      "Regenerate the signed payload with the next unused protocol nonce instead of resubmitting the old one.",
+      "Stop retrying if the id was already consumed and reconcile the resulting on-chain state."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -221,15 +245,19 @@
         "value": "0x8baa579f"
       }
     ],
-    "summary": "Uniswap Permit2 custom error InvalidSignature().",
+    "summary": "Uniswap Permit2 rejected the call at InvalidSignature: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidSignature, a Permit2 allowance, signature, nonce, witness, transfer, expiry, or spender authorization precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap Permit2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -256,15 +284,19 @@
         "value": "0x4be6321b"
       }
     ],
-    "summary": "Uniswap Permit2 custom error InvalidSignatureLength().",
+    "summary": "Uniswap Permit2 rejected the call at InvalidSignatureLength: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidSignatureLength, a Permit2 allowance, signature, nonce, witness, transfer, expiry, or spender authorization precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap Permit2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -291,15 +323,19 @@
         "value": "0x815e1d64"
       }
     ],
-    "summary": "Uniswap Permit2 custom error InvalidSigner().",
+    "summary": "Uniswap Permit2 rejected the call at InvalidSigner: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidSigner, a Permit2 allowance, signature, nonce, witness, transfer, expiry, or spender authorization precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap Permit2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -326,15 +362,19 @@
         "value": "0xff633a38"
       }
     ],
-    "summary": "Uniswap Permit2 custom error LengthMismatch().",
+    "summary": "Uniswap Permit2 rejected the call at LengthMismatch: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with LengthMismatch, a Permit2 allowance, signature, nonce, witness, transfer, expiry, or spender authorization precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap Permit2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -361,17 +401,21 @@
         "value": "0xcd21db4f"
       }
     ],
-    "summary": "Uniswap Permit2 custom error SignatureExpired(uint256).",
+    "summary": "Uniswap Permit2 rejected the call at SignatureExpired(uint256): means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with SignatureExpired, a Permit2 allowance, signature, nonce, witness, transfer, expiry, or spender authorization precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap Permit2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -396,15 +440,19 @@
         "value": "0xc4bd89a9"
       }
     ],
-    "summary": "Uniswap Permit2 custom error UnsafeCast().",
+    "summary": "Uniswap Permit2 rejected the call at UnsafeCast: means arithmetic, casting, rounding, division, precision, or fixed-point constraints rejected the operation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with UnsafeCast, a Permit2 allowance, signature, nonce, witness, transfer, expiry, or spender authorization precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The submitted amount, price, ratio, or intermediate calculation overflows, underflows, divides by zero, or loses required precision.",
+      "Token decimals, share conversion, fixed-point scaling, or rounding rules differ from the client calculation.",
+      "The protocol's invariant cannot hold for the requested state transition.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and protocol state, transaction inputs, authorization, or configuration."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Uniswap Permit2 source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recalculate the relevant amounts using the contract's decimals, scaling factors, and rounding direction.",
+      "Decode error arguments and compare them with the invariant or math helper in the referenced source.",
+      "Reduce the amount or use a valid price/ratio range before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",

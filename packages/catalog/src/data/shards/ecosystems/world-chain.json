@@ -11,15 +11,19 @@
         "value": "0x9fabe1c1"
       }
     ],
-    "summary": "World Chain contracts custom error AddressZero().",
+    "summary": "World Chain contracts rejected the call at AddressZero: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with AddressZero, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,17 +50,21 @@
         "value": "0x0cea97bc"
       }
     ],
-    "summary": "World Chain contracts custom error BurnTooSoon().",
+    "summary": "World Chain contracts rejected the call at BurnTooSoon: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with BurnTooSoon, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -81,15 +89,19 @@
         "value": "0xb12d13eb"
       }
     ],
-    "summary": "World Chain contracts custom error ETHTransferFailed().",
+    "summary": "World Chain contracts rejected the call at ETHTransferFailed: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with ETHTransferFailed, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -116,18 +128,22 @@
         "value": "0x1935f531"
       }
     ],
-    "summary": "World Chain contracts custom error GasLimitExceeded(uint256,uint256).",
+    "summary": "World Chain contracts rejected the call at GasLimitExceeded(uint256,uint256): means the protocol rejected the gas, execution-fee, or callback-gas value before the call could complete.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with GasLimitExceeded, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A bridge message, callback, hook, keeper, or low-level call was configured with too little execution gas.",
+      "A relayer, paymaster, bridge adapter, or protocol fee field uses a separate gas limit from the outer transaction gas.",
+      "The call path requires a minimum gas reserve before forwarding execution to another contract.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the error arguments and compare the required gas or fee with the gas-related fields submitted in calldata.",
+      "Increase the protocol callback, execution, or message gas field as well as the outer transaction gas if both are present.",
+      "If the error names call depth or forwarding, simplify the call path instead of only raising gas."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "yes",
     "confidence": "high",
     "references": [
       {
@@ -151,17 +167,21 @@
         "value": "0x2908d44a"
       }
     ],
-    "summary": "World Chain contracts custom error InsufficientBurn(uint256,uint256).",
+    "summary": "World Chain contracts rejected the call at InsufficientBurn(uint256,uint256): means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InsufficientBurn, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -186,15 +206,19 @@
         "value": "0xe6c4247b"
       }
     ],
-    "summary": "World Chain contracts custom error InvalidAddress().",
+    "summary": "World Chain contracts rejected the call at InvalidAddress: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidAddress, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -221,15 +245,19 @@
         "value": "0x155b0335"
       }
     ],
-    "summary": "World Chain contracts custom error InvalidAggregatedSignature(uint256,uint256).",
+    "summary": "World Chain contracts rejected the call at InvalidAggregatedSignature(uint256,uint256): means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidAggregatedSignature, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -256,18 +284,22 @@
         "value": "0x49382ff4"
       }
     ],
-    "summary": "World Chain contracts custom error InvalidAuthorizedBuilders().",
+    "summary": "World Chain contracts rejected the call at InvalidAuthorizedBuilders: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidAuthorizedBuilders, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -291,18 +323,22 @@
         "value": "0x9b9b35a6"
       }
     ],
-    "summary": "World Chain contracts custom error InvalidExternalNullifier(uint256,uint256,string).",
+    "summary": "World Chain contracts rejected the call at InvalidExternalNullifier(uint256,uint256,string): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidExternalNullifier, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; name, symbol, reason, URI, or identifier; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -326,18 +362,22 @@
         "value": "0x7dd4fca7"
       }
     ],
-    "summary": "World Chain contracts custom error InvalidExternalNullifierMonth().",
+    "summary": "World Chain contracts rejected the call at InvalidExternalNullifierMonth: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidExternalNullifierMonth, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -361,18 +401,22 @@
         "value": "0xf5806179"
       }
     ],
-    "summary": "World Chain contracts custom error InvalidHashedOps().",
+    "summary": "World Chain contracts rejected the call at InvalidHashedOps: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidHashedOps, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -396,18 +440,22 @@
         "value": "0xdc72f86f"
       }
     ],
-    "summary": "World Chain contracts custom error InvalidNullifier(uint256,uint256).",
+    "summary": "World Chain contracts rejected the call at InvalidNullifier(uint256,uint256): points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidNullifier, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -431,18 +479,22 @@
         "value": "0xd074d68d"
       }
     ],
-    "summary": "World Chain contracts custom error InvalidNumPbhPerMonth().",
+    "summary": "World Chain contracts rejected the call at InvalidNumPbhPerMonth: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidNumPbhPerMonth, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -466,18 +518,22 @@
         "value": "0xd7dc6726"
       }
     ],
-    "summary": "World Chain contracts custom error InvalidPBHGasLimit(uint256).",
+    "summary": "World Chain contracts rejected the call at InvalidPBHGasLimit(uint256): means the protocol rejected the gas, execution-fee, or callback-gas value before the call could complete.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidPBHGasLimit, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A bridge message, callback, hook, keeper, or low-level call was configured with too little execution gas.",
+      "A relayer, paymaster, bridge adapter, or protocol fee field uses a separate gas limit from the outer transaction gas.",
+      "The call path requires a minimum gas reserve before forwarding execution to another contract.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the error arguments and compare the required gas or fee with the gas-related fields submitted in calldata.",
+      "Increase the protocol callback, execution, or message gas field as well as the outer transaction gas if both are present.",
+      "If the error names call depth or forwarding, simplify the call path instead of only raising gas."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "yes",
+    "increasingGasHelpful": "yes",
     "confidence": "high",
     "references": [
       {
@@ -501,15 +557,19 @@
         "value": "0x7681df2b"
       }
     ],
-    "summary": "World Chain contracts custom error InvalidProofSize().",
+    "summary": "World Chain contracts rejected the call at InvalidProofSize: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidProofSize, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -536,15 +596,19 @@
         "value": "0xd615d706"
       }
     ],
-    "summary": "World Chain contracts custom error InvalidSignatureLength(uint256,uint256).",
+    "summary": "World Chain contracts rejected the call at InvalidSignatureLength(uint256,uint256): means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidSignatureLength, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -571,17 +635,21 @@
         "value": "0x334ee9a1"
       }
     ],
-    "summary": "World Chain contracts custom error InvalidSlippage().",
+    "summary": "World Chain contracts rejected the call at InvalidSlippage: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with InvalidSlippage, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -606,17 +674,21 @@
         "value": "0x98642b86"
       }
     ],
-    "summary": "World Chain contracts custom error NothingToBurn().",
+    "summary": "World Chain contracts rejected the call at NothingToBurn: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with NothingToBurn, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -641,17 +713,21 @@
         "value": "0x19abf40e"
       }
     ],
-    "summary": "World Chain contracts custom error StalePrice().",
+    "summary": "World Chain contracts rejected the call at StalePrice: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with StalePrice, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -676,18 +752,22 @@
         "value": "0x5e75ad06"
       }
     ],
-    "summary": "World Chain contracts custom error StorageCollision().",
+    "summary": "World Chain contracts rejected the call at StorageCollision: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with StorageCollision, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -711,15 +791,19 @@
         "value": "0x2be1a925"
       }
     ],
-    "summary": "World Chain contracts custom error UnauthorizedBuilder().",
+    "summary": "World Chain contracts rejected the call at UnauthorizedBuilder: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with UnauthorizedBuilder, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -746,15 +830,19 @@
         "value": "0xcd2ff7a1"
       }
     ],
-    "summary": "World Chain contracts custom error UninitializedNonceKey().",
+    "summary": "World Chain contracts rejected the call at UninitializedNonceKey: means the transaction, permit, order, message, or request nonce does not match the next valid value expected by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with UninitializedNonceKey, a World Chain PBH, account manager, session, fee escrow, or verifier precondition.",
-      "The selector identifies the failing contract branch; decoded arguments usually identify the bad account, token, amount, route, nonce, domain, module, or configuration value."
+      "The nonce, salt, sequence number, or request id has already been consumed.",
+      "The client submitted transactions out of order or reused a signed payload after another state-changing action.",
+      "A cross-chain message, account module, permit helper, or orderbook tracks nonces separately from the wallet account nonce.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and account, module, validator, paymaster, session-key, or EntryPoint state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the World Chain contracts source precondition named by the error and retry only after changing the transaction inputs or protocol state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the protocol nonce, consumed bitmap, salt status, or sequence counter for the sender/order/message.",
+      "Regenerate the signed payload with the next unused protocol nonce instead of resubmitting the old one.",
+      "Stop retrying if the id was already consumed and reconcile the resulting on-chain state."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,18 +869,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid Month['\"]?\\s*$"
       }
     ],
-    "summary": "World Chain contracts revert reason string: Invalid Month.",
+    "summary": "World Chain contracts reverted with \"Invalid Month\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A World Chain PBH, account manager, session, fee escrow, or verifier precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the World Chain contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -816,15 +908,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid PBH Nonce['\"]?\\s*$"
       }
     ],
-    "summary": "World Chain contracts revert reason string: Invalid PBH Nonce.",
+    "summary": "World Chain contracts reverted with \"Invalid PBH Nonce\", an exact source-level check that means the transaction, permit, order, message, or request nonce does not match the next valid value expected by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A World Chain PBH, account manager, session, fee escrow, or verifier precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The nonce, salt, sequence number, or request id has already been consumed.",
+      "The client submitted transactions out of order or reused a signed payload after another state-changing action.",
+      "A cross-chain message, account module, permit helper, or orderbook tracks nonces separately from the wallet account nonce.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the World Chain contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the protocol nonce, consumed bitmap, salt status, or sequence counter for the sender/order/message.",
+      "Regenerate the signed payload with the next unused protocol nonce instead of resubmitting the old one.",
+      "Stop retrying if the id was already consumed and reconcile the resulting on-chain state."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -851,18 +947,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid Version['\"]?\\s*$"
       }
     ],
-    "summary": "World Chain contracts revert reason string: Invalid Version.",
+    "summary": "World Chain contracts reverted with \"Invalid Version\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A World Chain PBH, account manager, session, fee escrow, or verifier precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the World Chain contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -886,18 +986,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid Year['\"]?\\s*$"
       }
     ],
-    "summary": "World Chain contracts revert reason string: Invalid Year.",
+    "summary": "World Chain contracts reverted with \"Invalid Year\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A World Chain PBH, account manager, session, fee escrow, or verifier precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the World Chain contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -921,18 +1025,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Leading zeros['\"]?\\s*$"
       }
     ],
-    "summary": "World Chain contracts revert reason string: Leading zeros.",
+    "summary": "World Chain contracts reverted with \"Leading zeros\", an exact source-level check that points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A World Chain PBH, account manager, session, fee escrow, or verifier precondition failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking account, module, validator, paymaster, session-key, or EntryPoint state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check the World Chain contracts source precondition and retry only after changing transaction inputs or protocol state."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {

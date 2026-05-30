@@ -11,15 +11,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?condition already prepared['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: condition already prepared.",
+    "summary": "Gnosis Conditional Tokens reverted with \"condition already prepared\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,17 +50,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?condition not prepared or found['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: condition not prepared or found.",
+    "summary": "Gnosis Conditional Tokens reverted with \"condition not prepared or found\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -81,17 +89,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?condition not prepared yet['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: condition not prepared yet.",
+    "summary": "Gnosis Conditional Tokens reverted with \"condition not prepared yet\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -116,17 +128,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?could not receive collateral tokens['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: could not receive collateral tokens.",
+    "summary": "Gnosis Conditional Tokens reverted with \"could not receive collateral tokens\", an exact source-level check that means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -151,17 +167,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?could not send collateral tokens['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: could not send collateral tokens.",
+    "summary": "Gnosis Conditional Tokens reverted with \"could not send collateral tokens\", an exact source-level check that means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -186,18 +206,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?could not transfer payout to message sender['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: could not transfer payout to message sender.",
+    "summary": "Gnosis Conditional Tokens reverted with \"could not transfer payout to message sender\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -221,15 +245,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC1155: balance query for the zero address['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: ERC1155: balance query for the zero address.",
+    "summary": "Gnosis Conditional Tokens reverted with \"ERC1155: balance query for the zero address\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -256,15 +284,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC1155: batch mint to the zero address['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: ERC1155: batch mint to the zero address.",
+    "summary": "Gnosis Conditional Tokens reverted with \"ERC1155: batch mint to the zero address\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -291,17 +323,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC1155: got unknown value from onERC1155BatchReceived['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: ERC1155: got unknown value from onERC1155BatchReceived.",
+    "summary": "Gnosis Conditional Tokens reverted with \"ERC1155: got unknown value from onERC1155BatchReceived\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -326,17 +362,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC1155: got unknown value from onERC1155Received['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: ERC1155: got unknown value from onERC1155Received.",
+    "summary": "Gnosis Conditional Tokens reverted with \"ERC1155: got unknown value from onERC1155Received\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -361,15 +401,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC1155: IDs and values must have same lengths['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: ERC1155: IDs and values must have same lengths.",
+    "summary": "Gnosis Conditional Tokens reverted with \"ERC1155: IDs and values must have same lengths\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -396,15 +440,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC1155: need operator approval for 3rd party transfers\\.['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: ERC1155: need operator approval for 3rd party transfers..",
+    "summary": "Gnosis Conditional Tokens reverted with \"ERC1155: need operator approval for 3rd party transfers.\", an exact source-level check that points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -431,15 +479,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC1155: owners and IDs must have same lengths['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: ERC1155: owners and IDs must have same lengths.",
+    "summary": "Gnosis Conditional Tokens reverted with \"ERC1155: owners and IDs must have same lengths\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -466,15 +518,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC1155: some address in batch balance query is zero['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: ERC1155: some address in batch balance query is zero.",
+    "summary": "Gnosis Conditional Tokens reverted with \"ERC1155: some address in batch balance query is zero\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -501,15 +557,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC1155: target address must be non-zero['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: ERC1155: target address must be non-zero.",
+    "summary": "Gnosis Conditional Tokens reverted with \"ERC1155: target address must be non-zero\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -536,17 +596,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?got empty or singleton partition['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: got empty or singleton partition.",
+    "summary": "Gnosis Conditional Tokens reverted with \"got empty or singleton partition\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -571,15 +635,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?got invalid index set['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: got invalid index set.",
+    "summary": "Gnosis Conditional Tokens reverted with \"got invalid index set\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -606,17 +674,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?invalid parent collection ID['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: invalid parent collection ID.",
+    "summary": "Gnosis Conditional Tokens reverted with \"invalid parent collection ID\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -641,17 +713,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?partition not disjoint['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: partition not disjoint.",
+    "summary": "Gnosis Conditional Tokens reverted with \"partition not disjoint\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -676,15 +752,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?payout denominator already set['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: payout denominator already set.",
+    "summary": "Gnosis Conditional Tokens reverted with \"payout denominator already set\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -711,17 +791,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?payout is all zeroes['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: payout is all zeroes.",
+    "summary": "Gnosis Conditional Tokens reverted with \"payout is all zeroes\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -746,15 +830,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?payout numerator already set['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: payout numerator already set.",
+    "summary": "Gnosis Conditional Tokens reverted with \"payout numerator already set\", an exact source-level check that means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,17 +869,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?result for condition not received yet['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: result for condition not received yet.",
+    "summary": "Gnosis Conditional Tokens reverted with \"result for condition not received yet\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -816,17 +908,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?there should be more than one outcome slot['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: there should be more than one outcome slot.",
+    "summary": "Gnosis Conditional Tokens reverted with \"there should be more than one outcome slot\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -851,17 +947,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?too many outcome slots['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis Conditional Tokens revert reason string: too many outcome slots.",
+    "summary": "Gnosis Conditional Tokens reverted with \"too many outcome slots\", an exact source-level check that means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking protocol state, transaction inputs, authorization, or configuration, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [

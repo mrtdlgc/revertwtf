@@ -15,26 +15,36 @@
         "value": "AA10"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA10 (sender already constructed).",
+    "summary": "The EntryPoint rejected account creation because the sender smart account already has code deployed, but the UserOperation still included factory/initCode deployment data.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint factory validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The client is resubmitting a first-use UserOperation after the account was already deployed.",
+      "The account address was derived correctly, but stale factory or initCode data is still being attached.",
+      "The sender address belongs to an existing smart account on this network."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Check whether the sender address already has contract code on the target chain.",
+      "Remove initCode, or the v0.7/v0.8 factory and factoryData fields, when sending from an already deployed account.",
+      "If this was meant to deploy a new account, recompute the counterfactual sender and factory calldata."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 error code attribution",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#error-codes"
       }
     ]
   },
   {
-    "rootCauseKnown": true,
+    "rootCauseKnown": false,
     "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "id": "aa-aa13-init-code-failed-or-oog",
     "title": "AA13: initCode failed or OOG",
@@ -47,19 +57,29 @@
         "value": "AA13"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA13 (initCode failed or OOG).",
+    "summary": "The account deployment path failed before the smart account was created: the factory/initCode reverted, ran out of gas, or could not complete account creation.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint factory validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The factory address or encoded factory call is wrong for this account type or chain.",
+      "The account does not have enough native token to pay for deployment when no paymaster is covering the operation.",
+      "verificationGasLimit is too low for the factory and account initialization code."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Decode the initCode or v0.7/v0.8 factory and factoryData fields and verify the factory address and calldata.",
+      "Simulate the factory call directly or with a trace tool to capture the inner revert.",
+      "Increase verificationGasLimit only if tracing shows the deployment path is running out of gas."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 error code attribution",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#error-codes"
       }
     ]
   },
@@ -79,19 +99,29 @@
         "value": "AA14"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA14 (initCode must return sender).",
+    "summary": "The factory/initCode returned an account address that does not match the UserOperation sender address expected by the EntryPoint.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint factory validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The sender was computed from different factory calldata than the calldata submitted to the bundler.",
+      "The factory returns a deployed address that differs from the counterfactual sender.",
+      "The UserOperation was assembled for the wrong account factory, salt, owner, or chain."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Recompute the counterfactual sender from the exact factory address, salt, owner, and initialization calldata.",
+      "Verify that the factory returns the same address as the UserOperation sender.",
+      "Regenerate the UserOperation after fixing the factory calldata rather than only resubmitting it."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 error code attribution",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#error-codes"
       }
     ]
   },
@@ -111,19 +141,29 @@
         "value": "AA15"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA15 (initCode must create sender).",
+    "summary": "The account creation path completed without leaving contract code at the sender address, so the EntryPoint still sees an undeployed account.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint factory validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The factory call returned without deploying the smart account.",
+      "The factory deployed a different address than the sender address in the UserOperation.",
+      "The factory implementation does not return or create the sender expected by this EntryPoint flow."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Check the sender address for code immediately after simulating the factory call.",
+      "Verify that the factory deploys the account at the exact sender address and returns it.",
+      "Fix the factoryData or initCode path before retrying the UserOperation."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 error code attribution",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#error-codes"
       }
     ]
   },
@@ -143,25 +183,31 @@
         "value": "AA20"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA20 (account not deployed).",
+    "summary": "EntryPoint v0.6 could not validate the sender because the account is not deployed and the UserOperation did not include initCode to deploy it.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint account validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The sender address is counterfactual, but the first UserOperation omitted initCode.",
+      "The UserOperation is being sent to the wrong network, where the account has not been deployed.",
+      "The client is using an incorrect sender address for the account owner or factory."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Check whether the sender has code on the chain where the bundler is simulating.",
+      "For a first transaction on EntryPoint v0.6, include valid initCode.",
+      "Confirm the chain, EntryPoint address, account factory, and sender address all belong to the same deployment."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 error code attribution",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#error-codes"
       }
     ]
   },
   {
     "rootCauseKnown": true,
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "id": "aa-aa22-expired-or-not-due",
@@ -175,19 +221,29 @@
         "value": "AA22"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA22 (expired or not due).",
+    "summary": "The account validation data says the UserOperation is outside its allowed validity window: either expired after validUntil or not yet usable before validAfter.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint account validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "A time-bounded signature or session key expired before bundler inclusion.",
+      "validAfter is set in the future, so the operation is not due yet.",
+      "The client populated validity timestamps when the account expected zero or a different window."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Compare validAfter and validUntil with the current block timestamp on the target chain.",
+      "Create a fresh signature or session authorization with a valid time window.",
+      "If the account does not use time windows, set the validity fields to the account's expected neutral values."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 error code attribution",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#error-codes"
       }
     ]
   },
@@ -207,25 +263,31 @@
         "value": "AA30"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA30 (paymaster not deployed).",
+    "summary": "EntryPoint v0.6 found a paymaster address in paymasterAndData, but that paymaster contract is not deployed on the target chain.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint paymaster validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The first 20 bytes of paymasterAndData point to the wrong address.",
+      "The paymaster exists on a different chain or EntryPoint deployment.",
+      "The client attached stale sponsorship data from another environment."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Decode the first 20 bytes of paymasterAndData and verify that address has contract code.",
+      "Regenerate paymasterAndData for the same chain and EntryPoint version as the UserOperation.",
+      "If no paymaster should be used, remove paymasterAndData and ensure the sender can prefund gas."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 paymaster validation",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#paymasters-contracts"
       }
     ]
   },
   {
     "rootCauseKnown": true,
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "id": "aa-aa32-paymaster-expired-or-not-due",
@@ -239,19 +301,29 @@
         "value": "AA32"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA32 (paymaster expired or not due).",
+    "summary": "The paymaster validation data says the sponsorship is outside its allowed validity window: expired after validUntil or not yet usable before validAfter.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint paymaster validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The paymaster signature or sponsorship response expired before submission.",
+      "The sponsorship is not active yet according to the paymaster's validation data.",
+      "The client reused paymaster data from an old quote or a different policy window."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Request fresh paymaster data immediately before submitting the UserOperation.",
+      "Check the paymaster's validAfter and validUntil values against the target chain timestamp.",
+      "Confirm the Gas Manager or paymaster policy is active for this app, chain, and operation."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 paymaster validation",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#paymasters-contracts"
       }
     ]
   },
@@ -271,25 +343,111 @@
         "value": "AA34"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA34 (paymaster signature error).",
+    "summary": "The paymaster's authorization or signature validation failed, so the EntryPoint will not let that paymaster sponsor the UserOperation.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint paymaster validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The paymaster signature is malformed, expired, or signed for different UserOperation fields.",
+      "The client is using the wrong field layout for the EntryPoint version: paymasterAndData in v0.6 versus paymaster/paymasterData fields in v0.7/v0.8.",
+      "The paymaster policy rejected the operation even though a paymaster address was supplied."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Request fresh paymaster data from the sponsorship service for this exact UserOperation.",
+      "Verify the EntryPoint version and paymaster field layout used by the client.",
+      "Check the paymaster policy, chain allowlist, and signing key configuration before resubmitting."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 paymaster validation",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#paymasters-contracts"
       }
     ]
   },
   {
     "rootCauseKnown": true,
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
+    "increasingGasHelpful": "yes",
+    "confidence": "high",
+    "id": "aa-aa26-over-verification-gas-limit",
+    "title": "AA26: over verificationGasLimit",
+    "layer": "account_abstraction",
+    "source": "erc-4337-entrypoint",
+    "category": "userop_gas",
+    "patterns": [
+      {
+        "type": "aa_code",
+        "value": "AA26"
+      }
+    ],
+    "summary": "EntryPoint v0.7/v0.8 account or paymaster validation used more gas than the UserOperation's verificationGasLimit allowed.",
+    "likelyCauses": [
+      "The smart account's validateUserOp path is more expensive than estimated.",
+      "Paymaster validation is included in the shared verification gas budget for this EntryPoint version.",
+      "Manual gas overrides capped verificationGasLimit below the simulated requirement."
+    ],
+    "nextSteps": [
+      "Run eth_estimateUserOperationGas or your bundler's simulation endpoint again with the final UserOperation fields.",
+      "Raise verificationGasLimit only after checking that account validation logic is expected to cost that much.",
+      "Remove stale manual gas overrides that force verificationGasLimit below the current estimate."
+    ],
+    "references": [
+      {
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "ERC-4337 error code attribution",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#error-codes"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "yes",
+    "confidence": "high",
+    "id": "aa-aa36-over-paymaster-verification-gas-limit",
+    "title": "AA36: over paymasterVerificationGasLimit",
+    "layer": "account_abstraction",
+    "source": "erc-4337-entrypoint",
+    "category": "userop_paymaster",
+    "patterns": [
+      {
+        "type": "aa_code",
+        "value": "AA36"
+      }
+    ],
+    "summary": "EntryPoint v0.7/v0.8 paymaster validation exceeded the paymasterVerificationGasLimit assigned to the UserOperation.",
+    "likelyCauses": [
+      "validatePaymasterUserOp needs more gas than the client or paymaster service supplied.",
+      "The paymaster policy path is unusually expensive for this operation, token, or account.",
+      "Manual gas overrides reduced paymasterVerificationGasLimit below the bundler estimate."
+    ],
+    "nextSteps": [
+      "Request new paymaster data and gas estimates for the exact final UserOperation.",
+      "Increase paymasterVerificationGasLimit if the paymaster operator expects this validation cost.",
+      "Ask the paymaster operator to simplify or fix validation if the required gas looks abnormal."
+    ],
+    "references": [
+      {
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "ERC-4337 paymaster validation",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#paymasters-contracts"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
     "increasingGasHelpful": "yes",
     "confidence": "high",
     "id": "aa-aa40-over-verification-gas-limit",
@@ -303,25 +461,31 @@
         "value": "AA40"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA40 (over verificationGasLimit).",
+    "summary": "EntryPoint v0.6 account or paymaster verification used more gas than the UserOperation's verificationGasLimit allowed.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint gas validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The smart account or paymaster validation path is more expensive than estimated.",
+      "The client submitted stale gas estimates after changing calldata, signature, paymaster data, or account state.",
+      "Manual overrides capped verificationGasLimit below the gas consumed during validation."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Re-run UserOperation gas estimation after all signatures and paymaster fields are final.",
+      "Increase verificationGasLimit only if the validation path is expected to cost that much.",
+      "Trace validateUserOp and validatePaymasterUserOp to find the expensive branch."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 error code attribution",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#error-codes"
       }
     ]
   },
   {
     "rootCauseKnown": true,
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "yes",
     "confidence": "high",
     "id": "aa-aa41-too-little-verification-gas",
@@ -335,24 +499,30 @@
         "value": "AA41"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA41 (too little verificationGas).",
+    "summary": "EntryPoint v0.6 could not complete UserOperation verification within the supplied verification gas budget.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint gas validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "verificationGasLimit is too low for validateUserOp, paymaster validation, or signature checks.",
+      "The UserOperation changed after gas estimation, invalidating the previous estimate.",
+      "Account or paymaster validation takes a more expensive branch for the current state."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Estimate gas with the same EntryPoint, bundler, account state, signature, and paymaster data used for submission.",
+      "Raise verificationGasLimit if simulation shows verification gas exhaustion.",
+      "Trace the validation path if the required gas is unexpectedly high."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 error code attribution",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#error-codes"
       }
     ]
   },
   {
-    "rootCauseKnown": true,
+    "rootCauseKnown": false,
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
@@ -367,26 +537,32 @@
         "value": "AA50"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA50 (postOp reverted).",
+    "summary": "The paymaster's postOp hook reverted after execution, so the EntryPoint could not finish the sponsored operation accounting path.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint postOp validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The paymaster postOp logic rejected the final gas cost, mode, token payment, or context.",
+      "The paymaster changed state between validation and postOp in a way that broke settlement.",
+      "A custom paymaster bug or external call inside postOp reverted."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Trace the paymaster postOp call and decode any inner revert emitted by the paymaster.",
+      "Check token balances, allowances, oracle prices, and policy state used by postOp settlement.",
+      "Escalate to the paymaster operator if the sponsorship service produced the paymaster data."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 paymaster validation",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#paymasters-contracts"
       }
     ]
   },
   {
     "rootCauseKnown": true,
     "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "id": "aa-aa51-prefund-below-actual-gas-cost",
     "title": "AA51: prefund below actualGasCost",
@@ -399,19 +575,25 @@
         "value": "AA51"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA51 (prefund below actualGasCost).",
+    "summary": "The actual gas cost of the UserOperation exceeded the prefund available from the smart account or paymaster deposit.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint postOp validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "Gas prices or execution gas exceeded the prefund calculated during validation.",
+      "The sender or paymaster deposit was too low for the final operation cost.",
+      "Gas limits were underestimated or the operation took a more expensive execution path."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Re-estimate the UserOperation gas and fees immediately before submission.",
+      "Top up the sender or paymaster EntryPoint deposit, depending on who is paying.",
+      "Reduce execution complexity or adjust gas limits if the operation regularly exceeds prefund."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 EntryPoint deposits",
+        "url": "https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html"
       }
     ]
   },
@@ -431,19 +613,29 @@
         "value": "AA90"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA90 (invalid beneficiary).",
+    "summary": "The bundler or caller supplied an invalid beneficiary for handleOps, so EntryPoint cannot pay the collected fees.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint entryPoint validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The beneficiary address is zero or otherwise invalid.",
+      "The bundler configuration did not set a valid fee recipient.",
+      "A custom handleOps caller passed the wrong beneficiary parameter."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Set a non-zero beneficiary address that can receive the EntryPoint payout.",
+      "If you do not operate the bundler, report the invalid beneficiary to the bundler or RPC provider.",
+      "Check custom handleOps integration code for the beneficiary argument."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 EntryPoint explainer",
+        "url": "https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html"
       }
     ]
   },
@@ -463,19 +655,29 @@
         "value": "AA91"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA91 (failed send to beneficiary).",
+    "summary": "EntryPoint failed while sending collected fees to the beneficiary address supplied to handleOps.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint entryPoint validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The beneficiary is a contract that rejects ETH or reverts in its receive path.",
+      "The beneficiary address is misconfigured by the bundler or custom handleOps caller.",
+      "The fee payout could not be completed after the operation accounting finished."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Use an externally owned account or a contract beneficiary that accepts ETH transfers.",
+      "If this came from a hosted bundler, report the beneficiary payout failure to the bundler operator.",
+      "Audit custom beneficiary contracts for receive/fallback reverts."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 EntryPoint explainer",
+        "url": "https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html"
       }
     ]
   },
@@ -495,19 +697,29 @@
         "value": "AA92"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA92 (internal call only).",
+    "summary": "An EntryPoint helper intended only for internal execution, such as innerHandleOp, was called directly from outside the EntryPoint.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint entryPoint validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "A client or test harness called an internal EntryPoint function instead of handleOps or simulateValidation.",
+      "A low-level integration forwarded calldata to the wrong EntryPoint function selector.",
+      "The bundler or caller bypassed the public EntryPoint flow."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Call the public EntryPoint method intended for the workflow, such as handleOps or simulateValidation.",
+      "Check ABI/function selector routing in custom bundler or testing code.",
+      "Do not submit transactions directly to internal EntryPoint helper functions."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 EntryPoint explainer",
+        "url": "https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html"
       }
     ]
   },
@@ -527,19 +739,29 @@
         "value": "AA93"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA93 (invalid paymasterAndData).",
+    "summary": "The paymaster data is missing, too short, or malformed for the EntryPoint version that is validating the UserOperation.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint paymaster validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "EntryPoint v0.6 paymasterAndData is non-empty but shorter than the paymaster address payload.",
+      "EntryPoint v0.7/v0.8 paymaster fields were packed incorrectly or are missing required data.",
+      "The client mixed paymaster field formats across EntryPoint versions."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "For v0.6, ensure paymasterAndData is empty or starts with a 20-byte paymaster address plus required data.",
+      "For v0.7/v0.8, verify paymaster, paymasterVerificationGasLimit, paymasterPostOpGasLimit, and paymasterData packing.",
+      "Regenerate sponsorship data from the paymaster service for the exact EntryPoint version."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 paymaster fields",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#paymasters"
       }
     ]
   },
@@ -548,30 +770,40 @@
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
-    "id": "aa-aa94-invalid-aggregator",
-    "title": "AA94: invalid aggregator",
+    "id": "aa-aa94-gas-values-overflow",
+    "title": "AA94: gas values overflow",
     "layer": "account_abstraction",
     "source": "erc-4337-entrypoint",
-    "category": "userop_aggregator",
+    "category": "userop_gas",
     "patterns": [
       {
         "type": "aa_code",
         "value": "AA94"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA94 (invalid aggregator).",
+    "summary": "One or more gas-related UserOperation fields exceed the numeric range that the EntryPoint can safely pack and validate.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint aggregator validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "verificationGasLimit, callGasLimit, preVerificationGas, fee fields, or paymaster gas limits were set to unrealistic values.",
+      "A gas override or faulty estimator produced values larger than the EntryPoint's internal bounds.",
+      "The client mixed units or encoded gas fields incorrectly."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Remove manual gas overrides and re-run UserOperation gas estimation.",
+      "Check that all gas limit and fee fields fit within the EntryPoint version's documented integer bounds.",
+      "Use smaller gas values instead of trying to bypass estimation with very large numbers."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 error code attribution",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#error-codes"
       }
     ]
   },
@@ -591,19 +823,71 @@
         "value": "AA95"
       }
     ],
-    "summary": "ERC-4337 EntryPoint rejected the UserOperation with AA95 (out of gas).",
+    "summary": "The EntryPoint handleOps execution ran out of gas for the operation or one of its sub-calls.",
     "likelyCauses": [
-      "The UserOperation failed the EntryPoint gas validation path.",
-      "The AAxx code points to the failing phase more precisely than the outer bundler error."
+      "The bundler or custom handleOps caller supplied too little transaction gas.",
+      "callGasLimit or another gas field is too low for the account execution path.",
+      "The target call consumed more gas than the simulation predicted."
     ],
     "nextSteps": [
-      "Inspect the full FailedOp reason and any inner revert bytes.",
-      "Re-simulate through the same EntryPoint and bundler after fixing the indicated phase."
+      "Re-estimate the UserOperation gas with current calldata, account state, and chain fee conditions.",
+      "Increase the relevant gas limit only after identifying whether validation, execution, or postOp exhausted gas.",
+      "Optimize or split the target call if execution is genuinely too expensive."
     ],
     "references": [
       {
-        "label": "ERC-4337",
-        "url": "https://eips.ethereum.org/EIPS/eip-4337"
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 EntryPoint explainer",
+        "url": "https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html"
+      }
+    ]
+  },
+  {
+    "rootCauseKnown": true,
+    "retryHelpful": "no",
+    "increasingGasHelpful": "no",
+    "confidence": "high",
+    "id": "aa-aa96-invalid-aggregator",
+    "title": "AA96: invalid aggregator",
+    "layer": "account_abstraction",
+    "source": "erc-4337-entrypoint",
+    "category": "userop_aggregator",
+    "patterns": [
+      {
+        "type": "aa_code",
+        "value": "AA96"
+      }
+    ],
+    "summary": "The signature aggregator address is invalid or reserved, so the EntryPoint cannot use it to validate aggregated signatures.",
+    "likelyCauses": [
+      "The UserOperation references an aggregator address that does not implement the expected aggregator interface.",
+      "The aggregator field is set to a reserved marker address rather than a real aggregator.",
+      "The client selected an aggregator that is incompatible with this account or EntryPoint version."
+    ],
+    "nextSteps": [
+      "Use an aggregator address that implements the ERC-4337 aggregator interface expected by the account.",
+      "Check that the account's signature mode actually requires an aggregator.",
+      "Remove aggregator data or regenerate the signature flow if the account validates signatures directly."
+    ],
+    "references": [
+      {
+        "label": "Alchemy EntryPoint v0.7/v0.8 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes"
+      },
+      {
+        "label": "Alchemy EntryPoint v0.6 revert codes",
+        "url": "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes"
+      },
+      {
+        "label": "ERC-4337 aggregator validation",
+        "url": "https://eips.ethereum.org/EIPS/eip-4337#aggregator-contracts"
       }
     ]
   }

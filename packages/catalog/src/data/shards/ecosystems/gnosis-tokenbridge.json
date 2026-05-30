@@ -11,18 +11,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?accepts only bridge calls['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis TokenBridge revert reason string: accepts only bridge calls.",
+    "summary": "Gnosis TokenBridge reverted with \"accepts only bridge calls\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -46,18 +50,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?can only be called by RelayHub['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis TokenBridge revert reason string: can only be called by RelayHub.",
+    "summary": "Gnosis TokenBridge reverted with \"can only be called by RelayHub\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -81,18 +89,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?data too short['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis TokenBridge revert reason string: data too short.",
+    "summary": "Gnosis TokenBridge reverted with \"data too short\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -116,18 +128,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Forwarder is not trusted['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis TokenBridge revert reason string: Forwarder is not trusted.",
+    "summary": "Gnosis TokenBridge reverted with \"Forwarder is not trusted\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -151,18 +167,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?message hasn't been confirmed['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis TokenBridge revert reason string: message hasn't been confirmed.",
+    "summary": "Gnosis TokenBridge reverted with \"message hasn't been confirmed\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -186,15 +206,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not allowed target['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis TokenBridge revert reason string: not allowed target.",
+    "summary": "Gnosis TokenBridge reverted with \"not allowed target\", an exact source-level check that means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -221,18 +245,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?not an owner['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis TokenBridge revert reason string: not an owner.",
+    "summary": "Gnosis TokenBridge reverted with \"not an owner\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -256,18 +284,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?relay hub address not set['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis TokenBridge revert reason string: relay hub address not set.",
+    "summary": "Gnosis TokenBridge reverted with \"relay hub address not set\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -291,15 +323,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?sender does not match recipient['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis TokenBridge revert reason string: sender does not match recipient.",
+    "summary": "Gnosis TokenBridge reverted with \"sender does not match recipient\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -326,17 +362,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?tokens fee can't cover expenses['\"]?\\s*$"
       }
     ],
-    "summary": "Gnosis TokenBridge revert reason string: tokens fee can't cover expenses.",
+    "summary": "Gnosis TokenBridge reverted with \"tokens fee can't cover expenses\", an exact source-level check that means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking message, route, remote contract, fee, nonce, or finality state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, Safe/module setup, bridge configuration, prediction market state, deadline, nonce, domain name state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [

@@ -11,17 +11,21 @@
         "value": "0x68214017"
       }
     ],
-    "summary": "PancakeSwap V4 custom error AmountSpecifiedIsZero().",
+    "summary": "PancakeSwap V4 rejected the call at AmountSpecifiedIsZero: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AmountSpecifiedIsZero custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -46,17 +50,21 @@
         "value": "0xeb385691"
       }
     ],
-    "summary": "PancakeSwap V4 custom error AppUnregistered().",
+    "summary": "PancakeSwap V4 rejected the call at AppUnregistered: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AppUnregistered custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -81,17 +89,21 @@
         "value": "0x89ef61c4"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinHelper__CompositionFactorFlawed(uint24).",
+    "summary": "PancakeSwap V4 rejected the call at BinHelper__CompositionFactorFlawed(uint24): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinHelper__CompositionFactorFlawed custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -116,15 +128,19 @@
         "value": "0x63f1e01f"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinHelper__LiquidityOverflow().",
+    "summary": "PancakeSwap V4 rejected the call at BinHelper__LiquidityOverflow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinHelper__LiquidityOverflow custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -151,15 +167,19 @@
         "value": "0xd411d003"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinPool__BurnZeroAmount(uint24).",
+    "summary": "PancakeSwap V4 rejected the call at BinPool__BurnZeroAmount(uint24): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinPool__BurnZeroAmount custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -186,17 +206,21 @@
         "value": "0x95373448"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinPool__EmptyLiquidityConfigs().",
+    "summary": "PancakeSwap V4 rejected the call at BinPool__EmptyLiquidityConfigs: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinPool__EmptyLiquidityConfigs custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -221,17 +245,21 @@
         "value": "0x19f7ff4a"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinPool__InsufficientAmountUnSpecified().",
+    "summary": "PancakeSwap V4 rejected the call at BinPool__InsufficientAmountUnSpecified: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinPool__InsufficientAmountUnSpecified custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -256,17 +284,21 @@
         "value": "0x699e4b6e"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinPool__InvalidBurnInput().",
+    "summary": "PancakeSwap V4 rejected the call at BinPool__InvalidBurnInput: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinPool__InvalidBurnInput custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,15 +323,19 @@
         "value": "0x2d54cbbe"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinPool__MaxLiquidityPerBinExceeded().",
+    "summary": "PancakeSwap V4 rejected the call at BinPool__MaxLiquidityPerBinExceeded: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinPool__MaxLiquidityPerBinExceeded custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -326,17 +362,21 @@
         "value": "0xb799a4f0"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinPool__NoLiquidityToReceiveFees().",
+    "summary": "PancakeSwap V4 rejected the call at BinPool__NoLiquidityToReceiveFees: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinPool__NoLiquidityToReceiveFees custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -361,17 +401,21 @@
         "value": "0x96aa65ad"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinPool__OutOfLiquidity().",
+    "summary": "PancakeSwap V4 rejected the call at BinPool__OutOfLiquidity: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinPool__OutOfLiquidity custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -396,15 +440,19 @@
         "value": "0xde6e9501"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinPool__ZeroAmountsOut(uint24).",
+    "summary": "PancakeSwap V4 rejected the call at BinPool__ZeroAmountsOut(uint24): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinPool__ZeroAmountsOut custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -431,15 +479,19 @@
         "value": "0xbfc0118c"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinPool__ZeroShares(uint24).",
+    "summary": "PancakeSwap V4 rejected the call at BinPool__ZeroShares(uint24): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinPool__ZeroShares custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -466,15 +518,19 @@
         "value": "0x1c511ddd"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinStepTooLarge(uint16).",
+    "summary": "PancakeSwap V4 rejected the call at BinStepTooLarge(uint16): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinStepTooLarge custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -501,15 +557,19 @@
         "value": "0x92a59fa0"
       }
     ],
-    "summary": "PancakeSwap V4 custom error BinStepTooSmall(uint16).",
+    "summary": "PancakeSwap V4 rejected the call at BinStepTooSmall(uint16): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BinStepTooSmall custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -536,15 +596,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Can not be zero address['\"]?\\s*$"
       }
     ],
-    "summary": "PancakeSwap V3 revert reason string: Can not be zero address.",
+    "summary": "PancakeSwap V3 reverted with \"Can not be zero address\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -571,17 +635,21 @@
         "value": "0xaefeb924"
       }
     ],
-    "summary": "PancakeSwap V4 custom error CannotUpdateEmptyPosition().",
+    "summary": "PancakeSwap V4 rejected the call at CannotUpdateEmptyPosition: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CannotUpdateEmptyPosition custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -606,15 +674,19 @@
         "value": "0xcaf75f49"
       }
     ],
-    "summary": "PancakeSwap V4 custom error CurrenciesInitializedOutOfOrder(address,address).",
+    "summary": "PancakeSwap V4 rejected the call at CurrenciesInitializedOutOfOrder(address,address): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CurrenciesInitializedOutOfOrder custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -641,15 +713,19 @@
         "value": "0x5212cba1"
       }
     ],
-    "summary": "PancakeSwap V4 custom error CurrencyNotSettled().",
+    "summary": "PancakeSwap V4 rejected the call at CurrencyNotSettled: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CurrencyNotSettled custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -676,15 +752,19 @@
         "value": "0x7d38f65f"
       }
     ],
-    "summary": "PancakeSwap V3 custom error DuplicatedPool(uint256).",
+    "summary": "PancakeSwap V3 rejected the call at DuplicatedPool(uint256): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DuplicatedPool custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -711,15 +791,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Enumerable: address zero is not a valid owner['\"]?\\s*$"
       }
     ],
-    "summary": "PancakeSwap V3 revert reason string: Enumerable: address zero is not a valid owner.",
+    "summary": "PancakeSwap V3 reverted with \"Enumerable: address zero is not a valid owner\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -746,15 +830,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Enumerable: owner index out of bounds['\"]?\\s*$"
       }
     ],
-    "summary": "PancakeSwap V3 revert reason string: Enumerable: owner index out of bounds.",
+    "summary": "PancakeSwap V3 reverted with \"Enumerable: owner index out of bounds\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,15 +869,19 @@
         "value": "0xf27f64e4"
       }
     ],
-    "summary": "PancakeSwap V4 custom error ERC20TransferFailed().",
+    "summary": "PancakeSwap V4 rejected the call at ERC20TransferFailed: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ERC20TransferFailed custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -816,17 +908,21 @@
         "value": "0xf22c9825"
       }
     ],
-    "summary": "PancakeSwap V4 custom error FeeCurrencySynced().",
+    "summary": "PancakeSwap V4 rejected the call at FeeCurrencySynced: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FeeCurrencySynced custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -851,18 +947,22 @@
         "value": "0xa9e35b2f"
       }
     ],
-    "summary": "PancakeSwap V4 custom error HookCallFailed().",
+    "summary": "PancakeSwap V4 rejected the call at HookCallFailed: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the HookCallFailed custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -886,18 +986,22 @@
         "value": "0x7f7506dc"
       }
     ],
-    "summary": "PancakeSwap V4 custom error HookConfigValidationError().",
+    "summary": "PancakeSwap V4 rejected the call at HookConfigValidationError: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the HookConfigValidationError custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -921,17 +1025,21 @@
         "value": "0xfa0b71d6"
       }
     ],
-    "summary": "PancakeSwap V4 custom error HookDeltaExceedsSwapAmount().",
+    "summary": "PancakeSwap V4 rejected the call at HookDeltaExceedsSwapAmount: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the HookDeltaExceedsSwapAmount custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -956,15 +1064,19 @@
         "value": "0x1dd09583"
       }
     ],
-    "summary": "PancakeSwap V4 custom error HookPermissionsValidationError().",
+    "summary": "PancakeSwap V4 rejected the call at HookPermissionsValidationError: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the HookPermissionsValidationError custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -991,17 +1103,21 @@
         "value": "0x4b508fef"
       }
     ],
-    "summary": "PancakeSwap V3 custom error InconsistentAmount().",
+    "summary": "PancakeSwap V3 rejected the call at InconsistentAmount: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InconsistentAmount custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1026,17 +1142,21 @@
         "value": "0x5945ea56"
       }
     ],
-    "summary": "PancakeSwap V3 custom error InsufficientAmount().",
+    "summary": "PancakeSwap V3 rejected the call at InsufficientAmount: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InsufficientAmount custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1061,17 +1181,21 @@
         "value": "0x0359efd7"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InsufficientBinShareForDonate(uint256).",
+    "summary": "PancakeSwap V4 rejected the call at InsufficientBinShareForDonate(uint256): means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InsufficientBinShareForDonate custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1096,17 +1220,21 @@
         "value": "0xdeaa01e6"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InvalidBips().",
+    "summary": "PancakeSwap V4 rejected the call at InvalidBips: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidBips custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1131,15 +1259,19 @@
         "value": "0x48f5c3ed"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InvalidCaller().",
+    "summary": "PancakeSwap V4 rejected the call at InvalidCaller: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidCaller custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1166,17 +1298,21 @@
         "value": "0xc975540b"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InvalidDefaultProtocolFeeForDynamicFeePool().",
+    "summary": "PancakeSwap V4 rejected the call at InvalidDefaultProtocolFeeForDynamicFeePool: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidDefaultProtocolFeeForDynamicFeePool custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1201,17 +1337,21 @@
         "value": "0x96206246"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InvalidFeeForExactOut().",
+    "summary": "PancakeSwap V4 rejected the call at InvalidFeeForExactOut: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidFeeForExactOut custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1236,18 +1376,22 @@
         "value": "0x1e048e1d"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InvalidHookResponse().",
+    "summary": "PancakeSwap V4 rejected the call at InvalidHookResponse: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidHookResponse custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1271,17 +1415,21 @@
         "value": "0x0f3e2a3e"
       }
     ],
-    "summary": "PancakeSwap V3 custom error InvalidNFT().",
+    "summary": "PancakeSwap V3 rejected the call at InvalidNFT: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidNFT custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1306,17 +1454,21 @@
         "value": "0x9e11b5e6"
       }
     ],
-    "summary": "PancakeSwap V3 custom error InvalidPeriodDuration().",
+    "summary": "PancakeSwap V3 rejected the call at InvalidPeriodDuration: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidPeriodDuration custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1341,17 +1493,21 @@
         "value": "0x87e80683"
       }
     ],
-    "summary": "PancakeSwap V3 custom error InvalidPid().",
+    "summary": "PancakeSwap V3 rejected the call at InvalidPid: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidPid custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1376,17 +1532,21 @@
         "value": "0xbc128147"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InvalidPoolManager().",
+    "summary": "PancakeSwap V4 rejected the call at InvalidPoolManager: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidPoolManager custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1411,17 +1571,21 @@
         "value": "0x00bfc921"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InvalidPrice().",
+    "summary": "PancakeSwap V4 rejected the call at InvalidPrice: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidPrice custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1446,17 +1610,21 @@
         "value": "0x4f2461b8"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InvalidPriceOrLiquidity().",
+    "summary": "PancakeSwap V4 rejected the call at InvalidPriceOrLiquidity: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidPriceOrLiquidity custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1481,17 +1649,21 @@
         "value": "0x42c2fb01"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InvalidProtocolFeeSplitRatio().",
+    "summary": "PancakeSwap V4 rejected the call at InvalidProtocolFeeSplitRatio: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidProtocolFeeSplitRatio custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1516,15 +1688,19 @@
         "value": "0xb5c41efe"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InvalidSqrtPriceLimit(uint160,uint160).",
+    "summary": "PancakeSwap V4 rejected the call at InvalidSqrtPriceLimit(uint160,uint160): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidSqrtPriceLimit custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1551,15 +1727,19 @@
         "value": "0x1599f82c"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InvalidSqrtRatio(uint160).",
+    "summary": "PancakeSwap V4 rejected the call at InvalidSqrtRatio(uint160): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidSqrtRatio custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1586,17 +1766,21 @@
         "value": "0x8b86327a"
       }
     ],
-    "summary": "PancakeSwap V4 custom error InvalidTick(int24).",
+    "summary": "PancakeSwap V4 rejected the call at InvalidTick(int24): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidTick custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1621,15 +1805,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Invalid tokenId['\"]?\\s*$"
       }
     ],
-    "summary": "PancakeSwap V3 revert reason string: Invalid tokenId.",
+    "summary": "PancakeSwap V3 reverted with \"Invalid tokenId\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1656,17 +1844,21 @@
         "value": "0xeea4aafe"
       }
     ],
-    "summary": "PancakeSwap V4 custom error LiquidityConfigurations__InvalidConfig().",
+    "summary": "PancakeSwap V4 rejected the call at LiquidityConfigurations__InvalidConfig: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the LiquidityConfigurations__InvalidConfig custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1691,15 +1883,19 @@
         "value": "0xc6742a3f"
       }
     ],
-    "summary": "PancakeSwap V4 custom error LockerAlreadySet(address).",
+    "summary": "PancakeSwap V4 rejected the call at LockerAlreadySet(address): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the LockerAlreadySet custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1726,17 +1922,21 @@
         "value": "0x14002113"
       }
     ],
-    "summary": "PancakeSwap V4 custom error LPFeeTooLarge(uint24).",
+    "summary": "PancakeSwap V4 rejected the call at LPFeeTooLarge(uint24): means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the LPFeeTooLarge custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1761,15 +1961,19 @@
         "value": "0xb4e5279b"
       }
     ],
-    "summary": "PancakeSwap V4 custom error MaxBinStepTooSmall(uint16).",
+    "summary": "PancakeSwap V4 rejected the call at MaxBinStepTooSmall(uint16): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MaxBinStepTooSmall custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1796,15 +2000,19 @@
         "value": "0xb3486a48"
       }
     ],
-    "summary": "PancakeSwap V4 custom error MinShareTooSmall(uint256).",
+    "summary": "PancakeSwap V4 rejected the call at MinShareTooSmall(uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MinShareTooSmall custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1831,17 +2039,21 @@
         "value": "0xbda73abf"
       }
     ],
-    "summary": "PancakeSwap V4 custom error MustClearExactPositiveDelta().",
+    "summary": "PancakeSwap V4 rejected the call at MustClearExactPositiveDelta: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MustClearExactPositiveDelta custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1866,15 +2078,19 @@
         "value": "0xf4b3b1bc"
       }
     ],
-    "summary": "PancakeSwap V4 custom error NativeTransferFailed().",
+    "summary": "PancakeSwap V4 rejected the call at NativeTransferFailed: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NativeTransferFailed custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1901,17 +2117,21 @@
         "value": "0xc2caa2a6"
       }
     ],
-    "summary": "PancakeSwap V3 custom error NoBalance().",
+    "summary": "PancakeSwap V3 rejected the call at NoBalance: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NoBalance custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1936,17 +2156,21 @@
         "value": "0xc301e07e"
       }
     ],
-    "summary": "PancakeSwap V3 custom error NoLiquidity().",
+    "summary": "PancakeSwap V3 rejected the call at NoLiquidity: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NoLiquidity custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1971,17 +2195,21 @@
         "value": "0xa74f97ab"
       }
     ],
-    "summary": "PancakeSwap V4 custom error NoLiquidityToReceiveFees().",
+    "summary": "PancakeSwap V4 rejected the call at NoLiquidityToReceiveFees: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NoLiquidityToReceiveFees custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2006,17 +2234,21 @@
         "value": "0xef3d9b21"
       }
     ],
-    "summary": "PancakeSwap V3 custom error NoLMPool().",
+    "summary": "PancakeSwap V3 rejected the call at NoLMPool: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NoLMPool custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2041,15 +2273,19 @@
         "value": "0x05185ab0"
       }
     ],
-    "summary": "PancakeSwap V4 custom error NoLocker().",
+    "summary": "PancakeSwap V4 rejected the call at NoLocker: means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NoLocker custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2076,17 +2312,21 @@
         "value": "0xb925edf6"
       }
     ],
-    "summary": "PancakeSwap V4 custom error NoPausableRole().",
+    "summary": "PancakeSwap V4 rejected the call at NoPausableRole: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NoPausableRole custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2111,17 +2351,21 @@
         "value": "0x32e78793"
       }
     ],
-    "summary": "PancakeSwap V3 custom error NotEmpty().",
+    "summary": "PancakeSwap V3 rejected the call at NotEmpty: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotEmpty custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2146,17 +2390,21 @@
         "value": "0x4323a555"
       }
     ],
-    "summary": "PancakeSwap V4 custom error NotEnoughLiquidity().",
+    "summary": "PancakeSwap V4 rejected the call at NotEnoughLiquidity: means the account, vault, pool, escrow, reserve, or market does not have enough usable balance or liquidity.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotEnoughLiquidity custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The sender's token balance, native balance, collateral, vault shares, or internal accounting balance is below the requested amount.",
+      "The pool, reserve, vault, market, or escrow lacks enough available liquidity for the operation.",
+      "Fees, debt, pending withdrawals, slippage, or locked balances reduce the spendable amount below the visible balance.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check token balance, native balance, internal vault balance, debt, and available liquidity at the same block as the revert.",
+      "Reduce the requested amount or add funds, collateral, shares, or liquidity before retrying.",
+      "Account for protocol fees, pending withdrawals, and locked balances when computing spendable amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2181,17 +2429,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not farm boost contract['\"]?\\s*$"
       }
     ],
-    "summary": "PancakeSwap V3 revert reason string: Not farm boost contract.",
+    "summary": "PancakeSwap V3 reverted with \"Not farm boost contract\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2216,17 +2468,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not MC['\"]?\\s*$"
       }
     ],
-    "summary": "PancakeSwap V3 revert reason string: Not MC.",
+    "summary": "PancakeSwap V3 reverted with \"Not MC\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2251,15 +2507,19 @@
         "value": "0x30cd7471"
       }
     ],
-    "summary": "PancakeSwap V3 custom error NotOwner().",
+    "summary": "PancakeSwap V3 rejected the call at NotOwner: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotOwner custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2286,15 +2546,19 @@
         "value": "0x98f76d0e"
       }
     ],
-    "summary": "PancakeSwap V3 custom error NotOwnerOrOperator().",
+    "summary": "PancakeSwap V3 rejected the call at NotOwnerOrOperator: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotOwnerOrOperator custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2321,17 +2585,21 @@
         "value": "0x0bf34057"
       }
     ],
-    "summary": "PancakeSwap V3 custom error NotPancakeNFT().",
+    "summary": "PancakeSwap V3 rejected the call at NotPancakeNFT: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotPancakeNFT custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2356,17 +2624,21 @@
         "value": "0x32d7c410"
       }
     ],
-    "summary": "PancakeSwap V4 custom error NotPendingPoolManagerOwner().",
+    "summary": "PancakeSwap V4 rejected the call at NotPendingPoolManagerOwner: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotPendingPoolManagerOwner custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2391,17 +2663,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not pool['\"]?\\s*$"
       }
     ],
-    "summary": "PancakeSwap V3 revert reason string: Not pool.",
+    "summary": "PancakeSwap V3 reverted with \"Not pool\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2426,17 +2702,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not pool or MC['\"]?\\s*$"
       }
     ],
-    "summary": "PancakeSwap V3 revert reason string: Not pool or MC.",
+    "summary": "PancakeSwap V3 reverted with \"Not pool or MC\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2461,15 +2741,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not receiver['\"]?\\s*$"
       }
     ],
-    "summary": "PancakeSwap V3 revert reason string: Not receiver.",
+    "summary": "PancakeSwap V3 reverted with \"Not receiver\", an exact source-level check that means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2496,17 +2780,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Not register['\"]?\\s*$"
       }
     ],
-    "summary": "PancakeSwap V3 revert reason string: Not register.",
+    "summary": "PancakeSwap V3 reverted with \"Not register\", an exact source-level check that means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2531,15 +2819,19 @@
         "value": "0x16692de9"
       }
     ],
-    "summary": "PancakeSwap V4 custom error PackedUint128Math__AddOverflow().",
+    "summary": "PancakeSwap V4 rejected the call at PackedUint128Math__AddOverflow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PackedUint128Math__AddOverflow custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2566,15 +2858,19 @@
         "value": "0xe599af55"
       }
     ],
-    "summary": "PancakeSwap V4 custom error PackedUint128Math__SubUnderflow().",
+    "summary": "PancakeSwap V4 rejected the call at PackedUint128Math__SubUnderflow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PackedUint128Math__SubUnderflow custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2601,15 +2897,19 @@
         "value": "0x7983c051"
       }
     ],
-    "summary": "PancakeSwap V4 custom error PoolAlreadyInitialized().",
+    "summary": "PancakeSwap V4 rejected the call at PoolAlreadyInitialized: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PoolAlreadyInitialized custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2636,15 +2936,19 @@
         "value": "0x5e0ebec7"
       }
     ],
-    "summary": "PancakeSwap V4 custom error PoolInvalidParameter().",
+    "summary": "PancakeSwap V4 rejected the call at PoolInvalidParameter: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PoolInvalidParameter custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2671,15 +2975,19 @@
         "value": "0x8379e322"
       }
     ],
-    "summary": "PancakeSwap V4 custom error PoolManagerMismatch().",
+    "summary": "PancakeSwap V4 rejected the call at PoolManagerMismatch: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PoolManagerMismatch custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2706,17 +3014,21 @@
         "value": "0x486aa307"
       }
     ],
-    "summary": "PancakeSwap V4 custom error PoolNotInitialized().",
+    "summary": "PancakeSwap V4 rejected the call at PoolNotInitialized: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PoolNotInitialized custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2741,17 +3053,21 @@
         "value": "0x51bd770c"
       }
     ],
-    "summary": "PancakeSwap V4 custom error PoolPaused().",
+    "summary": "PancakeSwap V4 rejected the call at PoolPaused: means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PoolPaused custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2776,15 +3092,19 @@
         "value": "0xf5c787f1"
       }
     ],
-    "summary": "PancakeSwap V4 custom error PriceOverflow().",
+    "summary": "PancakeSwap V4 rejected the call at PriceOverflow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PriceOverflow custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2811,17 +3131,21 @@
         "value": "0x1ee49702"
       }
     ],
-    "summary": "PancakeSwap V4 custom error ProtocolFeeCannotBeFetched().",
+    "summary": "PancakeSwap V4 rejected the call at ProtocolFeeCannotBeFetched: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ProtocolFeeCannotBeFetched custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2846,17 +3170,21 @@
         "value": "0xa7abe2f7"
       }
     ],
-    "summary": "PancakeSwap V4 custom error ProtocolFeeTooLarge(uint24).",
+    "summary": "PancakeSwap V4 rejected the call at ProtocolFeeTooLarge(uint24): means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ProtocolFeeTooLarge custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2881,15 +3209,19 @@
         "value": "0x93dafdf1"
       }
     ],
-    "summary": "PancakeSwap V4 custom error SafeCastOverflow().",
+    "summary": "PancakeSwap V4 rejected the call at SafeCastOverflow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SafeCastOverflow custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2916,15 +3248,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?SafeCast: value doesn't fit in 128 bits['\"]?\\s*$"
       }
     ],
-    "summary": "PancakeSwap V3 revert reason string: SafeCast: value doesn't fit in 128 bits.",
+    "summary": "PancakeSwap V3 reverted with \"SafeCast: value doesn't fit in 128 bits\", an exact source-level check that means arithmetic, casting, rounding, division, precision, or fixed-point constraints rejected the operation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named ecosystem contract failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The submitted amount, price, ratio, or intermediate calculation overflows, underflows, divides by zero, or loses required precision.",
+      "Token decimals, share conversion, fixed-point scaling, or rounding rules differ from the client calculation.",
+      "The protocol's invariant cannot hold for the requested state transition.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking pool, route, tick, liquidity, price, slippage, or settlement state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the source repository for the exact string.",
-      "Check balances, approvals, ownership, bridge configuration, module setup, market state, deadline, nonce, domain state, or route inputs depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Recalculate the relevant amounts using the contract's decimals, scaling factors, and rounding direction.",
+      "Decode error arguments and compare them with the invariant or math helper in the referenced source.",
+      "Reduce the amount or use a valid price/ratio range before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2951,17 +3287,21 @@
         "value": "0x11e56171"
       }
     ],
-    "summary": "PancakeSwap V4 custom error SettleNonNativeCurrencyWithValue().",
+    "summary": "PancakeSwap V4 rejected the call at SettleNonNativeCurrencyWithValue: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SettleNonNativeCurrencyWithValue custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2986,15 +3326,19 @@
         "value": "0xbe8b8507"
       }
     ],
-    "summary": "PancakeSwap V4 custom error SwapAmountCannotBeZero().",
+    "summary": "PancakeSwap V4 rejected the call at SwapAmountCannotBeZero: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SwapAmountCannotBeZero custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3021,15 +3365,19 @@
         "value": "0xb8e3c385"
       }
     ],
-    "summary": "PancakeSwap V4 custom error TickLiquidityOverflow(int24).",
+    "summary": "PancakeSwap V4 rejected the call at TickLiquidityOverflow(int24): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TickLiquidityOverflow custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3056,15 +3404,19 @@
         "value": "0xd5e2f7ab"
       }
     ],
-    "summary": "PancakeSwap V4 custom error TickLowerOutOfBounds(int24).",
+    "summary": "PancakeSwap V4 rejected the call at TickLowerOutOfBounds(int24): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TickLowerOutOfBounds custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3091,17 +3443,21 @@
         "value": "0xd4d8f3e6"
       }
     ],
-    "summary": "PancakeSwap V4 custom error TickMisaligned(int24,int24).",
+    "summary": "PancakeSwap V4 rejected the call at TickMisaligned(int24,int24): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TickMisaligned custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -3126,15 +3482,19 @@
         "value": "0xb70024f8"
       }
     ],
-    "summary": "PancakeSwap V4 custom error TickSpacingTooLarge(int24).",
+    "summary": "PancakeSwap V4 rejected the call at TickSpacingTooLarge(int24): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TickSpacingTooLarge custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3161,15 +3521,19 @@
         "value": "0xe9e90588"
       }
     ],
-    "summary": "PancakeSwap V4 custom error TickSpacingTooSmall(int24).",
+    "summary": "PancakeSwap V4 rejected the call at TickSpacingTooSmall(int24): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TickSpacingTooSmall custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3196,15 +3560,19 @@
         "value": "0x1ad777f8"
       }
     ],
-    "summary": "PancakeSwap V4 custom error TickUpperOutOfBounds(int24).",
+    "summary": "PancakeSwap V4 rejected the call at TickUpperOutOfBounds(int24): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TickUpperOutOfBounds custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3231,17 +3599,21 @@
         "value": "0xc4433ed5"
       }
     ],
-    "summary": "PancakeSwap V4 custom error TicksMisordered(int24,int24).",
+    "summary": "PancakeSwap V4 rejected the call at TicksMisordered(int24,int24): points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TicksMisordered custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -3266,15 +3638,19 @@
         "value": "0x24b28d9e"
       }
     ],
-    "summary": "PancakeSwap V4 custom error Uint128x128Math__LogUnderflow().",
+    "summary": "PancakeSwap V4 rejected the call at Uint128x128Math__LogUnderflow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the Uint128x128Math__LogUnderflow custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3301,15 +3677,19 @@
         "value": "0x3b74b31a"
       }
     ],
-    "summary": "PancakeSwap V4 custom error Uint128x128Math__PowUnderflow(uint256,int256).",
+    "summary": "PancakeSwap V4 rejected the call at Uint128x128Math__PowUnderflow(uint256,int256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the Uint128x128Math__PowUnderflow custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3336,15 +3716,19 @@
         "value": "0x13eae715"
       }
     ],
-    "summary": "PancakeSwap V4 custom error Uint256x256Math__MulDivOverflow().",
+    "summary": "PancakeSwap V4 rejected the call at Uint256x256Math__MulDivOverflow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the Uint256x256Math__MulDivOverflow custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3371,15 +3755,19 @@
         "value": "0x8e471a89"
       }
     ],
-    "summary": "PancakeSwap V4 custom error Uint256x256Math__MulShiftOverflow().",
+    "summary": "PancakeSwap V4 rejected the call at Uint256x256Math__MulShiftOverflow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the Uint256x256Math__MulShiftOverflow custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3406,15 +3794,19 @@
         "value": "0x30d21641"
       }
     ],
-    "summary": "PancakeSwap V4 custom error UnauthorizedDynamicLPFeeUpdate().",
+    "summary": "PancakeSwap V4 rejected the call at UnauthorizedDynamicLPFeeUpdate: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnauthorizedDynamicLPFeeUpdate custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3441,17 +3833,21 @@
         "value": "0xbd2c84eb"
       }
     ],
-    "summary": "PancakeSwap V4 custom error UnusedBitsNonZero().",
+    "summary": "PancakeSwap V4 rejected the call at UnusedBitsNonZero: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnusedBitsNonZero custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -3476,17 +3872,21 @@
         "value": "0x90bfb865"
       }
     ],
-    "summary": "PancakeSwap V4 custom error WrappedError(address,bytes4,bytes,bytes).",
+    "summary": "PancakeSwap V4 rejected the call at WrappedError(address,bytes4,bytes,bytes): means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the WrappedError custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; encoded payload, signature, proof, route, or hook data; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V4 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -3511,15 +3911,19 @@
         "value": "0x32c98ae6"
       }
     ],
-    "summary": "PancakeSwap V3 custom error WrongReceiver().",
+    "summary": "PancakeSwap V3 rejected the call at WrongReceiver: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the WrongReceiver custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3546,15 +3950,19 @@
         "value": "0xd92e233d"
       }
     ],
-    "summary": "PancakeSwap V3 custom error ZeroAddress().",
+    "summary": "PancakeSwap V3 rejected the call at ZeroAddress: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ZeroAddress custom error.",
-      "The selector identifies the failing ecosystem/protocol branch; decoded arguments usually identify the bad account, token, route, nonce, module, market, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the PancakeSwap V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",

@@ -15,17 +15,29 @@
         "value": "archive state required"
       }
     ],
-    "summary": "RPC provider returned: archive state required.",
+    "summary": "The RPC endpoint cannot serve the historical state requested at that block.",
     "likelyCauses": [
-      "The provider rejected, throttled, or could not serve the request."
+      "The request needs archive state older than the endpoint retains.",
+      "The project or plan is not enabled for archive access on this chain."
     ],
     "nextSteps": [
-      "Back off, check credentials/quota, or fail over to another provider."
+      "Use an archive-capable endpoint for the target chain and block.",
+      "Retry against a provider that documents archive data support."
+    ],
+    "references": [
+      {
+        "label": "Alchemy archive data",
+        "url": "https://www.alchemy.com/docs/what-is-archive-data-on-ethereum"
+      },
+      {
+        "label": "Infura archive access",
+        "url": "https://www.infura.io/solutions/archive-access"
+      }
     ]
   },
   {
     "rootCauseKnown": true,
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "id": "provider-chain-not-supported",
@@ -39,12 +51,24 @@
         "value": "chain not supported"
       }
     ],
-    "summary": "RPC provider returned: chain not supported.",
+    "summary": "The RPC provider does not support the requested chain for this endpoint, product, or account.",
     "likelyCauses": [
-      "The provider rejected, throttled, or could not serve the request."
+      "The endpoint URL targets the wrong network identifier.",
+      "The provider does not support this chain or feature on the current plan."
     ],
     "nextSteps": [
-      "Back off, check credentials/quota, or fail over to another provider."
+      "Check the provider's supported chain list and endpoint format.",
+      "Switch to a supported endpoint or a provider that supports this chain."
+    ],
+    "references": [
+      {
+        "label": "Alchemy feature support by chain",
+        "url": "https://www.alchemy.com/docs/reference/feature-support-by-chain"
+      },
+      {
+        "label": "Alchemy Node API overview",
+        "url": "https://www.alchemy.com/docs/node"
+      }
     ]
   },
   {
@@ -59,7 +83,7 @@
         "value": "daily request count exceeded"
       }
     ],
-    "summary": "RPC provider daily quota was exhausted.",
+    "summary": "The RPC provider rejected the request because the project exhausted its daily quota.",
     "rootCauseKnown": true,
     "likelyCauses": [
       "The API key or project exceeded its daily request allowance.",
@@ -67,15 +91,25 @@
     ],
     "nextSteps": [
       "Reduce polling and cache repeated reads.",
-      "Wait for quota reset or move to a higher-capacity endpoint."
+      "Wait for quota reset, upgrade the plan, or fail over to another endpoint."
     ],
     "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
-    "confidence": "medium"
+    "confidence": "medium",
+    "references": [
+      {
+        "label": "Alchemy throughput limits",
+        "url": "https://www.alchemy.com/docs/reference/throughput"
+      },
+      {
+        "label": "Alchemy error reference",
+        "url": "https://www.alchemy.com/docs/reference/error-reference"
+      }
+    ]
   },
   {
     "rootCauseKnown": true,
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "id": "provider-invalid-api-key",
@@ -89,17 +123,29 @@
         "value": "invalid api key"
       }
     ],
-    "summary": "RPC provider returned: invalid api key.",
+    "summary": "The provider rejected the request because the access key, project id, or endpoint credential is invalid.",
     "likelyCauses": [
-      "The provider rejected, throttled, or could not serve the request."
+      "API key is missing, mistyped, revoked, or for a different product.",
+      "The deployed environment did not inject the expected secret."
     ],
     "nextSteps": [
-      "Back off, check credentials/quota, or fail over to another provider."
+      "Verify the endpoint URL and key in the provider dashboard.",
+      "Rotate the key if it may have been revoked or exposed."
+    ],
+    "references": [
+      {
+        "label": "Alchemy error reference",
+        "url": "https://www.alchemy.com/docs/reference/error-reference"
+      },
+      {
+        "label": "Alchemy access keys",
+        "url": "https://www.alchemy.com/docs/docs/how-to-create-access-keys"
+      }
     ]
   },
   {
     "rootCauseKnown": true,
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "id": "provider-method-disabled",
@@ -113,12 +159,24 @@
         "value": "method disabled"
       }
     ],
-    "summary": "RPC provider returned: method disabled.",
+    "summary": "The provider has disabled or does not expose this RPC method on the current endpoint.",
     "likelyCauses": [
-      "The provider rejected, throttled, or could not serve the request."
+      "The method is a restricted namespace such as debug_ or trace_.",
+      "The project, chain, or product tier does not enable the method."
     ],
     "nextSteps": [
-      "Back off, check credentials/quota, or fail over to another provider."
+      "Check the provider method documentation before retrying.",
+      "Move restricted debug or trace calls to a node/provider that supports them."
+    ],
+    "references": [
+      {
+        "label": "EIP-1474 method not supported",
+        "url": "https://eips.ethereum.org/EIPS/eip-1474#error-codes"
+      },
+      {
+        "label": "Alchemy error reference",
+        "url": "https://www.alchemy.com/docs/reference/error-reference"
+      }
     ]
   },
   {
@@ -137,17 +195,29 @@
         "value": "project ID request rate exceeded"
       }
     ],
-    "summary": "RPC provider returned: project ID request rate exceeded.",
+    "summary": "The project is over its provider rate limit for the current time window.",
     "likelyCauses": [
-      "The provider rejected, throttled, or could not serve the request."
+      "Too many concurrent reads, retries, or backfill requests.",
+      "Multiple deployments share the same project id."
     ],
     "nextSteps": [
-      "Back off, check credentials/quota, or fail over to another provider."
+      "Back off with jitter and cap retry attempts.",
+      "Add caching, batch where appropriate, or split traffic across approved projects."
+    ],
+    "references": [
+      {
+        "label": "Alchemy throughput limits",
+        "url": "https://www.alchemy.com/docs/reference/throughput"
+      },
+      {
+        "label": "Alchemy best practices",
+        "url": "https://www.alchemy.com/docs/docs/best-practices-when-using-alchemy"
+      }
     ]
   },
   {
     "rootCauseKnown": true,
-    "retryHelpful": "sometimes",
+    "retryHelpful": "yes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "id": "provider-request-timed-out",
@@ -161,12 +231,24 @@
         "value": "request timed out"
       }
     ],
-    "summary": "RPC provider returned: request timed out.",
+    "summary": "The provider or upstream node did not complete the RPC request before its timeout.",
     "likelyCauses": [
-      "The provider rejected, throttled, or could not serve the request."
+      "The method is expensive, the block range is too large, or the upstream node is overloaded.",
+      "Network latency or transient provider degradation."
     ],
     "nextSteps": [
-      "Back off, check credentials/quota, or fail over to another provider."
+      "Retry with exponential backoff.",
+      "Reduce block ranges or request size, then fail over if timeouts persist."
+    ],
+    "references": [
+      {
+        "label": "Alchemy error reference",
+        "url": "https://www.alchemy.com/docs/reference/error-reference"
+      },
+      {
+        "label": "Alchemy best practices",
+        "url": "https://www.alchemy.com/docs/docs/best-practices-when-using-alchemy"
+      }
     ]
   },
   {
@@ -185,17 +267,29 @@
         "value": "too many requests"
       }
     ],
-    "summary": "RPC provider returned: too many requests.",
+    "summary": "The provider is throttling the client because request volume exceeded a rate limit.",
     "likelyCauses": [
-      "The provider rejected, throttled, or could not serve the request."
+      "High request concurrency or retry storms.",
+      "Polling or indexer backfills exceeded the endpoint's throughput."
     ],
     "nextSteps": [
-      "Back off, check credentials/quota, or fail over to another provider."
+      "Honor 429/rate-limit responses with backoff and jitter.",
+      "Cache repeated reads and lower polling frequency."
+    ],
+    "references": [
+      {
+        "label": "Alchemy throughput limits",
+        "url": "https://www.alchemy.com/docs/reference/throughput"
+      },
+      {
+        "label": "Alchemy error reference",
+        "url": "https://www.alchemy.com/docs/reference/error-reference"
+      }
     ]
   },
   {
     "rootCauseKnown": true,
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "id": "provider-unauthorized",
@@ -209,12 +303,24 @@
         "value": "unauthorized"
       }
     ],
-    "summary": "RPC provider returned: unauthorized.",
+    "summary": "The provider rejected the request because the client is not authenticated or not allowed for this endpoint.",
     "likelyCauses": [
-      "The provider rejected, throttled, or could not serve the request."
+      "Missing, invalid, revoked, or origin-restricted API key.",
+      "The endpoint requires credentials not present in the request."
     ],
     "nextSteps": [
-      "Back off, check credentials/quota, or fail over to another provider."
+      "Check the provider dashboard for key status, product permissions, and allowed origins.",
+      "Use server-side secret injection for private provider credentials."
+    ],
+    "references": [
+      {
+        "label": "Alchemy error reference",
+        "url": "https://www.alchemy.com/docs/reference/error-reference"
+      },
+      {
+        "label": "Alchemy access keys",
+        "url": "https://www.alchemy.com/docs/docs/how-to-create-access-keys"
+      }
     ]
   },
   {
@@ -230,6 +336,16 @@
     ],
     "nextSteps": [
       "Use a server-side proxy for private keys, verify CORS support, and test the endpoint from the deployment environment."
+    ],
+    "references": [
+      {
+        "label": "MDN CORS guide",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+      },
+      {
+        "label": "Alchemy error reference",
+        "url": "https://www.alchemy.com/docs/reference/error-reference"
+      }
     ],
     "id": "rpc-cors-or-fetch-failed",
     "title": "RPC network request failed",
@@ -262,6 +378,16 @@
     ],
     "nextSteps": [
       "Check environment variables, endpoint URLs, dashboard restrictions, and server-side secret injection."
+    ],
+    "references": [
+      {
+        "label": "Alchemy error reference",
+        "url": "https://www.alchemy.com/docs/reference/error-reference"
+      },
+      {
+        "label": "Alchemy access keys",
+        "url": "https://www.alchemy.com/docs/docs/how-to-create-access-keys"
+      }
     ],
     "id": "rpc-invalid-api-key",
     "title": "RPC API key invalid",

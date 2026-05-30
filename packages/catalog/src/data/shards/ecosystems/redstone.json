@@ -11,17 +11,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Account must be solvent after liquidation['\"]?\\s*$"
       }
     ],
-    "summary": "RedStone EVM connector revert reason string: Account must be solvent after liquidation.",
+    "summary": "RedStone EVM connector reverted with \"Account must be solvent after liquidation\", an exact source-level check that means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking feed, reporter, price, round, timestamp, authorization, or aggregation state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -46,17 +50,21 @@
         "value": "0xd5e55d18"
       }
     ],
-    "summary": "RedStone EVM connector custom error AllValuesMustBeEqual().",
+    "summary": "RedStone EVM connector rejected the call at AllValuesMustBeEqual: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AllValuesMustBeEqual custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -81,17 +89,21 @@
         "value": "0xe7764c9e"
       }
     ],
-    "summary": "RedStone EVM connector custom error CalldataMustHaveValidPayload().",
+    "summary": "RedStone EVM connector rejected the call at CalldataMustHaveValidPayload: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CalldataMustHaveValidPayload custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -116,15 +128,19 @@
         "value": "0x5796f78a"
       }
     ],
-    "summary": "RedStone EVM connector custom error CalldataOverOrUnderFlow().",
+    "summary": "RedStone EVM connector rejected the call at CalldataOverOrUnderFlow: means arithmetic, casting, rounding, division, precision, or fixed-point constraints rejected the operation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CalldataOverOrUnderFlow custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The submitted amount, price, ratio, or intermediate calculation overflows, underflows, divides by zero, or loses required precision.",
+      "Token decimals, share conversion, fixed-point scaling, or rounding rules differ from the client calculation.",
+      "The protocol's invariant cannot hold for the requested state transition.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recalculate the relevant amounts using the contract's decimals, scaling factors, and rounding direction.",
+      "Decode error arguments and compare them with the invariant or math helper in the referenced source.",
+      "Reduce the amount or use a valid price/ratio range before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -151,15 +167,19 @@
         "value": "0x9e198af9"
       }
     ],
-    "summary": "RedStone EVM connector custom error CanNotPickMedianOfEmptyArray().",
+    "summary": "RedStone EVM connector rejected the call at CanNotPickMedianOfEmptyArray: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CanNotPickMedianOfEmptyArray custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -186,17 +206,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot burn more than minted['\"]?\\s*$"
       }
     ],
-    "summary": "RedStone EVM connector revert reason string: Cannot burn more than minted.",
+    "summary": "RedStone EVM connector reverted with \"Cannot burn more than minted\", an exact source-level check that means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking feed, reporter, price, round, timestamp, authorization, or aggregation state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -221,17 +245,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot liquidate a solvent account['\"]?\\s*$"
       }
     ],
-    "summary": "RedStone EVM connector revert reason string: Cannot liquidate a solvent account.",
+    "summary": "RedStone EVM connector reverted with \"Cannot liquidate a solvent account\", an exact source-level check that means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking feed, reporter, price, round, timestamp, authorization, or aggregation state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -256,17 +284,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Cannot remove more collateral than deposited['\"]?\\s*$"
       }
     ],
-    "summary": "RedStone EVM connector revert reason string: Cannot remove more collateral than deposited.",
+    "summary": "RedStone EVM connector reverted with \"Cannot remove more collateral than deposited\", an exact source-level check that means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking feed, reporter, price, round, timestamp, authorization, or aggregation state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,17 +323,21 @@
         "value": "0x336dc9d0"
       }
     ],
-    "summary": "RedStone EVM connector custom error DataPackageTimestampMustNotBeZero().",
+    "summary": "RedStone EVM connector rejected the call at DataPackageTimestampMustNotBeZero: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DataPackageTimestampMustNotBeZero custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -326,17 +362,21 @@
         "value": "0xd9d1f465"
       }
     ],
-    "summary": "RedStone EVM connector custom error DataPackageTimestampsMustBeEqual().",
+    "summary": "RedStone EVM connector rejected the call at DataPackageTimestampsMustBeEqual: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DataPackageTimestampsMustBeEqual custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -361,15 +401,19 @@
         "value": "0xdfb25a79"
       }
     ],
-    "summary": "RedStone EVM connector custom error DataTimestampCannotBeZero().",
+    "summary": "RedStone EVM connector rejected the call at DataTimestampCannotBeZero: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DataTimestampCannotBeZero custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -396,15 +440,19 @@
         "value": "0xece458ec"
       }
     ],
-    "summary": "RedStone EVM connector custom error EachSignerMustProvideTheSameValue().",
+    "summary": "RedStone EVM connector rejected the call at EachSignerMustProvideTheSameValue: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the EachSignerMustProvideTheSameValue custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -431,17 +479,21 @@
         "value": "0x6c2325dc"
       }
     ],
-    "summary": "RedStone EVM connector custom error EmptyCalldataPointersArr().",
+    "summary": "RedStone EVM connector rejected the call at EmptyCalldataPointersArr: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the EmptyCalldataPointersArr custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -466,15 +518,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?ERC20: transfer amount exceeds allowance['\"]?\\s*$"
       }
     ],
-    "summary": "RedStone EVM connector revert reason string: ERC20: transfer amount exceeds allowance.",
+    "summary": "RedStone EVM connector reverted with \"ERC20: transfer amount exceeds allowance\", an exact source-level check that points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking feed, reporter, price, round, timestamp, authorization, or aggregation state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -501,17 +557,21 @@
         "value": "0x99d04048"
       }
     ],
-    "summary": "RedStone EVM connector custom error ExpectedMsgValueNotToBePassed().",
+    "summary": "RedStone EVM connector rejected the call at ExpectedMsgValueNotToBePassed: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ExpectedMsgValueNotToBePassed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -536,17 +596,21 @@
         "value": "0x26d2b8a2"
       }
     ],
-    "summary": "RedStone EVM connector custom error ExpectedMsgValueToBePassed().",
+    "summary": "RedStone EVM connector rejected the call at ExpectedMsgValueToBePassed: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ExpectedMsgValueToBePassed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -571,17 +635,21 @@
         "value": "0x608b5307"
       }
     ],
-    "summary": "RedStone EVM connector custom error GetDataServiceIdNotImplemented().",
+    "summary": "RedStone EVM connector rejected the call at GetDataServiceIdNotImplemented: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the GetDataServiceIdNotImplemented custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -606,17 +674,21 @@
         "value": "0xc30a7bd7"
       }
     ],
-    "summary": "RedStone EVM connector custom error IncorrectUnsignedMetadataSize().",
+    "summary": "RedStone EVM connector rejected the call at IncorrectUnsignedMetadataSize: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncorrectUnsignedMetadataSize custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -641,15 +713,19 @@
         "value": "0x2b13aef5"
       }
     ],
-    "summary": "RedStone EVM connector custom error InsufficientNumberOfUniqueSigners(uint256,uint256).",
+    "summary": "RedStone EVM connector rejected the call at InsufficientNumberOfUniqueSigners(uint256,uint256): means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InsufficientNumberOfUniqueSigners custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -676,17 +752,21 @@
         "value": "0xb0e86e51"
       }
     ],
-    "summary": "RedStone EVM connector custom error InvalidCalldataPointer().",
+    "summary": "RedStone EVM connector rejected the call at InvalidCalldataPointer: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidCalldataPointer custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -711,15 +791,19 @@
         "value": "0x666b7cba"
       }
     ],
-    "summary": "RedStone EVM connector custom error InvalidSignature(bytes32).",
+    "summary": "RedStone EVM connector rejected the call at InvalidSignature(bytes32): means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidSignature custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -746,15 +830,19 @@
         "value": "0xfd36fde3"
       }
     ],
-    "summary": "RedStone EVM connector custom error ProxyCalldataFailedWithCustomError(bytes).",
+    "summary": "RedStone EVM connector rejected the call at ProxyCalldataFailedWithCustomError(bytes): points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ProxyCalldataFailedWithCustomError custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,18 +869,22 @@
         "value": "0x0f7e8278"
       }
     ],
-    "summary": "RedStone EVM connector custom error ProxyCalldataFailedWithStringMessage(string).",
+    "summary": "RedStone EVM connector rejected the call at ProxyCalldataFailedWithStringMessage(string): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ProxyCalldataFailedWithStringMessage custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant name, symbol, reason, URI, or identifier; compare them with feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -816,15 +908,19 @@
         "value": "0x567fe27a"
       }
     ],
-    "summary": "RedStone EVM connector custom error ProxyCalldataFailedWithoutErrMsg().",
+    "summary": "RedStone EVM connector rejected the call at ProxyCalldataFailedWithoutErrMsg: points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ProxyCalldataFailedWithoutErrMsg custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -851,17 +947,21 @@
         "value": "0x8552ff3c"
       }
     ],
-    "summary": "RedStone EVM connector custom error RedstonePayloadMustHaveAtLeastOneDataPackage().",
+    "summary": "RedStone EVM connector rejected the call at RedstonePayloadMustHaveAtLeastOneDataPackage: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the RedstonePayloadMustHaveAtLeastOneDataPackage custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -886,17 +986,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Request not found['\"]?\\s*$"
       }
     ],
-    "summary": "RedStone EVM connector revert reason string: Request not found.",
+    "summary": "RedStone EVM connector reverted with \"Request not found\", an exact source-level check that means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking feed, reporter, price, round, timestamp, authorization, or aggregation state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -921,15 +1025,19 @@
         "value": "0xec459bc0"
       }
     ],
-    "summary": "RedStone EVM connector custom error SignerNotAuthorised(address).",
+    "summary": "RedStone EVM connector rejected the call at SignerNotAuthorised(address): means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SignerNotAuthorised custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -956,18 +1064,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Test message['\"]?\\s*$"
       }
     ],
-    "summary": "RedStone EVM connector revert reason string: Test message.",
+    "summary": "RedStone EVM connector reverted with \"Test message\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking feed, reporter, price, round, timestamp, authorization, or aggregation state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -991,17 +1103,21 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?The account must remain solvent['\"]?\\s*$"
       }
     ],
-    "summary": "RedStone EVM connector revert reason string: The account must remain solvent.",
+    "summary": "RedStone EVM connector reverted with \"The account must remain solvent\", an exact source-level check that means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert condition in the named protocol or support library failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking feed, reporter, price, round, timestamp, authorization, or aggregation state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, deadlines, path encoding, ownership, or module configuration depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1026,17 +1142,21 @@
         "value": "0xb6b0916d"
       }
     ],
-    "summary": "RedStone EVM connector custom error TimestampFromTooLongFuture(uint256,uint256).",
+    "summary": "RedStone EVM connector rejected the call at TimestampFromTooLongFuture(uint256,uint256): means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TimestampFromTooLongFuture custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1061,17 +1181,21 @@
         "value": "0x0321d0b5"
       }
     ],
-    "summary": "RedStone EVM connector custom error TimestampIsTooOld(uint256,uint256).",
+    "summary": "RedStone EVM connector rejected the call at TimestampIsTooOld(uint256,uint256): means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TimestampIsTooOld custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1096,17 +1220,21 @@
         "value": "0x4cbc4742"
       }
     ],
-    "summary": "RedStone EVM connector custom error TimestampsMustBeEqual().",
+    "summary": "RedStone EVM connector rejected the call at TimestampsMustBeEqual: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TimestampsMustBeEqual custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1131,15 +1259,19 @@
         "value": "0xc000fc42"
       }
     ],
-    "summary": "RedStone EVM connector custom error TooLargeValueByteSize(uint256).",
+    "summary": "RedStone EVM connector rejected the call at TooLargeValueByteSize(uint256): means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TooLargeValueByteSize custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1166,17 +1298,21 @@
         "value": "0x49831700"
       }
     ],
-    "summary": "RedStone EVM connector custom error UnexpectedOracleValue().",
+    "summary": "RedStone EVM connector rejected the call at UnexpectedOracleValue: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnexpectedOracleValue custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1201,17 +1337,21 @@
         "value": "0xdb1e860d"
       }
     ],
-    "summary": "RedStone EVM connector custom error UserDidNotPassKYD(address).",
+    "summary": "RedStone EVM connector rejected the call at UserDidNotPassKYD(address): means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UserDidNotPassKYD custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1236,17 +1376,21 @@
         "value": "0xdfac221e"
       }
     ],
-    "summary": "RedStone EVM connector custom error ValuesArrayCanNotBeEmpty().",
+    "summary": "RedStone EVM connector rejected the call at ValuesArrayCanNotBeEmpty: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ValuesArrayCanNotBeEmpty custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1271,17 +1415,21 @@
         "value": "0x98d4901c"
       }
     ],
-    "summary": "RedStone EVM connector custom error WrongValue().",
+    "summary": "RedStone EVM connector rejected the call at WrongValue: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the WrongValue custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and feed, reporter, price, round, timestamp, authorization, or aggregation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or the selector catalog.",
-      "Check the protocol precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [

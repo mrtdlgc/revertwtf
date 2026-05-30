@@ -11,15 +11,19 @@
         "value": "0x4ca88867"
       }
     ],
-    "summary": "1inch limit order protocol custom error AccessDenied().",
+    "summary": "1inch limit order protocol rejected the call at AccessDenied: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AccessDenied custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,17 +50,21 @@
         "value": "0x555fbbbf"
       }
     ],
-    "summary": "1inch limit order protocol custom error AdvanceEpochFailed().",
+    "summary": "1inch limit order protocol rejected the call at AdvanceEpochFailed: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AdvanceEpochFailed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -81,17 +89,21 @@
         "value": "0xbd71636d"
       }
     ],
-    "summary": "1inch limit order protocol custom error AdvanceNonceFailed().",
+    "summary": "1inch limit order protocol rejected the call at AdvanceNonceFailed: means the transaction, permit, order, message, or request nonce does not match the next valid value expected by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AdvanceNonceFailed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The nonce, salt, sequence number, or request id has already been consumed.",
+      "The client submitted transactions out of order or reused a signed payload after another state-changing action.",
+      "A cross-chain message, account module, permit helper, or orderbook tracks nonces separately from the wallet account nonce.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the protocol nonce, consumed bitmap, salt status, or sequence counter for the sender/order/message.",
+      "Regenerate the signed payload with the next unused protocol nonce instead of resubmitting the old one.",
+      "Stop retrying if the id was already consumed and reconcile the resulting on-chain state."
     ],
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -116,17 +128,21 @@
         "value": "0x1f1b8f61"
       }
     ],
-    "summary": "1inch limit order protocol custom error ArbitraryStaticCallFailed().",
+    "summary": "1inch limit order protocol rejected the call at ArbitraryStaticCallFailed: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ArbitraryStaticCallFailed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -151,15 +167,19 @@
         "value": "0x5cd5d233"
       }
     ],
-    "summary": "1inch limit order protocol custom error BadSignature().",
+    "summary": "1inch limit order protocol rejected the call at BadSignature: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BadSignature custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -186,17 +206,21 @@
         "value": "0xa4f62a96"
       }
     ],
-    "summary": "1inch limit order protocol custom error BitInvalidatedOrder().",
+    "summary": "1inch limit order protocol rejected the call at BitInvalidatedOrder: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BitInvalidatedOrder custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -221,15 +245,19 @@
         "value": "0xf839fd70"
       }
     ],
-    "summary": "1inch limit order protocol custom error CancelOrderByResolverIsForbidden().",
+    "summary": "1inch limit order protocol rejected the call at CancelOrderByResolverIsForbidden: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CancelOrderByResolverIsForbidden custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -256,17 +284,21 @@
         "value": "0x274cd55d"
       }
     ],
-    "summary": "1inch limit order protocol custom error DifferentOracleDecimals().",
+    "summary": "1inch limit order protocol rejected the call at DifferentOracleDecimals: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DifferentOracleDecimals custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,17 +323,21 @@
         "value": "0x9e744e25"
       }
     ],
-    "summary": "1inch limit order protocol custom error EpochManagerAndBitInvalidatorsAreIncompatible().",
+    "summary": "1inch limit order protocol rejected the call at EpochManagerAndBitInvalidatorsAreIncompatible: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the EpochManagerAndBitInvalidatorsAreIncompatible custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -326,15 +362,19 @@
         "value": "0x077ef22b"
       }
     ],
-    "summary": "1inch limit order protocol custom error ERC1155ProxyBadSelector().",
+    "summary": "1inch limit order protocol rejected the call at ERC1155ProxyBadSelector: points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ERC1155ProxyBadSelector custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -361,15 +401,19 @@
         "value": "0x768af9b7"
       }
     ],
-    "summary": "1inch limit order protocol custom error ERC721ProxyBadSelector().",
+    "summary": "1inch limit order protocol rejected the call at ERC721ProxyBadSelector: points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ERC721ProxyBadSelector custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -396,15 +440,19 @@
         "value": "0x5c985b21"
       }
     ],
-    "summary": "1inch limit order protocol custom error ERC721ProxySafeBadSelector().",
+    "summary": "1inch limit order protocol rejected the call at ERC721ProxySafeBadSelector: points to proxy, implementation, initializer, upgrade, beacon, or delegatecall lifecycle checks.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ERC721ProxySafeBadSelector custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The proxy or implementation is already initialized, not initialized, or controlled by a different admin.",
+      "The upgrade target, beacon, initializer calldata, or storage layout is invalid for this deployment.",
+      "The call reached the implementation directly instead of the proxy, or vice versa.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check proxy admin, implementation, beacon, initialized version, and upgrade authorization state.",
+      "Submit initializer or upgrade calldata through the expected proxy/admin path.",
+      "Verify the deployment address and contract version before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -431,17 +479,21 @@
         "value": "0x608d41ea"
       }
     ],
-    "summary": "1inch limit order protocol custom error ExistingOrder().",
+    "summary": "1inch limit order protocol rejected the call at ExistingOrder: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ExistingOrder custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -466,17 +518,21 @@
         "value": "0x679a57eb"
       }
     ],
-    "summary": "1inch limit order protocol custom error InconsistentFee().",
+    "summary": "1inch limit order protocol rejected the call at InconsistentFee: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InconsistentFee custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -501,17 +557,21 @@
         "value": "0x863265dc"
       }
     ],
-    "summary": "1inch limit order protocol custom error IncorrectRange().",
+    "summary": "1inch limit order protocol rejected the call at IncorrectRange: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncorrectRange custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -536,17 +596,21 @@
         "value": "0xdc11ee6b"
       }
     ],
-    "summary": "1inch limit order protocol custom error InvalidExtensionHash().",
+    "summary": "1inch limit order protocol rejected the call at InvalidExtensionHash: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidExtensionHash custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -571,17 +635,21 @@
         "value": "0xc5374e2d"
       }
     ],
-    "summary": "1inch limit order protocol custom error InvalidIntegratorShare().",
+    "summary": "1inch limit order protocol rejected the call at InvalidIntegratorShare: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidIntegratorShare custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -606,17 +674,21 @@
         "value": "0x1841b4e1"
       }
     ],
-    "summary": "1inch limit order protocol custom error InvalidMsgValue().",
+    "summary": "1inch limit order protocol rejected the call at InvalidMsgValue: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidMsgValue custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -641,17 +713,21 @@
         "value": "0xaf610693"
       }
     ],
-    "summary": "1inch limit order protocol custom error InvalidOrder().",
+    "summary": "1inch limit order protocol rejected the call at InvalidOrder: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidOrder custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -676,17 +752,21 @@
         "value": "0xac34823a"
       }
     ],
-    "summary": "1inch limit order protocol custom error InvalidOrderHash().",
+    "summary": "1inch limit order protocol rejected the call at InvalidOrderHash: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidOrderHash custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -711,15 +791,19 @@
         "value": "0x2aefd060"
       }
     ],
-    "summary": "1inch limit order protocol custom error InvalidPermit2Transfer().",
+    "summary": "1inch limit order protocol rejected the call at InvalidPermit2Transfer: points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidPermit2Transfer custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -746,15 +830,19 @@
         "value": "0x3066a1f1"
       }
     ],
-    "summary": "1inch limit order protocol custom error InvalidWhitelistDiscountNumerator().",
+    "summary": "1inch limit order protocol rejected the call at InvalidWhitelistDiscountNumerator: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidWhitelistDiscountNumerator custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,17 +869,21 @@
         "value": "0xf71fbda2"
       }
     ],
-    "summary": "1inch limit order protocol custom error InvalidatedOrder().",
+    "summary": "1inch limit order protocol rejected the call at InvalidatedOrder: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidatedOrder custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -816,15 +908,19 @@
         "value": "0x497131ed"
       }
     ],
-    "summary": "1inch limit order protocol custom error IOAccessDenied().",
+    "summary": "1inch limit order protocol rejected the call at IOAccessDenied: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IOAccessDenied custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -851,15 +947,19 @@
         "value": "0x481ea392"
       }
     ],
-    "summary": "1inch limit order protocol custom error MakingAmountTooLow().",
+    "summary": "1inch limit order protocol rejected the call at MakingAmountTooLow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MakingAmountTooLow custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -886,15 +986,19 @@
         "value": "0xd97cd9d8"
       }
     ],
-    "summary": "1inch limit order protocol custom error MismatchArraysLengths().",
+    "summary": "1inch limit order protocol rejected the call at MismatchArraysLengths: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MismatchArraysLengths custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -921,17 +1025,21 @@
         "value": "0xb2d25e49"
       }
     ],
-    "summary": "1inch limit order protocol custom error MissingOrderExtension().",
+    "summary": "1inch limit order protocol rejected the call at MissingOrderExtension: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MissingOrderExtension custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -956,17 +1064,21 @@
         "value": "0xad3a8b9e"
       }
     ],
-    "summary": "1inch limit order protocol custom error NotEnoughBalance().",
+    "summary": "1inch limit order protocol rejected the call at NotEnoughBalance: means the account, vault, pool, escrow, reserve, or market does not have enough usable balance or liquidity.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotEnoughBalance custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The sender's token balance, native balance, collateral, vault shares, or internal accounting balance is below the requested amount.",
+      "The pool, reserve, vault, market, or escrow lacks enough available liquidity for the operation.",
+      "Fees, debt, pending withdrawals, slippage, or locked balances reduce the spendable amount below the visible balance.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check token balance, native balance, internal vault balance, debt, and available liquidity at the same block as the revert.",
+      "Reduce the requested amount or add funds, collateral, shares, or liquidity before retrying.",
+      "Account for protocol fees, pending withdrawals, and locked balances when computing spendable amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -991,15 +1103,19 @@
         "value": "0x9605a010"
       }
     ],
-    "summary": "1inch limit order protocol custom error OffsetOutOfBounds().",
+    "summary": "1inch limit order protocol rejected the call at OffsetOutOfBounds: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the OffsetOutOfBounds custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1026,15 +1142,19 @@
         "value": "0xd25aa106"
       }
     ],
-    "summary": "1inch limit order protocol custom error OnlyLimitOrderProtocol().",
+    "summary": "1inch limit order protocol rejected the call at OnlyLimitOrderProtocol: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the OnlyLimitOrderProtocol custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1061,15 +1181,19 @@
         "value": "0x0155201f"
       }
     ],
-    "summary": "1inch limit order protocol custom error OnlyWhitelistOrAccessToken().",
+    "summary": "1inch limit order protocol rejected the call at OnlyWhitelistOrAccessToken: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the OnlyWhitelistOrAccessToken custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1096,15 +1220,19 @@
         "value": "0xc56873ba"
       }
     ],
-    "summary": "1inch limit order protocol custom error OrderExpired().",
+    "summary": "1inch limit order protocol rejected the call at OrderExpired: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the OrderExpired custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
     "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
@@ -1131,17 +1259,21 @@
         "value": "0x86bffaca"
       }
     ],
-    "summary": "1inch limit order protocol custom error OrderIsNotSuitableForMassInvalidation().",
+    "summary": "1inch limit order protocol rejected the call at OrderIsNotSuitableForMassInvalidation: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the OrderIsNotSuitableForMassInvalidation custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1166,15 +1298,19 @@
         "value": "0x796c85f3"
       }
     ],
-    "summary": "1inch limit order protocol custom error OrderNotExpired().",
+    "summary": "1inch limit order protocol rejected the call at OrderNotExpired: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the OrderNotExpired custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
     "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
@@ -1201,15 +1337,19 @@
         "value": "0x8ef0017c"
       }
     ],
-    "summary": "1inch limit order protocol custom error PartialFillNotAllowed().",
+    "summary": "1inch limit order protocol rejected the call at PartialFillNotAllowed: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PartialFillNotAllowed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1236,15 +1376,19 @@
         "value": "0xe0cc91e7"
       }
     ],
-    "summary": "1inch limit order protocol custom error Permit2WitnessProxyBadSelector().",
+    "summary": "1inch limit order protocol rejected the call at Permit2WitnessProxyBadSelector: points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the Permit2WitnessProxyBadSelector custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1271,17 +1415,21 @@
         "value": "0xb6629c02"
       }
     ],
-    "summary": "1inch limit order protocol custom error PredicateIsNotTrue().",
+    "summary": "1inch limit order protocol rejected the call at PredicateIsNotTrue: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PredicateIsNotTrue custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1306,17 +1454,21 @@
         "value": "0xd4dfdafe"
       }
     ],
-    "summary": "1inch limit order protocol custom error PrivateOrder().",
+    "summary": "1inch limit order protocol rejected the call at PrivateOrder: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PrivateOrder custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1341,15 +1493,19 @@
         "value": "0xc5f2be51"
       }
     ],
-    "summary": "1inch limit order protocol custom error ReentrancyDetected().",
+    "summary": "1inch limit order protocol rejected the call at ReentrancyDetected: means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ReentrancyDetected custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1376,17 +1532,21 @@
         "value": "0xaa3eef95"
       }
     ],
-    "summary": "1inch limit order protocol custom error RemainingInvalidatedOrder().",
+    "summary": "1inch limit order protocol rejected the call at RemainingInvalidatedOrder: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the RemainingInvalidatedOrder custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1411,17 +1571,21 @@
         "value": "0xaa4d3d4e"
       }
     ],
-    "summary": "1inch limit order protocol custom error RewardIsTooBig().",
+    "summary": "1inch limit order protocol rejected the call at RewardIsTooBig: points to staking, delegation, validator/operator, reward, epoch, slashing, or withdrawal state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the RewardIsTooBig custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The validator, operator, delegator, vault, reward epoch, or withdrawal queue is not in the state required for this action.",
+      "The account lacks enough active stake, shares, rewards, or withdrawal credits.",
+      "A cooldown, checkpoint, slashing, claim, or epoch transition has not completed yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read operator/delegator status, active stake, shares, current epoch, reward state, and withdrawal queue position.",
+      "Wait for cooldown, checkpoint, epoch finalization, or withdrawal availability when the error is timing-related.",
+      "Submit from the authorized operator/delegator account or adjust the stake/withdrawal amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1446,15 +1610,19 @@
         "value": "0x1934afc8"
       }
     ],
-    "summary": "1inch limit order protocol custom error SimulationResults(bool,bytes).",
+    "summary": "1inch limit order protocol rejected the call at SimulationResults(bool,bytes): means arithmetic, casting, rounding, division, precision, or fixed-point constraints rejected the operation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SimulationResults custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The submitted amount, price, ratio, or intermediate calculation overflows, underflows, divides by zero, or loses required precision.",
+      "Token decimals, share conversion, fixed-point scaling, or rounding rules differ from the client calculation.",
+      "The protocol's invariant cannot hold for the requested state transition.",
+      "Decoded arguments usually identify the relevant boolean mode or feature flag; encoded payload, signature, proof, route, or hook data; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recalculate the relevant amounts using the contract's decimals, scaling factors, and rounding direction.",
+      "Decode error arguments and compare them with the invariant or math helper in the referenced source.",
+      "Reduce the amount or use a valid price/ratio range before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1481,17 +1649,21 @@
         "value": "0xa887f2d8"
       }
     ],
-    "summary": "1inch limit order protocol custom error StaleOraclePrice().",
+    "summary": "1inch limit order protocol rejected the call at StaleOraclePrice: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the StaleOraclePrice custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1516,15 +1688,19 @@
         "value": "0xfba5a276"
       }
     ],
-    "summary": "1inch limit order protocol custom error SwapWithZeroAmount().",
+    "summary": "1inch limit order protocol rejected the call at SwapWithZeroAmount: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SwapWithZeroAmount custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1551,15 +1727,19 @@
         "value": "0x7f902a93"
       }
     ],
-    "summary": "1inch limit order protocol custom error TakingAmountExceeded().",
+    "summary": "1inch limit order protocol rejected the call at TakingAmountExceeded: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TakingAmountExceeded custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1586,15 +1766,19 @@
         "value": "0xfb8ae129"
       }
     ],
-    "summary": "1inch limit order protocol custom error TakingAmountTooHigh().",
+    "summary": "1inch limit order protocol rejected the call at TakingAmountTooHigh: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TakingAmountTooHigh custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1621,15 +1805,19 @@
         "value": "0x70a03f48"
       }
     ],
-    "summary": "1inch limit order protocol custom error TransferFromMakerToTakerFailed().",
+    "summary": "1inch limit order protocol rejected the call at TransferFromMakerToTakerFailed: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TransferFromMakerToTakerFailed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1656,15 +1844,19 @@
         "value": "0x478a5205"
       }
     ],
-    "summary": "1inch limit order protocol custom error TransferFromTakerToMakerFailed().",
+    "summary": "1inch limit order protocol rejected the call at TransferFromTakerToMakerFailed: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TransferFromTakerToMakerFailed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1691,17 +1883,21 @@
         "value": "0xda30ae4b"
       }
     ],
-    "summary": "1inch limit order protocol custom error UnathorizedMaker().",
+    "summary": "1inch limit order protocol rejected the call at UnathorizedMaker: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnathorizedMaker custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1726,17 +1922,21 @@
         "value": "0x74896a7b"
       }
     ],
-    "summary": "1inch limit order protocol custom error UnexpectedOrderExtension().",
+    "summary": "1inch limit order protocol rejected the call at UnexpectedOrderExtension: points to order, auction, listing, bid, fill, cancellation, or settlement state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnexpectedOrderExtension custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The order, bid, listing, or auction is expired, cancelled, already filled, not active, or below reserve constraints.",
+      "The fill amount, price, taker, maker, nonce, or settlement route no longer matches current orderbook state.",
+      "Another transaction consumed or invalidated the order before this transaction executed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh order hash, status, nonce, expiry, fill amount, price, and cancellation state immediately before submission.",
+      "Create a new order or bid if the previous one is no longer live.",
+      "Avoid resubmitting a fill after the order has already settled or been cancelled."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1761,17 +1961,21 @@
         "value": "0xe3e8b052"
       }
     ],
-    "summary": "1inch limit order protocol custom error WrongSeriesNonce().",
+    "summary": "1inch limit order protocol rejected the call at WrongSeriesNonce: means the transaction, permit, order, message, or request nonce does not match the next valid value expected by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the WrongSeriesNonce custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The nonce, salt, sequence number, or request id has already been consumed.",
+      "The client submitted transactions out of order or reused a signed payload after another state-changing action.",
+      "A cross-chain message, account module, permit helper, or orderbook tracks nonces separately from the wallet account nonce.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the protocol nonce, consumed bitmap, salt status, or sequence counter for the sender/order/message.",
+      "Regenerate the signed payload with the next unused protocol nonce instead of resubmitting the old one.",
+      "Stop retrying if the id was already consumed and reconcile the resulting on-chain state."
     ],
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1796,15 +2000,19 @@
         "value": "0x4ca17a99"
       }
     ],
-    "summary": "1inch solidity utils custom error ApproveCalledOnETH().",
+    "summary": "1inch solidity utils rejected the call at ApproveCalledOnETH: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ApproveCalledOnETH custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1831,15 +2039,19 @@
         "value": "0x559895a3"
       }
     ],
-    "summary": "1inch solidity utils custom error DeadlineExceeded().",
+    "summary": "1inch solidity utils rejected the call at DeadlineExceeded: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DeadlineExceeded custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
     "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
@@ -1866,17 +2078,21 @@
         "value": "0x1b10b0f9"
       }
     ],
-    "summary": "1inch solidity utils custom error EthDepositRejected().",
+    "summary": "1inch solidity utils rejected the call at EthDepositRejected: means vault share accounting, asset conversion, deposit/withdraw limits, strategy state, or queue state rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the EthDepositRejected custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The requested assets or shares exceed the vault's current deposit, mint, withdraw, or redeem limit.",
+      "Share/asset conversion, rounding, fees, pending withdrawals, or strategy accounting changed before execution.",
+      "The vault, strategy, asset, or withdrawal queue is paused, uninitialized, full, or in the wrong phase.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read maxDeposit/maxMint/maxWithdraw/maxRedeem or protocol-specific limits for the account and asset.",
+      "Recalculate shares/assets with current vault accounting, fees, and rounding rules.",
+      "Use the active withdrawal queue or wait for strategy/accounting state to settle before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1901,15 +2117,19 @@
         "value": "0x19be9a90"
       }
     ],
-    "summary": "1inch solidity utils custom error ForceApproveFailed().",
+    "summary": "1inch solidity utils rejected the call at ForceApproveFailed: points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ForceApproveFailed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1936,17 +2156,21 @@
         "value": "0x2a9c363d"
       }
     ],
-    "summary": "1inch solidity utils custom error FromIsNotSender().",
+    "summary": "1inch solidity utils rejected the call at FromIsNotSender: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FromIsNotSender custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1971,17 +2195,21 @@
         "value": "0x4eda0c2f"
       }
     ],
-    "summary": "1inch solidity utils custom error InvalidRevertReason().",
+    "summary": "1inch solidity utils rejected the call at InvalidRevertReason: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidRevertReason custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2006,15 +2234,19 @@
         "value": "0x9d565d4e"
       }
     ],
-    "summary": "1inch solidity utils custom error MathOverflow().",
+    "summary": "1inch solidity utils rejected the call at MathOverflow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MathOverflow custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2041,15 +2273,19 @@
         "value": "0xf93ad2c0"
       }
     ],
-    "summary": "1inch solidity utils custom error MathUnderflow().",
+    "summary": "1inch solidity utils rejected the call at MathUnderflow: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MathUnderflow custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2076,17 +2312,21 @@
         "value": "0x2b38c10f"
       }
     ],
-    "summary": "1inch solidity utils custom error MissingNonReentrantModifier().",
+    "summary": "1inch solidity utils rejected the call at MissingNonReentrantModifier: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MissingNonReentrantModifier custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2111,17 +2351,21 @@
         "value": "0xe2f844a0"
       }
     ],
-    "summary": "1inch solidity utils custom error NotEnoughValue().",
+    "summary": "1inch solidity utils rejected the call at NotEnoughValue: means the account, vault, pool, escrow, reserve, or market does not have enough usable balance or liquidity.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotEnoughValue custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The sender's token balance, native balance, collateral, vault shares, or internal accounting balance is below the requested amount.",
+      "The pool, reserve, vault, market, or escrow lacks enough available liquidity for the operation.",
+      "Fees, debt, pending withdrawals, slippage, or locked balances reduce the spendable amount below the visible balance.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check token balance, native balance, internal vault balance, debt, and available liquidity at the same block as the revert.",
+      "Reduce the requested amount or add funds, collateral, shares, or liquidity before retrying.",
+      "Account for protocol fees, pending withdrawals, and locked balances when computing spendable amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2146,15 +2390,19 @@
         "value": "0xf9a99b25"
       }
     ],
-    "summary": "1inch solidity utils custom error OutputArrayTooSmall().",
+    "summary": "1inch solidity utils rejected the call at OutputArrayTooSmall: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the OutputArrayTooSmall custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2181,15 +2429,19 @@
         "value": "0x8112e119"
       }
     ],
-    "summary": "1inch solidity utils custom error Permit2TransferAmountTooHigh().",
+    "summary": "1inch solidity utils rejected the call at Permit2TransferAmountTooHigh: points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the Permit2TransferAmountTooHigh custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2216,15 +2468,19 @@
         "value": "0x06a2af9e"
       }
     ],
-    "summary": "1inch solidity utils custom error PopFromEmptyArray().",
+    "summary": "1inch solidity utils rejected the call at PopFromEmptyArray: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PopFromEmptyArray custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2251,15 +2507,19 @@
         "value": "0x840bdf26"
       }
     ],
-    "summary": "1inch solidity utils custom error SafeDecreaseAllowanceFailed().",
+    "summary": "1inch solidity utils rejected the call at SafeDecreaseAllowanceFailed: points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SafeDecreaseAllowanceFailed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2286,15 +2546,19 @@
         "value": "0x8216cd1c"
       }
     ],
-    "summary": "1inch solidity utils custom error SafeIncreaseAllowanceFailed().",
+    "summary": "1inch solidity utils rejected the call at SafeIncreaseAllowanceFailed: points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SafeIncreaseAllowanceFailed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2321,15 +2585,19 @@
         "value": "0x68275857"
       }
     ],
-    "summary": "1inch solidity utils custom error SafePermitBadLength().",
+    "summary": "1inch solidity utils rejected the call at SafePermitBadLength: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SafePermitBadLength custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2356,15 +2624,19 @@
         "value": "0xfb7f5079"
       }
     ],
-    "summary": "1inch solidity utils custom error SafeTransferFailed().",
+    "summary": "1inch solidity utils rejected the call at SafeTransferFailed: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SafeTransferFailed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2391,15 +2663,19 @@
         "value": "0xf4059071"
       }
     ],
-    "summary": "1inch solidity utils custom error SafeTransferFromFailed().",
+    "summary": "1inch solidity utils rejected the call at SafeTransferFromFailed: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SafeTransferFromFailed custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2426,15 +2702,19 @@
         "value": "0xade19139"
       }
     ],
-    "summary": "1inch solidity utils custom error Simulated(address,bytes,bool,bytes).",
+    "summary": "1inch solidity utils rejected the call at Simulated(address,bytes,bool,bytes): means arithmetic, casting, rounding, division, precision, or fixed-point constraints rejected the operation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the Simulated custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The submitted amount, price, ratio, or intermediate calculation overflows, underflows, divides by zero, or loses required precision.",
+      "Token decimals, share conversion, fixed-point scaling, or rounding rules differ from the client calculation.",
+      "The protocol's invariant cannot hold for the requested state transition.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; encoded payload, signature, proof, route, or hook data; boolean mode or feature flag; compare them with pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recalculate the relevant amounts using the contract's decimals, scaling factors, and rounding direction.",
+      "Decode error arguments and compare them with the invariant or math helper in the referenced source.",
+      "Reduce the amount or use a valid price/ratio range before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2461,17 +2741,21 @@
         "value": "0x57ca390a"
       }
     ],
-    "summary": "1inch solidity utils custom error ToIsNotThis().",
+    "summary": "1inch solidity utils rejected the call at ToIsNotThis: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ToIsNotThis custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2496,15 +2780,19 @@
         "value": "0x3e26409c"
       }
     ],
-    "summary": "1inch solidity utils custom error UnexpectedLock().",
+    "summary": "1inch solidity utils rejected the call at UnexpectedLock: means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnexpectedLock custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2531,15 +2819,19 @@
         "value": "0xfed3ca24"
       }
     ],
-    "summary": "1inch solidity utils custom error UnexpectedUnlock().",
+    "summary": "1inch solidity utils rejected the call at UnexpectedUnlock: means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnexpectedUnlock custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2566,17 +2858,21 @@
         "value": "0xd9c6386f"
       }
     ],
-    "summary": "1inch solidity utils custom error WrongNonce().",
+    "summary": "1inch solidity utils rejected the call at WrongNonce: means the transaction, permit, order, message, or request nonce does not match the next valid value expected by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the WrongNonce custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The nonce, salt, sequence number, or request id has already been consumed.",
+      "The client submitted transactions out of order or reused a signed payload after another state-changing action.",
+      "A cross-chain message, account module, permit helper, or orderbook tracks nonces separately from the wallet account nonce.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the protocol nonce, consumed bitmap, salt status, or sequence counter for the sender/order/message.",
+      "Regenerate the signed payload with the next unused protocol nonce instead of resubmitting the old one.",
+      "Stop retrying if the id was already consumed and reconcile the resulting on-chain state."
     ],
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2601,17 +2897,21 @@
         "value": "0x5f640821"
       }
     ],
-    "summary": "1inch solidity utils custom error WrongNonceType().",
+    "summary": "1inch solidity utils rejected the call at WrongNonceType: means the transaction, permit, order, message, or request nonce does not match the next valid value expected by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the WrongNonceType custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The nonce, salt, sequence number, or request id has already been consumed.",
+      "The client submitted transactions out of order or reused a signed payload after another state-changing action.",
+      "A cross-chain message, account module, permit helper, or orderbook tracks nonces separately from the wallet account nonce.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the protocol nonce, consumed bitmap, salt status, or sequence counter for the sender/order/message.",
+      "Regenerate the signed payload with the next unused protocol nonce instead of resubmitting the old one.",
+      "Stop retrying if the id was already consumed and reconcile the resulting on-chain state."
     ],
-    "retryHelpful": "sometimes",
+    "retryHelpful": "no",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2636,17 +2936,21 @@
         "value": "0x3b06dcfb"
       }
     ],
-    "summary": "1inch solidity utils custom error WrongRelayer().",
+    "summary": "1inch solidity utils rejected the call at WrongRelayer: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the WrongRelayer custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2671,15 +2975,19 @@
         "value": "0x356a4418"
       }
     ],
-    "summary": "1inch solidity utils custom error WrongSignature().",
+    "summary": "1inch solidity utils rejected the call at WrongSignature: means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the WrongSignature custom error.",
-      "The selector identifies the failing protocol/library branch; decoded arguments usually identify the bad address, amount, token, route, or deadline."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and pool, route, tick, liquidity, price, slippage, or settlement state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the source precondition named by the error and retry only after changing the transaction inputs."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",

@@ -11,18 +11,22 @@
         "value": "0x5cd6b244"
       }
     ],
-    "summary": "Gearbox V3 custom error ActiveCreditAccountNotSetException().",
+    "summary": "Gearbox V3 rejected the call at ActiveCreditAccountNotSetException: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ActiveCreditAccountNotSetException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -46,18 +50,22 @@
         "value": "0x44a8a065"
       }
     ],
-    "summary": "Gearbox V3 custom error ActiveCreditAccountOverridenException().",
+    "summary": "Gearbox V3 rejected the call at ActiveCreditAccountOverridenException: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ActiveCreditAccountOverridenException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -81,17 +89,21 @@
         "value": "0x67cfe595"
       }
     ],
-    "summary": "Gearbox V3 custom error AdapterIsNotRegisteredException().",
+    "summary": "Gearbox V3 rejected the call at AdapterIsNotRegisteredException: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AdapterIsNotRegisteredException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -116,17 +128,21 @@
         "value": "0xdf4c572d"
       }
     ],
-    "summary": "Gearbox V3 custom error AddressIsNotContractException(address).",
+    "summary": "Gearbox V3 rejected the call at AddressIsNotContractException(address): means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AddressIsNotContractException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -151,17 +167,21 @@
         "value": "0xaf58e23c"
       }
     ],
-    "summary": "Gearbox V3 custom error AddressNotFoundException().",
+    "summary": "Gearbox V3 rejected the call at AddressNotFoundException: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AddressNotFoundException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -186,15 +206,19 @@
         "value": "0x2f10a7f3"
       }
     ],
-    "summary": "Gearbox V3 custom error AllowanceFailedException().",
+    "summary": "Gearbox V3 rejected the call at AllowanceFailedException: points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AllowanceFailedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -221,17 +245,21 @@
         "value": "0x872160bd"
       }
     ],
-    "summary": "Gearbox V3 custom error AmountCantBeZeroException().",
+    "summary": "Gearbox V3 rejected the call at AmountCantBeZeroException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AmountCantBeZeroException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -256,17 +284,21 @@
         "value": "0xce0e3f5b"
       }
     ],
-    "summary": "Gearbox V3 custom error BalanceLessThanExpectedException(address).",
+    "summary": "Gearbox V3 rejected the call at BalanceLessThanExpectedException(address): means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BalanceLessThanExpectedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -291,17 +323,21 @@
         "value": "0xce167994"
       }
     ],
-    "summary": "Gearbox V3 custom error BorrowAmountOutOfLimitsException().",
+    "summary": "Gearbox V3 rejected the call at BorrowAmountOutOfLimitsException: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BorrowAmountOutOfLimitsException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -326,15 +362,19 @@
         "value": "0x675f1a56"
       }
     ],
-    "summary": "Gearbox V3 custom error BorrowedBlockLimitException().",
+    "summary": "Gearbox V3 rejected the call at BorrowedBlockLimitException: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BorrowedBlockLimitException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -361,15 +401,19 @@
         "value": "0x351f03e3"
       }
     ],
-    "summary": "Gearbox V3 custom error BorrowingMoreThanU2ForbiddenException().",
+    "summary": "Gearbox V3 rejected the call at BorrowingMoreThanU2ForbiddenException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BorrowingMoreThanU2ForbiddenException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -396,15 +440,19 @@
         "value": "0x8b630874"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotAccountFactoryException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotAccountFactoryException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotAccountFactoryException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -431,15 +479,19 @@
         "value": "0x5535a8f1"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotAdapterException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotAdapterException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotAdapterException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -466,15 +518,19 @@
         "value": "0x61081c15"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotConfiguratorException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotConfiguratorException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotConfiguratorException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -501,15 +557,19 @@
         "value": "0x1e83c511"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotCreditAccountOwnerException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotCreditAccountOwnerException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotCreditAccountOwnerException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -536,15 +596,19 @@
         "value": "0x0c1d6a3f"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotCreditFacadeException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotCreditFacadeException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotCreditFacadeException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -571,15 +635,19 @@
         "value": "0x1f511167"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotCreditManagerException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotCreditManagerException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotCreditManagerException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -606,15 +674,19 @@
         "value": "0x737d8ae2"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotExecutorException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotExecutorException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotExecutorException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -641,15 +713,19 @@
         "value": "0x5dd0cb24"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotGaugeException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotGaugeException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotGaugeException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -676,15 +752,19 @@
         "value": "0xa8c3fab4"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotMigratorException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotMigratorException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotMigratorException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -711,15 +791,19 @@
         "value": "0xd794b1e7"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotPausableAdminException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotPausableAdminException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotPausableAdminException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -746,15 +830,19 @@
         "value": "0x1534b9a8"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotPoolQuotaKeeperException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotPoolQuotaKeeperException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotPoolQuotaKeeperException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,15 +869,19 @@
         "value": "0x16e29ab7"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotUnpausableAdminException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotUnpausableAdminException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotUnpausableAdminException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -816,15 +908,19 @@
         "value": "0x349beb77"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotVetoAdminException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotVetoAdminException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotVetoAdminException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -851,15 +947,19 @@
         "value": "0xed9cd2af"
       }
     ],
-    "summary": "Gearbox V3 custom error CallerNotVoterException().",
+    "summary": "Gearbox V3 rejected the call at CallerNotVoterException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerNotVoterException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -886,17 +986,21 @@
         "value": "0x3216f221"
       }
     ],
-    "summary": "Gearbox V3 custom error CloseAccountWithNonZeroDebtException().",
+    "summary": "Gearbox V3 rejected the call at CloseAccountWithNonZeroDebtException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CloseAccountWithNonZeroDebtException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -921,17 +1025,21 @@
         "value": "0x309d1501"
       }
     ],
-    "summary": "Gearbox V3 custom error CreditAccountDoesNotExistException().",
+    "summary": "Gearbox V3 rejected the call at CreditAccountDoesNotExistException: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CreditAccountDoesNotExistException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -956,18 +1064,22 @@
         "value": "0x3b941fe4"
       }
     ],
-    "summary": "Gearbox V3 custom error CreditAccountIsInUseException().",
+    "summary": "Gearbox V3 rejected the call at CreditAccountIsInUseException: points to smart-account validation, module, plugin, hook, paymaster, factory, or EntryPoint integration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CreditAccountIsInUseException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The smart account, module, plugin, session key, validator, factory, or paymaster is missing, disabled, or not authorized.",
+      "UserOperation calldata, nonce, signature, validation data, or paymaster data was built against stale account state.",
+      "The call is being submitted through the wrong EntryPoint, account implementation, or chain deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read installed modules/plugins/hooks, account nonce, validation policy, paymaster status, and EntryPoint address.",
+      "Regenerate the UserOperation after refreshing account state, chain id, signature, and paymaster data.",
+      "Install or enable the required module/session/plugin before retrying."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -991,17 +1103,21 @@
         "value": "0x234b893b"
       }
     ],
-    "summary": "Gearbox V3 custom error CreditAccountNotLiquidatableException().",
+    "summary": "Gearbox V3 rejected the call at CreditAccountNotLiquidatableException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CreditAccountNotLiquidatableException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1026,17 +1142,21 @@
         "value": "0x6b8c2b8c"
       }
     ],
-    "summary": "Gearbox V3 custom error CreditAccountNotLiquidatableWithLossException().",
+    "summary": "Gearbox V3 rejected the call at CreditAccountNotLiquidatableWithLossException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CreditAccountNotLiquidatableWithLossException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1061,17 +1181,21 @@
         "value": "0x9abfd950"
       }
     ],
-    "summary": "Gearbox V3 custom error CreditManagerCantBorrowException().",
+    "summary": "Gearbox V3 rejected the call at CreditManagerCantBorrowException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CreditManagerCantBorrowException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1096,15 +1220,19 @@
         "value": "0x69bb8810"
       }
     ],
-    "summary": "Gearbox V3 custom error CustomHealthFactorTooLowException().",
+    "summary": "Gearbox V3 rejected the call at CustomHealthFactorTooLowException: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CustomHealthFactorTooLowException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1131,17 +1259,21 @@
         "value": "0x51bb745d"
       }
     ],
-    "summary": "Gearbox V3 custom error DebtToZeroWithActiveQuotasException().",
+    "summary": "Gearbox V3 rejected the call at DebtToZeroWithActiveQuotasException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DebtToZeroWithActiveQuotasException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1166,17 +1298,21 @@
         "value": "0x8b426a9a"
       }
     ],
-    "summary": "Gearbox V3 custom error DebtUpdatedTwiceInOneBlockException().",
+    "summary": "Gearbox V3 rejected the call at DebtUpdatedTwiceInOneBlockException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DebtUpdatedTwiceInOneBlockException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1201,15 +1337,19 @@
         "value": "0xe61eedf5"
       }
     ],
-    "summary": "Gearbox V3 custom error ExpectedBalancesAlreadySetException().",
+    "summary": "Gearbox V3 rejected the call at ExpectedBalancesAlreadySetException: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ExpectedBalancesAlreadySetException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1236,17 +1376,21 @@
         "value": "0x87a3f92f"
       }
     ],
-    "summary": "Gearbox V3 custom error ExpectedBalancesNotSetException().",
+    "summary": "Gearbox V3 rejected the call at ExpectedBalancesNotSetException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ExpectedBalancesNotSetException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1271,15 +1415,19 @@
         "value": "0xd380b4d5"
       }
     ],
-    "summary": "Gearbox V3 custom error ForbiddenInWhitelistedModeException().",
+    "summary": "Gearbox V3 rejected the call at ForbiddenInWhitelistedModeException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ForbiddenInWhitelistedModeException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1306,15 +1454,19 @@
         "value": "0x52e08bb7"
       }
     ],
-    "summary": "Gearbox V3 custom error ForbiddenTokenBalanceIncreasedException(address).",
+    "summary": "Gearbox V3 rejected the call at ForbiddenTokenBalanceIncreasedException(address): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ForbiddenTokenBalanceIncreasedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1341,15 +1493,19 @@
         "value": "0xab641620"
       }
     ],
-    "summary": "Gearbox V3 custom error ForbiddenTokenQuotaIncreasedException(address).",
+    "summary": "Gearbox V3 rejected the call at ForbiddenTokenQuotaIncreasedException(address): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ForbiddenTokenQuotaIncreasedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1376,15 +1532,19 @@
         "value": "0x1cc967e7"
       }
     ],
-    "summary": "Gearbox V3 custom error ForbiddenTokensException(uint256).",
+    "summary": "Gearbox V3 rejected the call at ForbiddenTokensException(uint256): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ForbiddenTokensException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1411,17 +1571,21 @@
         "value": "0xe9eddd17"
       }
     ],
-    "summary": "Gearbox V3 custom error IncompatibleContractException().",
+    "summary": "Gearbox V3 rejected the call at IncompatibleContractException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncompatibleContractException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1446,17 +1610,21 @@
         "value": "0x2e47790c"
       }
     ],
-    "summary": "Gearbox V3 custom error IncompatibleCreditManagerException().",
+    "summary": "Gearbox V3 rejected the call at IncompatibleCreditManagerException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncompatibleCreditManagerException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1481,17 +1649,21 @@
         "value": "0x92c025e8"
       }
     ],
-    "summary": "Gearbox V3 custom error IncompatibleGaugeException().",
+    "summary": "Gearbox V3 rejected the call at IncompatibleGaugeException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncompatibleGaugeException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1516,17 +1688,21 @@
         "value": "0x83d21be5"
       }
     ],
-    "summary": "Gearbox V3 custom error IncompatiblePoolQuotaKeeperException().",
+    "summary": "Gearbox V3 rejected the call at IncompatiblePoolQuotaKeeperException: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncompatiblePoolQuotaKeeperException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1551,17 +1727,21 @@
         "value": "0x4c7a4c2d"
       }
     ],
-    "summary": "Gearbox V3 custom error IncompatibleSuccessorException().",
+    "summary": "Gearbox V3 rejected the call at IncompatibleSuccessorException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncompatibleSuccessorException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1586,17 +1766,21 @@
         "value": "0x1a989392"
       }
     ],
-    "summary": "Gearbox V3 custom error InconsistentExpiredLiquidationFeesException().",
+    "summary": "Gearbox V3 rejected the call at InconsistentExpiredLiquidationFeesException: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InconsistentExpiredLiquidationFeesException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1621,17 +1805,21 @@
         "value": "0x228f723e"
       }
     ],
-    "summary": "Gearbox V3 custom error InconsistentLiquidationFeesException().",
+    "summary": "Gearbox V3 rejected the call at InconsistentLiquidationFeesException: means a fee, royalty, premium, payment amount, recipient, or fee-token check rejected the transaction.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InconsistentLiquidationFeesException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The submitted fee or payment is below the protocol requirement or above the allowed maximum.",
+      "Fee recipient, royalty receiver, payment token, native value, or refund address is invalid.",
+      "The fee quote became stale after gas, price, route, or configuration changed.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recompute the protocol fee, native value, royalty, premium, and refund path from current contract state.",
+      "Verify payment token, recipient, decimals, and fee cap before retrying.",
+      "Refresh off-chain fee quotes immediately before submission."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1656,17 +1844,21 @@
         "value": "0x4ec4646b"
       }
     ],
-    "summary": "Gearbox V3 custom error IncorrectAdaptersSetException().",
+    "summary": "Gearbox V3 rejected the call at IncorrectAdaptersSetException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncorrectAdaptersSetException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1691,15 +1883,19 @@
         "value": "0x3f7a58ea"
       }
     ],
-    "summary": "Gearbox V3 custom error IncorrectBotPermissionsException().",
+    "summary": "Gearbox V3 rejected the call at IncorrectBotPermissionsException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncorrectBotPermissionsException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1726,17 +1922,21 @@
         "value": "0xe4eaca7f"
       }
     ],
-    "summary": "Gearbox V3 custom error IncorrectExpirationDateException().",
+    "summary": "Gearbox V3 rejected the call at IncorrectExpirationDateException: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncorrectExpirationDateException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1761,17 +1961,21 @@
         "value": "0x9aadd6f0"
       }
     ],
-    "summary": "Gearbox V3 custom error IncorrectLimitsException().",
+    "summary": "Gearbox V3 rejected the call at IncorrectLimitsException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncorrectLimitsException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1796,15 +2000,19 @@
         "value": "0x33c6608d"
       }
     ],
-    "summary": "Gearbox V3 custom error IncorrectLiquidationThresholdException().",
+    "summary": "Gearbox V3 rejected the call at IncorrectLiquidationThresholdException: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncorrectLiquidationThresholdException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1831,17 +2039,21 @@
         "value": "0x47fbaa97"
       }
     ],
-    "summary": "Gearbox V3 custom error IncorrectParameterException().",
+    "summary": "Gearbox V3 rejected the call at IncorrectParameterException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncorrectParameterException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1866,17 +2078,21 @@
         "value": "0x53b798e2"
       }
     ],
-    "summary": "Gearbox V3 custom error IncorrectPriceException().",
+    "summary": "Gearbox V3 rejected the call at IncorrectPriceException: means current pool, oracle, quote, tick, liquidity, or slippage conditions no longer satisfy the requested trade or valuation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncorrectPriceException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The pool price, oracle price, route liquidity, tick range, or quote changed before execution.",
+      "Minimum output, maximum input, price limit, or acceptable slippage was set too tightly.",
+      "The selected pool, market, route, or token pair is inactive, uninitialized, paused, or missing liquidity.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Refresh the quote against the latest block and recompute min-out, max-in, price limit, and route data.",
+      "Inspect pool liquidity, tick range, oracle price, and market status before retrying.",
+      "Adjust slippage only if the new price is acceptable to the user or integration policy."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1901,17 +2117,21 @@
         "value": "0x67a7cd43"
       }
     ],
-    "summary": "Gearbox V3 custom error IncorrectPriceFeedException().",
+    "summary": "Gearbox V3 rejected the call at IncorrectPriceFeedException: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncorrectPriceFeedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1936,15 +2156,19 @@
         "value": "0x528ca31d"
       }
     ],
-    "summary": "Gearbox V3 custom error IncorrectTokenContractException().",
+    "summary": "Gearbox V3 rejected the call at IncorrectTokenContractException: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IncorrectTokenContractException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1971,17 +2195,21 @@
         "value": "0x90c9142d"
       }
     ],
-    "summary": "Gearbox V3 custom error InsufficientBalanceException().",
+    "summary": "Gearbox V3 rejected the call at InsufficientBalanceException: means the account, vault, pool, escrow, reserve, or market does not have enough usable balance or liquidity.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InsufficientBalanceException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The sender's token balance, native balance, collateral, vault shares, or internal accounting balance is below the requested amount.",
+      "The pool, reserve, vault, market, or escrow lacks enough available liquidity for the operation.",
+      "Fees, debt, pending withdrawals, slippage, or locked balances reduce the spendable amount below the visible balance.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check token balance, native balance, internal vault balance, debt, and available liquidity at the same block as the revert.",
+      "Reduce the requested amount or add funds, collateral, shares, or liquidity before retrying.",
+      "Account for protocol fees, pending withdrawals, and locked balances when computing spendable amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2006,17 +2234,21 @@
         "value": "0x67016e2d"
       }
     ],
-    "summary": "Gearbox V3 custom error InsufficientRemainingFundsException().",
+    "summary": "Gearbox V3 rejected the call at InsufficientRemainingFundsException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InsufficientRemainingFundsException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2041,17 +2273,21 @@
         "value": "0x98be5b81"
       }
     ],
-    "summary": "Gearbox V3 custom error InsufficientVotesException().",
+    "summary": "Gearbox V3 rejected the call at InsufficientVotesException: means proposal, vote, quorum, queue, timelock, delegation, or execution state does not allow the requested governance action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InsufficientVotesException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The proposal is not in the lifecycle state required for voting, queueing, cancelling, or execution.",
+      "The voter already voted, lacks voting weight, or supplied an unsupported vote type.",
+      "Quorum, delay, timelock, or delegation requirements have not been satisfied.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read proposal state, voting window, quorum, vote receipts, delegation, and timelock status.",
+      "Submit the action only during the proposal phase that permits it.",
+      "Refresh voting power and prior receipt state before attempting another vote."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2076,17 +2312,21 @@
         "value": "0xf4720680"
       }
     ],
-    "summary": "Gearbox V3 custom error InvalidBotException().",
+    "summary": "Gearbox V3 rejected the call at InvalidBotException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidBotException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2111,17 +2351,21 @@
         "value": "0x9761f399"
       }
     ],
-    "summary": "Gearbox V3 custom error InvalidCollateralHintException(uint256).",
+    "summary": "Gearbox V3 rejected the call at InvalidCollateralHintException(uint256): means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidCollateralHintException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2146,15 +2390,19 @@
         "value": "0xc8ed8adc"
       }
     ],
-    "summary": "Gearbox V3 custom error MasterCreditAccountAlreadyDeployedException().",
+    "summary": "Gearbox V3 rejected the call at MasterCreditAccountAlreadyDeployedException: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MasterCreditAccountAlreadyDeployedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2181,15 +2429,19 @@
         "value": "0x6b895d04"
       }
     ],
-    "summary": "Gearbox V3 custom error NoPermissionException(uint256).",
+    "summary": "Gearbox V3 rejected the call at NoPermissionException(uint256): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NoPermissionException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2216,15 +2468,19 @@
         "value": "0xfd956fa5"
       }
     ],
-    "summary": "Gearbox V3 custom error NotAllowedAfterExpirationException().",
+    "summary": "Gearbox V3 rejected the call at NotAllowedAfterExpirationException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotAllowedAfterExpirationException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2251,15 +2507,19 @@
         "value": "0x50dd11fc"
       }
     ],
-    "summary": "Gearbox V3 custom error NotAllowedWhenNotExpirableException().",
+    "summary": "Gearbox V3 rejected the call at NotAllowedWhenNotExpirableException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotAllowedWhenNotExpirableException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2286,15 +2546,19 @@
         "value": "0x6e437eab"
       }
     ],
-    "summary": "Gearbox V3 custom error NotApprovedBotException(address).",
+    "summary": "Gearbox V3 rejected the call at NotApprovedBotException(address): points to a missing or insufficient allowance, permit, spender approval, or operator approval.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotApprovedBotException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The approved spender is not the contract that actually calls transferFrom or operator transfer.",
+      "Allowance, Permit2 allowance, NFT approval, or operator approval is lower than the requested transfer amount.",
+      "A router, vault, settlement contract, or account module sits between the user and the final protocol contract.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the spender/operator in calldata with the address that performs the token transfer.",
+      "Refresh allowance and permit state at the same block as the revert, including Permit2 or collection-level approvals.",
+      "Submit the required approval or permit for the exact router, vault, or module before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2321,17 +2585,21 @@
         "value": "0x532e7bb6"
       }
     ],
-    "summary": "Gearbox V3 custom error NotEnoughCollateralException().",
+    "summary": "Gearbox V3 rejected the call at NotEnoughCollateralException: means the account, vault, pool, escrow, reserve, or market does not have enough usable balance or liquidity.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotEnoughCollateralException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The sender's token balance, native balance, collateral, vault shares, or internal accounting balance is below the requested amount.",
+      "The pool, reserve, vault, market, or escrow lacks enough available liquidity for the operation.",
+      "Fees, debt, pending withdrawals, slippage, or locked balances reduce the spendable amount below the visible balance.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check token balance, native balance, internal vault balance, debt, and available liquidity at the same block as the revert.",
+      "Reduce the requested amount or add funds, collateral, shares, or liquidity before retrying.",
+      "Account for protocol fees, pending withdrawals, and locked balances when computing spendable amount."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2356,17 +2624,21 @@
         "value": "0x24e46f70"
       }
     ],
-    "summary": "Gearbox V3 custom error NotImplementedException().",
+    "summary": "Gearbox V3 rejected the call at NotImplementedException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotImplementedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2391,17 +2663,21 @@
         "value": "0x68d8c6d8"
       }
     ],
-    "summary": "Gearbox V3 custom error PriceFeedDoesNotExistException().",
+    "summary": "Gearbox V3 rejected the call at PriceFeedDoesNotExistException: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PriceFeedDoesNotExistException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2426,17 +2702,21 @@
         "value": "0xfd1afabb"
       }
     ],
-    "summary": "Gearbox V3 custom error PriceFeedIsNotUpdatableException().",
+    "summary": "Gearbox V3 rejected the call at PriceFeedIsNotUpdatableException: means oracle, feed, reporter, round, timestamp, or price-bound state failed validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PriceFeedIsNotUpdatableException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The price/feed answer is stale, missing, out of bounds, negative, or from an unexpected round.",
+      "The reporter, oracle, sequencer uptime feed, or aggregation path is not authorized or not initialized.",
+      "The protocol is protecting against using unsafe oracle data after an outage, pause, or market move.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the referenced feed, latest round, timestamp, answer, sequencer status, and staleness threshold.",
+      "Wait for a fresh oracle update or use the market/asset only after the feed is healthy.",
+      "Verify the configured feed address and decimals for the asset or market."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2461,15 +2741,19 @@
         "value": "0xba04a99a"
       }
     ],
-    "summary": "Gearbox V3 custom error QuotaIsOutOfBoundsException().",
+    "summary": "Gearbox V3 rejected the call at QuotaIsOutOfBoundsException: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the QuotaIsOutOfBoundsException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2496,17 +2780,21 @@
         "value": "0xdd9f8cd8"
       }
     ],
-    "summary": "Gearbox V3 custom error RampDurationTooShortException().",
+    "summary": "Gearbox V3 rejected the call at RampDurationTooShortException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the RampDurationTooShortException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2531,15 +2819,19 @@
         "value": "0xefd5a10e"
       }
     ],
-    "summary": "Gearbox V3 custom error ReceiveIsNotAllowedException().",
+    "summary": "Gearbox V3 rejected the call at ReceiveIsNotAllowedException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ReceiveIsNotAllowedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2566,15 +2858,19 @@
         "value": "0xbc6a488a"
       }
     ],
-    "summary": "Gearbox V3 custom error RegisteredCreditManagerOnlyException().",
+    "summary": "Gearbox V3 rejected the call at RegisteredCreditManagerOnlyException: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the RegisteredCreditManagerOnlyException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2601,15 +2897,19 @@
         "value": "0x4d0a5931"
       }
     ],
-    "summary": "Gearbox V3 custom error RegisteredPoolOnlyException().",
+    "summary": "Gearbox V3 rejected the call at RegisteredPoolOnlyException: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the RegisteredPoolOnlyException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2636,15 +2936,19 @@
         "value": "0x1867c2ef"
       }
     ],
-    "summary": "Gearbox V3 custom error RemainingTokenBalanceIncreasedException(address).",
+    "summary": "Gearbox V3 rejected the call at RemainingTokenBalanceIncreasedException(address): means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the RemainingTokenBalanceIncreasedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2671,17 +2975,21 @@
         "value": "0x7f98dc06"
       }
     ],
-    "summary": "Gearbox V3 custom error SeizedLessThanRequiredException(uint256).",
+    "summary": "Gearbox V3 rejected the call at SeizedLessThanRequiredException(uint256): means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SeizedLessThanRequiredException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2706,17 +3014,21 @@
         "value": "0x16dd0ffb"
       }
     ],
-    "summary": "Gearbox V3 custom error StalePriceException().",
+    "summary": "Gearbox V3 rejected the call at StalePriceException: means the block timestamp or protocol delay is outside the execution window accepted by the contract.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the StalePriceException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction arrived after its deadline, order expiry, claim window, or permit expiration.",
+      "The action was submitted before a start time, timelock, cooldown, maturity, or required wait period.",
+      "A quote, order, signed payload, or off-chain state snapshot was created against stale timing data.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Compare the deadline, start time, end time, cooldown, timelock, or maturity with the reverting block timestamp.",
+      "Refresh the quote/order/permit or wait until the required delay has elapsed.",
+      "Create a new transaction with a valid deadline if the old payload expired."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2741,15 +3053,19 @@
         "value": "0xfc1a5543"
       }
     ],
-    "summary": "Gearbox V3 custom error TargetContractNotAllowedException().",
+    "summary": "Gearbox V3 rejected the call at TargetContractNotAllowedException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TargetContractNotAllowedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2776,15 +3092,19 @@
         "value": "0x2e5a5c77"
       }
     ],
-    "summary": "Gearbox V3 custom error TokenAlreadyAddedException().",
+    "summary": "Gearbox V3 rejected the call at TokenAlreadyAddedException: means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TokenAlreadyAddedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2811,15 +3131,19 @@
         "value": "0xbfb4633c"
       }
     ],
-    "summary": "Gearbox V3 custom error TokenIsNotQuotedException().",
+    "summary": "Gearbox V3 rejected the call at TokenIsNotQuotedException: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TokenIsNotQuotedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2846,15 +3170,19 @@
         "value": "0x700ca0af"
       }
     ],
-    "summary": "Gearbox V3 custom error TokenNotAllowedException().",
+    "summary": "Gearbox V3 rejected the call at TokenNotAllowedException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TokenNotAllowedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2881,17 +3209,21 @@
         "value": "0x0d02d570"
       }
     ],
-    "summary": "Gearbox V3 custom error TooManyActiveBotsException().",
+    "summary": "Gearbox V3 rejected the call at TooManyActiveBotsException: means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TooManyActiveBotsException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2916,15 +3248,19 @@
         "value": "0x30b5495c"
       }
     ],
-    "summary": "Gearbox V3 custom error TooManyEnabledTokensException().",
+    "summary": "Gearbox V3 rejected the call at TooManyEnabledTokensException: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TooManyEnabledTokensException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2951,15 +3287,19 @@
         "value": "0x7e050c52"
       }
     ],
-    "summary": "Gearbox V3 custom error TooManyTokensException().",
+    "summary": "Gearbox V3 rejected the call at TooManyTokensException: means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TooManyTokensException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2986,17 +3326,21 @@
         "value": "0xc978b5ab"
       }
     ],
-    "summary": "Gearbox V3 custom error UnderlyingIsNotLiquidatableException().",
+    "summary": "Gearbox V3 rejected the call at UnderlyingIsNotLiquidatableException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnderlyingIsNotLiquidatableException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -3021,15 +3365,19 @@
         "value": "0xbfac20f3"
       }
     ],
-    "summary": "Gearbox V3 custom error UnexpectedPermissionsException(uint256).",
+    "summary": "Gearbox V3 rejected the call at UnexpectedPermissionsException(uint256): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnexpectedPermissionsException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3056,17 +3404,21 @@
         "value": "0x5d0bd4ab"
       }
     ],
-    "summary": "Gearbox V3 custom error UnknownMethodException(bytes4).",
+    "summary": "Gearbox V3 rejected the call at UnknownMethodException(bytes4): means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UnknownMethodException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -3091,17 +3443,21 @@
         "value": "0x20328066"
       }
     ],
-    "summary": "Gearbox V3 custom error UpdateQuotaOnZeroDebtAccountException().",
+    "summary": "Gearbox V3 rejected the call at UpdateQuotaOnZeroDebtAccountException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the UpdateQuotaOnZeroDebtAccountException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -3126,17 +3482,21 @@
         "value": "0x6477ba08"
       }
     ],
-    "summary": "Gearbox V3 custom error ValueOutOfRangeException().",
+    "summary": "Gearbox V3 rejected the call at ValueOutOfRangeException: means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ValueOutOfRangeException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -3161,15 +3521,19 @@
         "value": "0xb311e03a"
       }
     ],
-    "summary": "Gearbox V3 custom error VotingContractNotAllowedException().",
+    "summary": "Gearbox V3 rejected the call at VotingContractNotAllowedException: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the VotingContractNotAllowedException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -3196,15 +3560,19 @@
         "value": "0xb2335f2e"
       }
     ],
-    "summary": "Gearbox V3 custom error ZeroAddressException().",
+    "summary": "Gearbox V3 rejected the call at ZeroAddressException: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ZeroAddressException custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and reserve, collateral, debt, health-factor, cap, oracle, or liquidation state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Gearbox V3 precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",

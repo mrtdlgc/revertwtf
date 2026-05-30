@@ -20,6 +20,29 @@ interface SourceMetadataInternal extends CatalogSourceMetadata {
 
 const SOURCE_METADATA: SourceMetadataInternal[] = [
   {
+    id: "erc-4337",
+    displayName: "ERC-4337",
+    lifecycle: "current",
+    aliases: ["Account Abstraction", "UserOperation", "EntryPoint", "FailedOp", "FailedOpWithRevert"],
+    note: "Core account-abstraction validation coverage. EntryPoint AAxx codes should keep protocol attribution separate from provider-specific bundler wrappers.",
+    references: [
+      { label: "ERC-4337 specification", url: "https://eips.ethereum.org/EIPS/eip-4337" },
+      { label: "ERC-4337 EntryPoint explainer", url: "https://docs.erc4337.io/smart-accounts/entrypoint-explainer.html" },
+    ],
+  },
+  {
+    id: "erc-4337-entrypoint",
+    displayName: "ERC-4337 EntryPoint",
+    lifecycle: "current",
+    aliases: ["AA10", "AA21", "AA23", "AA24", "AA25", "AA31", "AA33", "AA95", "EntryPoint revert codes"],
+    note: "AAxx EntryPoint reason-code coverage, enriched from ERC-4337 protocol attribution and Alchemy's versioned EntryPoint error docs.",
+    references: [
+      { label: "Alchemy EntryPoint v0.7/v0.8 revert codes", url: "https://www.alchemy.com/docs/wallets/reference/entrypoint-v07-revert-codes" },
+      { label: "Alchemy EntryPoint v0.6 revert codes", url: "https://www.alchemy.com/docs/wallets/reference/entrypoint-v06-revert-codes" },
+      { label: "ERC-4337 error codes", url: "https://eips.ethereum.org/EIPS/eip-4337#error-codes" },
+    ],
+  },
+  {
     id: "berachain",
     displayName: "Berachain",
     lifecycle: "current",

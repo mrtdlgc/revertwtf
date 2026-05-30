@@ -10,6 +10,7 @@ commands, and no network dependency at skill load time.
 
 - `revertwtf-catalog-entry` - add or update individual catalog entries.
 - `revertwtf-catalog-research` - run broader source-backed ecosystem coverage passes.
+- `revertwtf-catalog-error-enrichment` - improve existing catalog explanations, actions, references, and helper metadata with evidence-locked sources.
 - `revertwtf-parser-decoder` - change parser, decoder, selector, or AA behavior.
 - `revertwtf-mcp-server` - maintain the read-only MCP agent interface.
 - `revertwtf-agent-api` - consume revert.wtf safely through HTTP, MCP, or package subpaths.

@@ -11,15 +11,19 @@
         "value": "0x12f3df09"
       }
     ],
-    "summary": "Linea contracts custom error AlreadyBridgedToken(address).",
+    "summary": "Linea contracts rejected the call at AlreadyBridgedToken(address): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AlreadyBridgedToken custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -46,15 +50,19 @@
         "value": "0xf8fb7c27"
       }
     ],
-    "summary": "Linea contracts custom error AlreadyBrigedToNativeTokenSet(address).",
+    "summary": "Linea contracts rejected the call at AlreadyBrigedToNativeTokenSet(address): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the AlreadyBrigedToNativeTokenSet custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -81,15 +89,19 @@
         "value": "0x280b0ef2"
       }
     ],
-    "summary": "Linea contracts custom error ArrayLengthsDoNotMatch().",
+    "summary": "Linea contracts rejected the call at ArrayLengthsDoNotMatch: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ArrayLengthsDoNotMatch custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -116,15 +128,19 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Array lengths do not match['\"]?\\s*$"
       }
     ],
-    "summary": "Linea contracts revert reason string: Array lengths do not match.",
+    "summary": "Linea contracts reverted with \"Array lengths do not match\", an exact source-level check that means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -151,17 +167,21 @@
         "value": "0xb1504a5f"
       }
     ],
-    "summary": "Linea contracts custom error BlobSubmissionDataIsMissing().",
+    "summary": "Linea contracts rejected the call at BlobSubmissionDataIsMissing: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BlobSubmissionDataIsMissing custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -186,15 +206,19 @@
         "value": "0x0c91d776"
       }
     ],
-    "summary": "Linea contracts custom error BytesLengthNotMultipleOfTwo(uint256).",
+    "summary": "Linea contracts rejected the call at BytesLengthNotMultipleOfTwo(uint256): means arithmetic, casting, rounding, division, precision, or fixed-point constraints rejected the operation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BytesLengthNotMultipleOfTwo custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The submitted amount, price, ratio, or intermediate calculation overflows, underflows, divides by zero, or loses required precision.",
+      "Token decimals, share conversion, fixed-point scaling, or rounding rules differ from the client calculation.",
+      "The protocol's invariant cannot hold for the requested state transition.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recalculate the relevant amounts using the contract's decimals, scaling factors, and rounding direction.",
+      "Decode error arguments and compare them with the invariant or math helper in the referenced source.",
+      "Reduce the amount or use a valid price/ratio range before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -221,15 +245,19 @@
         "value": "0x6426c6c5"
       }
     ],
-    "summary": "Linea contracts custom error BytesLengthNotMultipleOf32().",
+    "summary": "Linea contracts rejected the call at BytesLengthNotMultipleOf32: means arithmetic, casting, rounding, division, precision, or fixed-point constraints rejected the operation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the BytesLengthNotMultipleOf32 custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The submitted amount, price, ratio, or intermediate calculation overflows, underflows, divides by zero, or loses required precision.",
+      "Token decimals, share conversion, fixed-point scaling, or rounding rules differ from the client calculation.",
+      "The protocol's invariant cannot hold for the requested state transition.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Recalculate the relevant amounts using the contract's decimals, scaling factors, and rounding direction.",
+      "Decode error arguments and compare them with the invariant or math helper in the referenced source.",
+      "Reduce the amount or use a valid price/ratio range before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -256,15 +284,19 @@
         "value": "0x7b5269d3"
       }
     ],
-    "summary": "Linea contracts custom error CallerIsNotContract().",
+    "summary": "Linea contracts rejected the call at CallerIsNotContract: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerIsNotContract custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -291,15 +323,19 @@
         "value": "0x8c56efb1"
       }
     ],
-    "summary": "Linea contracts custom error CallerIsNotMessageService().",
+    "summary": "Linea contracts rejected the call at CallerIsNotMessageService: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the CallerIsNotMessageService custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -326,15 +362,19 @@
         "value": "0x0f06cd15"
       }
     ],
-    "summary": "Linea contracts custom error DataAlreadySubmitted(bytes32).",
+    "summary": "Linea contracts rejected the call at DataAlreadySubmitted(bytes32): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DataAlreadySubmitted custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -361,15 +401,19 @@
         "value": "0x9f6adc69"
       }
     ],
-    "summary": "Linea contracts custom error DataEndingBlockDoesNotMatch(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at DataEndingBlockDoesNotMatch(uint256,uint256): means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DataEndingBlockDoesNotMatch custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -396,18 +440,22 @@
         "value": "0x710cd580"
       }
     ],
-    "summary": "Linea contracts custom error DataHashesNotInSequence(bytes32,bytes32).",
+    "summary": "Linea contracts rejected the call at DataHashesNotInSequence(bytes32,bytes32): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DataHashesNotInSequence custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -431,17 +479,21 @@
         "value": "0x5548c6b3"
       }
     ],
-    "summary": "Linea contracts custom error DataParentHasEmptyShnarf().",
+    "summary": "Linea contracts rejected the call at DataParentHasEmptyShnarf: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DataParentHasEmptyShnarf custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -466,15 +518,19 @@
         "value": "0xabefa5e8"
       }
     ],
-    "summary": "Linea contracts custom error DataStartingBlockDoesNotMatch(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at DataStartingBlockDoesNotMatch(uint256,uint256): means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DataStartingBlockDoesNotMatch custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -501,17 +557,21 @@
         "value": "0xb5a2f1c6"
       }
     ],
-    "summary": "Linea contracts custom error DecimalsAreUnknown(address).",
+    "summary": "Linea contracts rejected the call at DecimalsAreUnknown(address): means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the DecimalsAreUnknown custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -536,17 +596,21 @@
         "value": "0xa0feae8d"
       }
     ],
-    "summary": "Linea contracts custom error EmptyBlobData().",
+    "summary": "Linea contracts rejected the call at EmptyBlobData: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the EmptyBlobData custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -571,17 +635,21 @@
         "value": "0xc0e41e1d"
       }
     ],
-    "summary": "Linea contracts custom error EmptyBlobDataAtIndex(uint256).",
+    "summary": "Linea contracts rejected the call at EmptyBlobDataAtIndex(uint256): means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the EmptyBlobDataAtIndex custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -606,17 +674,21 @@
         "value": "0x52e9bb24"
       }
     ],
-    "summary": "Linea contracts custom error EmptyMessageHashesArray().",
+    "summary": "Linea contracts rejected the call at EmptyMessageHashesArray: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the EmptyMessageHashesArray custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -641,17 +713,21 @@
         "value": "0xc01eab56"
       }
     ],
-    "summary": "Linea contracts custom error EmptySubmissionData().",
+    "summary": "Linea contracts rejected the call at EmptySubmissionData: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the EmptySubmissionData custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -676,15 +752,19 @@
         "value": "0xfb4cd6ef"
       }
     ],
-    "summary": "Linea contracts custom error FinalBlockDoesNotMatchShnarfFinalBlock(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at FinalBlockDoesNotMatchShnarfFinalBlock(uint256,uint256): means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FinalBlockDoesNotMatchShnarfFinalBlock custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -711,15 +791,19 @@
         "value": "0x70614405"
       }
     ],
-    "summary": "Linea contracts custom error FinalBlockNumberLessThanOrEqualToLastFinalizedBlock(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at FinalBlockNumberLessThanOrEqualToLastFinalizedBlock(uint256,uint256): means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FinalBlockNumberLessThanOrEqualToLastFinalizedBlock custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -746,15 +830,19 @@
         "value": "0x2898482a"
       }
     ],
-    "summary": "Linea contracts custom error FinalBlockStateEqualsZeroHash().",
+    "summary": "Linea contracts rejected the call at FinalBlockStateEqualsZeroHash: means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FinalBlockStateEqualsZeroHash custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -781,18 +869,22 @@
         "value": "0x36a4bb94"
       }
     ],
-    "summary": "Linea contracts custom error FinalRollingHashIsZero().",
+    "summary": "Linea contracts rejected the call at FinalRollingHashIsZero: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FinalRollingHashIsZero custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -816,18 +908,22 @@
         "value": "0xd3664fb3"
       }
     ],
-    "summary": "Linea contracts custom error FinalShnarfWrong(bytes32,bytes32).",
+    "summary": "Linea contracts rejected the call at FinalShnarfWrong(bytes32,bytes32): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FinalShnarfWrong custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -851,17 +947,21 @@
         "value": "0xe1cb6e60"
       }
     ],
-    "summary": "Linea contracts custom error FinalStateRootHashDoesNotMatch(bytes32,bytes32).",
+    "summary": "Linea contracts rejected the call at FinalStateRootHashDoesNotMatch(bytes32,bytes32): means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FinalStateRootHashDoesNotMatch custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -886,17 +986,21 @@
         "value": "0xdcb23885"
       }
     ],
-    "summary": "Linea contracts custom error FinalizationDataMissing().",
+    "summary": "Linea contracts rejected the call at FinalizationDataMissing: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FinalizationDataMissing custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -921,18 +1025,22 @@
         "value": "0xbf81c6e0"
       }
     ],
-    "summary": "Linea contracts custom error FinalizationInTheFuture(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at FinalizationInTheFuture(uint256,uint256): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FinalizationInTheFuture custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -956,17 +1064,21 @@
         "value": "0xbc5aad11"
       }
     ],
-    "summary": "Linea contracts custom error FinalizationStateIncorrect(bytes32,bytes32).",
+    "summary": "Linea contracts rejected the call at FinalizationStateIncorrect(bytes32,bytes32): means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FinalizationStateIncorrect custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -991,15 +1103,19 @@
         "value": "0xcbbd7953"
       }
     ],
-    "summary": "Linea contracts custom error FirstBlockGreaterThanFinalBlock(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at FirstBlockGreaterThanFinalBlock(uint256,uint256): means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FirstBlockGreaterThanFinalBlock custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1026,15 +1142,19 @@
         "value": "0xa386ed70"
       }
     ],
-    "summary": "Linea contracts custom error FirstBlockLessThanOrEqualToLastFinalizedBlock(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at FirstBlockLessThanOrEqualToLastFinalizedBlock(uint256,uint256): means a reentrancy guard, execution lock, or transient state latch blocked nested execution.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FirstBlockLessThanOrEqualToLastFinalizedBlock custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The call path attempted to re-enter a guarded function before the previous execution frame finished.",
+      "A hook, callback, token receiver, multicall, or external integration caused nested execution.",
+      "A protocol-level lock is still active for the account, market, pool, or operation.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Trace the call stack to find the hook, callback, token receiver, or multicall frame that re-entered.",
+      "Split the action into separate transactions or avoid callbacks into the guarded function.",
+      "Wait for protocol locks to clear when the lock is intentionally state-based."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1061,18 +1181,22 @@
         "value": "0x729eebce"
       }
     ],
-    "summary": "Linea contracts custom error FirstByteIsNotZero().",
+    "summary": "Linea contracts rejected the call at FirstByteIsNotZero: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the FirstByteIsNotZero custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1096,18 +1220,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Function call reverted['\"]?\\s*$"
       }
     ],
-    "summary": "Linea contracts revert reason string: Function call reverted.",
+    "summary": "Linea contracts reverted with \"Function call reverted\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1131,15 +1259,19 @@
         "value": "0xcf9e2946"
       }
     ],
-    "summary": "Linea contracts custom error InvalidPermitData(bytes4,bytes4).",
+    "summary": "Linea contracts rejected the call at InvalidPermitData(bytes4,bytes4): means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidPermitData custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Decoded arguments usually identify the relevant encoded payload, signature, proof, route, or hook data; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1166,15 +1298,19 @@
         "value": "0x69ed70ab"
       }
     ],
-    "summary": "Linea contracts custom error InvalidProofType().",
+    "summary": "Linea contracts rejected the call at InvalidProofType: means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the InvalidProofType custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1201,17 +1337,21 @@
         "value": "0x15d8d2e1"
       }
     ],
-    "summary": "Linea contracts custom error IsNotPaused(bytes32).",
+    "summary": "Linea contracts rejected the call at IsNotPaused(bytes32): means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IsNotPaused custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1236,17 +1376,21 @@
         "value": "0xb015579f"
       }
     ],
-    "summary": "Linea contracts custom error IsNotPaused(uint256).",
+    "summary": "Linea contracts rejected the call at IsNotPaused(uint256): means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IsNotPaused custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1271,17 +1415,21 @@
         "value": "0x8698dd2b"
       }
     ],
-    "summary": "Linea contracts custom error IsPaused(bytes32).",
+    "summary": "Linea contracts rejected the call at IsPaused(bytes32): means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IsPaused custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1306,17 +1454,21 @@
         "value": "0xdb246dde"
       }
     ],
-    "summary": "Linea contracts custom error IsPaused(uint256).",
+    "summary": "Linea contracts rejected the call at IsPaused(uint256): means the protocol, market, token, function, route, or module is paused, frozen, disabled, locked, or shut down.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the IsPaused custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "An admin, guardian, circuit breaker, emergency module, or market-state flag disabled this action.",
+      "The feature is intentionally locked during migration, incident response, auction settlement, or maintenance.",
+      "The selected market, pool, token, bridge route, or module is inactive on this deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the pause, emergency, market status, route status, module status, or feature flag before retrying.",
+      "Wait for an authorized unpause only if the protocol expects the action to resume.",
+      "Switch to an active market, route, token, module, or contract version when available."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1341,18 +1493,22 @@
         "value": "0x62a064c5"
       }
     ],
-    "summary": "Linea contracts custom error L1L2MessageNotSent(bytes32).",
+    "summary": "Linea contracts rejected the call at L1L2MessageNotSent(bytes32): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the L1L2MessageNotSent custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1376,18 +1532,22 @@
         "value": "0xd39e75f9"
       }
     ],
-    "summary": "Linea contracts custom error L1MessageNumberSynchronizationWrong(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at L1MessageNumberSynchronizationWrong(uint256,uint256): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the L1MessageNumberSynchronizationWrong custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1411,17 +1571,21 @@
         "value": "0x36459fa0"
       }
     ],
-    "summary": "Linea contracts custom error L1RollingHashDoesNotExistOnL1(uint256,bytes32).",
+    "summary": "Linea contracts rejected the call at L1RollingHashDoesNotExistOnL1(uint256,bytes32): means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the L1RollingHashDoesNotExistOnL1 custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1446,18 +1610,22 @@
         "value": "0x7557a60a"
       }
     ],
-    "summary": "Linea contracts custom error L1RollingHashSynchronizationWrong(bytes32,bytes32).",
+    "summary": "Linea contracts rejected the call at L1RollingHashSynchronizationWrong(bytes32,bytes32): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the L1RollingHashSynchronizationWrong custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1481,15 +1649,19 @@
         "value": "0xe5d14425"
       }
     ],
-    "summary": "Linea contracts custom error L2MerkleRootAlreadyAnchored(bytes32).",
+    "summary": "Linea contracts rejected the call at L2MerkleRootAlreadyAnchored(bytes32): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the L2MerkleRootAlreadyAnchored custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1516,17 +1688,21 @@
         "value": "0x4e686675"
       }
     ],
-    "summary": "Linea contracts custom error L2MerkleRootDoesNotExist().",
+    "summary": "Linea contracts rejected the call at L2MerkleRootDoesNotExist: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the L2MerkleRootDoesNotExist custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1551,18 +1727,22 @@
         "value": "0x2f22b98a"
       }
     ],
-    "summary": "Linea contracts custom error LastFinalizedShnarfWrong(bytes32,bytes32).",
+    "summary": "Linea contracts rejected the call at LastFinalizedShnarfWrong(bytes32,bytes32): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the LastFinalizedShnarfWrong custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1586,15 +1766,19 @@
         "value": "0xd10d72bb"
       }
     ],
-    "summary": "Linea contracts custom error LimitIsZero().",
+    "summary": "Linea contracts rejected the call at LimitIsZero: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the LimitIsZero custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1621,15 +1805,19 @@
         "value": "0x335a4a90"
       }
     ],
-    "summary": "Linea contracts custom error MessageAlreadyClaimed(uint256).",
+    "summary": "Linea contracts rejected the call at MessageAlreadyClaimed(uint256): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MessageAlreadyClaimed custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1656,15 +1844,19 @@
         "value": "0xee49e001"
       }
     ],
-    "summary": "Linea contracts custom error MessageAlreadyReceived(bytes32).",
+    "summary": "Linea contracts rejected the call at MessageAlreadyReceived(bytes32): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MessageAlreadyReceived custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1691,17 +1883,21 @@
         "value": "0x992d87c3"
       }
     ],
-    "summary": "Linea contracts custom error MessageDoesNotExistOrHasAlreadyBeenClaimed(bytes32).",
+    "summary": "Linea contracts rejected the call at MessageDoesNotExistOrHasAlreadyBeenClaimed(bytes32): means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MessageDoesNotExistOrHasAlreadyBeenClaimed custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1726,18 +1922,22 @@
         "value": "0x3b174434"
       }
     ],
-    "summary": "Linea contracts custom error MessageHashesListLengthHigherThanOneHundred(uint256).",
+    "summary": "Linea contracts rejected the call at MessageHashesListLengthHigherThanOneHundred(uint256): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MessageHashesListLengthHigherThanOneHundred custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1761,17 +1961,21 @@
         "value": "0x0c256592"
       }
     ],
-    "summary": "Linea contracts custom error MissingMessageNumberForRollingHash(bytes32).",
+    "summary": "Linea contracts rejected the call at MissingMessageNumberForRollingHash(bytes32): means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MissingMessageNumberForRollingHash custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1796,17 +2000,21 @@
         "value": "0x5228f4c8"
       }
     ],
-    "summary": "Linea contracts custom error MissingRollingHashForMessageNumber(uint256).",
+    "summary": "Linea contracts rejected the call at MissingRollingHashForMessageNumber(uint256): means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the MissingRollingHashForMessageNumber custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1831,15 +2039,19 @@
         "value": "0x022bc841"
       }
     ],
-    "summary": "Linea contracts custom error NativeToBridgedTokenAlreadySet(address).",
+    "summary": "Linea contracts rejected the call at NativeToBridgedTokenAlreadySet(address): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NativeToBridgedTokenAlreadySet custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -1866,17 +2078,21 @@
         "value": "0x82f5d0a5"
       }
     ],
-    "summary": "Linea contracts custom error NotReserved(address).",
+    "summary": "Linea contracts rejected the call at NotReserved(address): means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the NotReserved custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -1901,18 +2117,22 @@
         "value": "0xd8ee8db0"
       }
     ],
-    "summary": "Linea contracts custom error OnlyBridge(address).",
+    "summary": "Linea contracts rejected the call at OnlyBridge(address): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the OnlyBridge custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1936,18 +2156,22 @@
         "value": "0x9a89a758"
       }
     ],
-    "summary": "Linea contracts custom error ParentHashesDoesNotMatch(bytes32,bytes32).",
+    "summary": "Linea contracts rejected the call at ParentHashesDoesNotMatch(bytes32,bytes32): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ParentHashesDoesNotMatch custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -1971,17 +2195,21 @@
         "value": "0x595caf7e"
       }
     ],
-    "summary": "Linea contracts custom error ParentStateRootHashInvalid(bytes32,bytes32).",
+    "summary": "Linea contracts rejected the call at ParentStateRootHashInvalid(bytes32,bytes32): means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ParentStateRootHashInvalid custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2006,18 +2234,22 @@
         "value": "0xb5ed5a3b"
       }
     ],
-    "summary": "Linea contracts custom error PeriodIsZero().",
+    "summary": "Linea contracts rejected the call at PeriodIsZero: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PeriodIsZero custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2041,15 +2273,19 @@
         "value": "0x29115948"
       }
     ],
-    "summary": "Linea contracts custom error PermitNotAllowingBridge(address).",
+    "summary": "Linea contracts rejected the call at PermitNotAllowingBridge(address): means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PermitNotAllowingBridge custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2076,15 +2312,19 @@
         "value": "0x200688cc"
       }
     ],
-    "summary": "Linea contracts custom error PermitNotFromSender(address).",
+    "summary": "Linea contracts rejected the call at PermitNotFromSender(address): means signature, signer, typed-data, permit, witness, or replay protection validation failed.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PermitNotFromSender custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The signature was produced for a different chain id, verifying contract, domain, nonce, deadline, or payload.",
+      "The recovered signer is not the expected owner, delegate, validator, or order signer.",
+      "The nonce was already used, the permit expired, or the signature was assembled from stale quote/order data.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Rebuild the signature or typed data using the current chain id, verifying contract, domain name/version, nonce, and deadline.",
+      "Recover the signer locally and compare it with the expected owner, validator, or order signer.",
+      "Discard stale permits, quotes, and orders after a nonce-changing transaction or domain change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2111,18 +2351,22 @@
         "value": "0xa71194af"
       }
     ],
-    "summary": "Linea contracts custom error PointEvaluationFailed().",
+    "summary": "Linea contracts rejected the call at PointEvaluationFailed: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PointEvaluationFailed custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2146,18 +2390,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?PointEvaluationFailed['\"]?\\s*$"
       }
     ],
-    "summary": "Linea contracts revert reason string: PointEvaluationFailed.",
+    "summary": "Linea contracts reverted with \"PointEvaluationFailed\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2181,18 +2429,22 @@
         "value": "0x68dcad5f"
       }
     ],
-    "summary": "Linea contracts custom error PointEvaluationResponseInvalid(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at PointEvaluationResponseInvalid(uint256,uint256): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PointEvaluationResponseInvalid custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2216,18 +2468,22 @@
         "value": "0xf75db381"
       }
     ],
-    "summary": "Linea contracts custom error PrecompileReturnDataLengthWrong(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at PrecompileReturnDataLengthWrong(uint256,uint256): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the PrecompileReturnDataLengthWrong custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2251,17 +2507,21 @@
         "value": "0x7907d79b"
       }
     ],
-    "summary": "Linea contracts custom error ProofIsEmpty().",
+    "summary": "Linea contracts rejected the call at ProofIsEmpty: means the contract could not find the expected account, market, route, module, token, order, message, or configuration state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ProofIsEmpty custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The client referenced an id, market, pool, token, route, module, order, or message that is not initialized on this deployment.",
+      "The action was submitted against the wrong chain, proxy, registry, or contract version.",
+      "Required setup, registration, creation, funding, or finality has not happened yet.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Verify the referenced id/address/market/route/module against the protocol registry at the same block.",
+      "Check that setup or registration completed on the intended chain and contract version.",
+      "Create or register the missing object, or refresh the integration metadata before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2286,18 +2546,22 @@
         "value": "0x5e3fd6ad"
       }
     ],
-    "summary": "Linea contracts custom error ProofLengthDifferentThanMerkleDepth(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at ProofLengthDifferentThanMerkleDepth(uint256,uint256): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ProofLengthDifferentThanMerkleDepth custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2321,15 +2585,19 @@
         "value": "0x94fbfd2e"
       }
     ],
-    "summary": "Linea contracts custom error RemoteTokenBridgeAlreadySet(address).",
+    "summary": "Linea contracts rejected the call at RemoteTokenBridgeAlreadySet(address): means the contract state already contains, processed, initialized, claimed, filled, cancelled, settled, or registered this item.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the RemoteTokenBridgeAlreadySet custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The same id, account, market, order, message, claim, module, or configuration was submitted before.",
+      "Another transaction changed state between quote/signing and execution.",
+      "The client retried a payload that was already accepted or intentionally cancelled.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the status for the id, order hash, message nonce, claim period, module, market, or configuration key.",
+      "Stop retrying if the action already succeeded or was intentionally finalized.",
+      "Create a new id/order/message/configuration only if the user intends a separate action."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2356,17 +2624,21 @@
         "value": "0x6dad9c78"
       }
     ],
-    "summary": "Linea contracts custom error ReservedToken(address).",
+    "summary": "Linea contracts rejected the call at ReservedToken(address): means lending-market collateral, debt, reserve, cap, health-factor, or liquidation constraints rejected the action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ReservedToken custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The account would become undercollateralized, exceed a borrow/supply cap, or violate reserve configuration.",
+      "Oracle prices, collateral factors, isolation/e-mode settings, or liquidation thresholds changed before execution.",
+      "The repay, withdraw, borrow, seize, or liquidation amount does not fit the market's current accounting.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read collateral, debt, health factor, reserve caps, oracle prices, and liquidation thresholds at the reverting block.",
+      "Reduce borrow/withdraw size, add collateral, repay debt, or choose a valid liquidation amount.",
+      "Refresh market configuration and account data immediately before submitting."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2391,18 +2663,22 @@
         "value": "(?:^|.*(?:execution reverted(?: with reason string)?|reverted with reason string|revert(?:ed)?)\\s*:?\\s*)['\"]?Reverting with receive['\"]?\\s*$"
       }
     ],
-    "summary": "Linea contracts revert reason string: Reverting with receive.",
+    "summary": "Linea contracts reverted with \"Reverting with receive\", an exact source-level check that points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "A require/revert/assert condition in the named protocol failed.",
-      "The reason string is exact; map it back to the source file or calling flow before changing gas settings."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Because the revert reason is exact text from the referenced source, treat it as checking rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state, not as a generic execution failure."
     ],
     "nextSteps": [
-      "Search the protocol source for the exact string.",
-      "Check balances, approvals, route encoding, deadlines, ownership, paused state, nonces, bridge configuration, market health, or protocol permissions depending on the matched string."
+      "Search the referenced source for the exact reason string and inspect the surrounding require/revert branch.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2426,15 +2702,19 @@
         "value": "0x79d1e58f"
       }
     ],
-    "summary": "Linea contracts custom error SenderNotAuthorized().",
+    "summary": "Linea contracts rejected the call at SenderNotAuthorized: means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SenderNotAuthorized custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2461,15 +2741,19 @@
         "value": "0x2526f108"
       }
     ],
-    "summary": "Linea contracts custom error ShnarfAndFinalBlockNumberLengthsMismatched(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at ShnarfAndFinalBlockNumberLengthsMismatched(uint256,uint256): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ShnarfAndFinalBlockNumberLengthsMismatched custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2496,18 +2780,22 @@
         "value": "0x7dc2487d"
       }
     ],
-    "summary": "Linea contracts custom error SnarkHashIsZeroHash().",
+    "summary": "Linea contracts rejected the call at SnarkHashIsZeroHash: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the SnarkHashIsZeroHash custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2531,18 +2819,22 @@
         "value": "0xead4c30e"
       }
     ],
-    "summary": "Linea contracts custom error StartingRootHashDoesNotMatch().",
+    "summary": "Linea contracts rejected the call at StartingRootHashDoesNotMatch: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the StartingRootHashDoesNotMatch custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2566,17 +2858,21 @@
         "value": "0xd5aa5ad6"
       }
     ],
-    "summary": "Linea contracts custom error StateRootHashInvalid(bytes32,bytes32).",
+    "summary": "Linea contracts rejected the call at StateRootHashInvalid(bytes32,bytes32): means the protocol state, phase, mode, registry, market, route, or configuration does not allow this action.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the StateRootHashInvalid custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The contract is in a different lifecycle phase, market mode, route state, or configuration state than the client expected.",
+      "Governance, admin, keeper, or registry updates changed the allowed path before execution.",
+      "The submitted transaction targets an unsupported deployment, market, module, or feature flag.",
+      "Decoded arguments usually identify the relevant id, hash, domain, role, message, order, or storage key; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Read the relevant status, phase, registry, route, market, and configuration values at the reverting block.",
+      "Refresh integration metadata and submit only while the protocol state permits the action.",
+      "Use the supported market, module, route, or contract version before retrying."
     ],
-    "retryHelpful": "no",
+    "retryHelpful": "sometimes",
     "increasingGasHelpful": "no",
     "confidence": "high",
     "references": [
@@ -2601,15 +2897,19 @@
         "value": "0xd8ce8acb"
       }
     ],
-    "summary": "Linea contracts custom error StatusAddressNotAllowed(address).",
+    "summary": "Linea contracts rejected the call at StatusAddressNotAllowed(address): means the effective caller does not satisfy the contract's owner, role, operator, or permission check.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the StatusAddressNotAllowed custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The transaction sender is not the owner, admin, operator, guardian, manager, controller, or role holder checked by the contract.",
+      "A proxy, relayer, account-abstraction wallet, delegatecall, or multicall changed the effective caller from the address you expected.",
+      "Governance or an admin has not granted the permission yet, or the permission was revoked before this call.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check the effective msg.sender for the failing frame, including proxy, relayer, delegatecall, and account-abstraction context.",
+      "Read the owner, role registry, operator approval, or permission mapping for the caller at the same block.",
+      "Call from the authorized account or grant the missing role before retrying."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2636,18 +2936,22 @@
         "value": "0x3211d9be"
       }
     ],
-    "summary": "Linea contracts custom error TimestampsNotInSequence(uint256,uint256).",
+    "summary": "Linea contracts rejected the call at TimestampsNotInSequence(uint256,uint256): points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TimestampsNotInSequence custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2671,15 +2975,19 @@
         "value": "0xa3c47ac4"
       }
     ],
-    "summary": "Linea contracts custom error TokenIsSoulBound().",
+    "summary": "Linea contracts rejected the call at TokenIsSoulBound: means a numeric bound, cap, threshold, ratio, fee, or limit check rejected the submitted value.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TokenIsSoulBound custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "An amount, fee, ratio, price, leverage, cap, duration, or basis-point value is above or below the allowed range.",
+      "The protocol configuration changed after the quote or transaction was prepared.",
+      "Rounding, decimals, shares/assets conversion, or fixed-point math pushed the final value past a limit.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode the failing value and compare it with the current cap, minimum, maximum, ratio, or threshold in contract state.",
+      "Recalculate amounts using the token decimals and protocol rounding rules.",
+      "Clamp the submitted value to the current limit or wait for governance/admin configuration to change."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2706,15 +3014,19 @@
         "value": "0xa5ea89da"
       }
     ],
-    "summary": "Linea contracts custom error TokenNotDeployed(address).",
+    "summary": "Linea contracts rejected the call at TokenNotDeployed(address): means token movement, minting, burning, receiver, transfer-list, or compliance rules rejected the call.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the TokenNotDeployed custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The sender, receiver, token id, amount, or token contract does not satisfy the token's transfer rules.",
+      "A blocklist, allowlist, KYC, lockup, soulbound, pause, or compliance check blocks movement.",
+      "The receiver contract does not implement the required token-receiver hook or rejects the transfer.",
+      "Decoded arguments usually identify the relevant account, token, router, module, receiver, or authority address; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check balances, ownership, approvals, receiver hooks, transfer restrictions, and compliance lists at the same block.",
+      "Use an allowed sender/receiver and the correct token id/amount before retrying.",
+      "Route through the token's supported transfer or redemption flow if direct transfer is restricted."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",
@@ -2741,18 +3053,22 @@
         "value": "0x32bdd925"
       }
     ],
-    "summary": "Linea contracts custom error YPointGreaterThanCurveModulus().",
+    "summary": "Linea contracts rejected the call at YPointGreaterThanCurveModulus: points to cross-chain message, route, domain, endpoint, nonce, proof, fee, or finality state.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the YPointGreaterThanCurveModulus custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "The source chain, destination chain, remote sender, endpoint, bridge adapter, or trusted remote is not the one the contract expects.",
+      "The message proof is not finalized, the message was already processed, or the replay/nonce guard rejected it.",
+      "The bridge execution fee, route payload, gas limit, or remote configuration was built for a different chain or deployment.",
+      "The selector has no typed arguments, so confirm the surrounding source branch and rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Check source chain id, destination chain id, message id/nonce, endpoint, trusted remote, and bridge adapter configuration.",
+      "Confirm the message is finalized and executable on the destination before retrying.",
+      "If the message was already processed, stop retrying and reconcile destination-chain state."
     ],
-    "retryHelpful": "no",
-    "increasingGasHelpful": "no",
+    "retryHelpful": "sometimes",
+    "increasingGasHelpful": "sometimes",
     "confidence": "high",
     "references": [
       {
@@ -2776,15 +3092,19 @@
         "value": "0x4618044a"
       }
     ],
-    "summary": "Linea contracts custom error ZeroAmountNotAllowed(uint256).",
+    "summary": "Linea contracts rejected the call at ZeroAmountNotAllowed(uint256): means one of the submitted addresses, amounts, ids, indexes, array lengths, routes, or encoded payload fields failed local validation.",
     "rootCauseKnown": true,
     "likelyCauses": [
-      "The contract reverted with the ZeroAmountNotAllowed custom error.",
-      "The selector identifies the failing protocol branch; decoded arguments usually identify the bad address, amount, token, market, route, nonce, or configuration value."
+      "A zero address, zero amount, invalid token, bad recipient, empty payload, or unsupported id was supplied.",
+      "Parallel arrays, route/path data, proof data, or encoded parameters do not match the contract's expected shape.",
+      "The client reused calldata built for another asset, account, market, chain, or contract version.",
+      "Decoded arguments usually identify the relevant amount, limit, nonce, timestamp, id, price, or configured bound; compare them with rollup, bridge, inbox/outbox, sequencer, proof, retryable, or system-contract state."
     ],
     "nextSteps": [
-      "Decode the custom error arguments with the contract ABI or selector catalog.",
-      "Check the Linea contracts precondition named by the error and retry only after changing the transaction inputs or state."
+      "Decode the custom error arguments and map them to the transaction inputs or current contract state.",
+      "Decode calldata and error arguments, then map each value back to the submitted form, quote, route, or SDK request.",
+      "Validate addresses, amounts, ids, array lengths, and encoded payloads before signing or sending.",
+      "Rebuild the transaction with current protocol metadata and contract addresses."
     ],
     "retryHelpful": "no",
     "increasingGasHelpful": "no",

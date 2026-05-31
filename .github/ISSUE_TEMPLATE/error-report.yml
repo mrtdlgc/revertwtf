@@ -1,0 +1,82 @@
+name: Error report
+description: Report a missing, weak, or incorrect revert.wtf explanation.
+title: "[error-report]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for errors that are not covered yet, wrapper-level matches that need more context, or explanations that look wrong.
+        Redact private keys, API keys, signatures, customer data, and private calldata before posting.
+  - type: dropdown
+    id: report_kind
+    attributes:
+      label: What kind of report is this?
+      options:
+        - No match / unknown error
+        - Weak wrapper match
+        - Incorrect explanation
+        - Covered but not actionable enough
+    validations:
+      required: true
+  - type: input
+    id: chain
+    attributes:
+      label: Chain
+      description: Chain name and/or chain ID.
+      placeholder: "Base / 8453"
+  - type: input
+    id: tx_hash
+    attributes:
+      label: Public transaction hash
+      description: Leave blank if it failed before a public transaction existed.
+      placeholder: "0x..."
+  - type: dropdown
+    id: failure_phase
+    attributes:
+      label: Where did it fail?
+      options:
+        - estimateGas / simulation
+        - eth_call / read
+        - wallet preflight
+        - after submit / mined revert
+        - bundler / paymaster / relayer
+        - unknown
+    validations:
+      required: true
+  - type: input
+    id: rpc_client
+    attributes:
+      label: RPC, wallet, client, or explorer
+      placeholder: "Alchemy, Infura, MetaMask, Rabby, Blockscout, Tenderly, geth, reth..."
+  - type: input
+    id: library_version
+    attributes:
+      label: Library and version
+      placeholder: "ethers@6.13.0, viem@2.x, wagmi@2.x..."
+  - type: dropdown
+    id: verified_source
+    attributes:
+      label: Contract source / ABI available?
+      options:
+        - "yes"
+        - "no"
+        - unknown
+  - type: textarea
+    id: function_context
+    attributes:
+      label: Smallest function or calldata context you can share
+      description: Function name, decoded args, route, spender, token, pool, or calldata slice.
+      render: text
+  - type: textarea
+    id: revertwtf_report_json
+    attributes:
+      label: revert.wtf report JSON
+      description: Paste the JSON copied from the web UI, CLI, or agent output.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything that changed between estimate and submit, different RPC results, stale approvals, route state, token return behavior, or redaction notes.

@@ -2,6 +2,12 @@
 
 The main way to contribute is by adding catalog entries. One error per PR.
 
+If the current result is unknown, only matches a wrapper, looks wrong, or needs
+execution context, open an error report first:
+<https://github.com/mrtdlgc/revertwtf/issues/new?template=error-report.yml>.
+Include the copied report JSON from the web UI when possible, after redacting
+secrets and private calldata.
+
 ## Add a catalog entry
 
 1. Edit the matching shard under `packages/catalog/src/data/shards/` and append a new object.

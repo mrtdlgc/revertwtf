@@ -2,6 +2,19 @@
 
 See `CONTRIBUTING.md` at the repo root for the short version.
 
+## Report before adding
+
+Use an error report when the current result is unknown, only matches a wrapper,
+looks wrong, or needs execution context that is not safe to guess from the
+message alone. Useful reports include chain, RPC/client, wallet, library version,
+public tx hash when one exists, whether the failure happened during
+`estimateGas`/simulation or after submit, source/ABI availability, and the
+smallest calldata or function context that can be shared.
+
+The web UI can copy a report JSON with the current normalized evidence, decoded
+revert candidates, and matched catalog entry IDs. Redact secrets, signatures,
+customer data, and private calldata before posting it publicly.
+
 ## Workflow
 
 1. Reproduce the error and capture the *raw* blob (redact secrets like API keys).

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import type { DecodedRevert, Explanation, NormalizedError } from "@revertwtf/core";
+import { REPO_ERROR_REPORT_URL } from "@/lib/site";
 import { ExplanationCard } from "./ExplanationCard";
 
 const EXAMPLES: { label: string; payload: string }[] = [
@@ -219,7 +220,8 @@ export function ErrorPasteBox({ compact = false }: { compact?: boolean }) {
 
       {state.status === "ready" && (
         <ResultPanel
-          raw={state.result.normalized}
+          rawInput={raw}
+          normalized={state.result.normalized}
           decoded={state.result.decoded}
           explanations={state.result.explanations}
         />
@@ -229,14 +231,30 @@ export function ErrorPasteBox({ compact = false }: { compact?: boolean }) {
 }
 
 function ResultPanel({
-  raw,
+  rawInput,
+  normalized,
   decoded,
   explanations,
 }: {
-  raw: NormalizedError;
+  rawInput: string;
+  normalized: NormalizedError;
   decoded: { data: string; path: string; result: DecodedRevert }[];
   explanations: Explanation[];
 }) {
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
+  const primary = explanations[0];
+  const issueHref = reportIssueHref(primary);
+
+  async function copyReportJson() {
+    const report = buildReportPayload({ rawInput, normalized, decoded, explanations });
+    try {
+      await copyText(JSON.stringify(report, null, 2));
+      setCopyState("copied");
+    } catch {
+      setCopyState("failed");
+    }
+  }
+
   return (
     <section className="space-y-5">
       <header className="brutal-card-flat bg-ink p-4 text-paper overflow-hidden">
@@ -246,6 +264,14 @@ function ResultPanel({
             <p className="font-display text-4xl leading-none text-acid sm:text-5xl">
               {explanations.length} match{explanations.length === 1 ? "" : "es"}
             </p>
+          </div>
+          <div className="flex flex-wrap justify-start gap-2 sm:justify-end">
+            <button type="button" className="brutal-button bg-acid text-ink" onClick={copyReportJson}>
+              {copyState === "copied" ? "report copied" : copyState === "failed" ? "copy failed" : "copy report JSON"}
+            </button>
+            <a href={issueHref} target="_blank" rel="noreferrer" className="brutal-button-ghost bg-paper text-ink">
+              report this error
+            </a>
           </div>
           <div className="grid grid-cols-6 gap-1" aria-hidden>
             {Array.from({ length: 18 }).map((_, i) => (
@@ -290,13 +316,13 @@ function ResultPanel({
         <pre className="p-4 text-xs overflow-x-auto whitespace-pre-wrap">
 {JSON.stringify(
   {
-    messages: raw.messages,
-    codes: raw.codes,
-    method: raw.method,
-    action: raw.action,
-    errorName: raw.errorName,
-    revertData: raw.revertData,
-    traceFrames: raw.traceFrames,
+    messages: normalized.messages,
+    codes: normalized.codes,
+    method: normalized.method,
+    action: normalized.action,
+    errorName: normalized.errorName,
+    revertData: normalized.revertData,
+    traceFrames: normalized.traceFrames,
   },
   null,
   2,
@@ -305,4 +331,91 @@ function ResultPanel({
       </details>
     </section>
   );
+}
+
+function reportIssueHref(primary: Explanation | undefined): string {
+  const url = new URL(REPO_ERROR_REPORT_URL);
+  const id = primary?.id ?? "unknown";
+  url.searchParams.set("title", `[error-report]: ${id}`);
+  return url.toString();
+}
+
+function buildReportPayload({
+  rawInput,
+  normalized,
+  decoded,
+  explanations,
+}: {
+  rawInput: string;
+  normalized: NormalizedError;
+  decoded: { data: string; path: string; result: DecodedRevert }[];
+  explanations: Explanation[];
+}) {
+  return {
+    schemaVersion: 1,
+    source: "revert.wtf web",
+    createdAt: new Date().toISOString(),
+    reportContext: {
+      chain: "",
+      rpcClientOrExplorer: "",
+      wallet: "",
+      libraryAndVersion: "",
+      txHash: "",
+      failurePhase: "",
+      contractVerified: "",
+      contractAddress: "",
+      functionOrCalldataContext: "",
+      notes: "",
+    },
+    redactionChecklist: [
+      "Remove private keys, API keys, signatures, customer data, and private calldata before posting publicly.",
+    ],
+    rawInput: rawInput.slice(0, MAX_PASTE_CHARS),
+    rawInputTruncated: rawInput.length > MAX_PASTE_CHARS,
+    revertWtfResult: {
+      explanations: explanations.map((e) => ({
+        id: e.id,
+        title: e.title,
+        layer: e.layer,
+        category: e.category,
+        confidence: e.confidence,
+        rootCauseKnown: e.rootCauseKnown,
+        retryHelpful: e.retryHelpful,
+        increasingGasHelpful: e.increasingGasHelpful,
+        evidence: e.evidence.slice(0, 12),
+      })),
+      decoded: decoded.map((d) => ({
+        path: d.path,
+        data: d.data,
+        result: d.result,
+      })),
+      normalized: {
+        messages: normalized.messages,
+        codes: normalized.codes,
+        method: normalized.method,
+        action: normalized.action,
+        errorName: normalized.errorName,
+        revertData: normalized.revertData,
+        traceFrames: normalized.traceFrames,
+      },
+    },
+  };
+}
+
+async function copyText(text: string): Promise<void> {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.setAttribute("readonly", "true");
+  textArea.style.position = "fixed";
+  textArea.style.left = "-9999px";
+  document.body.appendChild(textArea);
+  textArea.select();
+  const copied = document.execCommand("copy");
+  document.body.removeChild(textArea);
+  if (!copied) throw new Error("Unable to copy report JSON");
 }

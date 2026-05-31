@@ -1,12 +1,26 @@
 import { DocShell } from "@/components/DocShell";
-import { CATALOG_SHARDS_URL, REPO_URL } from "@/lib/site";
+import { CATALOG_SHARDS_URL, REPO_ERROR_REPORT_URL, REPO_URL } from "@/lib/site";
 
 export const metadata = { title: "contributing - revert.wtf" };
 
 export default function Page() {
   return (
     <DocShell kicker="/docs/contributing" title="contributing errors">
-      <p>Catalog PRs are the main way to contribute. Keep each PR small and evidence-backed.</p>
+      <p>Report weird errors first when the evidence is thin. Catalog PRs should stay small and evidence-backed.</p>
+      <p>
+        <a href={REPO_ERROR_REPORT_URL} target="_blank" rel="noreferrer" className="brutal-button bg-acid text-ink">
+          report an error
+        </a>
+      </p>
+
+      <h2 className="font-display text-4xl mt-8">report path</h2>
+      <ul className="space-y-1 list-disc list-inside">
+        <li>Use reports for unknown errors, weak wrapper matches, incorrect explanations, or missing execution context.</li>
+        <li>Include chain, RPC/client, wallet, library version, tx hash when public, and whether it failed before or after submit.</li>
+        <li>Paste the copied report JSON after redacting secrets and private calldata.</li>
+      </ul>
+
+      <h2 className="font-display text-4xl mt-8">catalog PR path</h2>
       <ol className="space-y-2 list-decimal list-inside">
         <li>
           Fork the{" "}

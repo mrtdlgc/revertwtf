@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { stats } from "@/lib/catalog";
-import { NPM_PACKAGES_URL, REPO_URL } from "@/lib/site";
+import { CHROME_EXTENSION_URL, GIVETH_DONATE_URL, NPM_PACKAGES_URL, REPO_URL } from "@/lib/site";
 
 export function SiteFooter() {
   const s = stats();
@@ -43,13 +43,24 @@ export function SiteFooter() {
             <FooterLink href="/terms">terms</FooterLink>
             <FooterLink href={REPO_URL} external>source repo</FooterLink>
             <FooterLink href={NPM_PACKAGES_URL} external>npm packages</FooterLink>
+            <FooterLink href={CHROME_EXTENSION_URL} external>chrome extension</FooterLink>
           </FooterCol>
         </div>
       </div>
       <div className="border-t border-bone/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 text-[11px] uppercase tracking-wide2 text-paper/50 flex flex-wrap items-center justify-between gap-2">
           <span>catalog + decoders + MCP + agent skills</span>
-          <span>built for protocols willing to explain their errors</span>
+          <span>
+            free &amp; open source —{" "}
+            <a
+              href={GIVETH_DONATE_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="text-acid underline underline-offset-4 decoration-2 decoration-acid/50 hover:decoration-acid"
+            >
+              support on Giveth
+            </a>
+          </span>
         </div>
       </div>
     </footer>

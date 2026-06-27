@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ErrorPasteBox } from "@/components/ErrorPasteBox";
 import { JsonLd } from "@/components/JsonLd";
 import { stats } from "@/lib/catalog";
-import { REPO_URL } from "@/lib/site";
+import { CHROME_EXTENSION_URL, GIVETH_DONATE_URL, REPO_URL } from "@/lib/site";
 import { BUILTIN_SELECTORS } from "@revertwtf/selectors/data";
 
 const HOT_SURFACES = [
@@ -52,7 +52,7 @@ export default function HomePage() {
               <span className="min-w-0 px-3 py-2 text-xs uppercase tracking-wide2 text-paper/60">EVM error explanations</span>
             </div>
 
-            <h1 className="mt-5 font-display text-5xl leading-[0.78] text-paper sm:text-6xl md:text-7xl lg:text-8xl">
+            <h1 className="mt-5 font-display text-5xl leading-[0.78] text-paper sm:text-6xl md:text-7xl lg:text-8xl xl:text-7xl">
               revert<span className="text-acid">.</span>wtf
             </h1>
 
@@ -85,6 +85,30 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="border-b-2 border-ink bg-acid text-ink">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="min-w-0">
+            <p className="brutal-tag bg-ink text-acid">new · browser extension</p>
+            <h2 className="mt-3 font-display text-4xl leading-none sm:text-5xl">
+              revert.wtf explorer for Chrome
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink/80">
+              Decode failed transactions right where you hit them. The extension
+              adds an inline panel on Etherscan and Blockscout that explains the
+              revert, panic code, or custom error in plain language.
+            </p>
+          </div>
+          <a
+            href={CHROME_EXTENSION_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="brutal-button shrink-0 bg-ink text-acid"
+          >
+            add to Chrome
+          </a>
         </div>
       </section>
 
@@ -147,7 +171,14 @@ export default function HomePage() {
             <Link href="/errors" className="brutal-button bg-paper text-ink">
               browse errors
             </Link>
+            <a href={GIVETH_DONATE_URL} target="_blank" rel="noreferrer" className="brutal-button bg-blood text-paper">
+              support on Giveth
+            </a>
           </div>
+          <p className="mt-4 text-xs text-paper/55 lg:col-span-2">
+            revert.wtf is free and open source. If it saved you a debugging
+            session, a donation on Giveth genuinely helps keep it maintained.
+          </p>
         </div>
       </section>
     </>

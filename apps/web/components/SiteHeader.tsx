@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { stats } from "@/lib/catalog";
-import { REPO_URL } from "@/lib/site";
+import { CHROME_EXTENSION_URL, REPO_URL } from "@/lib/site";
 
 export function SiteHeader() {
   const s = stats();
@@ -29,6 +29,7 @@ export function SiteHeader() {
           <NavItem href="/catalog">catalog</NavItem>
           <NavItem href="/docs">docs</NavItem>
           <NavItem href="/about">about</NavItem>
+          <ExternalNavItem href={CHROME_EXTENSION_URL}>extension</ExternalNavItem>
           <ExternalNavItem href={REPO_URL}>source</ExternalNavItem>
           <span className="hidden xl:inline-flex brutal-tag bg-acid ml-2">{s.total.toLocaleString()} entries</span>
         </nav>
